@@ -5,7 +5,7 @@ Valheim Atlas is an interactive 3D, orbitable map of a Valheim world (a disc wit
 - Product spec: `docs/SPEC.md`
 - World-generation path: `docs/DECISION.md`
 - Research log and source IDs: `docs/SOURCES.md`
-- **Target game version: 1.0.16.** It is set in `data/meta.json` and must never be hard-coded anywhere else.
+- **Target game version: 1.0.16.** It is set in `public/data/meta.json` and must never be hard-coded anywhere else.
 
 ## Non-negotiable rules
 
@@ -16,9 +16,9 @@ Valheim Atlas is an interactive 3D, orbitable map of a Valheim world (a disc wit
    - pasted wiki prose (Fandom is CC BY-SA).
 
    Write our own words and make our own assets: SVG icons, procedural shaders, our own colour palette.
-2. **Every game fact comes from `data/*.json` and carries a source.**
+2. **Every game fact comes from `public/data/*.json` and carries a source.**
    - A game fact is a name, number, drop, biome rule or location constraint.
-   - Each record has a non-empty `sources: SourceId[]`, and every ID must exist in `data/sources.json`, which mirrors `docs/SOURCES.md`.
+   - Each record has a non-empty `sources: SourceId[]`, and every ID must exist in `public/data/sources.json`, which mirrors `docs/SOURCES.md`.
    - Components, generator code and tests read facts through `src/data/`. **Never write game facts as literals in TS/TSX.**
    - Test fixtures may use invented values only when they are clearly fake (e.g. `"test-biome"`).
 3. **No invented stats.** If no source gives a value, the field is `null` and the UI shows "Unknown". Never guess, interpolate or "fill in plausible" numbers. When sources conflict, set `confidence: "conflict"` and add `notes`.
@@ -45,29 +45,30 @@ Do not add new runtime dependencies without a one-line justification in the PR d
 
 ```
 /
-├─ CLAUDE.md
+├─ CLAUDE.md  README.md
 ├─ docs/                  SPEC.md, DECISION.md, SOURCES.md
-├─ data/                  game facts, all JSON, all sourced
-│  ├─ meta.json           targetGameVersion, worldGenVersion, dataUpdated
-│  ├─ sources.json        SourceRef[]; IDs match docs/SOURCES.md
-│  ├─ world.json          world constants (radius, sea level, zone size…)
-│  ├─ biome-rules.json    ordered biome decision table
-│  ├─ biomes.json  locations.json  bosses.json  creatures.json
-│  ├─ items.json  progression.json  tips.json
-├─ public/                only self-made assets (icons, favicon)
-├─ scripts/               node scripts (validate-data.ts, bake-world.ts)
+├─ public/
+│  ├─ data/               game facts, all JSON, all sourced; fetched at runtime
+│  │  ├─ meta.json        targetGameVersion, worldGenVersion, dataUpdated
+│  │  ├─ sources.json     SourceRef[]; IDs match docs/SOURCES.md
+│  │  ├─ world.json  biome-rules.json  biomes.json  locations.json   (Phase 1+)
+│  │  └─ bosses.json  creatures.json  items.json  progression.json  tips.json
+│  └─ favicon.svg         only self-made assets
 ├─ src/
-│  ├─ app/                App.tsx, routing, layout, providers
-│  ├─ scene/              r3f components: World, Terrain, Ocean, Sky, Markers, CameraRig
-│  ├─ worldgen/           PURE TS, no React/three/DOM; runs in a Web Worker
-│  │  ├─ rng.ts  noise.ts  biome.ts  height.ts  placement.ts
-│  │  ├─ sources/         WorldSource implementations (approx-v1, …)
-│  │  └─ worker.ts
-│  ├─ data/               schema.ts (zod), loaders, typed selectors
-│  ├─ state/              Zustand stores (world, ui, layers, progress, url-sync)
-│  ├─ ui/                 panels, drawers, legend, search, badges
+│  ├─ main.tsx            entry point
+│  ├─ app/                App.tsx (root: full-screen Canvas + HUD), app.css, app-level hooks
+│  ├─ world/              PURE TS, no React/three/DOM; runs in a Web Worker
+│  │  ├─ rng.ts           seeded PRNG + seed hash (never Math.random)
+│  │  ├─ protocol.ts      zod-typed worker request/response unions
+│  │  ├─ handle-request.ts  pure handler (unit-tested)
+│  │  ├─ worker.ts        Web Worker entry
+│  │  └─ client.ts        main-thread wrapper (promise + progress)
+│  ├─ render/             r3f components: WorldCanvas, terrain, ocean, markers, camera
+│  ├─ data/               schema.ts (zod), load.ts (typed fetch loaders), integrity checks
+│  ├─ state/              Zustand stores; url-state.ts (?seed=&mode=&layer=) + url-sync.ts
+│  ├─ ui/                 HUD, panels, drawers, legend, search, badges
 │  └─ lib/                small shared helpers (math, format, geometry)
-└─ tests/e2e/             Playwright specs
+└─ tests/e2e/             Playwright specs (Phase 3+)
 ```
 
 Unit tests sit next to their code as `*.test.ts(x)`.
@@ -77,7 +78,7 @@ Unit tests sit next to their code as `*.test.ts(x)`.
 - Use named exports; no default exports except for Vite/React entry points.
 - File names are `kebab-case.ts`. React components are `PascalCase.tsx`, one component per file.
 - Don't use `any`. Prefer `unknown` plus zod parsing at every boundary (JSON, URL, worker messages).
-- `worldgen/` must be deterministic:
+- `world/` must be deterministic:
   - no `Math.random`;
   - no `Date`;
   - all randomness comes from the seeded PRNG in `rng.ts`.
@@ -88,31 +89,29 @@ Unit tests sit next to their code as `*.test.ts(x)`.
   - use `InstancedMesh` for markers;
   - never call `setState` inside `useFrame`.
 - Units are metres. Coordinates are x = east, z = north, y = up. Name variables with a unit suffix: `distM`, `heightM`.
-- Comments explain *why*. Cite a source ID when code implements a documented rule, e.g. `// S-BIO-02: Ashlands tested before ocean`. The numbers themselves stay in `data/`.
+- Comments explain *why*. Cite a source ID when code implements a documented rule, e.g. `// S-BIO-02: Ashlands tested before ocean`. The numbers themselves stay in `public/data/`.
 - UI text is plain and friendly for newcomers. Spoiler-sensitive content respects `progress.tier`.
 
 ## Commands
 
-Scripts are created in Phase 1.
-
 | Command | Purpose |
 |---|---|
-| `npm install` | Install dependencies |
+| `npm install` | Install dependencies (Node ≥ 22) |
 | `npm run dev` | Vite dev server |
-| `npm run build` | Typecheck, then build for production |
+| `npm run build` | Typecheck (`tsc -b`), then production build to `dist/` |
 | `npm run preview` | Serve the production build |
-| `npm run typecheck` | `tsc --noEmit` |
-| `npm run lint` | ESLint and Prettier check |
-| `npm run format` | Prettier write |
-| `npm test` | Vitest (unit) |
-| `npm run test:e2e` | Playwright (Chromium) |
-| `npm run validate:data` | Check `data/*.json` against the zod schemas, verify every source ID and cross-reference resolves, and require numbers to be sourced or `null` |
-| `npm run check` | Run typecheck, lint, test and validate:data (the pre-push gate) |
+| `npm run typecheck` | `tsc -b --noEmit` across the app, test and tooling tsconfigs |
+| `npm run lint` | ESLint (typescript-eslint strict type-checked, react-hooks) and Prettier check |
+| `npm run format` | Prettier write (Markdown is excluded so doc tables stay hand-aligned) |
+| `npm test` | Vitest (unit); `npm run test:watch` for watch mode |
+| `npm run check` | typecheck, lint and test together: the pre-push gate |
+| `npm run validate:data` | *Planned (Phase 1 data work):* standalone data validator. Until then `src/data/data-files.test.ts` validates `public/data/*.json` and source-ID integrity inside `npm test` |
+| `npm run test:e2e` | *Planned (Phase 3):* Playwright (Chromium) |
 
 ## Definition of done
 
 **All phases** require:
-- `npm run check` passes, and `npm run test:e2e` passes once it exists.
+- `npm run check` passes, and `npm run test:e2e` / `validate:data` pass once they exist.
 - No new un-sourced game facts, and no assets that break the rules above.
 - Docs are updated (SPEC, SOURCES, and this file if conventions change).
 - Changes are committed with a clear message and pushed.
@@ -121,7 +120,7 @@ Scripts are created in Phase 1.
 |---|---|---|
 | **0: Research and docs** | SOURCES, SPEC, DECISION, CLAUDE.md | All four docs are written and cited, and the user has confirmed the DECISION path |
 | **1: Scaffold and data** | Vite + React + TS strict app shell; zod schemas; `validate:data`; seed data (`meta`, `sources`, `world`, `biome-rules`, `biomes`, `bosses`, core `locations`) | `npm run dev` shows an empty canvas; `validate:data` passes and fails on a deliberately broken fixture (tested); every record has sources |
-| **2: World generator** | `worldgen/` for the chosen path: PRNG, noise, biome rules from data, heights, location placement; worker plus progress | Same seed gives byte-identical output (tested); biome-rule unit tests cover every row of `biome-rules.json` (Ashlands south, Deep North north, ring bands); a 512² generation takes < 3 s in Node; no React/three imports in `worldgen/` (lint rule) |
+| **2: World generator** | `world/` for the chosen path: PRNG, noise, biome rules from data, heights, location placement; worker plus progress | Same seed gives byte-identical output (tested); biome-rule unit tests cover every row of `biome-rules.json` (Ashlands south, Deep North north, ring bands); a 512² generation takes < 3 s in Node; no React/three imports in `world/` (lint rule) |
 | **3: 3D scene** | Terrain mesh, biome texture, water, ocean ring, sky, camera controls, reset and top-down views | Orbit, zoom and pan are smooth at ≥ 50 fps on integrated graphics; an e2e test checks that the canvas renders and camera controls respond; no game assets |
 | **4: Locations and panels** | Instanced markers, layers and legend, info panels, search and filter, fly-to | Every panel shows sources and confidence; unknown values show "Unknown"; e2e tests cover search → select → panel → fly-to |
 | **5: Newcomer and veteran modes** | Progression guide, spoiler-safe mode, tips, seed input, measure tool, URL state, approximation badge and link-out | All user stories N1–N8 and V1–V8 in SPEC §4 meet their acceptance criteria, each with a test or a documented manual check |
@@ -130,5 +129,5 @@ Scripts are created in Phase 1.
 ## Workflow notes
 
 - Work in plan mode for any multi-file change. Present the plan and wait for approval.
-- Research that adds facts must first add or update entries in `docs/SOURCES.md` and `data/sources.json`, with `confidence` recorded honestly (`read` / `snippet` / `conflict`).
+- Research that adds facts must first add or update entries in `docs/SOURCES.md` and `public/data/sources.json`, with `confidence` recorded honestly (`read` / `snippet` / `conflict`).
 - Open verification items live at the bottom of `docs/SOURCES.md`. Don't ship data that depends on an open item. Leave that field `null`.

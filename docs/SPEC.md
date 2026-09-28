@@ -5,7 +5,7 @@
 - **World generation path:** see `docs/DECISION.md` (pending confirmation)
 
 Facts in this document cite source IDs from `docs/SOURCES.md`. The app itself reads facts only from
-`data/*.json` (see `CLAUDE.md`).
+`public/data/*.json` (see `CLAUDE.md`).
 
 ## 1. Vision
 
@@ -132,13 +132,13 @@ Each panel shows a "Sources" footer listing source IDs and their confidence.
 
 ## 6. Data model
 
-All game facts live in `data/*.json`. The files are validated by zod schemas in `src/data/schema.ts`,
+All game facts live in `public/data/*.json`. The files are validated by zod schemas in `src/data/schema.ts`,
 which mirror the types below, and are checked by `npm run validate:data`.
 
 ```ts
 // ---- shared ----
 type Id = string;                // kebab-case, stable, e.g. "black-forest", "sunken-crypt"
-type SourceId = string;          // e.g. "S-LOC-01"; must exist in data/sources.json
+type SourceId = string;          // e.g. "S-LOC-01"; must exist in public/data/sources.json
 type Confidence = "read" | "snippet" | "conflict";
 
 interface Sourced {
@@ -157,14 +157,14 @@ interface SourceRef {
   confidence: Confidence;
 }
 
-interface Meta {                 // data/meta.json
+interface Meta {                 // public/data/meta.json
   targetGameVersion: "1.0.16";
   worldGenVersion: 2;
   dataUpdated: string;           // ISO date
   sources: SourceId[];
 }
 
-// ---- world constants (data/world.json) ----
+// ---- world constants (public/data/world.json) ----
 interface WorldConstants extends Sourced {
   worldRadiusM: number;          // 10000
   waterEdgeM: number;            // 10500
@@ -174,11 +174,11 @@ interface WorldConstants extends Sourced {
   outerFloorM: number;           // -400
 }
 
-// ---- biomes (data/biomes.json) ----
+// ---- biomes (public/data/biomes.json) ----
 type BiomeId = "meadows" | "black-forest" | "swamp" | "mountains" | "plains"
              | "mistlands" | "ashlands" | "deep-north" | "ocean";
 
-interface BiomeRule extends Sourced {       // data/biome-rules.json; one row of the GetBiome table
+interface BiomeRule extends Sourced {       // public/data/biome-rules.json; one row of the GetBiome table
   order: number;                            // evaluation order; first match wins
   biome: BiomeId;
   minDistM?: number; maxDistM?: number;     // from world centre
@@ -201,7 +201,7 @@ interface Biome extends Sourced {
   dangerSummary?: string;
 }
 
-// ---- locations (data/locations.json) ----
+// ---- locations (public/data/locations.json) ----
 type LocationCategory = "start" | "boss-altar" | "vegvisir" | "dungeon" | "structure"
                       | "trader" | "runestone" | "landmark" | "miniboss";
 
@@ -223,7 +223,7 @@ interface LocationType extends Sourced {
   confidence: Confidence;
 }
 
-// ---- creatures (data/creatures.json) ----
+// ---- creatures (public/data/creatures.json) ----
 interface Creature extends Sourced {
   id: Id; name: string;
   biomes: BiomeId[];
@@ -233,7 +233,7 @@ interface Creature extends Sourced {
   dropItemIds: Id[];
 }
 
-// ---- items (data/items.json) ----
+// ---- items (public/data/items.json) ----
 interface Item extends Sourced {
   id: Id; name: string;
   kind: "resource" | "summon" | "boss-drop" | "key" | "food" | "tool" | "weapon" | "armor" | "other";
@@ -243,7 +243,7 @@ interface Item extends Sourced {
   unlocks?: string;
 }
 
-// ---- bosses (data/bosses.json) ----
+// ---- bosses (public/data/bosses.json) ----
 interface Boss extends Sourced {
   id: Id; name: string;
   order: number;                            // 1 = Eikthyr … 8 = Kall Fimbulbringer
@@ -255,19 +255,19 @@ interface Boss extends Sourced {
 }
 
 // ---- progression & tips ----
-interface ProgressionStep extends Sourced {  // data/progression.json
+interface ProgressionStep extends Sourced {  // public/data/progression.json
   order: number; biome: BiomeId; bossId: Id | null;
   keyUnlockItemIds: Id[]; recommendedGear: string[];
 }
 
-interface Tip extends Sourced {             // data/tips.json
+interface Tip extends Sourced {             // public/data/tips.json
   id: Id; audience: "newcomer" | "veteran" | "all";
   subject: { kind: "biome" | "boss" | "location" | "creature" | "item" | "general"; id?: Id };
   spoilerTier: number;                      // hidden when the user's progress < this tier
   text: string;                             // our own words
 }
 
-// ---- runtime only (never in data/) ----
+// ---- runtime only (never in public/data/) ----
 interface GeneratedWorld {
   seed: string;
   generator: "approx-v1" | "exact-1.0.16";  // shown in the UI
@@ -279,7 +279,7 @@ interface GeneratedWorld {
 ```
 
 **Integrity rules** (enforced by `validate:data`)
-- Every `sources[]` entry must exist in `data/sources.json`.
+- Every `sources[]` entry must exist in `public/data/sources.json`.
 - Every cross-reference ID must resolve to a record.
 - Every number either has a source or is `null`.
 - Any `confidence: "conflict"` record must have `notes`.

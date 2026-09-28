@@ -1,0 +1,21 @@
+[
+  {
+    "id": "S-VER-03",
+    "title": "valheimgame.com: Patch 1.0.16",
+    "url": "https://www.valheimgame.com/news/patch-1-0-16/",
+    "kind": "official",
+    "accessed": "2026-09-28",
+    "gameVersion": "1.0.16",
+    "confidence": "snippet"
+  },
+  {
+    "id": "S-BIO-02",
+    "title": "Valheim-SeedLab worldgen specs (1.0.15/1.0.16)",
+    "url": "https://github.com/DoomMachine/Valheim-SeedLab",
+    "kind": "decompile-derived",
+    "license": "MIT",
+    "accessed": "2026-09-28",
+    "gameVersion": "1.0.16",
+    "confidence": "read"
+  }
+]

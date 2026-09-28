@@ -1,7 +1,7 @@
 # Sources
 
-Research log for Valheim Atlas. Every game fact in `docs/` and in `data/*.json` must trace
-to an ID in this file. In Phase 1 these entries are mirrored into `data/sources.json` with
+Research log for Valheim Atlas. Every game fact in `docs/` and in `public/data/*.json` must trace
+to an ID in this file. In Phase 1 these entries are mirrored into `public/data/sources.json` with
 the same IDs.
 
 - **Access date for everything below:** 2026-09-28

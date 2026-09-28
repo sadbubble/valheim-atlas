@@ -1,0 +1,162 @@
+:root {
+  --bg: #0e1a24;
+  --panel: rgb(14 26 36 / 78%);
+  --panel-border: rgb(207 227 240 / 18%);
+  --text: #e8eef2;
+  --muted: #9fb3c0;
+  --accent: #d8b45a;
+  --radius: 10px;
+  color-scheme: dark;
+  font-family:
+    system-ui,
+    -apple-system,
+    'Segoe UI',
+    Roboto,
+    sans-serif;
+  color: var(--text);
+  background: var(--bg);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root,
+.app {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.app {
+  position: relative;
+}
+
+.world-canvas {
+  position: absolute !important;
+  inset: 0;
+}
+
+/* The HUD overlay lets pointer events through to the canvas except on its panels. */
+.hud {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  grid-template-columns: minmax(0, 340px) 1fr;
+  gap: 12px;
+  padding: 16px;
+}
+
+.hud-panel {
+  pointer-events: auto;
+  background: var(--panel);
+  border: 1px solid var(--panel-border);
+  border-radius: var(--radius);
+  padding: 10px 14px;
+  backdrop-filter: blur(6px);
+}
+
+.hud-top {
+  grid-column: 1 / -1;
+  justify-self: start;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.hud-title {
+  margin: 0;
+  font-size: 1.15rem;
+  letter-spacing: 0.02em;
+}
+
+.hud-badge {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 2px 8px;
+  border-radius: 999px;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+}
+
+.hud-controls {
+  align-self: start;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.hud-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.hud-row > label,
+.hud-row > span {
+  min-width: 44px;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.hud input,
+.hud select,
+.hud button {
+  font: inherit;
+  font-size: 0.9rem;
+  color: var(--text);
+  background: rgb(255 255 255 / 6%);
+  border: 1px solid var(--panel-border);
+  border-radius: 6px;
+  padding: 5px 9px;
+}
+
+.hud input {
+  flex: 1;
+  min-width: 0;
+}
+
+.hud button {
+  cursor: pointer;
+}
+
+.hud button.active {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.hud :focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+.hud-status {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.hud-footer {
+  grid-column: 1 / -1;
+  justify-self: stretch;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
+@media (max-width: 600px) {
+  .hud {
+    grid-template-columns: 1fr;
+    padding: 10px;
+  }
+}

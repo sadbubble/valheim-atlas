@@ -44,13 +44,13 @@ Source IDs refer to `docs/SOURCES.md`.
 | A1 | Port SeedLab (MIT, decompile-derived) to TS | Yes, for 1.0.16 | 1–3 weeks, plus a golden-seed harness | **Medium–high**: decompile origin | High: re-verify every patch | High | **Very high** |
 | A2 | Our own port from our own decompile | Yes | 3–6 weeks | **Highest**: we would breach the reported EULA terms ourselves | High | High | Very high |
 | A3 | Link or iframe valheim-map.world | Yes (theirs) | < 1 day | Low for a link; an iframe needs permission | None, but it could disappear | Low | Medium |
-| **B** | **Rule-driven approximation** | No | 1–2 weeks | **Low**: facts only; our own code and noise | Low: update `data/*.json` when rules change | **High** | Medium (plus an A3 link-out → **High**) |
+| **B** | **Rule-driven approximation** | No | 1–2 weeks | **Low**: facts only; our own code and noise | Low: update `public/data/*.json` when rules change | **High** | Medium (plus an A3 link-out → **High**) |
 | A4 | Ship JSON of a few worlds dumped from the game by a mod | Yes, for the dumped seeds only | 1–2 weeks, plus about 64 MB per seed | Low–medium: the redistribution status of derived data is unverified | Medium | High | Low (fixed seeds only) |
 
 ## Recommendation: Path B, with an A3 link-out, behind a pluggable `WorldSource`
 
 1. **Build Path B as the default generator** (`generator: "approx-v1"`).
-   - Implement the biome decision table from `data/world.json` / `biome-rules.json` (S-BIO-02). Inputs:
+   - Implement the biome decision table from `public/data/world.json` / `biome-rules.json` (S-BIO-02). Inputs:
      - world radius 10,000 m and water edge 10,500 m;
      - the A wobble and the offset circles for Ashlands and Deep North;
      - the Swamp height band and mountain suppression within 1 km.
@@ -84,7 +84,7 @@ Source IDs refer to `docs/SOURCES.md`.
 | Biome ring distances, rule order, Ashlands south, Deep North north, moats | Exact coastlines, islands and mountain positions for a given seed |
 | Which locations appear in which biome, within which distance bands | Exact coordinates of any location in a player's real world |
 | World size, sea level, zone grid | Rivers and lakes (simplified) |
-| Progression, bosses, summons, drops (from `data/`) | Alt-biome variants in 1.0 (not modelled in v1) |
+| Progression, bosses, summons, drops (from `public/data/`) | Alt-biome variants in 1.0 (not modelled in v1) |
 
 ## Fallback plan
 
@@ -92,16 +92,16 @@ Source IDs refer to `docs/SOURCES.md`.
   1. Drop the resolution to 256², and move biome sampling to a GPU fragment shader. The rules are simple enough to express in GLSL.
   2. If that is still not enough, bake one **canonical demo world** at build time, ship it as a static binary asset, and keep live seed generation behind a feature flag until it is ready.
 - **If you choose Path A instead:**
-  1. Implement A1 (a SeedLab-derived TS port) as a separate `worldgen/exact/` module, with its licence and provenance documented in `docs/SOURCES.md`.
+  1. Implement A1 (a SeedLab-derived TS port) as a separate `world/exact/` module, with its licence and provenance documented in `docs/SOURCES.md`.
   2. Build a golden-seed test harness: compare heights, biomes and altar positions against SeedLab's published outputs for ≥ 5 seeds.
   3. **Auto-fallback:** if validation fails, the seed input can't be handled, or the game version isn't `1.0.16`, use `approx-v1` and show the Approximation badge.
   4. Keep Path B as the always-available baseline.
 - **If valheim-map.world goes away:** remove the link-out. Nothing else depends on it.
-- **If a patch changes worldgen rules:** update `data/biome-rules.json` and `data/locations.json` with new sources, then bump `meta.targetGameVersion`. The Path B code should not need to change.
+- **If a patch changes worldgen rules:** update `public/data/biome-rules.json` and `public/data/locations.json` with new sources, then bump `meta.targetGameVersion`. The Path B code should not need to change.
 
 ## Consequences
 - The app never claims to show "your" world under Path B. The copy must say that plainly.
-- All worldgen constants are data (`data/*.json` with sources), not code literals. This is consistent with the rules in `CLAUDE.md`.
+- All worldgen constants are data (`public/data/*.json` with sources), not code literals. This is consistent with the rules in `CLAUDE.md`.
 - No decompiled or unlicensed code or data files enter the repo.
 
 ---
