@@ -3,7 +3,15 @@ import { fileURLToPath } from 'node:url';
 import { describe, expect, it } from 'vitest';
 import { findDuplicateSourceIds, findUnknownSourceIds } from './integrity';
 import { loadDataFile } from './load';
-import { MetaSchema, SourcesFileSchema } from './schema';
+import {
+  BIOME_IDS,
+  BiomeRulesFileSchema,
+  BiomesFileSchema,
+  LocationsFileSchema,
+  MetaSchema,
+  SourcesFileSchema,
+  WorldConstantsSchema,
+} from './schema';
 
 const readData = (name: string): unknown =>
   JSON.parse(
@@ -20,6 +28,50 @@ describe('public/data', () => {
   it('meta.json is valid and every cited source exists', () => {
     const meta = MetaSchema.parse(readData('meta'));
     expect(findUnknownSourceIds(meta.sources, sources)).toEqual([]);
+  });
+
+  const world = WorldConstantsSchema.parse(readData('world'));
+  const rules = BiomeRulesFileSchema.parse(readData('biome-rules'));
+  const biomes = BiomesFileSchema.parse(readData('biomes'));
+  const locations = LocationsFileSchema.parse(readData('locations'));
+
+  it('every record in every file cites known sources', () => {
+    const cited = [world, ...rules, ...biomes, ...locations].flatMap((r) => r.sources);
+    expect(findUnknownSourceIds(cited, sources)).toEqual([]);
+  });
+
+  it('biomes.json covers every biome id exactly once', () => {
+    expect(biomes.map((b) => b.id).sort()).toEqual([...BIOME_IDS].sort());
+  });
+
+  it('biome rule orders are unique', () => {
+    const orders = rules.map((r) => r.order);
+    expect(new Set(orders).size).toBe(orders.length);
+  });
+
+  it('location ids are unique and cross-references resolve', () => {
+    const ids = locations.map((l) => l.id);
+    expect(new Set(ids).size).toBe(ids.length);
+    const known = new Set(ids);
+    for (const l of locations) {
+      for (const target of l.revealsLocationIds ?? []) expect(known.has(target), target).toBe(true);
+    }
+  });
+
+  it('conflicting records explain themselves', () => {
+    for (const l of locations.filter((x) => x.confidence === 'conflict')) {
+      expect(l.notes, l.id).toBeTruthy();
+    }
+  });
+
+  it('distance and altitude ranges are ordered', () => {
+    expect(world.waterEdgeM).toBeGreaterThan(world.worldRadiusM);
+    for (const l of locations) {
+      if (l.minDistM !== null && l.maxDistM !== null) {
+        expect(l.minDistM, l.id).toBeLessThan(l.maxDistM);
+      }
+      if (l.minAltM !== null && l.maxAltM !== null) expect(l.minAltM, l.id).toBeLessThan(l.maxAltM);
+    }
   });
 });
 

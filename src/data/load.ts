@@ -1,5 +1,17 @@
 import type { z } from 'zod';
-import { MetaSchema, SourcesFileSchema, type Meta, type SourceRef } from './schema';
+import {
+  BiomeRulesFileSchema,
+  BiomesFileSchema,
+  LocationsFileSchema,
+  MetaSchema,
+  SourcesFileSchema,
+  WorldConstantsSchema,
+  type Meta,
+  type SourceRef,
+  type WorldGenData,
+} from './schema';
+
+export type { WorldGenData } from './schema';
 
 export class DataLoadError extends Error {
   override readonly name = 'DataLoadError';
@@ -27,3 +39,14 @@ export const loadMeta = (fetchImpl?: typeof fetch): Promise<Meta> =>
 
 export const loadSources = (fetchImpl?: typeof fetch): Promise<SourceRef[]> =>
   loadDataFile('sources', SourcesFileSchema, fetchImpl);
+
+/** Loads everything the world generator needs, in parallel. */
+export async function loadWorldGenData(fetchImpl?: typeof fetch): Promise<WorldGenData> {
+  const [world, biomeRules, biomes, locations] = await Promise.all([
+    loadDataFile('world', WorldConstantsSchema, fetchImpl),
+    loadDataFile('biome-rules', BiomeRulesFileSchema, fetchImpl),
+    loadDataFile('biomes', BiomesFileSchema, fetchImpl),
+    loadDataFile('locations', LocationsFileSchema, fetchImpl),
+  ]);
+  return { world, biomeRules, biomes, locations };
+}

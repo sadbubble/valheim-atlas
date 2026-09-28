@@ -15,7 +15,8 @@
     "format": "prettier --write .",
     "test": "vitest run",
     "test:watch": "vitest",
-    "check": "npm run typecheck && npm run lint && npm run test"
+    "check": "npm run typecheck && npm run lint && npm run test",
+    "perf": "vitest run src/world/generate.perf.test.ts --reporter=verbose"
   },
   "dependencies": {
     "@react-three/drei": "10.7.9",
@@ -37,6 +38,7 @@
     "eslint-config-prettier": "10.1.8",
     "eslint-plugin-react-hooks": "7.1.1",
     "eslint-plugin-react-refresh": "0.5.7",
+    "fake-indexeddb": "6.2.5",
     "globals": "17.12.0",
     "prettier": "3.9.9",
     "typescript": "6.0.3",

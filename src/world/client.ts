@@ -1,12 +1,14 @@
+import type { WorldGenData } from '../data/schema';
 import { WorkerResponseSchema } from './protocol';
-
-export interface GenerateResult {
-  seed: string;
-  seedHash: number;
-}
+import type { GeneratedWorld } from './types';
 
 export interface WorldClient {
-  generate(seed: string, onProgress?: (progress: number) => void): Promise<GenerateResult>;
+  generate(
+    seed: string,
+    resolution: number,
+    data: WorldGenData,
+    onProgress?: (progress: number) => void,
+  ): Promise<GeneratedWorld>;
   dispose(): void;
 }
 
@@ -17,16 +19,32 @@ export function createWorldClient(): WorldClient {
   const pending = new Map<
     number,
     {
-      resolve: (r: GenerateResult) => void;
+      resolve: (w: GeneratedWorld) => void;
       reject: (e: Error) => void;
       onProgress: ((p: number) => void) | undefined;
     }
   >();
 
+  const failAll = (message: string) => {
+    for (const entry of pending.values()) entry.reject(new Error(message));
+    pending.clear();
+  };
+
+  worker.addEventListener('error', (event) => {
+    failAll(`World worker crashed: ${event.message}`);
+  });
+
   worker.addEventListener('message', (event: MessageEvent<unknown>) => {
     const parsed = WorkerResponseSchema.safeParse(event.data);
-    if (!parsed.success) return;
+    if (!parsed.success) {
+      failAll(`Invalid message from world worker: ${parsed.error.message}`);
+      return;
+    }
     const msg = parsed.data;
+    if (msg.type === 'error' && msg.requestId === -1) {
+      failAll(msg.message);
+      return;
+    }
     const entry = pending.get(msg.requestId);
     if (!entry) return;
     switch (msg.type) {
@@ -35,7 +53,7 @@ export function createWorldClient(): WorldClient {
         break;
       case 'done':
         pending.delete(msg.requestId);
-        entry.resolve({ seed: msg.seed, seedHash: msg.seedHash });
+        entry.resolve(msg.world);
         break;
       case 'error':
         pending.delete(msg.requestId);
@@ -45,17 +63,16 @@ export function createWorldClient(): WorldClient {
   });
 
   return {
-    generate(seed, onProgress) {
+    generate(seed, resolution, data, onProgress) {
       const requestId = nextId++;
-      return new Promise<GenerateResult>((resolve, reject) => {
+      return new Promise<GeneratedWorld>((resolve, reject) => {
         pending.set(requestId, { resolve, reject, onProgress });
-        worker.postMessage({ type: 'generate', requestId, seed });
+        worker.postMessage({ type: 'generate', requestId, seed, resolution, data });
       });
     },
     dispose() {
       worker.terminate();
-      for (const entry of pending.values()) entry.reject(new Error('World worker disposed'));
-      pending.clear();
+      failAll('World worker disposed');
     },
   };
 }

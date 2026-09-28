@@ -1,8 +1,8 @@
 import { handleRequest } from './handle-request';
 import { WorkerRequestSchema, type WorkerResponse } from './protocol';
 
-const post = (res: WorkerResponse): void => {
-  globalThis.postMessage(res);
+const post = (res: WorkerResponse, transfer: Transferable[] = []): void => {
+  globalThis.postMessage(res, { transfer });
 };
 
 globalThis.addEventListener('message', (event: MessageEvent<unknown>) => {

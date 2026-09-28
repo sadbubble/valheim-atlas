@@ -1,9 +1,10 @@
 import { create } from 'zustand';
+import type { GeneratedWorld } from '../world/types';
 
 export type WorldStatus =
   | { kind: 'idle' }
   | { kind: 'generating'; seed: string; progress: number }
-  | { kind: 'ready'; seed: string; seedHash: number }
+  | { kind: 'ready'; seed: string; world: GeneratedWorld; fromCache: boolean }
   | { kind: 'error'; seed: string; message: string };
 
 interface WorldState {

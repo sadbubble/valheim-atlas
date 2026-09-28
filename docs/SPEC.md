@@ -133,7 +133,9 @@ Each panel shows a "Sources" footer listing source IDs and their confidence.
 ## 6. Data model
 
 All game facts live in `public/data/*.json`. The files are validated by zod schemas in `src/data/schema.ts`,
-which mirror the types below, and are checked by `npm run validate:data`.
+which mirror the types below, and are checked in `npm test` (`src/data/data-files.test.ts`; a standalone
+`validate:data` script is still planned). **`src/data/schema.ts` is authoritative** where this sketch and the
+code differ. Implemented so far: `meta`, `sources`, `world`, `biome-rules`, `biomes` (minimal) and `locations`.
 
 ```ts
 // ---- shared ----
@@ -172,6 +174,13 @@ interface WorldConstants extends Sourced {
   heightScaleM: number;          // 200 (normalized → metres)
   zoneSizeM: number;             // 64
   outerFloorM: number;           // -400
+  edgeFalloffTarget: number;     // normalized height beyond the radius
+  biomeNoiseScale: number;       // biome mask frequency
+  wobble: { amplitudeM: number; lobes: number };
+  mountains: { minDistanceM; squashFrom; squashTo; excessMultiplier; detailMax };
+  moatWidthM: number;
+  deepNorthHeightBoost: number;
+  rivers: { bedMin; bedMax; channelThresholdMin; channelThresholdMax; fadeInStartM; fadeInEndM };
 }
 
 // ---- biomes (public/data/biomes.json) ----
@@ -181,45 +190,43 @@ type BiomeId = "meadows" | "black-forest" | "swamp" | "mountains" | "plains"
 interface BiomeRule extends Sourced {       // public/data/biome-rules.json; one row of the GetBiome table
   order: number;                            // evaluation order; first match wins
   biome: BiomeId;
-  minDistM?: number; maxDistM?: number;     // from world centre
+  minDistM?: number; maxDistM?: number;     // d > min (+A if wobbleOnMin), d < max
   wobbleOnMin?: boolean;                    // adds A = sin(atan2(x,z)*20)*100
-  noiseThreshold?: number;                  // e.g. 0.4, 0.6
-  baseHeightMin?: number; baseHeightMax?: number;   // normalized
-  offsetCircle?: { cx: number; cz: number; radiusM: number }; // Ashlands / Deep North
+  noise?: { channel: "swamp" | "mistlands" | "plains" | "black-forest"; threshold: number };
+  baseHeightAbove?: number; baseHeightBelow?: number;  // strict, normalized
+  baseHeightAtMost?: number;                // inclusive (ocean)
+  offsetCircle?: { cx: number; cz: number; radiusM: number; wobble: boolean }; // Ashlands / Deep North
 }
+// The last row must be unconditional (the default biome).
 
 interface Biome extends Sourced {
   id: BiomeId;
   name: string;
   tier: number | null;                      // progression order; null for ocean
-  typicalDistanceM: [number, number] | null;
   mapColor: string;                         // our own palette, hex
-  creatureIds: Id[];
-  resourceItemIds: Id[];
-  locationTypeIds: Id[];
-  bossId: Id | null;
-  dangerSummary?: string;
+  // Planned (Phase 4+): typicalDistanceM, creatureIds, resourceItemIds, locationTypeIds,
+  // bossId, dangerSummary.
 }
 
 // ---- locations (public/data/locations.json) ----
-type LocationCategory = "start" | "boss-altar" | "vegvisir" | "dungeon" | "structure"
-                      | "trader" | "runestone" | "landmark" | "miniboss";
+type LocationCategory = "start" | "boss-altar" | "trader" | "miniboss" | "dungeon" | "village"
+                      | "vegvisir" | "runestone" | "landmark";
 
 interface LocationType extends Sourced {
   id: Id;
-  prefab: string;                           // e.g. "SunkenCrypt4"
-  name: string;                             // in-game display name
+  prefab: string | null;                    // e.g. "SunkenCrypt4"; null when sources conflict
+  name: string;                             // display label; our words unless an in-game name is sourced
   category: LocationCategory;
   biomes: BiomeId[];
   quantity: number | null;                  // placement attempts per world
   prioritized: boolean | null;
   unique: boolean | null;
   minDistM: number | null; maxDistM: number | null;
-  minAltM: number | null;  maxAltM: number | null;
+  minAltM: number | null;  maxAltM: number | null;  // metres above sea level
+  placement: "random" | "center-outward";   // start temple searches outward from the centre
   revealsLocationIds?: Id[];                // Vegvisir → altar
   vegvisirChance?: number | null;           // 0..1 if sourced
   bossId?: Id; npc?: string;
-  contents?: string;
   confidence: Confidence;
 }
 
@@ -268,13 +275,19 @@ interface Tip extends Sourced {             // public/data/tips.json
 }
 
 // ---- runtime only (never in public/data/) ----
+// src/world/types.ts (zod-validated at the worker and cache boundaries)
 interface GeneratedWorld {
   seed: string;
-  generator: "approx-v1" | "exact-1.0.16";  // shown in the UI
-  resolution: number;                       // grid cells per side
-  heights: Float32Array;                    // metres
-  biomes: Uint8Array;                       // BiomeId enum index
-  placements: { locationTypeId: Id; x: number; z: number; y: number }[];
+  generator: "approx-v1";                   // exact providers would add their own id
+  isApproximation: boolean;                 // true → UI shows the "Approximation" badge
+  resolution: number;                       // grid cells per side (64..2048, default 1024)
+  extentM: number;                          // grid covers [-extentM, extentM]² (= waterEdgeM)
+  cellSizeM: number;
+  height: Float32Array;                     // metres, row-major, row 0 = north, col 0 = west
+  biomes: Uint8Array;                       // index into biomeIds
+  biomeIds: BiomeId[];
+  locations: { id: string; type: Id; x: number; z: number; biomeId: BiomeId }[];
+  placementReport: { type: Id; wanted: number | null; placed: number; note?: string }[];
 }
 ```
 

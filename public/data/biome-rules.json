@@ -1,0 +1,102 @@
+[
+  {
+    "order": 1,
+    "biome": "ashlands",
+    "offsetCircle": {
+      "cx": 0,
+      "cz": 4000,
+      "radiusM": 12000,
+      "wobble": true
+    },
+    "sources": ["S-BIO-02", "S-BIO-01"],
+    "notes": "Tested before the ocean check, so the Ashlands shape is the same in every seed. Measured from (0,+4000), so it covers the far south."
+  },
+  {
+    "order": 2,
+    "biome": "ocean",
+    "baseHeightAtMost": 0.02,
+    "sources": ["S-BIO-02"]
+  },
+  {
+    "order": 3,
+    "biome": "deep-north",
+    "offsetCircle": {
+      "cx": 0,
+      "cz": -4000,
+      "radiusM": 12000,
+      "wobble": true
+    },
+    "sources": ["S-BIO-02"],
+    "notes": "Measured from (0,-4000), so it covers the far north. In 1.0 the Mountain check inside the Deep North was removed (S-BIO-02 vs S-BIO-01)."
+  },
+  {
+    "order": 4,
+    "biome": "mountains",
+    "baseHeightAbove": 0.4,
+    "sources": ["S-BIO-02", "S-BIO-01"]
+  },
+  {
+    "order": 5,
+    "biome": "swamp",
+    "noise": {
+      "channel": "swamp",
+      "threshold": 0.6
+    },
+    "minDistM": 2000,
+    "maxDistM": 6000,
+    "wobbleOnMin": false,
+    "baseHeightAbove": 0.05,
+    "baseHeightBelow": 0.25,
+    "sources": ["S-BIO-02"]
+  },
+  {
+    "order": 6,
+    "biome": "mistlands",
+    "noise": {
+      "channel": "mistlands",
+      "threshold": 0.4
+    },
+    "minDistM": 6000,
+    "maxDistM": 10000,
+    "wobbleOnMin": true,
+    "sources": ["S-BIO-02"]
+  },
+  {
+    "order": 7,
+    "biome": "plains",
+    "noise": {
+      "channel": "plains",
+      "threshold": 0.4
+    },
+    "minDistM": 3000,
+    "maxDistM": 8000,
+    "wobbleOnMin": true,
+    "sources": ["S-BIO-02"]
+  },
+  {
+    "order": 8,
+    "biome": "black-forest",
+    "noise": {
+      "channel": "black-forest",
+      "threshold": 0.4
+    },
+    "minDistM": 600,
+    "maxDistM": 6000,
+    "wobbleOnMin": true,
+    "sources": ["S-BIO-02"]
+  },
+  {
+    "order": 9,
+    "biome": "black-forest",
+    "minDistM": 5000,
+    "wobbleOnMin": true,
+    "sources": ["S-BIO-02"],
+    "notes": "Fallback: land beyond 5000 m (+ wobble) not claimed by an earlier rule."
+  },
+  {
+    "order": 10,
+    "biome": "meadows",
+    "sources": ["S-BIO-02"],
+    "notes": "Default when no earlier rule matches."
+  }
+]

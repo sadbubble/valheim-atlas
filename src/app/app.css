@@ -85,6 +85,11 @@ body,
   color: var(--accent);
 }
 
+.hud-link {
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
 .hud-controls {
   align-self: start;
   display: flex;

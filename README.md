@@ -2,9 +2,9 @@
 
 An interactive, orbitable 3D map of a Valheim-style world for newcomers and veterans. It covers biomes, bosses, points of interest, progression and tips, and every game fact is sourced.
 
-> **Status: Phase 1 scaffold.** The app currently shows a rotating placeholder disc with a
-> HUD. World generation (Path B, a rule-driven *approximation*; see
-> [`docs/DECISION.md`](docs/DECISION.md)) arrives in Phase 2.
+> **Status: Phase 2.** World generation works (Path B, a rule-driven *approximation*; see
+> [`docs/DECISION.md`](docs/DECISION.md)) and can be inspected on the debug biome map. The main
+> app still shows a placeholder disc; the 3D terrain arrives in Phase 3.
 >
 > Fan-made; not affiliated with Iron Gate or Coffee Stain. Contains no game assets.
 
@@ -21,6 +21,31 @@ npm run dev          # http://localhost:5173
 ```
 
 You should see a slowly rotating disc. Drag to orbit, scroll to zoom, and right-drag to pan.
+Entering a seed generates a world in a Web Worker; the HUD then shows an **Approximation** badge.
+
+### Debug biome map
+
+Open <http://localhost:5173/debug.html?seed=HelloWorld&res=1024>. It draws the generated biome grid
+on a 2D canvas (north up) with hillshading, water, location markers by category, a cursor
+readout (x/z, distance, biome, height), biome shares, generation time, and the locations that
+could not be fully placed. Worlds are cached in IndexedDB by seed; untick the cache box to time a
+fresh generation.
+
+## World generation (approx-v1)
+
+`generateWorld(seed, resolution = 1024, { onProgress })` in `src/world/api.ts` returns
+`{ world, fromCache }`:
+
+- `world.height`: `Float32Array` (metres) and `world.biomes`: `Uint8Array` (index into
+  `world.biomeIds`), both `resolution²`, row 0 = north, covering the disc out to the water edge.
+- `world.locations`: `{ id, type, x, z, biomeId }[]`, placed from `public/data/locations.json`.
+- `world.isApproximation` / `IS_APPROXIMATION`: the UI must label these worlds as approximations.
+
+Biome layout rules, world size, sea level and location constraints come from sourced JSON in
+`public/data/`. Noise and height shaping are our own (`src/world/tuning.ts`), so a seed does
+**not** reproduce the real game world. The same seed always gives the same output (tested).
+Resolution can be 64–2048. A 1024² world takes about 1.5–2 s in Node on the dev container
+(`npm run perf`).
 
 ### URL parameters
 
@@ -47,6 +72,7 @@ Invalid values fall back to their defaults, and parameters left at their default
 | `npm run lint`      | ESLint and Prettier check                       |
 | `npm run format`    | Prettier write                                  |
 | `npm test`          | Vitest unit tests                               |
+| `npm run perf`      | Time a 1024² world generation                   |
 | `npm run check`     | typecheck, lint and test (run before pushing)   |
 
 ## Project layout
@@ -54,7 +80,8 @@ Invalid values fall back to their defaults, and parameters left at their default
 ```
 public/data/   sourced game data (JSON), fetched at runtime
 src/app/       root <App/>: full-screen Canvas + HUD overlay
-src/world/     world generation: pure TS, runs in a Web Worker
+src/world/     world generation (runs in a Web Worker) + IndexedDB cache
+src/debug/     debug.html: 2D biome map
 src/render/    react-three-fiber scene
 src/data/      zod schemas + typed JSON loaders
 src/state/     Zustand stores, URL state helper

@@ -1,19 +1,39 @@
 import { describe, expect, it } from 'vitest';
+import { loadWorldGenDataFromDisk } from '../test/load-data-from-disk';
 import { handleRequest } from './handle-request';
-import { WorkerResponseSchema, type WorkerResponse } from './protocol';
-import { hashSeed } from './rng';
+import { WorkerRequestSchema, WorkerResponseSchema, type WorkerResponse } from './protocol';
 
 describe('handleRequest', () => {
-  it('emits progress then done with the seed hash', () => {
-    const out: WorkerResponse[] = [];
-    handleRequest({ type: 'generate', requestId: 7, seed: 'abc' }, (r) => out.push(r));
-    for (const msg of out) expect(WorkerResponseSchema.parse(msg)).toEqual(msg);
-    expect(out.at(-1)).toEqual({
-      type: 'done',
+  it('emits throttled progress, then done with transferable buffers', () => {
+    const data = loadWorldGenDataFromDisk();
+    const req = WorkerRequestSchema.parse({
+      type: 'generate',
       requestId: 7,
       seed: 'abc',
-      seedHash: hashSeed('abc'),
+      resolution: 64,
+      data,
     });
-    expect(out.filter((m) => m.type === 'progress').map((m) => m.progress)).toEqual([0, 1]);
+    const out: { res: WorkerResponse; transfer: Transferable[] | undefined }[] = [];
+    handleRequest(req, (res, transfer) => out.push({ res, transfer }));
+
+    for (const { res } of out) expect(WorkerResponseSchema.safeParse(res).success).toBe(true);
+    const progress = out.flatMap(({ res }) => (res.type === 'progress' ? [res.progress] : []));
+    expect(progress[0]).toBe(0);
+    expect(progress.at(-1)).toBe(1);
+    expect(progress.length).toBeLessThanOrEqual(101);
+
+    const last = out.at(-1);
+    expect(last?.res.type).toBe('done');
+    if (last?.res.type !== 'done') return;
+    expect(last.res.requestId).toBe(7);
+    expect(last.res.world.seed).toBe('abc');
+    expect(last.transfer).toEqual([last.res.world.height.buffer, last.res.world.biomes.buffer]);
+  });
+
+  it('rejects malformed requests at the schema boundary', () => {
+    expect(
+      WorkerRequestSchema.safeParse({ type: 'generate', requestId: 1, seed: 'x', resolution: 8 })
+        .success,
+    ).toBe(false);
   });
 });

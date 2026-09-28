@@ -1,0 +1,33 @@
+{
+  "worldRadiusM": 10000,
+  "waterEdgeM": 10500,
+  "outerFloorM": -400,
+  "seaLevelM": 30,
+  "heightScaleM": 200,
+  "zoneSizeM": 64,
+  "edgeFalloffTarget": -0.2,
+  "biomeNoiseScale": 0.001,
+  "wobble": {
+    "amplitudeM": 100,
+    "lobes": 20
+  },
+  "mountains": {
+    "minDistanceM": 1000,
+    "squashFrom": 0.28,
+    "squashTo": 0.38,
+    "excessMultiplier": 2,
+    "detailMax": 0.2
+  },
+  "moatWidthM": 400,
+  "deepNorthHeightBoost": 0.1,
+  "rivers": {
+    "bedMin": 0.12,
+    "bedMax": 0.14,
+    "channelThresholdMin": 0.02,
+    "channelThresholdMax": 0.12,
+    "fadeInStartM": 744,
+    "fadeInEndM": 1000
+  },
+  "sources": ["S-BIO-01", "S-BIO-02", "S-WG-05"],
+  "notes": "Radius, water edge, outer floor, sea level, height scale, edge falloff, wobble, moat, Deep North boost and river/channel numbers: S-BIO-02 (1.0.15/1.0.16). Mountain suppression near spawn: S-BIO-01. Zone size: S-WG-05. Heights without an M suffix are normalized (metres = value x heightScaleM)."
+}

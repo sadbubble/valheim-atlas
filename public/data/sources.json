@@ -1,12 +1,12 @@
 [
   {
-    "id": "S-VER-03",
-    "title": "valheimgame.com: Patch 1.0.16",
-    "url": "https://www.valheimgame.com/news/patch-1-0-16/",
-    "kind": "official",
+    "id": "S-BIO-01",
+    "title": "Pre-1.0 decompile of WorldGenerator.cs (davrum/assembly_valheim). Facts only; never copy code",
+    "url": "https://raw.githubusercontent.com/davrum/assembly_valheim/main/WorldGenerator.cs",
+    "kind": "decompile-derived",
+    "license": "none (redistributed decompiled code)",
     "accessed": "2026-09-28",
-    "gameVersion": "1.0.16",
-    "confidence": "snippet"
+    "confidence": "read"
   },
   {
     "id": "S-BIO-02",
@@ -17,5 +17,93 @@
     "accessed": "2026-09-28",
     "gameVersion": "1.0.16",
     "confidence": "read"
+  },
+  {
+    "id": "S-WG-05",
+    "title": "SeedLab reference: zones-locations-vegetation.md",
+    "url": "https://raw.githubusercontent.com/DoomMachine/Valheim-SeedLab/main/.claude/skills/valheim-worldgen/references/zones-locations-vegetation.md",
+    "kind": "decompile-derived",
+    "license": "MIT",
+    "accessed": "2026-09-28",
+    "gameVersion": "1.0.16",
+    "confidence": "read"
+  },
+  {
+    "id": "S-WG-12",
+    "title": "Jötunn docs: zones tutorial",
+    "url": "https://valheim-modding.github.io/Jotunn/tutorials/zones.html",
+    "kind": "community-data",
+    "accessed": "2026-09-28",
+    "confidence": "snippet"
+  },
+  {
+    "id": "S-WG-13",
+    "title": "Expand World Data: docs/locations.md",
+    "url": "https://github.com/JereKuusela/valheim-expand_world_data/blob/main/docs/locations.md",
+    "kind": "community-data",
+    "license": "Unlicense",
+    "accessed": "2026-09-28",
+    "confidence": "read"
+  },
+  {
+    "id": "S-LOC-01",
+    "title": "kirilloid/valheim src/data/location @ ae63432 (facts only; no OSS license)",
+    "url": "https://github.com/kirilloid/valheim/tree/master/src/data/location",
+    "kind": "community-data",
+    "license": "none",
+    "accessed": "2026-09-28",
+    "confidence": "read"
+  },
+  {
+    "id": "S-LOC-02",
+    "title": "SeedLab study: constraint-atlas.md (1.0.15)",
+    "url": "https://raw.githubusercontent.com/DoomMachine/Valheim-SeedLab/main/docs/studies/constraint-atlas.md",
+    "kind": "decompile-derived",
+    "license": "MIT",
+    "accessed": "2026-09-28",
+    "gameVersion": "1.0.15",
+    "confidence": "read"
+  },
+  {
+    "id": "S-LOC-03",
+    "title": "game8: Hildir quests / minibosses",
+    "url": "https://game8.co/games/Valheim/archives/619372",
+    "kind": "press",
+    "accessed": "2026-09-28",
+    "confidence": "snippet"
+  },
+  {
+    "id": "S-LOC-04",
+    "title": "Fandom: Lord Reto",
+    "url": "https://valheim.fandom.com/wiki/Lord_Reto",
+    "kind": "wiki",
+    "license": "CC BY-SA 3.0",
+    "accessed": "2026-09-28",
+    "confidence": "snippet"
+  },
+  {
+    "id": "S-VER-03",
+    "title": "valheimgame.com: Patch 1.0.16",
+    "url": "https://www.valheimgame.com/news/patch-1-0-16/",
+    "kind": "official",
+    "accessed": "2026-09-28",
+    "gameVersion": "1.0.16",
+    "confidence": "snippet"
+  },
+  {
+    "id": "S-VER-11",
+    "title": "allthings.how: Valheim boss order",
+    "url": "https://allthings.how/valheim-boss-order-all-seven-forsaken-and-how-to-summon-them/",
+    "kind": "press",
+    "accessed": "2026-09-28",
+    "confidence": "snippet"
+  },
+  {
+    "id": "S-VER-15",
+    "title": "BisectHosting: Kall Fimbulbringer guide",
+    "url": "https://www.bisecthosting.com/blog/valheim-kall-fimbulbringer-boss-deep-north-location-summon-tips-tricks-fight-guide-loot",
+    "kind": "press",
+    "accessed": "2026-09-28",
+    "confidence": "snippet"
   }
 ]

@@ -1,0 +1,73 @@
+[
+  {
+    "id": "meadows",
+    "name": "Meadows",
+    "tier": 1,
+    "mapColor": "#8fbf5a",
+    "sources": ["S-BIO-02", "S-VER-11"],
+    "notes": "Tier = boss progression order (S-VER-11; Deep North boss S-VER-15). mapColor is our own palette."
+  },
+  {
+    "id": "black-forest",
+    "name": "Black Forest",
+    "tier": 2,
+    "mapColor": "#2f5a3a",
+    "sources": ["S-BIO-02", "S-VER-11"],
+    "notes": "Tier = boss progression order (S-VER-11; Deep North boss S-VER-15). mapColor is our own palette."
+  },
+  {
+    "id": "swamp",
+    "name": "Swamp",
+    "tier": 3,
+    "mapColor": "#6b5a3a",
+    "sources": ["S-BIO-02", "S-VER-11"],
+    "notes": "Tier = boss progression order (S-VER-11; Deep North boss S-VER-15). mapColor is our own palette."
+  },
+  {
+    "id": "mountains",
+    "name": "Mountains",
+    "tier": 4,
+    "mapColor": "#d9dee6",
+    "sources": ["S-BIO-02", "S-VER-11"],
+    "notes": "Tier = boss progression order (S-VER-11; Deep North boss S-VER-15). mapColor is our own palette."
+  },
+  {
+    "id": "plains",
+    "name": "Plains",
+    "tier": 5,
+    "mapColor": "#d6c46a",
+    "sources": ["S-BIO-02", "S-VER-11"],
+    "notes": "Tier = boss progression order (S-VER-11; Deep North boss S-VER-15). mapColor is our own palette."
+  },
+  {
+    "id": "mistlands",
+    "name": "Mistlands",
+    "tier": 6,
+    "mapColor": "#6e6a8f",
+    "sources": ["S-BIO-02", "S-VER-11"],
+    "notes": "Tier = boss progression order (S-VER-11; Deep North boss S-VER-15). mapColor is our own palette."
+  },
+  {
+    "id": "ashlands",
+    "name": "Ashlands",
+    "tier": 7,
+    "mapColor": "#9a3b2a",
+    "sources": ["S-BIO-02", "S-VER-11"],
+    "notes": "Tier = boss progression order (S-VER-11; Deep North boss S-VER-15). mapColor is our own palette."
+  },
+  {
+    "id": "deep-north",
+    "name": "Deep North",
+    "tier": 8,
+    "mapColor": "#a9d4e8",
+    "sources": ["S-BIO-02", "S-VER-15"],
+    "notes": "Tier = boss progression order (S-VER-11; Deep North boss S-VER-15). mapColor is our own palette."
+  },
+  {
+    "id": "ocean",
+    "name": "Ocean",
+    "tier": null,
+    "mapColor": "#2a5f86",
+    "sources": ["S-BIO-02"]
+  }
+]

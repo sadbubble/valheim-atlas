@@ -46,27 +46,33 @@ Do not add new runtime dependencies without a one-line justification in the PR d
 ```
 /
 ├─ CLAUDE.md  README.md
+├─ index.html  debug.html  app entry; biome-map debug page (2D canvas)
 ├─ docs/                  SPEC.md, DECISION.md, SOURCES.md
 ├─ public/
 │  ├─ data/               game facts, all JSON, all sourced; fetched at runtime
 │  │  ├─ meta.json        targetGameVersion, worldGenVersion, dataUpdated
 │  │  ├─ sources.json     SourceRef[]; IDs match docs/SOURCES.md
-│  │  ├─ world.json  biome-rules.json  biomes.json  locations.json   (Phase 1+)
-│  │  └─ bosses.json  creatures.json  items.json  progression.json  tips.json
+│  │  ├─ world.json  biome-rules.json  biomes.json  locations.json   (implemented)
+│  │  └─ bosses.json  creatures.json  items.json  progression.json  tips.json   (planned)
 │  └─ favicon.svg         only self-made assets
 ├─ src/
 │  ├─ main.tsx            entry point
 │  ├─ app/                App.tsx (root: full-screen Canvas + HUD), app.css, app-level hooks
-│  ├─ world/              PURE TS, no React/three/DOM; runs in a Web Worker
-│  │  ├─ rng.ts           seeded PRNG + seed hash (never Math.random)
-│  │  ├─ protocol.ts      zod-typed worker request/response unions
-│  │  ├─ handle-request.ts  pure handler (unit-tested)
-│  │  ├─ worker.ts        Web Worker entry
-│  │  └─ client.ts        main-thread wrapper (promise + progress)
+│  ├─ world/              world generation (approx-v1, docs/DECISION.md Path B)
+│  │  ├─ api.ts           generateWorld(seed, resolution, {onProgress}) → worker + IndexedDB cache
+│  │  ├─ generator-info.ts  GENERATOR_ID, IS_APPROXIMATION, resolution limits, revision
+│  │  ├─ generate.ts      pure, deterministic generateWorldSync (runs inside the worker)
+│  │  ├─ terrain.ts  biome.ts  placement.ts  noise.ts  math.ts  grid.ts  rng.ts
+│  │  ├─ tuning.ts        approx-v1 tuning: the ONLY place for non-fact generator numbers
+│  │  ├─ types.ts         GeneratedWorld (zod schema + type)
+│  │  ├─ protocol.ts  handle-request.ts  worker.ts  client.ts   Web Worker plumbing
+│  │  └─ cache.ts         IndexedDB cache (main thread)
 │  ├─ render/             r3f components: WorldCanvas, terrain, ocean, markers, camera
 │  ├─ data/               schema.ts (zod), load.ts (typed fetch loaders), integrity checks
 │  ├─ state/              Zustand stores; url-state.ts (?seed=&mode=&layer=) + url-sync.ts
 │  ├─ ui/                 HUD, panels, drawers, legend, search, badges
+│  ├─ debug/              debug.html app: biome map renderer, stats, placement report
+│  ├─ test/               Node-only test helpers (read public/data from disk)
 │  └─ lib/                small shared helpers (math, format, geometry)
 └─ tests/e2e/             Playwright specs (Phase 3+)
 ```
@@ -78,10 +84,14 @@ Unit tests sit next to their code as `*.test.ts(x)`.
 - Use named exports; no default exports except for Vite/React entry points.
 - File names are `kebab-case.ts`. React components are `PascalCase.tsx`, one component per file.
 - Don't use `any`. Prefer `unknown` plus zod parsing at every boundary (JSON, URL, worker messages).
-- `world/` must be deterministic:
+- `world/` generation code (everything the worker runs) must be deterministic:
   - no `Math.random`;
   - no `Date`;
+  - no `Math.sin/cos/atan2/pow/exp` in generation: they are not bit-identical across engines (see `math.ts`);
   - all randomness comes from the seeded PRNG in `rng.ts`.
+- Generator numbers that are **not** game facts (noise frequencies, height shaping, placement
+  tries) go in `src/world/tuning.ts`, never inline. Changing tuning or generator output means bumping
+  `GENERATOR_REVISION` so cached worlds are invalidated.
 
   Worker messages are typed discriminated unions.
 - Keep react-three-fiber render loops allocation-free:
@@ -104,6 +114,7 @@ Unit tests sit next to their code as `*.test.ts(x)`.
 | `npm run lint` | ESLint (typescript-eslint strict type-checked, react-hooks) and Prettier check |
 | `npm run format` | Prettier write (Markdown is excluded so doc tables stay hand-aligned) |
 | `npm test` | Vitest (unit); `npm run test:watch` for watch mode |
+| `npm run perf` | Times a 1024² world generation (target ~3 s on a mid-range laptop; the test fails above 6 s) |
 | `npm run check` | typecheck, lint and test together: the pre-push gate |
 | `npm run validate:data` | *Planned (Phase 1 data work):* standalone data validator. Until then `src/data/data-files.test.ts` validates `public/data/*.json` and source-ID integrity inside `npm test` |
 | `npm run test:e2e` | *Planned (Phase 3):* Playwright (Chromium) |

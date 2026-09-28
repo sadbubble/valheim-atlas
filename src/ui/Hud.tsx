@@ -17,7 +17,9 @@ function describeStatus(status: WorldStatus): string {
     case 'generating':
       return `Generating… ${Math.round(status.progress * 100)}%`;
     case 'ready':
-      return `Worker ready (seed hash ${status.seedHash.toString(16)})`;
+      return `World ready: ${status.world.locations.length} locations${
+        status.fromCache ? ' (cached)' : ''
+      }`;
     case 'error':
       return `Generation failed: ${status.message}`;
   }
@@ -44,9 +46,21 @@ export function Hud() {
     <div className="hud">
       <header className="hud-panel hud-top">
         <h1 className="hud-title">Valheim Atlas</h1>
-        <span className="hud-badge" title="Scaffold only. World generation arrives in Phase 2.">
-          Placeholder
-        </span>
+        {status.kind === 'ready' && status.world.isApproximation ? (
+          <span
+            className="hud-badge"
+            title="This world follows Valheim's published layout rules but is not the real world for this seed."
+          >
+            Approximation
+          </span>
+        ) : (
+          <span className="hud-badge" title="The 3D terrain arrives in Phase 3.">
+            Placeholder
+          </span>
+        )}
+        <a className="hud-link" href={`debug.html${window.location.search}`}>
+          Biome map (debug)
+        </a>
       </header>
 
       <section className="hud-panel hud-controls" aria-label="Map controls">

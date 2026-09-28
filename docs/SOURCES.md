@@ -369,3 +369,6 @@ before the related data ships.
 8. Typical mountain peak height and ocean depth distribution (for terrain scaling in Path B).
 9. The EULA wording (S-WG-23).
 10. The Ashlands/Deep North offset signs, as seen on a real minimap (Ashlands must be south).
+11. The reference point for location altitude limits (`minAltitude`/`maxAltitude`, S-WG-13). The data
+    and approx-v1 treat them as metres above sea level; confirm against a real install. Affects
+    `moder-altar` (150–500 m) and `deep-north-boss` (≥ 80 m).
