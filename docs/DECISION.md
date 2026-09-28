@@ -1,6 +1,6 @@
 # Decision: Exact-seed reproduction (Path A) vs Valheim-inspired generator (Path B)
 
-- **Status:** PROPOSED. Awaiting user confirmation (see the end of this document).
+- **Status:** ACCEPTED on 2026-09-28. The user confirmed Path B (see the end of this document).
 - **Date:** 2026-09-28
 - **Target game version:** 1.0.16
 
@@ -106,11 +106,8 @@ Source IDs refer to `docs/SOURCES.md`.
 
 ---
 
-## Awaiting user confirmation
+## User confirmation
 
-**Please confirm one of the following before any app code is written:**
-
-1. **Path B (recommended):** rule-driven approximation, "Approximation" badge, link-out to valheim-map.world.
-2. **Path A1:** exact reproduction by porting the MIT SeedLab code. You accept the decompile-origin risk; Path B stays as the fallback.
-3. **Path A4 variant:** Path B, plus a small set of exact worlds dumped from the game by a mod.
-4. **Something else.**
+**Confirmed 2026-09-28: Path B.**
+- A rule-driven approximation (`approx-v1`) with the "Approximation" badge and a link-out to valheim-map.world.
+- Path A (options A1, A2, A4) is not being pursued. It stays possible later behind `WorldSource`, but only with a new decision record.
