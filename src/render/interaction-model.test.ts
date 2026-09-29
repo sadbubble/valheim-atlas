@@ -1,35 +1,17 @@
 import { describe, expect, it } from 'vitest';
 import { buildContentIndex } from '../data/content-index';
-import type { ContentData } from '../data/load';
-import { BiomesFileSchema, LocationsFileSchema, type BiomeId } from '../data/schema';
-import {
-  BossSchema,
-  CraftingStationSchema,
-  CreatureSchema,
-  FoodSchema,
-  ItemSchema,
-  ProgressionStepSchema,
-  ResourceSchema,
-  TipSchema,
-} from '../data/content-schema';
-import { readDataFile } from '../test/load-data-from-disk';
+import type { BiomeId } from '../data/schema';
+import { loadContentFromDisk } from '../test/load-data-from-disk';
 import { computeBiomeAnchors } from './biome-anchors';
-import { buildMarkerSources, clusterCellSize, clusterMarkers } from './markers-model';
-import { flyTargetFor, highlightFor } from './navigation';
-import { z } from 'zod';
+import {
+  buildMarkerSources,
+  clusterCellSize,
+  clusterMarkers,
+  countLocations,
+} from './markers-model';
+import { flyTargetFor, highlightFor, nearestLocation } from './navigation';
 
-const content: ContentData = {
-  biomes: BiomesFileSchema.parse(readDataFile('biomes')),
-  bosses: z.array(BossSchema).parse(readDataFile('bosses')),
-  creatures: z.array(CreatureSchema).parse(readDataFile('creatures')),
-  resources: z.array(ResourceSchema).parse(readDataFile('resources')),
-  items: z.array(ItemSchema).parse(readDataFile('items')),
-  craftingStations: z.array(CraftingStationSchema).parse(readDataFile('crafting-stations')),
-  food: z.array(FoodSchema).parse(readDataFile('food')),
-  progression: z.array(ProgressionStepSchema).parse(readDataFile('progression')),
-  locations: LocationsFileSchema.parse(readDataFile('locations')),
-  tips: z.array(TipSchema).parse(readDataFile('tips')),
-};
+const content = loadContentFromDisk();
 const index = buildContentIndex(content);
 
 /** Clearly fake 8×8 world: west half biome 0, east half biome 1. */
@@ -90,6 +72,18 @@ describe('navigation', () => {
       flyTargetFor({ biomes: ['ashlands'], locationTypes: [] }, [], anchors, { x: 0, z: 0 }, opts),
     ).toBeNull();
   });
+
+  it('finds the nearest accepted location from a point (V3)', () => {
+    const instances = [
+      { id: 'a', type: 'test-trader', x: 3000, z: 4000 },
+      { id: 'b', type: 'test-trader', x: -600, z: 800 },
+      { id: 'c', type: 'test-altar', x: 10, z: 10 },
+    ];
+    const hit = nearestLocation({ x: 0, z: 0 }, instances, (t) => t === 'test-trader');
+    expect(hit?.instance.id).toBe('b');
+    expect(hit?.distM).toBe(1000);
+    expect(nearestLocation({ x: 0, z: 0 }, instances, () => false)).toBeNull();
+  });
 });
 
 describe('markers', () => {
@@ -120,6 +114,24 @@ describe('markers', () => {
     expect(
       buildMarkerSources({ locations, types, anchors: [], biomes, pins, layers: ['npcs'] }),
     ).toHaveLength(1);
+  });
+
+  it('filters single location types and counts locations per layer and type (V2)', () => {
+    const shown = buildMarkerSources({
+      locations,
+      types,
+      anchors: [],
+      biomes,
+      pins: [],
+      layers: ['dungeons', 'npcs'],
+      hide: ['troll-cave'],
+    });
+    expect(shown.map((m) => m.contentId)).toEqual(['haldor']);
+    const counts = countLocations(locations, types);
+    expect(counts.byLayer.get('dungeons')).toBe(2);
+    expect(counts.byLayer.get('npcs')).toBe(1);
+    expect(counts.byType.get('troll-cave')).toBe(2);
+    expect(counts.byLayer.get('villages')).toBeUndefined();
   });
 
   it('clusters nearby markers of a layer when zoomed out, never pins', () => {

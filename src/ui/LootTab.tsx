@@ -2,6 +2,7 @@ import type { IndexedEntry } from '../data/content-index';
 import { useContentStore } from '../state/content-store';
 import { IdList } from './IdList';
 import { RecipeView } from './RecipeView';
+import { WhereToFind } from './WhereToFind';
 
 /** What you get: drops, key resources, recipes and where things come from. */
 export function LootTab({ hit }: { hit: IndexedEntry }) {
@@ -34,6 +35,7 @@ export function LootTab({ hit }: { hit: IndexedEntry }) {
       return (
         <>
           <p>{hit.entry.howToGet}</p>
+          <WhereToFind biomeIds={hit.entry.biomeIds} />
           <h4>Dropped by</h4>
           <IdList
             items={hit.entry.droppedBy.map((id) => ({ id }))}
@@ -51,6 +53,7 @@ export function LootTab({ hit }: { hit: IndexedEntry }) {
     case 'food':
       return (
         <>
+          <WhereToFind biomeIds={hit.entry.biomeIds} />
           <h4>Recipe</h4>
           <RecipeView recipe={hit.entry.recipe} />
           <h4>Dropped by</h4>

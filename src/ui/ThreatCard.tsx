@@ -5,7 +5,15 @@ import { damageText } from './fact-format';
 import { Unverified } from './Unverified';
 import { useSpoilerHidden } from './use-spoiler';
 
-/** A creature or boss with its attacks and damage weaknesses/resistances. */
+/** Plain labels for creature behaviour (SPEC N4: flagged hostile or passive). */
+const BEHAVIOUR_LABELS: Record<Creature['behaviour'] | 'boss', string> = {
+  aggressive: 'Hostile',
+  neutral: 'Neutral',
+  passive: 'Passive',
+  boss: 'Boss',
+};
+
+/** A creature or boss with its behaviour, attacks and damage weaknesses/resistances. */
 export function ThreatCard({
   entry,
   detailed = false,
@@ -14,6 +22,7 @@ export function ThreatCard({
   detailed?: boolean;
 }) {
   const hidden = useSpoilerHidden();
+  const behaviour = 'behaviour' in entry ? entry.behaviour : 'boss';
   if (hidden(entry.spoilerLevel, entry.id)) {
     return (
       <div className="threat is-hidden">
@@ -25,6 +34,7 @@ export function ThreatCard({
     <div className="threat">
       <div className="threat-head">
         {detailed ? <strong>{entry.name}</strong> : <EntityLink id={entry.id} />}
+        <span className={`behaviour behaviour-${behaviour}`}>{BEHAVIOUR_LABELS[behaviour]}</span>
         <span className={`danger danger-${entry.dangerLevel}`}>{entry.dangerLevel}</span>
         <span className="muted">HP {entry.health === null ? <Unverified /> : entry.health}</span>
       </div>

@@ -1,12 +1,22 @@
 import type { IndexedEntry } from '../data/content-index';
+import type { LocationCategory } from '../data/schema';
 import { useContentStore } from '../state/content-store';
 import { EntityLink } from './EntityLink';
 import { FactTable, type FactRow } from './FactTable';
 import { damageText, num, percent, yesNo } from './fact-format';
 import { IdList } from './IdList';
+import { CategoryGlossary } from './CategoryGlossary';
 import { RecipeView } from './RecipeView';
+import { SourceList } from './SourceList';
 
-function rowsFor(hit: IndexedEntry, biomeName: (id: string) => string): FactRow[] {
+/** A placement limit: omitted means "no limit" (CLAUDE.md rule 3), null stays unverified. */
+const limit = (v: number | null | undefined) => (v === undefined ? 'no limit' : num(v, ' m'));
+
+function rowsFor(
+  hit: IndexedEntry,
+  biomeName: (id: string) => string,
+  categoryName: (c: LocationCategory) => string,
+): FactRow[] {
   const e = hit.entry;
   const common: FactRow[] = [
     { key: 'tier', label: 'Tier', value: e.tier === 0 ? 'Any' : String(e.tier) },
@@ -130,13 +140,14 @@ function rowsFor(hit: IndexedEntry, biomeName: (id: string) => string): FactRow[
       const l = hit.entry;
       return [
         ...common,
-        { key: 'category', label: 'Kind', value: l.category },
+        { key: 'category', label: 'Kind', value: categoryName(l.category) },
         { key: 'quantity', label: 'Placement attempts per world', value: num(l.quantity) },
+        { key: 'prioritized', label: 'Placed before other places', value: yesNo(l.prioritized) },
         { key: 'unique', label: 'One per world', value: yesNo(l.unique) },
-        { key: 'minDistM', label: 'Min distance from centre', value: num(l.minDistM, ' m') },
-        { key: 'maxDistM', label: 'Max distance from centre', value: num(l.maxDistM, ' m') },
-        { key: 'minAltM', label: 'Min altitude above sea', value: num(l.minAltM, ' m') },
-        { key: 'maxAltM', label: 'Max altitude above sea', value: num(l.maxAltM, ' m') },
+        { key: 'minDistM', label: 'Min distance from centre', value: limit(l.minDistM) },
+        { key: 'maxDistM', label: 'Max distance from centre', value: limit(l.maxDistM) },
+        { key: 'minAltM', label: 'Min altitude above sea', value: limit(l.minAltM) },
+        { key: 'maxAltM', label: 'Max altitude above sea', value: limit(l.maxAltM) },
         {
           key: 'bossId',
           label: 'Boss',
@@ -190,35 +201,23 @@ export function OverviewTab({ hit, veteran }: { hit: IndexedEntry; veteran: bool
     const b = index?.byId.get(id);
     return b?.kind === 'biome' ? b.entry.name : id;
   };
+  const categoryName = (c: LocationCategory) => index?.categoryInfo(c)?.name ?? c;
   const e = hit.entry;
   return (
     <div className="overview">
       <p className="description">{e.description}</p>
-      <FactTable rows={rowsFor(hit, biomeName)} entry={e} />
+      {hit.kind === 'location' ? <CategoryGlossary category={hit.entry.category} /> : null}
+      <FactTable rows={rowsFor(hit, biomeName, categoryName)} entry={e} />
       <details className="veteran" open={veteran}>
         <summary>Veteran notes</summary>
         <p>{e.veteranNotes}</p>
       </details>
-      <details className="sources">
-        <summary>
-          Sources ({e.sources.length}) · game version {e.gameVersion}
-          {e.confidence ? ` · ${e.confidence === 'read' ? 'read from source' : e.confidence}` : ''}
-        </summary>
-        <ul>
-          {e.sources.map((s) => (
-            <li key={s}>
-              {s.startsWith('https://') ? (
-                <a href={s} target="_blank" rel="noopener noreferrer">
-                  {s.replace(/^https:\/\/(www\.)?/, '').replace(/\/blob\/[0-9a-f]{40}\//, '/…/')}
-                </a>
-              ) : (
-                <span>{s} (see docs/SOURCES.md)</span>
-              )}
-            </li>
-          ))}
-        </ul>
-        {e.notes ? <p className="muted">{e.notes}</p> : null}
-      </details>
+      <SourceList
+        sources={e.sources}
+        gameVersion={e.gameVersion}
+        confidence={e.confidence}
+        notes={e.notes}
+      />
     </div>
   );
 }

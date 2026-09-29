@@ -4,7 +4,12 @@ import { useEffect, useRef } from 'react';
 import { MathUtils, Spherical, Vector3, type PerspectiveCamera } from 'three';
 import type { OrbitControls as OrbitControlsImpl } from 'three-stdlib';
 import { appStore } from '../state/app-store';
-import { useCameraStore, type CameraRequest } from '../state/camera-store';
+import {
+  prefersReducedMotion,
+  useCameraStore,
+  type CameraNudge,
+  type CameraRequest,
+} from '../state/camera-store';
 import { atlasDebug, type AtlasView } from './debug-hooks';
 import { RENDER } from './render-config';
 
@@ -106,12 +111,40 @@ export function CameraRig({ worldRadiusM }: { worldRadiusM: number | null }) {
     };
   }, []);
 
+  /** Keyboard control: an immediate relative move (no animation, so it feels direct). */
+  const applyNudge = (n: CameraNudge) => {
+    const v = current();
+    if (!v) return;
+    anim.current = null;
+    const s = v.spherical;
+    s.radius = MathUtils.clamp(s.radius * n.zoom, C.minDistanceM, C.maxDistanceM);
+    s.theta += n.rotate;
+    s.phi = MathUtils.clamp(s.phi + n.tilt, C.topDownPolar, C.maxPolarAngle);
+    // Pan along the ground in screen directions: right = (cos θ, 0, −sin θ) and
+    // "up the screen" = (−sin θ, 0, −cos θ) in scene space.
+    const sin = Math.sin(s.theta);
+    const cos = Math.cos(s.theta);
+    v.target.x += (cos * n.panRight - sin * n.panUp) * s.radius;
+    v.target.z += (-sin * n.panRight - cos * n.panUp) * s.radius;
+    apply(v);
+  };
+
   const startAnimation = (req: CameraRequest, radius: number) => {
+    if (req.kind === 'nudge') {
+      applyNudge(req);
+      return;
+    }
     const from = current();
     if (!from) return;
     let to: ViewState;
     if (req.kind === 'overview') {
       to = viewToState(overview(radius));
+    } else if (req.kind === 'top-down') {
+      // Map-style: same centre and distance, looking straight down with north up.
+      to = {
+        target: from.target.clone(),
+        spherical: new Spherical(from.spherical.radius, C.topDownPolar, 0),
+      };
     } else {
       const s = from.spherical.clone();
       s.radius = MathUtils.clamp(req.distanceM ?? s.radius, C.minDistanceM, C.maxDistanceM);
@@ -120,6 +153,12 @@ export function CameraRig({ worldRadiusM }: { worldRadiusM: number | null }) {
     // Rotate the short way round.
     const dTheta = to.spherical.theta - from.spherical.theta;
     to.spherical.theta = from.spherical.theta + Math.atan2(Math.sin(dTheta), Math.cos(dTheta));
+    if (prefersReducedMotion()) {
+      // SPEC §7: no fly animations when the user prefers reduced motion; jump instead.
+      anim.current = null;
+      apply(to);
+      return;
+    }
     anim.current = { from, to, t: 0 };
   };
 

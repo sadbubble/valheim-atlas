@@ -54,7 +54,7 @@ Do not add new runtime dependencies without a one-line justification in the PR d
 ├─ CLAUDE.md  README.md
 ├─ index.html  debug.html  app entry; biome-map debug page (2D canvas)
 ├─ docs/                  PROJECT_STATUS.md (read first), SPEC.md, DECISION.md, SOURCES.md,
-│                         DATA_TODO.md (generated list of nulls)
+│                         DATA_TODO.md (generated list of nulls), USER_STORIES.md (story audit)
 ├─ scripts/               validate-data.ts (npm run validate:data, run with tsx)
 ├─ public/
 │  ├─ data/               game facts, all JSON, all sourced; fetched at runtime
@@ -63,6 +63,7 @@ Do not add new runtime dependencies without a one-line justification in the PR d
 │  │  ├─ world.json  biome-rules.json           world generation facts
 │  │  ├─ biomes.json  bosses.json  creatures.json  resources.json  items.json
 │  │  ├─ crafting-stations.json  food.json  progression.json  locations.json  tips.json
+│  │  ├─ location-categories.json   plain-language glossary per location category (sourced)
 │  └─ favicon.svg         only self-made assets
 ├─ src/
 │  ├─ main.tsx            entry point
@@ -89,15 +90,18 @@ Do not add new runtime dependencies without a one-line justification in the PR d
 │  ├─ data/               schema.ts + content-schema.ts (zod), load.ts (typed loaders incl. loadContent),
 │  │                      content-index.ts (id lookup across all content files),
 │  │                      validate.ts (all data rules; used by scripts/validate-data.ts and tests)
-│  ├─ state/              Zustand stores: app (URL-synced: seed, mode, layers, spoiler, pins, cam),
-│  │                      content, map (biome anchors), ui (selection, tabs, hover, tools), camera, render
-│  ├─ ui/                 HUD, SearchBar, LayerPanel, ToolPanel, InfoPanel (+ tabs), Tooltip, CoordReadout;
+│  ├─ state/              Zustand stores: app (URL-synced: seed, mode, layers, spoiler, pins, hide, sel, cam),
+│  │                      content, map (biome anchors), ui (selection, tabs, drawer, hover, tools), camera,
+│  │                      render, prefs (localStorage: first-run answer, mode/spoiler, hint, guide progress)
+│  ├─ ui/                 HUD, SearchBar, LayerPanel, ToolPanel, InfoPanel (+ tabs), Tooltip, CoordReadout,
+│  │                      ProgressionGuide, FirstRunDialog, ControlsHint, CameraControls, ExactMapLink;
 │  │                      null values render via <Unverified/>; spoiler gating via use-spoiler.ts
 │  ├─ debug/              debug.html app: biome map renderer, stats, placement report
 │  ├─ test/               Node-only test helpers (read public/data from disk)
 │  └─ lib/                small shared helpers (fuzzy search, formatting)
 ├─ docs/screens/          renderer screenshots at 3 zoom levels + stats.json (npm run screens)
-└─ tests/e2e/             Playwright specs (+ playwright.config.ts at the root)
+└─ tests/e2e/             Playwright specs (+ playwright.config.ts at the root; tests start as a
+                          returning visitor via storageState so the first-run dialog stays closed)
 ```
 
 Unit tests sit next to their code as `*.test.ts(x)`.

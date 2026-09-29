@@ -3,6 +3,7 @@ import { useAppStore } from '../state/app-store';
 import { useCameraStore } from '../state/camera-store';
 import { useUiStore } from '../state/ui-store';
 import type { Pin } from '../state/url-state';
+import { FindNearest } from './FindNearest';
 import { Icon } from './Icon';
 
 export function PinPanel({ pin }: { pin: Pin }) {
@@ -37,6 +38,7 @@ export function PinPanel({ pin }: { pin: Pin }) {
         />
       </label>
       <p>{formatCoords(pin.x, pin.z)}</p>
+      <FindNearest from={pin} />
       {others.length > 0 ? (
         <ul className="id-list">
           {others.map((o) => (

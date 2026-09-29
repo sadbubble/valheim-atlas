@@ -93,10 +93,22 @@ Each panel shows a "Sources" footer listing source IDs and their confidence.
 ### F12. About / data
 - A page listing the target game version, all sources, the generator path, and a disclaimer: fan-made, not affiliated with Iron Gate or Coffee Stain.
 
-> **Implementation status (Phase 4):** F1–F5, F9 (seed input), F10 (measure + X/Z readout) and
-> F11 (shareable URL incl. camera, layers, spoiler setting and pins) are implemented; F7 is
-> implemented as a spoiler setting (0/1/2) with per-entry reveal; F6/F8 are available as
-> data (`progression.json`, `tips.json`) and tips are shown in the info panel.
+> **Implementation status (Phase 6):** F1–F11 are implemented; F12 (About page) is phase 7.
+> - F1: orbit/pan/zoom, fly-to, reset, a top-down (map) view (button and T key), keyboard
+>   camera keys, and `prefers-reduced-motion` (camera jumps instead of flying).
+> - F2/F3: layers with per-layer counts, per-type filters (`?hide=`), 1 km distance rings on
+>   the grid layer, and a legend explaining every location category.
+> - F4: location panels explain their category (`public/data/location-categories.json`).
+> - F5: search includes progression steps; "Find nearest…" works from a pin.
+> - F6: the progression guide sits in the left drawer ("Progression guide" tab).
+> - F7: a spoiler setting with three levels (0/1/2) and per-entry reveal, not "defeated up to
+>   boss N". It is saved in `localStorage` (URL > stored > mode default).
+> - F8: tips are shown in the info panel.
+> - F9: the valheim-map.world link opens the home page, because no per-seed URL format is
+>   sourced; the UI says so.
+> - F11: the URL also carries per-type filters, and shared links carry the open panel (`sel`).
+> - §7 first run: the "New to Valheim?" dialog and the on-screen controls hint are implemented.
+> - Story-by-story results: `docs/USER_STORIES.md`.
 
 ## 4. User stories
 
@@ -141,7 +153,8 @@ All game facts live in `public/data/*.json`, validated by `npm run validate:data
 `npm run check`). **`src/data/content-schema.ts` and `src/data/schema.ts` are authoritative**; the
 sketch below is the original design. Implemented files: `meta`, `sources`, `world`, `biome-rules`,
 `biomes`, `bosses`, `creatures`, `resources`, `items` (weapons, shields, armor, tools, ammo, meads),
-`crafting-stations`, `food`, `progression`, `locations`, `tips`.
+`crafting-stations`, `food`, `progression`, `locations`, `location-categories` (plain-language
+glossary per location category, our own words, sourced), `tips`.
 
 Every content entry shares: `id`, `name`, `description` (beginner-friendly), `veteranNotes`,
 `biomeIds`, `tier` (0–8), `dangerLevel` (editorial: none/low/medium/high/extreme), `spoilerLevel`

@@ -1,4 +1,5 @@
 import { create } from 'zustand';
+import type { BiomeId } from '../data/schema';
 import { EMPTY_HIGHLIGHT, type Highlight } from '../render/navigation';
 
 export type InfoTab = 'overview' | 'threats' | 'loot' | 'tips';
@@ -20,12 +21,17 @@ export interface HoverInfo {
   screenY: number;
 }
 
+/** Which view the left drawer shows: map setup (layers, tools) or the progression guide. */
+export type Drawer = 'map' | 'guide';
+
 interface UiState {
+  drawer: Drawer;
+  setDrawer: (drawer: Drawer) => void;
   selection: Selection | null;
   tab: InfoTab;
   hover: HoverInfo | null;
   /** Game coordinates under the cursor, or null when off the world. */
-  cursor: { x: number; z: number; heightM: number } | null;
+  cursor: { x: number; z: number; heightM: number; biomeId: BiomeId | null } | null;
   tool: Tool;
   measure: { x: number; z: number }[];
   highlight: Highlight;
@@ -39,10 +45,14 @@ interface UiState {
   addMeasurePoint: (p: { x: number; z: number }) => void;
   clearMeasure: () => void;
   setHighlight: (h: Highlight) => void;
-  reveal: (id: string) => void;
+  reveal: (...ids: string[]) => void;
 }
 
 export const useUiStore = create<UiState>()((set, get) => ({
+  drawer: 'map',
+  setDrawer: (drawer) => {
+    set({ drawer });
+  },
   selection: null,
   tab: 'overview',
   hover: null,
@@ -76,7 +86,8 @@ export const useUiStore = create<UiState>()((set, get) => ({
   setHighlight: (highlight) => {
     set({ highlight });
   },
-  reveal: (id) => {
-    if (!get().revealed.includes(id)) set({ revealed: [...get().revealed, id] });
+  reveal: (...ids) => {
+    const add = ids.filter((id) => !get().revealed.includes(id));
+    if (add.length > 0) set({ revealed: [...get().revealed, ...add] });
   },
 }));

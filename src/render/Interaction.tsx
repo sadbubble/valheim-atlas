@@ -2,6 +2,7 @@ import { useThree } from '@react-three/fiber';
 import { useEffect } from 'react';
 import { Raycaster, Vector2, type PerspectiveCamera, type Vector3 } from 'three';
 import { KIND_LABELS } from '../data/content-index';
+import { cellIndexAt } from '../world/grid';
 import { appStore } from '../state/app-store';
 import { useCameraStore } from '../state/camera-store';
 import { useContentStore } from '../state/content-store';
@@ -74,6 +75,10 @@ export function Interaction({ model, shared }: { model: TerrainModel; shared: Sh
               x: hit.x,
               z: hit.z,
               heightM: sampleHeight(model.world, hit.x, hit.z) - model.seaLevelM,
+              biomeId:
+                model.world.biomeIds[
+                  model.world.biomes[cellIndexAt(model.world, hit.x, hit.z)] ?? -1
+                ] ?? null,
             }
           : null,
       );

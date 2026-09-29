@@ -45,6 +45,10 @@ export interface UrlState {
   /** Highest spoiler level shown; null = the mode's default (see effectiveSpoiler). */
   spoiler: SpoilerLevel | null;
   pins: Pin[];
+  /** Location type ids filtered off the map (per-type filter within a layer; SPEC V2). */
+  hide: string[];
+  /** Panel to open from a shared link (content or pin id); consumed once on load. */
+  sel: string | null;
   /** Initial camera from a shared link; null = overview. */
   cam: CamView | null;
 }
@@ -53,6 +57,8 @@ export interface UrlState {
 export const MAX_SEED_LENGTH = 64;
 export const MAX_PINS = 50;
 export const MAX_PIN_LABEL = 40;
+/** Sanity limit on hidden location types in a URL (not a game rule). */
+export const MAX_HIDDEN_TYPES = 200;
 
 /** The world shown when no seed is given (an arbitrary example seed, not a game fact). */
 export const DEFAULT_SEED = 'HelloWorld';
@@ -72,6 +78,8 @@ export const DEFAULT_URL_STATE: Readonly<UrlState> = {
   layers: [...DEFAULT_LAYERS],
   spoiler: null,
   pins: [],
+  hide: [],
+  sel: null,
   cam: null,
 };
 
@@ -115,6 +123,18 @@ function parsePins(raw: string): Pin[] | null {
   return pins;
 }
 
+const typeIdSchema = z.string().regex(/^[a-z0-9]+(-[a-z0-9]+)*$/);
+
+function parseHide(raw: string): string[] | null {
+  if (raw === '') return [];
+  const out: string[] = [];
+  for (const part of raw.split(',')) {
+    if (!typeIdSchema.safeParse(part).success) return null;
+    if (!out.includes(part)) out.push(part);
+  }
+  return out.length > MAX_HIDDEN_TYPES ? null : out;
+}
+
 function parseCam(raw: string): CamView | null {
   const parts = raw.split(',').map((p) => finite.safeParse(p));
   if (parts.length !== 5 || parts.some((p) => !p.success)) return null;
@@ -130,7 +150,7 @@ function parseCam(raw: string): CamView | null {
 }
 
 /**
- * Reads `?seed=&mode=&layers=&spoiler=&pins=&cam=` from a query string. Missing or invalid
+ * Reads `?seed=&mode=&layers=&spoiler=&pins=&hide=&sel=&cam=` from a query string. Missing or invalid
  * values fall back to defaults field by field, so a hand-edited URL never breaks the app.
  */
 export function parseUrlState(search: string): UrlState {
@@ -141,6 +161,8 @@ export function parseUrlState(search: string): UrlState {
   const layersRaw = get('layers');
   const spoilerRaw = get('spoiler');
   const pinsRaw = get('pins');
+  const hideRaw = get('hide');
+  const selRaw = get('sel');
   const camRaw = get('cam');
   const spoilerNum = spoilerRaw === null ? null : Number(spoilerRaw);
   return {
@@ -152,6 +174,8 @@ export function parseUrlState(search: string): UrlState {
         ? spoilerNum
         : DEFAULT_URL_STATE.spoiler,
     pins: (pinsRaw === null ? null : parsePins(pinsRaw)) ?? [],
+    hide: (hideRaw === null ? null : parseHide(hideRaw)) ?? [],
+    sel: selRaw !== null && typeIdSchema.safeParse(selRaw).success ? selRaw : null,
     cam: camRaw === null ? null : parseCam(camRaw),
   };
 }
@@ -196,6 +220,8 @@ export function toSearch(state: UrlState, base = ''): string {
   put('layers', sameLayers(state.layers, DEFAULT_LAYERS) ? null : state.layers.join(','));
   put('spoiler', state.spoiler === null ? null : String(state.spoiler));
   put('pins', state.pins.length === 0 ? null : encodePins(state.pins));
+  put('hide', state.hide.length === 0 ? null : state.hide.join(','));
+  put('sel', state.sel);
   put('cam', state.cam === null ? null : encodeCam(state.cam));
   params.delete('layer'); // legacy single-layer param
   const qs = params.toString();

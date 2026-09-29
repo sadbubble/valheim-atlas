@@ -14,7 +14,11 @@ export interface AppState extends UrlState {
   setSeed: (seed: string) => void;
   setMode: (mode: Mode) => void;
   toggleLayer: (layer: Layer, on?: boolean) => void;
-  setSpoiler: (spoiler: SpoilerLevel) => void;
+  setLayers: (layers: readonly Layer[]) => void;
+  /** Show or hide one location type (per-type filter); `on` = shown. */
+  toggleType: (typeId: string, on?: boolean) => void;
+  /** null = follow the mode's default (see effectiveSpoiler). */
+  setSpoiler: (spoiler: SpoilerLevel | null) => void;
   addPin: (x: number, z: number) => Pin | null;
   movePin: (id: string, x: number, z: number) => void;
   renamePin: (id: string, label: string) => void;
@@ -37,6 +41,15 @@ export function createAppStore(initial: UrlState = DEFAULT_URL_STATE) {
       const want = on ?? !has;
       if (want === has) return;
       set({ layers: want ? [...get().layers, layer] : get().layers.filter((l) => l !== layer) });
+    },
+    setLayers: (layers) => {
+      set({ layers: [...new Set(layers)] });
+    },
+    toggleType: (typeId, on) => {
+      const hidden = get().hide.includes(typeId);
+      const show = on ?? hidden;
+      if (show !== hidden) return;
+      set({ hide: show ? get().hide.filter((t) => t !== typeId) : [...get().hide, typeId] });
     },
     setSpoiler: (spoiler) => {
       set({ spoiler });

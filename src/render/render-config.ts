@@ -34,6 +34,10 @@ export const RENDER = {
     /** Overview: distance as a multiple of the world radius, and polar angle. */
     overviewDistanceFactor: 2.25,
     overviewPolar: 0.85,
+    /** Top-down "map" view: almost straight down (exactly 0 makes the view direction degenerate). */
+    topDownPolar: 0.001,
+    /** Keyboard steps: pan as a fraction of the view distance, zoom factor, angles in radians. */
+    keyboard: { panFraction: 0.1, zoomFactor: 1.25, rotateRad: 0.15, tiltRad: 0.1 },
     focusDurationS: 1.4,
     focusDistanceM: 2200,
     /** Search / "Fly here" distances for a location vs a whole biome. */

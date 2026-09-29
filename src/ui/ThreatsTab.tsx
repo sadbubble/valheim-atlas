@@ -26,8 +26,27 @@ export function ThreatsTab({ hit }: { hit: IndexedEntry }) {
     case 'creature':
     case 'boss':
       return <ThreatCard entry={hit.entry} detailed />;
-    case 'biome':
-      return list(hit.entry.threats);
+    case 'biome': {
+      // SPEC N4: every creature of the biome, hostile or passive, not only the threats.
+      const biomeId = hit.entry.id;
+      const others = (index?.data.creatures ?? [])
+        .filter(
+          (c) => (c.biomeIds as string[]).includes(biomeId) && !hit.entry.threats.includes(c.id),
+        )
+        .map((c) => c.id);
+      return (
+        <>
+          <h4>Threats</h4>
+          {list(hit.entry.threats)}
+          {others.length > 0 ? (
+            <>
+              <h4>Other creatures here</h4>
+              {list(others)}
+            </>
+          ) : null}
+        </>
+      );
+    }
     case 'location': {
       const biome = hit.entry.biomeIds[0];
       const b = biome ? index?.byId.get(biome) : undefined;

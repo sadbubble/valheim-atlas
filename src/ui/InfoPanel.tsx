@@ -85,7 +85,8 @@ export function InfoPanel() {
         </button>
       </header>
       <h2 id="info-title" className={isHidden ? 'is-hidden' : undefined}>
-        {e.name}
+        {/* Never name a spoiler-hidden entry until the user reveals it. */}
+        {isHidden ? `Hidden ${KIND_LABELS[hit.kind].toLowerCase()}` : e.name}
       </h2>
       <div className="row">
         <SpoilerBadge level={e.spoilerLevel} />

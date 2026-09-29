@@ -41,6 +41,7 @@ export function BiomeLabels({ model }: { model: TerrainModel }) {
             <button
               type="button"
               className="biome-label"
+              title={biome.entry.tier > 0 ? `Tier ${biome.entry.tier}` : undefined}
               onClick={() => {
                 useUiStore.getState().select({ id: a.biome });
               }}

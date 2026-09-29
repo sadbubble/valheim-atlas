@@ -1,31 +1,18 @@
 import { useMemo, useState, type KeyboardEvent } from 'react';
-import { KIND_LABELS, type ContentKind } from '../data/content-index';
-import { fuzzySearch, type Searchable } from '../lib/fuzzy';
+import { KIND_LABELS } from '../data/content-index';
 import { useContentStore } from '../state/content-store';
 import { Icon } from './Icon';
 import { openEntry } from './navigate';
+import { buildSearchItems, searchVisible, type SearchResult } from './search-model';
 import { SpoilerBadge } from './SpoilerBadge';
 import { useSpoilerHidden } from './use-spoiler';
 
 export const SEARCH_INPUT_ID = 'atlas-search';
 
-const SEARCH_KINDS: readonly ContentKind[] = [
-  'biome',
-  'location',
-  'boss',
-  'creature',
-  'item',
-  'resource',
-  'food',
-  'station',
-];
-
-interface Result extends Searchable {
-  kind: ContentKind;
-  spoilerLevel: number;
-}
-
-/** Fuzzy search over biomes, locations, bosses, creatures and items ("/" to focus). */
+/**
+ * Fuzzy search over biomes, locations, bosses, guide steps, creatures and items ("/" to
+ * focus). Entries above the spoiler setting are counted, not named (see search-model.ts).
+ */
 export function SearchBar() {
   const index = useContentStore((s) => s.index);
   const hidden = useSpoilerHidden();
@@ -33,38 +20,11 @@ export function SearchBar() {
   const [active, setActive] = useState(0);
   const [open, setOpen] = useState(false);
 
-  const items = useMemo<Result[]>(() => {
-    if (!index) return [];
-    const out: Result[] = [];
-    for (const [id, hit] of index.byId) {
-      if (!SEARCH_KINDS.includes(hit.kind)) continue;
-      const e = hit.entry as {
-        name: string;
-        prefab?: string | null;
-        category?: string;
-        subcategory?: string;
-      };
-      out.push({
-        id,
-        name: e.name,
-        keywords: [KIND_LABELS[hit.kind], e.category, e.subcategory, e.prefab]
-          .filter(Boolean)
-          .join(' '),
-        rank: SEARCH_KINDS.indexOf(hit.kind),
-        kind: hit.kind,
-        spoilerLevel: hit.entry.spoilerLevel,
-      });
-    }
-    return out;
-  }, [index]);
+  const items = useMemo(() => (index ? buildSearchItems(index) : []), [index]);
+  const { shown: results, hiddenCount } = searchVisible(query, items, hidden);
+  const showList = open && (results.length > 0 || hiddenCount > 0);
 
-  const results = useMemo(
-    () => (query.trim() ? fuzzySearch(query, items, 10) : []),
-    [query, items],
-  );
-  const showList = open && results.length > 0;
-
-  const choose = (r: Result | undefined) => {
+  const choose = (r: SearchResult | undefined) => {
     if (!r) return;
     openEntry(r.id, { fly: true });
     setQuery('');
@@ -98,11 +58,13 @@ export function SearchBar() {
         id={SEARCH_INPUT_ID}
         type="search"
         role="combobox"
-        aria-label="Search biomes, creatures, items and locations"
+        aria-label="Search biomes, creatures, items, locations and guide steps"
         aria-expanded={showList}
         aria-controls="search-results"
         aria-autocomplete="list"
-        {...(showList ? { 'aria-activedescendant': `search-opt-${active}` } : {})}
+        {...(showList && results.length > 0
+          ? { 'aria-activedescendant': `search-opt-${active}` }
+          : {})}
         placeholder={index ? 'Search… (press /)' : 'Loading data…'}
         disabled={!index}
         value={query}
@@ -145,6 +107,17 @@ export function SearchBar() {
               </li>
             );
           })}
+          {hiddenCount > 0 ? (
+            <li
+              className="search-hidden-note muted"
+              role="option"
+              aria-selected={false}
+              aria-disabled="true"
+            >
+              {hiddenCount} more {hiddenCount === 1 ? 'match is' : 'matches are'} hidden by your
+              spoiler setting
+            </li>
+          ) : null}
         </ul>
       ) : null}
     </div>

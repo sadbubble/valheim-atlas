@@ -33,6 +33,7 @@ export function Markers({ model, shared }: { model: TerrainModel; shared: Shared
   const index = useContentStore((s) => s.index);
   const layers = useAppStore((s) => s.layers);
   const pins = useAppStore((s) => s.pins);
+  const hide = useAppStore((s) => s.hide);
   const spoiler = useAppStore(effectiveSpoiler);
   const anchors = useMapStore((s) => s.anchors);
   const highlight = useUiStore((s) => s.highlight);
@@ -48,8 +49,9 @@ export function Markers({ model, shared }: { model: TerrainModel; shared: Shared
       biomes: new Map(index.data.biomes.map((b) => [b.id, b])),
       pins,
       layers,
+      hide,
     });
-  }, [index, model, anchors, pins, layers]);
+  }, [index, model, anchors, pins, layers, hide]);
 
   const res = useMemo(() => {
     const max = RENDER.markers.max;

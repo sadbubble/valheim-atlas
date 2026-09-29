@@ -55,7 +55,11 @@ export const OUTPUT_GLSL = /* glsl */ `
 #include <colorspace_fragment>
 `;
 
-/** Optional 1 km coordinate grid in game coordinates (x east, z north); axes drawn brighter. */
+/**
+ * Optional 1 km coordinate grid in game coordinates (x east, z north), axes drawn brighter,
+ * plus warm distance rings around the world centre at the same spacing (SPEC F2/N1: how far
+ * from spawn you are).
+ */
 export const OVERLAY_GLSL = /* glsl */ `
 uniform float uGrid;
 uniform float uGridSpacing;
@@ -66,6 +70,10 @@ vec3 overlayGrid(vec3 col, vec2 game) {
   float line = 1.0 - min(min(g.x, g.y), 1.0);
   vec2 a = abs(game) / fwidth(game);
   float axis = 1.0 - min(min(a.x, a.y) / 2.0, 1.0);
-  return mix(col, vec3(0.95, 0.97, 1.0), max(line * 0.3, axis * 0.6));
+  col = mix(col, vec3(0.95, 0.97, 1.0), max(line * 0.3, axis * 0.6));
+  float rq = length(game) / uGridSpacing;
+  float rg = abs(fract(rq - 0.5) - 0.5) / fwidth(rq);
+  float ring = 1.0 - min(rg / 1.5, 1.0);
+  return mix(col, vec3(1.0, 0.85, 0.5), ring * 0.5);
 }
 `;

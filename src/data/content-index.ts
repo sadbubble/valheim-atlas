@@ -1,4 +1,5 @@
 import type { ContentData } from './load';
+import type { LocationCategory, LocationCategoryInfo } from './schema';
 
 export type ContentKind =
   | 'biome'
@@ -50,10 +51,12 @@ export const KIND_LABELS: Record<ContentKind, string> = {
 export interface ContentIndex {
   data: ContentData;
   byId: Map<string, IndexedEntry>;
-  /** Tips mentioning an id (subjectIds), plus biome tips for biomes. */
+  /** Tips mentioning an id (subjectIds); for a biome, also every tip set in that biome. */
   tipsFor(id: string): ContentData['tips'];
   /** Creatures and bosses that list `itemId` as a drop. */
   droppedBy(itemId: string): IndexedEntry[];
+  /** Glossary entry explaining a location category, if the data has one. */
+  categoryInfo(category: LocationCategory): LocationCategoryInfo | undefined;
 }
 
 /** Builds lookups over every content file (ids are globally unique; see validate.ts). */
@@ -88,12 +91,13 @@ export function buildContentIndex(data: ContentData): ContentIndex {
     byId,
     tipsFor: (id) => {
       const isBiome = byId.get(id)?.kind === 'biome';
+      // A biome panel shows every tip that applies in that biome (SPEC N6), not only
+      // general biome tips; other entries show tips that name them.
       return data.tips.filter(
-        (t) =>
-          t.subjectIds.includes(id) ||
-          (isBiome && t.subjectIds.length === 0 && (t.biomeIds as string[]).includes(id)),
+        (t) => t.subjectIds.includes(id) || (isBiome && (t.biomeIds as string[]).includes(id)),
       );
     },
     droppedBy: (itemId) => dropIndex.get(itemId) ?? [],
+    categoryInfo: (category) => data.locationCategories.find((c) => c.id === category),
   };
 }

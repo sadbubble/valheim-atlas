@@ -58,6 +58,22 @@ const nearest = <T extends { x: number; z: number }>(
   );
 
 /**
+ * The placed location nearest to `from` among types the filter accepts (e.g. one category,
+ * skipping spoiler-hidden types). Used by "Find nearest…" from a pin (SPEC V3).
+ */
+export function nearestLocation<T extends { type: string; x: number; z: number }>(
+  from: { x: number; z: number },
+  instances: readonly T[],
+  accept: (type: string) => boolean,
+): { instance: T; distM: number } | null {
+  const hit = nearest(
+    instances.filter((i) => accept(i.type)),
+    from,
+  );
+  return hit ? { instance: hit, distM: Math.hypot(hit.x - from.x, hit.z - from.z) } : null;
+}
+
+/**
  * Where to fly for an entry: the nearest placed instance of a highlighted location type,
  * otherwise the nearest anchor of a highlighted biome. Null if it occurs nowhere on this map.
  */

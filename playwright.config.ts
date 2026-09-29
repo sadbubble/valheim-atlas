@@ -1,6 +1,27 @@
 import { defineConfig, devices } from '@playwright/test';
 
 const PORT = 4179;
+const BASE_URL = `http://localhost:${PORT}`;
+
+/**
+ * Tests start as a returning visitor: the first-run prompt was answered ("dismissed") and
+ * the controls hint closed, so neither covers the map. The first-run spec opts out of this
+ * with an empty storage state to test a clean visit.
+ */
+export const RETURNING_VISITOR = {
+  cookies: [],
+  origins: [
+    {
+      origin: BASE_URL,
+      localStorage: [
+        {
+          name: 'valheim-atlas:prefs',
+          value: JSON.stringify({ onboarding: 'dismissed', controlsHintHidden: true }),
+        },
+      ],
+    },
+  ],
+};
 
 export default defineConfig({
   testDir: 'tests/e2e',
@@ -10,8 +31,9 @@ export default defineConfig({
   workers: 1,
   reporter: [['list']],
   use: {
-    baseURL: `http://localhost:${PORT}`,
+    baseURL: BASE_URL,
     viewport: { width: 1280, height: 800 },
+    storageState: RETURNING_VISITOR,
   },
   projects: [
     {
@@ -32,7 +54,7 @@ export default defineConfig({
   ],
   webServer: {
     command: `npm run dev -- --port ${PORT} --strictPort`,
-    url: `http://localhost:${PORT}`,
+    url: BASE_URL,
     reuseExistingServer: true,
     timeout: 60_000,
   },
