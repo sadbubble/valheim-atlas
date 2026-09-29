@@ -22,14 +22,11 @@ Last updated: 2026-09-29 · Branch: `claude/busy-clarke-bdi432` · Target game v
 
 ### How this numbering maps to CLAUDE.md's Definition of done
 
-This table numbers phases in the order they were built. CLAUDE.md's Definition-of-done table
-groups the work differently:
-
-- CLAUDE.md phase 1 ("Scaffold and data") = phases 1 + 4 here.
-- CLAUDE.md phase 4 ("Locations and panels") = phase 5 here.
-- CLAUDE.md phase 5 ("Newcomer and veteran modes") is only **partly** done. The spoiler-safe
-  mode, tips, seed input, measure tool, URL state and approximation badge exist. The rest is
-  listed under *Gaps against CLAUDE.md criteria* below.
+CLAUDE.md's Definition-of-done table uses the same build-order numbering as this table.
+It has one extra row, **5b: Newcomer and veteran modes**, which is only **partly** done. The
+spoiler-safe mode, tips, seed input, measure tool, URL state and approximation badge exist. The
+rest is listed under *Gaps against CLAUDE.md criteria* below. Phase 7 has no Definition-of-done
+row yet.
 
 When the two disagree, the gaps below are what is actually missing.
 

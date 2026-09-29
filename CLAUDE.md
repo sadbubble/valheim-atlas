@@ -160,11 +160,12 @@ Unit tests sit next to their code as `*.test.ts(x)`.
 | Phase | Scope | Done when |
 |---|---|---|
 | **0: Research and docs** | SOURCES, SPEC, DECISION, CLAUDE.md | All four docs are written and cited, and the user has confirmed the DECISION path |
-| **1: Scaffold and data** | Vite + React + TS strict app shell; zod schemas; `validate:data`; seed data (`meta`, `sources`, `world`, `biome-rules`, `biomes`, `bosses`, core `locations`) | `npm run dev` shows an empty canvas; `validate:data` passes and fails on a deliberately broken fixture (tested); every record has sources |
+| **1: Scaffold** | Vite + React + TS strict app shell | `npm run dev` shows an empty canvas |
 | **2: World generator** | `world/` for the chosen path: PRNG, noise, biome rules from data, heights, location placement; worker plus progress | Same seed gives byte-identical output (tested); biome-rule unit tests cover every row of `biome-rules.json` (Ashlands south, Deep North north, ring bands); a 512² generation takes < 3 s in Node; no React/three imports in `world/` (lint rule) |
 | **3: 3D scene** | Terrain mesh, biome texture, water, ocean ring, sky, camera controls, reset and top-down views | Orbit, zoom and pan are smooth at ≥ 50 fps on integrated graphics; an e2e test checks that the canvas renders and camera controls respond; no game assets |
-| **4: Locations and panels** | Instanced markers, layers and legend, info panels, search and filter, fly-to | Every panel shows sources and confidence; unknown values show "Unknown"; e2e tests cover search → select → panel → fly-to |
-| **5: Newcomer and veteran modes** | Progression guide, spoiler-safe mode, tips, seed input, measure tool, URL state, approximation badge and link-out | All user stories N1–N8 and V1–V8 in SPEC §4 meet their acceptance criteria, each with a test or a documented manual check |
+| **4: Data layer** | zod schemas; `validate:data`; seed data (`meta`, `sources`, `world`, `biome-rules`, `biomes`, `bosses`, core `locations`) | `validate:data` passes and fails on a deliberately broken fixture (tested); every record has sources |
+| **5: Interactivity** | Instanced markers, layers and legend, info panels, search and filter, fly-to | Every panel shows sources and confidence; unknown values show "Unknown"; e2e tests cover search → select → panel → fly-to |
+| **5b: Newcomer and veteran modes** | Progression guide, spoiler-safe mode, tips, seed input, measure tool, URL state, approximation badge and link-out | All user stories N1–N8 and V1–V8 in SPEC §4 meet their acceptance criteria, each with a test or a documented manual check |
 | **6: Polish and release** | Accessibility, reduced motion, performance budget, About page, static deploy | Lighthouse accessibility ≥ 90; bundle under budget (SPEC §8); "not affiliated with Iron Gate/Coffee Stain" disclaimer shown; deployed build verified |
 
 ## Workflow notes
