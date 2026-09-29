@@ -1,4 +1,22 @@
-import type { z } from 'zod';
+import { z } from 'zod';
+import {
+  BossSchema,
+  CraftingStationSchema,
+  CreatureSchema,
+  FoodSchema,
+  ItemSchema,
+  ProgressionStepSchema,
+  ResourceSchema,
+  TipSchema,
+  type Boss,
+  type CraftingStation,
+  type Creature,
+  type Food,
+  type Item,
+  type ProgressionStep,
+  type Resource,
+  type Tip,
+} from './content-schema';
 import {
   BiomeRulesFileSchema,
   BiomesFileSchema,
@@ -6,6 +24,8 @@ import {
   MetaSchema,
   SourcesFileSchema,
   WorldConstantsSchema,
+  type Biome,
+  type LocationType,
   type Meta,
   type SourceRef,
   type WorldGenData,
@@ -49,4 +69,56 @@ export async function loadWorldGenData(fetchImpl?: typeof fetch): Promise<WorldG
     loadDataFile('locations', LocationsFileSchema, fetchImpl),
   ]);
   return { world, biomeRules, biomes, locations };
+}
+
+export interface ContentData {
+  biomes: Biome[];
+  bosses: Boss[];
+  creatures: Creature[];
+  resources: Resource[];
+  items: Item[];
+  craftingStations: CraftingStation[];
+  food: Food[];
+  progression: ProgressionStep[];
+  locations: LocationType[];
+  tips: Tip[];
+}
+
+/** Loads and validates every player-facing content file in parallel. */
+export async function loadContent(fetchImpl?: typeof fetch): Promise<ContentData> {
+  const [
+    biomes,
+    bosses,
+    creatures,
+    resources,
+    items,
+    craftingStations,
+    food,
+    progression,
+    locations,
+    tips,
+  ] = await Promise.all([
+    loadDataFile('biomes', BiomesFileSchema, fetchImpl),
+    loadDataFile('bosses', z.array(BossSchema), fetchImpl),
+    loadDataFile('creatures', z.array(CreatureSchema), fetchImpl),
+    loadDataFile('resources', z.array(ResourceSchema), fetchImpl),
+    loadDataFile('items', z.array(ItemSchema), fetchImpl),
+    loadDataFile('crafting-stations', z.array(CraftingStationSchema), fetchImpl),
+    loadDataFile('food', z.array(FoodSchema), fetchImpl),
+    loadDataFile('progression', z.array(ProgressionStepSchema), fetchImpl),
+    loadDataFile('locations', LocationsFileSchema, fetchImpl),
+    loadDataFile('tips', z.array(TipSchema), fetchImpl),
+  ]);
+  return {
+    biomes,
+    bosses,
+    creatures,
+    resources,
+    items,
+    craftingStations,
+    food,
+    progression,
+    locations,
+    tips,
+  };
 }

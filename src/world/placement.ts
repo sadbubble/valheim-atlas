@@ -51,10 +51,10 @@ export function placeLocations(input: PlacementInput): PlacementResult {
     if (occupiedZones.has(zoneKey)) return null;
     const cell = cellIndexAt(grid, x, z);
     const biomeId = biomeIds[biomes[cell] ?? 0];
-    if (biomeId === undefined || !type.biomes.includes(biomeId)) return null;
+    if (biomeId === undefined || !type.biomeIds.includes(biomeId)) return null;
     const altitudeM = (height[cell] ?? 0) - w.seaLevelM;
     const minAlt =
-      type.minAltM ?? (type.biomes.includes('ocean') ? -Infinity : P.defaultMinAltitudeM);
+      type.minAltM ?? (type.biomeIds.includes('ocean') ? -Infinity : P.defaultMinAltitudeM);
     if (altitudeM < minAlt) return null;
     if (type.maxAltM !== null && altitudeM > type.maxAltM) return null;
     occupiedZones.add(zoneKey);
@@ -90,7 +90,7 @@ export function placeLocations(input: PlacementInput): PlacementResult {
     } else {
       // Candidates are drawn from cells of the allowed biomes (uniform over their area),
       // then filtered by the sourced constraints in tryAt.
-      const pools = type.biomes.flatMap((b) => {
+      const pools = type.biomeIds.flatMap((b) => {
         const cells = cellsByBiome.get(b);
         return cells && cells.length > 0 ? [cells] : [];
       });

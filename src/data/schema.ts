@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { ContentBaseSchema, ContentIdSchema } from './content-schema';
 
 /** Source IDs mirror docs/SOURCES.md, e.g. "S-LOC-01". */
 export const SourceIdSchema = z
@@ -117,14 +118,21 @@ export const BiomeRuleSchema = SourcedSchema.extend({
 export type BiomeRule = z.infer<typeof BiomeRuleSchema>;
 export const BiomeRulesFileSchema = z.array(BiomeRuleSchema).min(1);
 
-export const BiomeSchema = SourcedSchema.extend({
+export const BiomeSchema = ContentBaseSchema.extend({
   id: BiomeIdSchema,
-  name: z.string().min(1),
-  /** Progression order; null for ocean. */
-  tier: z.number().int().positive().nullable(),
   /** Our own palette (not a game fact). */
   mapColor: HexColorSchema,
-});
+  /** Items, food or resources worth bringing (content ids). */
+  whatToBring: z.array(ContentIdSchema),
+  /** Dangerous creatures (content ids); weaknesses/resistances live on each creature. */
+  threats: z.array(ContentIdSchema),
+  keyResources: z.array(ContentIdSchema),
+  /** Gear tier (1–8) we recommend arriving with. */
+  recommendedGearTier: z.number().int().min(1).max(8).nullable(),
+  /** Weather/environment names the game uses in this biome. */
+  weather: z.array(z.string().min(1)),
+  bossId: ContentIdSchema.optional(),
+}).strict();
 export type Biome = z.infer<typeof BiomeSchema>;
 export const BiomesFileSchema = z.array(BiomeSchema).min(1);
 
@@ -142,14 +150,10 @@ export const LOCATION_CATEGORIES = [
 export const LocationCategorySchema = z.enum(LOCATION_CATEGORIES);
 export type LocationCategory = z.infer<typeof LocationCategorySchema>;
 
-export const LocationTypeSchema = SourcedSchema.extend({
-  id: z.string().regex(/^[a-z0-9]+(-[a-z0-9]+)*$/),
+export const LocationTypeSchema = ContentBaseSchema.extend({
   /** Internal game prefab name; null when sources conflict (see notes). */
   prefab: z.string().min(1).nullable(),
-  /** Display label, in our own words unless an in-game name is sourced. */
-  name: z.string().min(1),
   category: LocationCategorySchema,
-  biomes: z.array(BiomeIdSchema).min(1),
   /** Placement attempts per world (game `quantity`); null = unknown, so not placed. */
   quantity: z.number().int().positive().nullable(),
   prioritized: z.boolean().nullable(),
@@ -168,7 +172,7 @@ export const LocationTypeSchema = SourcedSchema.extend({
   bossId: z.string().optional(),
   npc: z.string().optional(),
   confidence: ConfidenceSchema,
-});
+}).strict();
 export type LocationType = z.infer<typeof LocationTypeSchema>;
 export const LocationsFileSchema = z.array(LocationTypeSchema).min(1);
 

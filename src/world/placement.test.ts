@@ -24,7 +24,7 @@ describe('location placement', () => {
         if (!type) continue;
         const cell = cellIndexAt(grid, loc.x, loc.z);
         expect(w.biomeIds[w.biomes[cell] ?? 0]).toBe(loc.biomeId);
-        expect(type.biomes).toContain(loc.biomeId);
+        expect(type.biomeIds).toContain(loc.biomeId);
         const d = Math.hypot(loc.x, loc.z);
         expect(d).toBeLessThanOrEqual(data.world.worldRadiusM + 1);
         if (type.minDistM !== null) expect(d).toBeGreaterThanOrEqual(type.minDistM - 1);

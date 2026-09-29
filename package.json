@@ -15,10 +15,11 @@
     "format": "prettier --write .",
     "test": "vitest run",
     "test:watch": "vitest",
-    "check": "npm run typecheck && npm run lint && npm run test",
+    "check": "npm run typecheck && npm run lint && npm run test && npm run validate:data",
     "perf": "vitest run src/world/generate.perf.test.ts --reporter=verbose",
     "test:e2e": "playwright test --grep-invert @screens",
-    "screens": "playwright test --grep @screens"
+    "screens": "playwright test --grep @screens",
+    "validate:data": "tsx scripts/validate-data.ts"
   },
   "dependencies": {
     "@react-three/drei": "10.7.9",
@@ -44,6 +45,7 @@
     "fake-indexeddb": "6.2.5",
     "globals": "17.12.0",
     "prettier": "3.9.9",
+    "tsx": "4.23.15",
     "typescript": "6.0.3",
     "typescript-eslint": "8.70.1",
     "vite": "8.3.1",
