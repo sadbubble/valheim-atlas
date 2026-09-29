@@ -17,16 +17,16 @@ Last updated: 2026-09-29 · Branch: `claude/busy-clarke-bdi432` · Target game v
 | 3 | 3D renderer | done | `afbc165` | Chunked crack-free LOD terrain, stylized shaders, water, floating-disc presentation, instanced props, orbit/focus camera, e2e tests |
 | 4 | Data layer | done | `5122666` (WIP `0ae5c83`) | Sourced content JSON (biomes, bosses, creatures, resources, items, stations, food, progression, locations, tips), `validate:data`, generated DATA_TODO |
 | 5 | Interactivity | done | `82104ee` | Clustered SVG-icon markers, layer panel, fuzzy search → fly → highlight, tabbed info panel with spoiler gating and "unverified", pins, measure, share link, X/Z readout |
-| 6 | Polish and release | pending | – | See CLAUDE.md phase 6 (accessibility audit, reduced motion, performance budget, About page, static deploy) |
-| 7 | Visual refinements | pending | – | Deferred visual fixes (see open items) |
+| 6 | Newcomer and veteran modes | pending | – | Partly done: spoiler-safe mode, tips, seed input, measure, URL state and approximation badge exist; see *Gaps against CLAUDE.md criteria* |
+| 7 | Polish and release | pending | – | See CLAUDE.md phase 7 (accessibility audit, reduced motion, performance budget, About page, static deploy) |
+| 8 | Visual refinements | pending | – | Deferred visual fixes (see open items) |
 
 ### How this numbering maps to CLAUDE.md's Definition of done
 
-CLAUDE.md's Definition-of-done table uses the same build-order numbering as this table.
-It has one extra row, **5b: Newcomer and veteran modes**, which is only **partly** done. The
-spoiler-safe mode, tips, seed input, measure tool, URL state and approximation badge exist. The
-rest is listed under *Gaps against CLAUDE.md criteria* below. Phase 7 has no Definition-of-done
-row yet.
+CLAUDE.md's Definition-of-done table uses the same sequential numbering as this table.
+Phase 6 (Newcomer and veteran modes) is only **partly** done. The spoiler-safe mode, tips, seed
+input, measure tool, URL state and approximation badge exist. The rest is listed under *Gaps
+against CLAUDE.md criteria* below. Phase 8 has no Definition-of-done row yet.
 
 When the two disagree, the gaps below are what is actually missing.
 
@@ -60,7 +60,7 @@ When the two disagree, the gaps below are what is actually missing.
 - **Missing location loot tables:** `locations.json` has no loot data, so the Loot tab for
   locations says so rather than guessing.
 - **Highlight-edge stair-stepping:** the search highlight follows the 20 m biome grid.
-  Bilinear blending softens it, but steps are visible up close. Deferred to phase 7.
+  Bilinear blending softens it, but steps are visible up close. Deferred to phase 8.
 - **Open verification items** at the bottom of `docs/SOURCES.md`: Deep North boss prefab, Fader
   altar count, Hildir's max distance, altitude reference, and others.
 - **Conflicting facts marked `confidence: "conflict"`:** the Queen's summon, three Deep North
