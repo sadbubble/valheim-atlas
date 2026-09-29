@@ -339,8 +339,8 @@ interface GeneratedWorld {
   - Honour `prefers-reduced-motion` (no fly animations).
 
 ## 8. Performance budget
-- World generation runs in a Web Worker; the main thread never blocks for more than 50 ms.
+- World generation runs in a Web Worker; the main thread never blocks for more than 50 ms while it runs. Turning the world into render buffers (surface textures, chunk layout, the coarsest chunk meshes, biome anchors, search-highlight masks) runs in a second worker; afterwards no single main-thread task takes more than 200 ms, even in software WebGL (shaders compile one at a time behind the loading screen).
 - The terrain uses the generated 1024² grid (about 20.5 m spacing) split into 16 × 16 chunks with 4 LOD levels (full detail only near the camera) and frustum culling. Biome colour/weight textures and a half-float height texture match the grid.
 - Props (trees, rocks) are instanced per chunk and only drawn within 2.6 km of the camera.
 - Markers use instanced meshes, with ≤ 5 draw calls per category group.
-- Target: 60 fps with orbiting on a mid-range laptop's integrated GPU at default settings (pixel ratio capped at 1.5, dropping to 1 below 50 fps). Measured workload at the screenshot views: ≤ 221 draw calls and ≤ 0.37 M triangles (`docs/screens/stats.json`). The initial JS bundle is < 1.5 MB gzipped, excluding data.
+- Target: 60 fps with orbiting on a mid-range laptop's integrated GPU at default settings (pixel ratio capped at 1.5, dropping to 1 below 50 fps). Measured workload at the screenshot views: ≤ 223 draw calls and ≤ 0.37 M triangles (`docs/screens/stats.json`). The initial JS bundle is < 1.5 MB gzipped, excluding data.

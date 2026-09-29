@@ -24,6 +24,10 @@ uniform vec3 uSkyAmbient;
 uniform vec3 uGroundAmbient;
 uniform vec3 uFogColor;
 uniform float uFogDensity;
+uniform float uFogStart;
+uniform float uFogMax;
+uniform float uReveal;
+uniform vec3 uSpace;
 uniform vec3 uEdgeGlow;
 uniform float uWorldRadius;
 uniform float uWaterEdge;
@@ -34,13 +38,17 @@ vec3 shade(vec3 albedo, vec3 n) {
   return albedo * (amb * 0.62 + uSunColor * diff * 0.95);
 }
 
+// Aerial perspective: clear up to about the orbit distance, then a haze that thickens with
+// distance (both scale with the zoom, see WorldScene), so far terrain reads as depth and
+// melts into the horizon band. Then the disc-edge glow and the fade-in (uReveal).
 vec3 atmosphere(vec3 col, vec3 worldPos) {
   float dist = length(worldPos - cameraPosition);
-  float fog = 1.0 - exp(-dist * uFogDensity);
-  col = mix(col, uFogColor, clamp(fog, 0.0, 1.0) * 0.8);
+  float fog = 1.0 - exp(-max(dist - uFogStart, 0.0) * uFogDensity);
+  col = mix(col, uFogColor, clamp(fog, 0.0, 1.0) * uFogMax);
   float r = length(worldPos.xz);
   float glow = smoothstep(uWorldRadius * 0.93, uWaterEdge, r);
-  return mix(col, uEdgeGlow, glow * 0.5);
+  col = mix(col, uEdgeGlow, glow * 0.5);
+  return mix(uSpace, col, uReveal);
 }
 
 vec3 flatNormal(vec3 worldPos) {

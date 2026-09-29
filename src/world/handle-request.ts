@@ -8,12 +8,14 @@ export function handleRequest(req: WorkerRequest, emit: Emit): void {
   // Only 'generate' exists so far; switch on req.type once more request kinds are added.
   const { requestId } = req;
   let last = -1;
-  const world = generateWorldSync(req.seed, req.resolution, req.data, (progress) => {
-    // Throttle to whole percents.
+  let lastStage = '';
+  const world = generateWorldSync(req.seed, req.resolution, req.data, (progress, stage) => {
+    // Throttle to whole percents (and stage changes).
     const pct = Math.floor(progress * 100);
-    if (pct !== last) {
+    if (pct !== last || stage !== lastStage) {
       last = pct;
-      emit({ type: 'progress', requestId, progress });
+      lastStage = stage;
+      emit({ type: 'progress', requestId, progress, stage });
     }
   });
   // Transfer the big buffers instead of copying them.

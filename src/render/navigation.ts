@@ -1,6 +1,7 @@
 import type { ContentIndex } from '../data/content-index';
 import type { BiomeId } from '../data/schema';
 import type { BiomeAnchor } from './biome-anchors';
+import { RENDER } from './render-config';
 
 export interface Highlight {
   biomes: BiomeId[];
@@ -98,4 +99,28 @@ export function flyTargetFor(
     from,
   );
   return a ? { x: a.x, z: a.z, distanceM: opts.biomeDistanceM } : null;
+}
+
+/**
+ * Duration and arc of a camera flight (render-config camera.fly): longer hops take a bit
+ * longer and, when long compared with how far out the camera is, rise at mid-flight.
+ * The arc is added as arcM · 4k(1 − k), so it is zero at both ends: no overshoot.
+ */
+export function flightShape(
+  travelM: number,
+  fromRadiusM: number,
+  toRadiusM: number,
+  c: {
+    focusDurationS: number;
+    maxDistanceM: number;
+    fly: { perKmS: number; maxS: number; arcFactor: number; arcMinTravelM: number };
+  } = RENDER.camera,
+): { durationS: number; arcM: number } {
+  const durationS = Math.min(c.fly.maxS, c.focusDurationS + (travelM / 1000) * c.fly.perKmS);
+  const highM = Math.max(fromRadiusM, toRadiusM);
+  const arcM =
+    travelM < c.fly.arcMinTravelM
+      ? 0
+      : Math.min(Math.max(travelM * c.fly.arcFactor - highM * 0.5, 0), c.maxDistanceM - highM);
+  return { durationS, arcM: Math.max(0, arcM) };
 }

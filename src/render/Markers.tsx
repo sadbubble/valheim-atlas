@@ -16,7 +16,7 @@ import { useMapStore } from '../state/map-store';
 import { useUiStore } from '../state/ui-store';
 import { effectiveSpoiler, type Layer } from '../state/url-state';
 import { frameStats } from './frame-stats';
-import { ATLAS_COLS, ATLAS_ROWS, atlasIndex, createIconAtlas } from './icon-atlas';
+import { ATLAS_COLS, ATLAS_ROWS, atlasIndex, sharedIconAtlas } from './icon-atlas';
 import { markerRegistry, type PlacedMarker } from './marker-registry';
 import { buildMarkerSources, clusterCellSize, clusterMarkers } from './markers-model';
 import type { SharedUniforms } from './materials';
@@ -64,7 +64,7 @@ export function Markers({ model, shared }: { model: TerrainModel; shared: Shared
     geometry.setAttribute('aColor', aColor);
     geometry.setAttribute('aSize', aSize);
     geometry.setAttribute('aState', aState);
-    const atlas = createIconAtlas();
+    const atlas = sharedIconAtlas();
     const material = new ShaderMaterial({
       vertexShader: MARKER_VERTEX,
       fragmentShader: MARKER_FRAGMENT,
@@ -72,6 +72,8 @@ export function Markers({ model, shared }: { model: TerrainModel; shared: Shared
       depthTest: false,
       depthWrite: false,
       side: DoubleSide,
+      // Flat screen-facing quads: one pass is enough (no back-then-front split).
+      forceSinglePass: true,
       uniforms: {
         uAtlas: { value: atlas },
         uViewport: { value: new Vector2(1, 1) },
@@ -82,6 +84,9 @@ export function Markers({ model, shared }: { model: TerrainModel; shared: Shared
         uRefDist: { value: RENDER.markers.refDistanceM },
         uMinScale: { value: RENDER.markers.minScale },
         uMaxScale: { value: RENDER.markers.maxScale },
+        uSelectedScale: { value: RENDER.markers.selectedScale },
+        uHaloScale: { value: RENDER.markers.haloScale },
+        uReveal: shared.uReveal,
         uGlyph: { value: new Color(MARKER_COLORS.glyph) },
         uRing: { value: new Color(MARKER_COLORS.ring) },
         uGold: { value: new Color(MARKER_COLORS.selected) },
@@ -95,14 +100,13 @@ export function Markers({ model, shared }: { model: TerrainModel; shared: Shared
     const colors = Object.fromEntries(
       Object.entries(LAYER_COLORS).map(([k, v]) => [k, new Color(v)]),
     ) as Record<Layer, Color>;
-    return { mesh, geometry, material, atlas, aIcon, aColor, aSize, aState, colors };
+    return { mesh, geometry, material, aIcon, aColor, aSize, aState, colors };
   }, [shared]);
 
   useEffect(
     () => () => {
       res.geometry.dispose();
       res.material.dispose();
-      res.atlas.dispose();
       res.mesh.dispose();
       markerRegistry.markers = [];
     },

@@ -1,8 +1,9 @@
-# Release (phase 7: polish and release)
+# Release (phase 7: polish and release; phase 8: visual refinements)
 
 What was checked before the first public release, how to repeat it, and how the site is
 deployed. Numbers below were measured on 2026-09-29 in the dev container (branch
 `claude/eager-galileo-lw2rru`), with Chromium 141 rendering WebGL in software (SwiftShader).
+Phase 8 re-measured everything it touched; see [Phase 8](#phase-8-visual-refinements).
 
 ## Release checklist
 
@@ -59,20 +60,24 @@ CHROME_PATH=/opt/pw-browsers/chromium-1194/chrome-linux/chrome \
 ```
 
 `CHROME_PATH` is the Playwright Chromium in this container; use any Chrome elsewhere. Lighthouse
-was run with `npx` (not added as a dependency). Results on the final build, 2026-09-29
-(08:20 UTC), Lighthouse 13.5.0:
+was run with `npx` (not added as a dependency). Results, Lighthouse 13.5.0:
 
-| URL | Form factor | Accessibility |
-|---|---|---|
-| `/` (first visit: "New to Valheim?" dialog open) | mobile (default) | **100** |
-| `/` | desktop | **100** |
-| `/?mode=newcomer` (no dialog; main view) | mobile | **96** |
-| `/?mode=newcomer` | desktop | **100** |
+| URL | Form factor | Phase 7 (08:20 UTC) | Phase 8 (09:48 UTC) | Phase 8, `--pause-after-load-ms=15000` |
+|---|---|---|---|---|
+| `/` (first visit: "New to Valheim?" dialog open) | mobile (default) | 100 | **100** | **100** |
+| `/` | desktop | 100 | **100** | **100** |
+| `/?mode=newcomer` (no dialog; main view) | mobile | 96 | **100** | **100** |
+| `/?mode=newcomer` | desktop | 100 | **100** | **100** |
 
-The one failing audit on the mobile main view is `target-size`: a floating biome-name button on
-the 3D map can sit partly under a camera button, depending on where the camera looks. Map labels
-move with the view, so this can't be ruled out; every biome is also reachable from search, the
-guide and the info panels.
+The phase 8 world takes a moment longer to appear (shaders compile behind the loading screen),
+so the last column repeats each run with a 15 s pause after load: the final screenshot of that
+run shows the world, markers and HUD fully loaded, and every audit still passes.
+
+Phase 7's one failing audit (`target-size` on the mobile main view: a floating biome-name
+button could sit partly under a camera button) is fixed: labels now hide while their screen
+rectangle overlaps any HUD surface or runs off screen (`src/render/label-occlusion.ts`), and
+`tests/e2e/visuals.spec.ts` sweeps 40 camera views at desktop and phone size checking that no
+visible label overlaps the HUD (and that some labels really were hidden by it).
 
 ### What was fixed in this phase
 
@@ -102,9 +107,22 @@ With `prefers-reduced-motion: reduce` (live: it follows the setting without a re
   the rim glow and star twinkle freeze;
 - CSS transitions and animations are off (`app.css`).
 
+Phase 8 additions, all honouring the same setting:
+
+- the loading screen has no pulse, bar animation or fade-out, and the world appears in one step
+  instead of fading in;
+- fly-to arcs don't play (the camera jumps);
+- the selected-marker halo, the highlight outline pulse and the new horizon/atmosphere are
+  driven by the frozen shader clock or are static;
+- biome labels don't fade or lift on hover.
+
 `tests/e2e/motion.spec.ts` checks that the camera reaches its target within two frames, that
 the shader clock doesn't move, that no HUD element has a transition or animation, and that
-without the setting the clock runs (and freezes when the setting is switched on).
+without the setting the clock runs (and freezes when the setting is switched on). Since phase 8
+it also checks that under the setting the world's fade-in value goes straight from 0 to 1, the
+loading screen has no transition or animation and is gone as soon as the world shows, and
+biome labels have no transition; and that without it the fade-in passes through in-between
+values.
 
 ## Small screens and touch
 
@@ -135,6 +153,10 @@ counted. 2026-09-29:
 **Initial JS: 389.0 kB gzipped, 26% of the 1.5 MB budget.** The About view is loaded on
 demand; nothing else was worth splitting at this size.
 
+After phase 8: `main` 1081.5 kB / 293.5 kB gzipped, `api` unchanged, CSS 16.1 kB / 4.2 kB,
+plus the new `terrain-prep-worker-*.js` (113.0 kB / 32.3 kB, a worker, not counted).
+**Initial JS: 392.4 kB gzipped (26%).**
+
 **Main thread during generation.** `subpath.spec.ts` records long tasks (> 50 ms) with a
 `PerformanceObserver` between the User Timing marks `atlas:generate:start` and
 `atlas:generate:end` (production build):
@@ -144,11 +166,89 @@ demand; nothing else was worth splitting at this size.
 - **Start-up:** creating the WebGL context (a one-off, when the page opens) showed up as long
   tasks of 76 and 87 ms (up to ~230 ms in an unminified build) in software rendering and overlaps generation only because both start at load. It is reported
   by the test, not counted.
-- **After generation (known gap):** turning the finished world into terrain (surface textures,
-  chunk meshes) and compiling shaders blocks the main thread once per world: long tasks of
-  0.4–0.6 s and ~0.2 s in CI's software renderer (final run: 419 ms and 196 ms). The biggest part, the biome-border blur, was made ~4×
-  faster in this phase (bit-identical output, unit-tested). Moving that work into the worker
-  is listed as an open item in `docs/PROJECT_STATUS.md`.
+- **After generation (phase 7 gap, fixed in phase 8):** turning the finished world into
+  terrain and compiling shaders used to block the main thread once per world: long tasks of
+  0.4–0.6 s and ~0.2 s in the software renderer (phase 7 final run: 419 and 196 ms; re-measured
+  at the start of phase 8: 600 and 215 ms). Since phase 8 the test also fails on any long task
+  over 200 ms after generation; measured values are in [Phase 8](#phase-8-visual-refinements).
+
+## Phase 8: visual refinements
+
+### Main thread after generation
+
+Before (HEAD of phase 7, production build, software WebGL, `subpath.spec.ts`): long tasks after
+`atlas:generate:end` of **600 and 215 ms**. After, over five production-build runs:
+**[55], [50], [], [72, 57, 100, 127] and [62, 58, 172] ms**: no task over 200 ms, and the test
+now fails if one appears. The margin is thin in the worst run (172 ms): what remains is one
+shader program's first use or one texture upload per task in software WebGL, which can't be
+split further; slower CI machines could approach the limit. Start-up tasks (WebGL context and the first frame's star/sky shaders, before the
+renderer is ready) are 50–290 ms as before; they are reported, not counted.
+
+What moved and why:
+
+1. **A second Web Worker** (`src/render/terrain-prep-worker.ts`, three-free) builds the render
+   buffers: blurred surface colour and biome weights, the half-float height texture (own
+   encoder, bit-identical to three's, unit-tested), the chunk layout, the coarsest mesh of every
+   drawable chunk and the biome anchors. They come back as transferables (zero-copy); both
+   directions are zod-parsed discriminated unions (`terrain-prep-protocol.ts`). The main thread
+   copies the world once into the worker (structured clone, a few ms) and keeps its own copy for
+   picking and props. The generator, its output and the IndexedDB cache are unchanged, so
+   `GENERATOR_REVISION` stays 1 (the world worker's progress messages only gained a `stage`
+   field; the cache stores worlds, not messages).
+2. **Shader warm-up behind the loading screen** (`src/render/precompile.ts`). Profiling showed
+   that in software WebGL (ANGLE + SwiftShader) each program is really built at its first use,
+   about 100–300 ms each, and that `KHR_parallel_shader_compile` isn't available there, so three's
+   `compileAsync` can't help. Three things fixed it: pausing the render loop during the warm-up
+   (a GPU process still busy with earlier frames made every synchronous GL call wait for it),
+   queuing all compiles at once and letting them finish in the background for
+   `RENDER.loading.shaderSettleMs` (900 ms; where the extension exists, readiness is polled
+   instead, with no fixed wait), then touching one program per task and drawing each distinct
+   material once into a single scissored pixel. The star material no longer depends on the
+   world, so its program isn't released and relinked for every world.
+3. **The icon atlas** (a 2D canvas) is built once, while the prep worker runs.
+
+### Search highlight
+
+The highlight used to be the biome grid itself (bilinear blend of 20 m cells), so it
+stair-stepped up close. Now the prep worker builds a mask per highlight (1 = highlighted biome,
+box-blurred: radius 1 cell, 3 passes, `src/render/highlight-mask.ts`) and the terrain shader
+draws its 0.5 iso-line with a screen-space antialiased edge and a thin gold outline. The biome
+grid is untouched; only features narrower than about one blur width (single stray cells) lose
+their outline. Unit tests check that big regions keep their border to within a cell and that a
+shallow staircase border becomes nearly straight (its second difference drops from ≥ 1 cell to
+< 0.35). `docs/screens/4-highlight.png` shows a close-up.
+
+### Game feel (four items, own look, all in `render-config.ts` / `palette.ts`)
+
+Chosen for the most visible effect per change, as listed in the phase brief. The shoreline was
+skipped: the water shader already had shore foam.
+
+1. **Loading experience:** a centre card with the seed, four named steps (shaping the land,
+   placing locations, painting the map, lighting the scene) and an overall percent from the
+   existing progress callback; the world fades in (1.1 s) when ready.
+2. **Atmosphere:** aerial-perspective haze that starts about the orbit distance out and scales
+   with zoom, so far terrain fades toward a pale blue at every zoom level, plus a sky backdrop
+   with a faint horizon band (one extra draw call) that the haze melts into.
+3. **Camera feel:** longer flights take a little longer (up to 2.3 s) and rise in an arc
+   (added as `arc · 4k(1−k)`, zero at both ends, so no overshoot) when the hop is long
+   compared with the current view distance.
+4. **Marker and label feedback:** a selected or hovered marker gets a slowly swelling gold halo
+   ring; biome labels lift slightly with an accent border on hover and focus.
+
+### Workload (`docs/screens/stats.json`, `npm run screens`)
+
+| View | Draw calls before → after | Triangles before → after | Props |
+|---|---|---|---|
+| 1-overview | 222 → 223 (+0.5%) | 72,480 → 73,440 (+1.3%) | 0 → 0 |
+| 2-region | 93 → 94 (+1.1%) | 39,106 → 40,066 (+2.5%) | 0 → 0 |
+| 3-close | 93 → 94 (+1.1%) | 368,766 → 369,726 (+0.3%) | 7,819 → 7,819 |
+| 4-highlight (new) | – → 59 | – → 299,742 | – → 7,652 |
+
+The sky sphere accounts for the +960 triangles and one draw call. The markers, halo and glow
+wall now use `forceSinglePass` (their blending doesn't depend on draw order); that was expected
+to save a draw call each, but the measured totals don't show it, and it wasn't investigated
+further since the budget holds. Screenshots: `0-loading.png` (new), `1-overview.png`,
+`2-region.png`, `3-close.png`, `4-highlight.png` (new).
 
 ## Static deploy
 

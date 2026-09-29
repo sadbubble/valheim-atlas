@@ -18,7 +18,10 @@ export const GROUND_COLORS: Readonly<Record<BiomeId, string>> = {
 
 export const SCENE_COLORS = {
   space: '#050912',
-  fog: '#1a2c44',
+  /** Aerial-perspective haze; close to the horizon band so far terrain melts into it. */
+  fog: '#7f9cba',
+  horizon: '#46648a',
+  highlight: '#ffd166',
   sun: '#fff1d6',
   skyAmbient: '#9cc3e6',
   groundAmbient: '#3a3326',

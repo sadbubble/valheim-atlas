@@ -1,9 +1,13 @@
 import {
   AdditiveBlending,
+  BackSide,
   Color,
+  DataTexture,
   DoubleSide,
   FrontSide,
+  RedFormat,
   ShaderMaterial,
+  UnsignedByteType,
   Vector3,
   type IUniform,
   type Texture,
@@ -18,6 +22,8 @@ import {
   HALO_FRAGMENT,
   RIM_FRAGMENT,
   RIM_VERTEX,
+  SKY_FRAGMENT,
+  SKY_VERTEX,
   STAR_FRAGMENT,
   STAR_VERTEX,
   WALL_FRAGMENT,
@@ -34,14 +40,28 @@ export interface SharedUniforms {
   uSkyAmbient: IUniform<Color>;
   uGroundAmbient: IUniform<Color>;
   uFogColor: IUniform<Color>;
+  /** Aerial perspective: haze starts uFogStart metres out, then thickens with uFogDensity. */
   uFogDensity: IUniform<number>;
+  uFogStart: IUniform<number>;
+  uFogMax: IUniform<number>;
+  /** World fade-in, 0 (only space) → 1 (fully shown); see WorldScene. */
+  uReveal: IUniform<number>;
+  uSpace: IUniform<Color>;
   uEdgeGlow: IUniform<Color>;
   uWorldRadius: IUniform<number>;
   uWaterEdge: IUniform<number>;
   uGrid: IUniform<number>;
   uGridSpacing: IUniform<number>;
-  uHighlight: IUniform<number[]>;
+  /** R8 soft mask of the highlighted biomes (render/highlight-mask.ts), linear filtering. */
+  uHighlightMask: IUniform<Texture>;
   uHighlightOn: IUniform<number>;
+}
+
+/** A 1 × 1 empty mask: "nothing highlighted" (location-only highlights dim every biome). */
+export function createEmptyMask(): DataTexture {
+  const tex = new DataTexture(new Uint8Array(1), 1, 1, RedFormat, UnsignedByteType);
+  tex.needsUpdate = true;
+  return tex;
 }
 
 export interface WorldDims {
@@ -49,6 +69,13 @@ export interface WorldDims {
   worldRadiusM: number;
   waterEdgeM: number;
   seaLevelM: number;
+}
+
+/** Points the shared uniforms at a new world's dimensions. */
+export function setWorldDims(shared: SharedUniforms, dims: Omit<WorldDims, 'seaLevelM'>): void {
+  shared.uExtent.value = dims.extentM;
+  shared.uWorldRadius.value = dims.worldRadiusM;
+  shared.uWaterEdge.value = dims.waterEdgeM;
 }
 
 export function createSharedUniforms(dims: WorldDims): SharedUniforms {
@@ -62,12 +89,16 @@ export function createSharedUniforms(dims: WorldDims): SharedUniforms {
     uGroundAmbient: { value: new Color(SCENE_COLORS.groundAmbient) },
     uFogColor: { value: new Color(SCENE_COLORS.fog) },
     uFogDensity: { value: 1 / 70000 },
+    uFogStart: { value: 0 },
+    uFogMax: { value: RENDER.atmosphere.fogMax },
+    uReveal: { value: 0 },
+    uSpace: { value: new Color(SCENE_COLORS.space) },
     uEdgeGlow: { value: new Color(SCENE_COLORS.edgeGlow) },
     uWorldRadius: { value: dims.worldRadiusM },
     uWaterEdge: { value: dims.waterEdgeM },
     uGrid: { value: 0 },
     uGridSpacing: { value: RENDER.overlay.gridSpacingM },
-    uHighlight: { value: new Array<number>(9).fill(0) },
+    uHighlightMask: { value: createEmptyMask() },
     uHighlightOn: { value: 0 },
   };
 }
@@ -76,8 +107,6 @@ export function createTerrainMaterial(
   shared: SharedUniforms,
   color: Texture,
   weights: Texture,
-  biomeIndex: Texture,
-  gridResolution: number,
   snowLineM: number,
 ): ShaderMaterial {
   return new ShaderMaterial({
@@ -88,8 +117,7 @@ export function createTerrainMaterial(
       ...shared,
       uColor: { value: color },
       uWeights: { value: weights },
-      uBiomeIndex: { value: biomeIndex },
-      uGridRes: { value: gridResolution },
+      uHighlightColor: { value: new Color(SCENE_COLORS.highlight) },
       uSnowLine: { value: snowLineM },
       uRock: { value: new Color(SCENE_COLORS.rock) },
       uSnow: { value: new Color(SCENE_COLORS.snow) },
@@ -132,6 +160,8 @@ export function createRimMaterial(shared: SharedUniforms, depthM: number): Shade
     side: DoubleSide,
     uniforms: {
       uTime: shared.uTime,
+      uReveal: shared.uReveal,
+      uSpace: shared.uSpace,
       uTop: { value: new Color(SCENE_COLORS.crustTop) },
       uBottom: { value: new Color(SCENE_COLORS.crustBottom) },
       uGlow: { value: new Color(SCENE_COLORS.edgeGlow) },
@@ -140,7 +170,11 @@ export function createRimMaterial(shared: SharedUniforms, depthM: number): Shade
   });
 }
 
-export function createHaloMaterial(inner: number, outer: number): ShaderMaterial {
+export function createHaloMaterial(
+  shared: SharedUniforms,
+  inner: number,
+  outer: number,
+): ShaderMaterial {
   return new ShaderMaterial({
     vertexShader: GLOW_VERTEX,
     fragmentShader: HALO_FRAGMENT,
@@ -148,16 +182,20 @@ export function createHaloMaterial(inner: number, outer: number): ShaderMaterial
     depthWrite: false,
     blending: AdditiveBlending,
     side: DoubleSide,
+    // Additive, so draw order doesn't matter: one pass instead of
+    // three's default back-then-front passes for transparent double-sided materials.
+    forceSinglePass: true,
     uniforms: {
       uGlow: { value: new Color(SCENE_COLORS.edgeGlow) },
       uInner: { value: inner },
       uOuter: { value: outer },
       uStrength: { value: 0.55 },
+      uReveal: shared.uReveal,
     },
   });
 }
 
-export function createGlowWallMaterial(heightM: number): ShaderMaterial {
+export function createGlowWallMaterial(shared: SharedUniforms, heightM: number): ShaderMaterial {
   return new ShaderMaterial({
     vertexShader: GLOW_VERTEX,
     fragmentShader: WALL_FRAGMENT,
@@ -165,10 +203,14 @@ export function createGlowWallMaterial(heightM: number): ShaderMaterial {
     depthWrite: false,
     blending: AdditiveBlending,
     side: DoubleSide,
+    // Additive, so draw order doesn't matter: one pass instead of
+    // three's default back-then-front passes for transparent double-sided materials.
+    forceSinglePass: true,
     uniforms: {
       uGlow: { value: new Color(SCENE_COLORS.edgeGlow) },
       uHeight: { value: heightM },
       uStrength: { value: 0.35 },
+      uReveal: shared.uReveal,
     },
   });
 }
@@ -198,5 +240,27 @@ export function createPropMaterial(shared: SharedUniforms, maxDistM: number): Sh
     vertexColors: true,
     side: DoubleSide,
     uniforms: { ...shared, uMaxDist: { value: maxDistM } },
+  });
+}
+
+/**
+ * Background sky on a camera-centred sphere: space above, a faint band of light at the
+ * horizon (our own look), so distant hazy terrain melts into it instead of hitting black.
+ */
+export function createSkyMaterial(): ShaderMaterial {
+  return new ShaderMaterial({
+    vertexShader: SKY_VERTEX,
+    fragmentShader: SKY_FRAGMENT,
+    side: BackSide,
+    depthTest: false,
+    depthWrite: false,
+    uniforms: {
+      uRadius: { value: 1000 },
+      uSpace: { value: new Color(SCENE_COLORS.space) },
+      uHorizon: { value: new Color(SCENE_COLORS.horizon) },
+      uBandLow: { value: RENDER.atmosphere.horizonBand[0] },
+      uBandHigh: { value: RENDER.atmosphere.horizonBand[1] },
+      uStrength: { value: RENDER.atmosphere.horizonStrength },
+    },
   });
 }

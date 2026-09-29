@@ -16,6 +16,8 @@ export interface AtlasDebug {
   ready: boolean;
   getView(): AtlasView | null;
   setView(view: AtlasView): void;
+  /** Biome id at a game position of the current world (null off the grid or before a world). */
+  biomeAt(x: number, z: number): string | null;
   stats: typeof frameStats;
 }
 
@@ -31,6 +33,7 @@ export function atlasDebug(): AtlasDebug {
     ready: false,
     getView: () => null,
     setView: () => undefined,
+    biomeAt: () => null,
     stats: frameStats,
   };
   return window.__atlas;

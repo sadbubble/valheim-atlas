@@ -297,7 +297,9 @@ test.describe('newcomer and veteran features', () => {
     await openApp(page);
     await page.locator('#seed-input').fill('E2eOtherSeed');
     await page.getByRole('button', { name: 'Go', exact: true }).click();
-    await expect(page.locator('.hud-status')).toContainText(/Generating|World ready/);
+    await expect(page.locator('.hud-status')).toContainText(
+      /Shaping the land|Placing locations|Painting the map|Loading your saved world|World ready/,
+    );
     expect(new URL(page.url()).searchParams.get('seed')).toBe('E2eOtherSeed');
     await expect(page.locator('.hud-status')).toContainText('World ready', { timeout: 150_000 });
     await expect(page.locator('.hud-badge')).toHaveText('Approximation');

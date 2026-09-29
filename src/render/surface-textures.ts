@@ -1,5 +1,5 @@
-import { DataUtils } from 'three';
 import type { BiomeId } from '../data/schema';
+import { toHalfFloat } from './half-float';
 
 export interface SurfaceSource {
   resolution: number;
@@ -10,11 +10,11 @@ export interface SurfaceSource {
 
 export interface SurfaceTextureData {
   /** RGBA8: blurred biome ground colour (soft biome borders). */
-  color: Uint8Array;
+  color: Uint8Array<ArrayBuffer>;
   /** RGBA8: blurred biome weights: R mountains, G ashlands, B mistlands, A deep north. */
-  weights: Uint8Array;
+  weights: Uint8Array<ArrayBuffer>;
   /** R16F: ground height in metres (absolute, not relative to sea). */
-  height: Uint16Array;
+  height: Uint16Array<ArrayBuffer>;
 }
 
 const WEIGHT_BIOMES: readonly BiomeId[] = ['mountains', 'ashlands', 'mistlands', 'deep-north'];
@@ -26,8 +26,8 @@ function hexToRgb(hex: string): [number, number, number] {
 
 /**
  * In-place separable box blur of `channels` interleaved planes, repeated `passes` times.
- * Edges clamp. It runs on the main thread when a world arrives, so the inner loop is plain
- * index arithmetic (no per-sample closure): a 1024² grid takes a fraction of the time.
+ * Edges clamp. The inner loop is plain index arithmetic (no per-sample closure): it runs
+ * once per world (and once per search highlight) in the terrain-prep worker.
  */
 export function boxBlur(
   data: Float32Array,
@@ -121,7 +121,7 @@ export function buildSurfaceTextures(
     color[k * 4 + 2] = col[k * 3 + 2] ?? 0;
     color[k * 4 + 3] = 255;
     for (let c = 0; c < 4; c++) weights[k * 4 + c] = Math.round((wts[k * 4 + c] ?? 0) * 255);
-    height[k] = DataUtils.toHalfFloat(world.height[k] ?? 0);
+    height[k] = toHalfFloat(world.height[k] ?? 0);
   }
   return { color, weights, height };
 }

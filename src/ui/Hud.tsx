@@ -15,6 +15,7 @@ import { ExactMapLink } from './ExactMapLink';
 import { FirstRunDialog } from './FirstRunDialog';
 import { Icon } from './Icon';
 import { InfoPanel } from './InfoPanel';
+import { CACHE_STEP_LABEL, LOADING_STEPS } from './loading-model';
 import { LayerPanel } from './LayerPanel';
 import { ProgressionGuide } from './ProgressionGuide';
 import { SearchBar } from './SearchBar';
@@ -38,7 +39,11 @@ function describeStatus(status: WorldStatus): string {
     case 'idle':
       return 'No seed yet: enter one to generate';
     case 'generating':
-      return `Generating… ${Math.round(status.progress * 100)}%`;
+      return status.stage === 'cache'
+        ? `${CACHE_STEP_LABEL}…`
+        : `${LOADING_STEPS[status.stage === 'locations' ? 1 : 0]}… ${Math.round(status.progress * 100)}%`;
+    case 'preparing':
+      return `${LOADING_STEPS[2]}…`;
     case 'ready':
       return `World ready: ${status.world.locations.length} locations${status.fromCache ? ' (cached)' : ''}`;
     case 'error':

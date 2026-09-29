@@ -5,6 +5,7 @@ import { ensureContentLoaded } from '../state/content-store';
 import { applyStoredPrefs, prefsStore, startPrefsSync } from '../state/prefs';
 import { startUrlSync } from '../state/url-sync';
 import { Hud } from '../ui/Hud';
+import { LoadingOverlay } from '../ui/LoadingOverlay';
 import { SEARCH_INPUT_ID } from '../ui/SearchBar';
 import { useSharedSelection } from './use-shared-selection';
 import { useWorldGeneration } from './use-world-generation';
@@ -42,6 +43,7 @@ export function App() {
       </a>
       <main className="map-main" aria-label="Map">
         <WorldCanvas />
+        <LoadingOverlay />
       </main>
       <Hud />
     </div>

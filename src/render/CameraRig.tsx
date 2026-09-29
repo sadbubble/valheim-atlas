@@ -7,6 +7,7 @@ import { appStore } from '../state/app-store';
 import { prefersReducedMotion, useReducedMotion } from '../lib/reduced-motion';
 import { useCameraStore, type CameraNudge, type CameraRequest } from '../state/camera-store';
 import { atlasDebug, type AtlasView } from './debug-hooks';
+import { flightShape } from './navigation';
 import { RENDER } from './render-config';
 
 interface ViewState {
@@ -19,6 +20,9 @@ interface Anim {
   from: ViewState;
   to: ViewState;
   t: number;
+  durationS: number;
+  /** Extra orbit distance at mid-flight (the arc), metres. */
+  arcM: number;
 }
 
 const C = RENDER.camera;
@@ -157,7 +161,12 @@ export function CameraRig({ worldRadiusM }: { worldRadiusM: number | null }) {
       apply(to);
       return;
     }
-    anim.current = { from, to, t: 0 };
+    anim.current = {
+      from,
+      to,
+      t: 0,
+      ...flightShape(from.target.distanceTo(to.target), from.spherical.radius, to.spherical.radius),
+    };
   };
 
   useFrame((state, delta) => {
@@ -174,12 +183,14 @@ export function CameraRig({ worldRadiusM }: { worldRadiusM: number | null }) {
 
     const a = anim.current;
     if (a) {
-      a.t = Math.min(1, a.t + delta / C.focusDurationS);
+      a.t = Math.min(1, a.t + delta / a.durationS);
       const k = easeInOut(a.t);
       const { offset, s } = scratch.current;
       c.target.lerpVectors(a.from.target, a.to.target, k);
       s.set(
-        MathUtils.lerp(a.from.spherical.radius, a.to.spherical.radius, k),
+        // Rise then descend: a parabola over the flight, zero at both ends.
+        MathUtils.lerp(a.from.spherical.radius, a.to.spherical.radius, k) +
+          a.arcM * 4 * k * (1 - k),
         MathUtils.lerp(a.from.spherical.phi, a.to.spherical.phi, k),
         MathUtils.lerp(a.from.spherical.theta, a.to.spherical.theta, k),
       );

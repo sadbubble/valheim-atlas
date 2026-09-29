@@ -82,15 +82,23 @@ Do not add new runtime dependencies without a one-line justification in the PR d
 │  │  └─ cache.ts         IndexedDB cache (main thread)
 │  ├─ render/             3D renderer (r3f); game coords are mirrored (scale z = -1) in WorldScene
 │  │  ├─ WorldCanvas.tsx  WorldScene.tsx  Terrain.tsx  Water.tsx  WorldRim.tsx  Props.tsx
-│  │  ├─ Starfield.tsx  CameraRig.tsx  SurfacePicker.tsx  AdaptiveQuality.tsx
+│  │  ├─ Starfield.tsx  Sky.tsx  CameraRig.tsx  SurfacePicker.tsx  AdaptiveQuality.tsx
 │  │  ├─ chunks.ts  terrain-geometry.ts   LOD layout/selection; crack-free chunk meshes
-│  │  ├─ surface-textures.ts  terrain-model.ts  props.ts  prop-geometry.ts  pick.ts
+│  │  ├─ terrain-prep.ts  terrain-prep-protocol.ts  handle-prep-request.ts  terrain-prep-worker.ts
+│  │  │  terrain-prep-client.ts   second Web Worker: world → render buffers (surface textures,
+│  │  │                     chunk layout, coarse meshes, anchors) and search-highlight masks
+│  │  ├─ surface-textures.ts  half-float.ts  highlight-mask.ts  HighlightMask.tsx   (three-free
+│  │  │                     where the prep worker uses them)
+│  │  ├─ terrain-model.ts  precompile.ts  (wraps prepared buffers; shader warm-up behind the
+│  │  │                     loading screen)  props.ts  prop-geometry.ts  pick.ts
 │  │  ├─ materials.ts  shaders/        our own GLSL (no game assets)
 │  │  ├─ render-config.ts  palette.ts  props-config.ts   visual tuning + original palette
 │  │  ├─ Markers.tsx  Interaction.tsx  MeasureLine.tsx  BiomeLabels.tsx   map interactivity
+│  │  │                     (label-occlusion.ts: labels hide while under HUD controls)
 │  │  ├─ markers-model.ts  marker-registry.ts  navigation.ts  biome-anchors.ts  icons.ts  icon-atlas.ts
-│  │  └─ debug-hooks.ts   window.__atlas (ready, get/setView, stats) for e2e/screenshots
-│  │                      (User Timing marks atlas:generate:start/end, atlas:renderer-ready for perf e2e)
+│  │  └─ debug-hooks.ts   window.__atlas (ready, get/setView, biomeAt, stats) for e2e/screenshots
+│  │                      (User Timing marks atlas:generate:start/end, atlas:terrain-prepared,
+│  │                      atlas:renderer-ready for perf e2e)
 │  ├─ data/               schema.ts + content-schema.ts (zod), load.ts (typed loaders incl. loadContent),
 │  │                      content-index.ts (id lookup across all content files),
 │  │                      validate.ts (all data rules; used by scripts/validate-data.ts and tests)
@@ -99,7 +107,8 @@ Do not add new runtime dependencies without a one-line justification in the PR d
 │  │                      render, prefs (localStorage: first-run answer, mode/spoiler, hint, guide progress)
 │  ├─ ui/                 HUD, SearchBar, LayerPanel, ToolPanel, InfoPanel (+ tabs), Tooltip, CoordReadout,
 │  │                      ProgressionGuide, FirstRunDialog, ControlsHint, CameraControls, ExactMapLink,
-│  │                      AboutDialog (lazy; about-model.ts, about-shared.ts), focus-trap.ts (modals);
+│  │                      AboutDialog (lazy; about-model.ts, about-shared.ts), focus-trap.ts (modals),
+│  │                      LoadingOverlay (loading-model.ts: stage names + percent);
 │  │                      null values render via <Unverified/>; spoiler gating via use-spoiler.ts
 │  ├─ debug/              debug.html app: biome map renderer, stats, placement report
 │  ├─ test/               Node-only test helpers (read public/data from disk)
@@ -137,6 +146,11 @@ Unit tests sit next to their code as `*.test.ts(x)`.
   - reuse vectors;
   - use `InstancedMesh` for markers;
   - never call `setState` inside `useFrame`.
+- Keep per-world work off the main thread: generation runs in the world worker, and turning a
+  world into render buffers (textures, chunk meshes, anchors, highlight masks) runs in the
+  terrain-prep worker (`render/terrain-prep*.ts`, three-free). Buffers cross as transferables;
+  messages are zod-parsed discriminated unions. The e2e perf test fails on any long task
+  over 200 ms after generation.
 - Units are metres. Coordinates are x = east, z = north, y = up. Name variables with a unit suffix: `distM`, `heightM`.
 - Comments explain *why*. Cite a source ID when code implements a documented rule, e.g. `// S-BIO-02: Ashlands tested before ocean`. The numbers themselves stay in `public/data/`.
 - UI text is plain and friendly for newcomers. Spoiler-sensitive content respects the user's spoiler setting (`effectiveSpoiler`, `useSpoilerHidden`): hide or grey out detail above it, never leak names through clusters or lists.
@@ -181,6 +195,7 @@ Unit tests sit next to their code as `*.test.ts(x)`.
 | **5: Interactivity** | Instanced markers, layers and legend, info panels, search and filter, fly-to | Every panel shows sources and confidence; unknown values show "Unknown"; e2e tests cover search → select → panel → fly-to |
 | **6: Newcomer and veteran modes** | Progression guide, spoiler-safe mode, tips, seed input, measure tool, URL state, approximation badge and link-out | All user stories N1–N8 and V1–V8 in SPEC §4 meet their acceptance criteria, each with a test or a documented manual check |
 | **7: Polish and release** | Accessibility, reduced motion, performance budget, About page, static deploy | Lighthouse accessibility ≥ 90; bundle under budget (SPEC §8); "not affiliated with Iron Gate/Coffee Stain" disclaimer shown; deployed build verified |
+| **8: Visual refinements** | Highlight smoothing, off-main-thread terrain prep, label/HUD overlap, game-feel pass | No long task > 200 ms after generation (software renderer); Lighthouse a11y 100; draw calls/triangles within +10% of phase 7; screens regenerated; reduced motion honoured |
 
 ## Workflow notes
 

@@ -84,8 +84,11 @@ test.describe('production build under a sub-path', () => {
       .evaluate((l) => (l as HTMLLinkElement).href);
     expect(new URL(icon).pathname).toBe(`${SUBPATH}favicon.svg`);
     expect((await page.request.get(icon)).status()).toBe(200);
-    // The world worker is a module script under the sub-path (the world rendered, so it ran).
+    // Both workers are module scripts under the sub-path (the world rendered, so they ran).
     expect(workers.some((p) => /^\/valheim-atlas\/assets\/worker-[\w-]+\.js$/.test(p))).toBe(true);
+    expect(
+      workers.some((p) => /^\/valheim-atlas\/assets\/terrain-prep-worker-[\w-]+\.js$/.test(p)),
+    ).toBe(true);
     expect(paths.some((p) => /^\/valheim-atlas\/assets\/AboutDialog-[\w-]+\.js$/.test(p))).toBe(
       true,
     );
@@ -117,7 +120,9 @@ test.describe('production build under a sub-path', () => {
     expect(errors).toEqual([]);
   });
 
-  test('the main thread stays responsive while the world generates (SPEC §8)', async ({ page }) => {
+  test('the main thread stays responsive while the world generates and appears (SPEC §8)', async ({
+    page,
+  }) => {
     await page.addInitScript(() => {
       const w = window as unknown as { __longTasks: { start: number; ms: number }[] };
       w.__longTasks = [];
@@ -142,7 +147,8 @@ test.describe('production build under a sub-path', () => {
         // because both start at load. Reported, not generation work.
         startup: tasks.filter((t) => t.start < renderer).map(round),
         during: tasks.filter((t) => t.start >= renderer && t.start + t.ms > start && t.start < end),
-        // Building the terrain from the finished world (textures, meshes, shader compile).
+        // Turning the finished world into the scene: buffers come from the terrain-prep worker;
+        // shaders compile and textures upload one at a time behind the loading screen.
         after: tasks.filter((t) => t.start >= end).map(round),
       };
     });
@@ -153,5 +159,7 @@ test.describe('production build under a sub-path', () => {
     );
     expect(r.generationMs).toBeGreaterThan(0);
     expect(r.during.filter((t) => t.ms > 50)).toEqual([]);
+    // Phase 8 budget: no single long task over 200 ms once the world is generated.
+    expect(r.after.filter((ms) => ms > 200)).toEqual([]);
   });
 });

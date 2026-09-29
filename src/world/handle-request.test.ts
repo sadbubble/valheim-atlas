@@ -21,6 +21,9 @@ describe('handleRequest', () => {
     expect(progress[0]).toBe(0);
     expect(progress.at(-1)).toBe(1);
     expect(progress.length).toBeLessThanOrEqual(101);
+    const stages = out.flatMap(({ res }) => (res.type === 'progress' ? [res.stage] : []));
+    expect(stages[0]).toBe('terrain');
+    expect(stages.at(-1)).toBe('locations');
 
     const last = out.at(-1);
     expect(last?.res.type).toBe('done');

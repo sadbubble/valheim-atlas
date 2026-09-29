@@ -10,6 +10,17 @@ export function atlasIndex(icon: IconId): number {
   return k < 0 ? MARKER_ICONS.indexOf('unknown') : k;
 }
 
+let shared: CanvasTexture | null = null;
+
+/**
+ * The app's one icon atlas (it doesn't depend on the world). WorldScene builds it while the
+ * terrain-prep worker runs, so it isn't part of the busy frame that mounts a new world.
+ */
+export function sharedIconAtlas(): CanvasTexture {
+  shared ??= createIconAtlas();
+  return shared;
+}
+
 /** Rasterizes our SVG icon paths (white glyphs on transparent) into a texture atlas. */
 export function createIconAtlas(): CanvasTexture {
   const canvas = document.createElement('canvas');

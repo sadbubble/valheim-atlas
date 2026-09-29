@@ -7,7 +7,9 @@ import { hashSeed } from './rng';
 import { createTerrain, type TerrainSample } from './terrain';
 import type { GeneratedWorld } from './types';
 
-export type ProgressCallback = (progress: number) => void;
+/** What the generator is working on, for the loading screen. */
+export type GenerationStage = 'terrain' | 'locations';
+export type ProgressCallback = (progress: number, stage: GenerationStage) => void;
 
 const TERRAIN_SHARE = 0.9;
 
@@ -32,7 +34,7 @@ export function generateWorldSync(
   const sample: TerrainSample = { base: 0, heightM: 0, biome: 'ocean' };
   const progressEvery = Math.max(1, Math.floor(n / 64));
 
-  onProgress?.(0);
+  onProgress?.(0, 'terrain');
   for (let j = 0; j < n; j++) {
     const z = cellCenterZ(grid, j);
     const row = j * n;
@@ -41,11 +43,12 @@ export function generateWorldSync(
       height[row + i] = sample.heightM;
       biomes[row + i] = biomeIndex.get(sample.biome) ?? 0;
     }
-    if ((j + 1) % progressEvery === 0) onProgress?.((TERRAIN_SHARE * (j + 1)) / n);
+    if ((j + 1) % progressEvery === 0) onProgress?.((TERRAIN_SHARE * (j + 1)) / n, 'terrain');
   }
 
+  onProgress?.(TERRAIN_SHARE, 'locations');
   const { locations, report } = placeLocations({ seed, data, grid, height, biomes, biomeIds });
-  onProgress?.(1);
+  onProgress?.(1, 'locations');
 
   return {
     seed,

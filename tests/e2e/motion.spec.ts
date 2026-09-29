@@ -33,6 +33,37 @@ async function shaderTimeAfterFrames(page: Page, frames: number): Promise<number
   );
 }
 
+/** Records every distinct world fade-in value (frameStats.reveal) from page load on. */
+async function recordReveal(page: Page) {
+  await page.addInitScript(() => {
+    const w = window as unknown as { __reveals: number[] };
+    w.__reveals = [];
+    const tick = () => {
+      const r = window.__atlas?.stats.reveal;
+      if (r !== undefined && w.__reveals.at(-1) !== r) w.__reveals.push(r);
+      requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  });
+}
+const reveals = (page: Page) =>
+  page.evaluate(() => (window as unknown as { __reveals: number[] }).__reveals);
+
+/** Elements (by class) with a running CSS transition or animation. */
+const movingElements = (page: Page, selector: string) =>
+  page.evaluate(
+    (sel) =>
+      [...document.querySelectorAll<HTMLElement>(sel)]
+        .map((el) => ({ el, cs: getComputedStyle(el) }))
+        .filter(
+          ({ cs }) =>
+            cs.transitionDuration.split(',').some((d) => parseFloat(d) > 0) ||
+            cs.animationName !== 'none',
+        )
+        .map(({ el }) => el.className),
+    selector,
+  );
+
 async function openApp(page: Page) {
   await page.goto('/');
   await page.waitForFunction(() => window.__atlas?.ready === true, null, { timeout: 150_000 });
@@ -75,6 +106,34 @@ test.describe('prefers-reduced-motion (SPEC §7)', () => {
         .map(({ el }) => el.className),
     );
     expect(moving).toEqual([]);
+  });
+
+  test('the loading screen and the world fade-in are instant', async ({ page }) => {
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    await recordReveal(page);
+    await page.goto('/?seed=E2eReducedLoad');
+    const overlay = page.getByTestId('loading-overlay');
+    await expect(overlay).toBeVisible();
+    // No pulsing step marker, no sliding bar, no fade.
+    expect(await movingElements(page, '.loading-overlay, .loading-overlay *')).toEqual([]);
+    await page.waitForFunction(() => window.__atlas?.ready === true, null, { timeout: 150_000 });
+    // The world appears in one step (0 → 1) and the loading screen is gone at once.
+    expect(await reveals(page)).toEqual([0, 1]);
+    await expect(overlay).toHaveCount(0);
+    // Biome labels: no fade or hover lift.
+    await expect(page.locator('.biome-label').first()).toBeAttached();
+    expect(await movingElements(page, '.biome-label')).toEqual([]);
+  });
+
+  test('without the setting, the world fades in', async ({ page }) => {
+    await page.emulateMedia({ reducedMotion: 'no-preference' });
+    await recordReveal(page);
+    await page.goto('/?seed=E2eFadeLoad');
+    await page.waitForFunction(() => window.__atlas?.ready === true, null, { timeout: 150_000 });
+    const seen = await reveals(page);
+    expect(seen[0]).toBe(0);
+    expect(seen.at(-1)).toBe(1);
+    expect(seen.some((r) => r > 0 && r < 1)).toBe(true);
   });
 
   test('without the setting, shader motion keeps running', async ({ page }) => {

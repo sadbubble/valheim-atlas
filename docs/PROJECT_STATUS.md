@@ -4,7 +4,7 @@
 > It is the single source of truth for project progress. Update it in the same commit whenever a
 > phase finishes, a key decision changes or an open item is resolved.
 
-Last updated: 2026-09-29 · Branch: `claude/eager-galileo-lw2rru` · Target game version: see
+Last updated: 2026-09-29 (phase 8) · Branch: `claude/eager-galileo-lw2rru` · Target game version: see
 `public/data/meta.json`.
 
 ## Phases
@@ -19,7 +19,7 @@ Last updated: 2026-09-29 · Branch: `claude/eager-galileo-lw2rru` · Target game
 | 5 | Interactivity | done | `82104ee` | Clustered SVG-icon markers, layer panel, fuzzy search → fly → highlight, tabbed info panel with spoiler gating and "unverified", pins, measure, share link, X/Z readout |
 | 6 | Newcomer and veteran modes | done | `0895eeb` | Progression guide (tier strip, boss/summon/altar per step, fly-to, "next" tracking), first-run "New to Valheim?" dialog, controls hint, keyboard camera, top-down view, reduced motion, location-category glossary (`location-categories.json`), valheim-map.world link-out, spoiler/mode persistence, per-type filters with counts, "find nearest" from a pin, shared selection; user-story audit in `docs/USER_STORIES.md` (13 met, 3 partial) |
 | 7 | Polish and release | done (deploy pending: the owner must enable Pages) | `97d0ad1` | About / data view (`?about=1`, lazy-loaded) and an always-visible disclaimer; axe audit in e2e (0 violations) and Lighthouse accessibility 96–100; landmarks, skip link, inert modals, 24/44 px targets, contrast; live reduced motion (camera, damping, shader clock, CSS); phone layout with bottom sheets; `npm run budget` (389 kB gzipped of 1.5 MB); relative-base static build, CSP meta, sub-path smoke test; CI and GitHub Pages workflows; outbound-link test. Details: `docs/RELEASE.md` |
-| 8 | Visual refinements | pending | – | Deferred visual fixes (see open items) |
+| 8 | Visual refinements | done | see git log (`feat: visual refinements (phase 8)`) | Terrain prep (surface textures, chunk layout, coarse meshes, anchors) in a second Web Worker with transferable buffers; shaders compiled one at a time behind a new loading screen (stage names + percent), world fades in; long tasks after generation 600 + 215 ms → none over 172 ms in five runs (software WebGL; the test fails above 200 ms); smooth search-highlight edge from a blurred mask built in the worker; biome labels hide while under HUD controls (Lighthouse a11y 100); aerial-perspective haze + horizon band, arced fly-to, selected-marker halo and label hover; all instant/frozen under reduced motion. Details: `docs/RELEASE.md` §Phase 8 |
 
 ### How this numbering maps to CLAUDE.md's Definition of done
 
@@ -28,7 +28,7 @@ Phase 6 is done: every user story N1–N8 and V1–V8 has a test or a documented
 (`docs/USER_STORIES.md`). Three stories are only partly met because of data or scope limits,
 listed under *Gaps against CLAUDE.md criteria* below. Phase 7 is done except the part only the
 repository owner can do: enabling GitHub Pages and verifying the deployed build (steps in
-`docs/RELEASE.md`). Phase 8 has no Definition-of-done row yet.
+`docs/RELEASE.md`). Phase 8 is done against its Definition-of-done row (added in phase 8).
 
 When the two disagree, the gaps below are what is actually missing.
 
@@ -81,16 +81,14 @@ When the two disagree, the gaps below are what is actually missing.
   Fixing them needs a second source, e.g. once the wiki domains are allowed.
 - **Missing location loot tables:** `locations.json` has no loot data, so the Loot tab for
   locations says so rather than guessing.
-- **Highlight-edge stair-stepping:** the search highlight follows the 20 m biome grid.
-  Bilinear blending softens it, but steps are visible up close. Deferred to phase 8.
 - **Open verification items** at the bottom of `docs/SOURCES.md`: Deep North boss prefab, Fader
   altar count, Hildir's max distance, altitude reference, and others.
 - **Conflicting facts marked `confidence: "conflict"`:** the Queen's summon, three Deep North
   weapon stat lines, and the frigid kiln recipe.
-- **Main-thread work after generation:** building the terrain from a finished world (surface
-  textures, chunk meshes) and compiling shaders blocks the main thread once per world (long
-  tasks of 0.4–0.6 s and ~0.2 s in CI's software renderer; see `docs/RELEASE.md`). Generation itself is off
-  the main thread (tested). Moving the surface-texture build into the worker would fix it.
+- **Shader programs are rebuilt for each new world** (seed change): per-world materials are
+  recreated and the old ones disposed, so three.js releases and relinks their programs. It
+  happens behind the loading screen, one shader per task (≤ ~200 ms each in software WebGL),
+  so it is not a hitch, but keeping materials across worlds would make seed changes faster.
 - **No licence chosen:** the repository has no `LICENSE`. The owner must choose one (code
   and our own assets); until then all rights are reserved. Game data stays facts-only.
 - **Deployment not yet verified:** the Pages workflow can't run until the owner sets
@@ -103,7 +101,7 @@ When the two disagree, the gaps below are what is actually missing.
 ### Gaps against CLAUDE.md criteria
 
 - **60 fps is not measured on real hardware.** CI renders in software. Workload per view is in
-  `docs/screens/stats.json` (≤ 222 draw calls, ≤ 0.37 M triangles).
+  `docs/screens/stats.json` (≤ 223 draw calls, ≤ 0.37 M triangles).
 - **User stories partly met** (details in `docs/USER_STORIES.md`):
   - N3: the spoiler setting has three editorial levels, not SPEC F7's "defeated up to boss N".
   - N6: newcomer tips are missing for 13 panels (see open items).
@@ -111,7 +109,8 @@ When the two disagree, the gaps below are what is actually missing.
     format).
 - **Manual-only checks:** touch controls, distance rings, and generation time on a real
   mid-range laptop (`docs/USER_STORIES.md` M1–M4).
-- **Lighthouse is run by hand**, not in CI (recorded in `docs/RELEASE.md`: mobile main view 96
-  because a moving 3D map label can slide under a camera button; 100 otherwise).
+- **Lighthouse is run by hand**, not in CI (recorded in `docs/RELEASE.md`; 100 on all four
+  checked pages since phase 8). `tests/e2e/visuals.spec.ts` guards the label/HUD overlap that
+  used to cost the mobile score.
 - **Phase 7 "deployed build verified"** is pending the owner enabling Pages; the production
   build is verified locally under a sub-path by the `subpath` e2e project.
