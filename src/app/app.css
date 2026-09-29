@@ -142,6 +142,41 @@ body,
   outline-offset: 1px;
 }
 
+.hud input[type='range'] {
+  padding: 0;
+  accent-color: var(--accent);
+}
+
+.hud-check {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--text) !important;
+  min-width: 0 !important;
+}
+
+.hud-value {
+  font-variant-numeric: tabular-nums;
+  min-width: 2.8em !important;
+  color: var(--text) !important;
+}
+
+.hud-hint {
+  margin: 0;
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+.hud-stats {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  display: flex;
+  gap: 12px;
+  font-size: 0.78rem;
+  font-variant-numeric: tabular-nums;
+}
+
 .hud-status {
   margin: 0;
   font-size: 0.8rem;

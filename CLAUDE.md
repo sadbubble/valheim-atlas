@@ -67,14 +67,22 @@ Do not add new runtime dependencies without a one-line justification in the PR d
 │  │  ├─ types.ts         GeneratedWorld (zod schema + type)
 │  │  ├─ protocol.ts  handle-request.ts  worker.ts  client.ts   Web Worker plumbing
 │  │  └─ cache.ts         IndexedDB cache (main thread)
-│  ├─ render/             r3f components: WorldCanvas, terrain, ocean, markers, camera
+│  ├─ render/             3D renderer (r3f); game coords are mirrored (scale z = -1) in WorldScene
+│  │  ├─ WorldCanvas.tsx  WorldScene.tsx  Terrain.tsx  Water.tsx  WorldRim.tsx  Props.tsx
+│  │  ├─ Starfield.tsx  CameraRig.tsx  SurfacePicker.tsx  AdaptiveQuality.tsx
+│  │  ├─ chunks.ts  terrain-geometry.ts   LOD layout/selection; crack-free chunk meshes
+│  │  ├─ surface-textures.ts  terrain-model.ts  props.ts  prop-geometry.ts  pick.ts
+│  │  ├─ materials.ts  shaders/        our own GLSL (no game assets)
+│  │  ├─ render-config.ts  palette.ts  props-config.ts   visual tuning + original palette
+│  │  └─ debug-hooks.ts   window.__atlas (ready, get/setView, stats) for e2e/screenshots
 │  ├─ data/               schema.ts (zod), load.ts (typed fetch loaders), integrity checks
 │  ├─ state/              Zustand stores; url-state.ts (?seed=&mode=&layer=) + url-sync.ts
 │  ├─ ui/                 HUD, panels, drawers, legend, search, badges
 │  ├─ debug/              debug.html app: biome map renderer, stats, placement report
 │  ├─ test/               Node-only test helpers (read public/data from disk)
 │  └─ lib/                small shared helpers (math, format, geometry)
-└─ tests/e2e/             Playwright specs (Phase 3+)
+├─ docs/screens/          renderer screenshots at 3 zoom levels + stats.json (npm run screens)
+└─ tests/e2e/             Playwright specs (+ playwright.config.ts at the root)
 ```
 
 Unit tests sit next to their code as `*.test.ts(x)`.
@@ -94,6 +102,10 @@ Unit tests sit next to their code as `*.test.ts(x)`.
   `GENERATOR_REVISION` so cached worlds are invalidated.
 
   Worker messages are typed discriminated unions.
+- `src/render` coordinates: data is in game coordinates (x east, z north); the world group in
+  `WorldScene` mirrors z because three.js is right-handed. Convert camera positions with
+  `z = -scene.z` before comparing with data. Visual numbers go in `render-config.ts`,
+  colours in `palette.ts` (original palette only).
 - Keep react-three-fiber render loops allocation-free:
   - reuse vectors;
   - use `InstancedMesh` for markers;
@@ -117,7 +129,8 @@ Unit tests sit next to their code as `*.test.ts(x)`.
 | `npm run perf` | Times a 1024² world generation (target ~3 s on a mid-range laptop; the test fails above 6 s) |
 | `npm run check` | typecheck, lint and test together: the pre-push gate |
 | `npm run validate:data` | *Planned (Phase 1 data work):* standalone data validator. Until then `src/data/data-files.test.ts` validates `public/data/*.json` and source-ID integrity inside `npm test` |
-| `npm run test:e2e` | *Planned (Phase 3):* Playwright (Chromium) |
+| `npm run test:e2e` | Playwright e2e in Chromium with software WebGL (SwiftShader); starts a dev server on :4179 |
+| `npm run screens` | Regenerates `docs/screens/*.png` and `stats.json` (tagged `@screens`, skipped by `test:e2e`) |
 
 ## Definition of done
 

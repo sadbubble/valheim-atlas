@@ -54,6 +54,12 @@ export default tseslint.config(
     },
   },
   {
+    // react-three-fiber's recommended pattern mutates three.js objects (uniforms, meshes)
+    // inside useFrame instead of going through React state, which this rule forbids.
+    files: ['src/render/**/*.tsx'],
+    rules: { 'react-hooks/immutability': 'off' },
+  },
+  {
     files: ['*.js'],
     extends: [js.configs.recommended, prettier],
     languageOptions: { globals: globals.node },

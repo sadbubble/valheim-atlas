@@ -16,7 +16,9 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "check": "npm run typecheck && npm run lint && npm run test",
-    "perf": "vitest run src/world/generate.perf.test.ts --reporter=verbose"
+    "perf": "vitest run src/world/generate.perf.test.ts --reporter=verbose",
+    "test:e2e": "playwright test --grep-invert @screens",
+    "screens": "playwright test --grep @screens"
   },
   "dependencies": {
     "@react-three/drei": "10.7.9",
@@ -29,6 +31,7 @@
   },
   "devDependencies": {
     "@eslint/js": "10.0.1",
+    "@playwright/test": "1.56.1",
     "@types/node": "22.20.4",
     "@types/react": "19.3.0",
     "@types/react-dom": "19.3.0",

@@ -307,6 +307,7 @@ interface GeneratedWorld {
 
 ## 8. Performance budget
 - World generation runs in a Web Worker; the main thread never blocks for more than 50 ms.
-- The terrain mesh is 512² vertices by default (about 39 m spacing), up to 1024² on capable GPUs. The biome texture is 2048² (about 10 m/px).
+- The terrain uses the generated 1024² grid (about 20.5 m spacing) split into 16 × 16 chunks with 4 LOD levels (full detail only near the camera) and frustum culling. Biome colour/weight textures and a half-float height texture match the grid.
+- Props (trees, rocks) are instanced per chunk and only drawn within 2.6 km of the camera.
 - Markers use instanced meshes, with ≤ 5 draw calls per category group.
-- Target: ≥ 50 fps with orbiting on a mid-range laptop's integrated GPU. The initial JS bundle is < 1.5 MB gzipped, excluding data.
+- Target: 60 fps with orbiting on a mid-range laptop's integrated GPU at default settings (pixel ratio capped at 1.5, dropping to 1 below 50 fps). Measured workload at the screenshot views: ≤ 221 draw calls and ≤ 0.37 M triangles (`docs/screens/stats.json`). The initial JS bundle is < 1.5 MB gzipped, excluding data.

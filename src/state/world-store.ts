@@ -1,10 +1,18 @@
 import { create } from 'zustand';
+import type { WorldConstants } from '../data/schema';
 import type { GeneratedWorld } from '../world/types';
 
 export type WorldStatus =
   | { kind: 'idle' }
   | { kind: 'generating'; seed: string; progress: number }
-  | { kind: 'ready'; seed: string; world: GeneratedWorld; fromCache: boolean }
+  | {
+      kind: 'ready';
+      seed: string;
+      world: GeneratedWorld;
+      /** Sourced world constants (sea level, radius…) the renderer needs. */
+      constants: WorldConstants;
+      fromCache: boolean;
+    }
   | { kind: 'error'; seed: string; message: string };
 
 interface WorldState {

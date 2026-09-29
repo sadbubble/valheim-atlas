@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useAppStore } from '../state/app-store';
 import { useWorldStore } from '../state/world-store';
-import { disposeWorldWorker, generateWorld } from '../world/api';
+import { disposeWorldWorker, generateWorld, getWorldGenData } from '../world/api';
 
 /** Regenerates the world in the Web Worker (or loads it from cache) when the seed changes. */
 export function useWorldGeneration(): void {
@@ -17,13 +17,16 @@ export function useWorldGeneration(): void {
     }
     let stale = false;
     setStatus({ kind: 'generating', seed, progress: 0 });
-    generateWorld(seed, undefined, {
-      onProgress: (progress) => {
-        if (!stale) setStatus({ kind: 'generating', seed, progress });
-      },
-    }).then(
-      ({ world, fromCache }) => {
-        if (!stale) setStatus({ kind: 'ready', seed, world, fromCache });
+    Promise.all([
+      generateWorld(seed, undefined, {
+        onProgress: (progress) => {
+          if (!stale) setStatus({ kind: 'generating', seed, progress });
+        },
+      }),
+      getWorldGenData(),
+    ]).then(
+      ([{ world, fromCache }, data]) => {
+        if (!stale) setStatus({ kind: 'ready', seed, world, constants: data.world, fromCache });
       },
       (err: unknown) => {
         if (!stale) setStatus({ kind: 'error', seed, message: String(err) });

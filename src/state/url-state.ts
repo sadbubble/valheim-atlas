@@ -15,8 +15,11 @@ export interface UrlState {
 /** Upper bound on seed length accepted from the URL; a sanity limit, not a game rule. */
 export const MAX_SEED_LENGTH = 64;
 
+/** The world shown when no seed is given (an arbitrary example seed, not a game fact). */
+export const DEFAULT_SEED = 'HelloWorld';
+
 export const DEFAULT_URL_STATE: Readonly<UrlState> = {
-  seed: '',
+  seed: DEFAULT_SEED,
   mode: 'newcomer',
   layer: 'biomes',
 };

@@ -2,9 +2,13 @@
 
 An interactive, orbitable 3D map of a Valheim-style world for newcomers and veterans. It covers biomes, bosses, points of interest, progression and tips, and every game fact is sourced.
 
-> **Status: Phase 2.** World generation works (Path B, a rule-driven *approximation*; see
-> [`docs/DECISION.md`](docs/DECISION.md)) and can be inspected on the debug biome map. The main
-> app still shows a placeholder disc; the 3D terrain arrives in Phase 3.
+> **Status: Phase 3.** The world (Path B, a rule-driven *approximation*; see
+> [`docs/DECISION.md`](docs/DECISION.md)) renders as a stylized 3D disc floating in space.
+> Locations, info panels and modes come in Phases 4–5.
+
+| Overview | Region | Close-up |
+| --- | --- | --- |
+| ![Overview](docs/screens/1-overview.png) | ![Region](docs/screens/2-region.png) | ![Close-up](docs/screens/3-close.png) |
 >
 > Fan-made; not affiliated with Iron Gate or Coffee Stain. Contains no game assets.
 
@@ -20,8 +24,29 @@ npm install
 npm run dev          # http://localhost:5173
 ```
 
-You should see a slowly rotating disc. Drag to orbit, scroll to zoom, and right-drag to pan.
-Entering a seed generates a world in a Web Worker; the HUD then shows an **Approximation** badge.
+The default seed's world is generated in a Web Worker and shown in 3D, with an
+**Approximation** badge. Drag to orbit, scroll to zoom, right-drag to pan, double-click to
+fly to a spot. The HUD has a relief (vertical exaggeration, default 1.5×) slider, a
+trees & rocks toggle, an FPS/draw-call overlay and a reset-view button.
+
+### Renderer (`src/render`)
+
+- **Terrain:** 16 × 16 chunks with 4 distance-based LOD levels and frustum culling. Every
+  LOD keeps a full-resolution border and zips it to the coarser interior, so neighbouring
+  chunks always share edge vertices: no cracks, no skirts (unit-tested). Chunks fully under
+  water are skipped.
+- **Shading:** our own GLSL: faceted low-poly normals, soft biome blending from blurred
+  biome textures, slope rock, snow above the snow line and in the Deep North, ash with
+  glowing lava cracks in the Ashlands, dark drifting mist in the Mistlands, beaches.
+- **Water:** animated stylized sea with depth tint and shoreline foam, drawn with a small
+  polygon offset and discarded over land so it never z-fights with sea-level terrain.
+- **Presentation:** starfield, glowing halo and atmosphere wall at the rim, a crust wall and
+  tapered underside so the disc reads as a small floating world.
+- **Props:** procedural low-poly trees, dead trees, rocks and spires per biome, instanced
+  per chunk, built lazily near the camera and shrunk out with distance.
+- **Performance:** dynamic near/far planes; adaptive pixel ratio (drops to 1× under 50 fps).
+  Workload at the three screenshot views is in `docs/screens/stats.json` (≤ 221 draw calls,
+  ≤ 0.37 M triangles).
 
 ### Debug biome map
 
@@ -53,7 +78,7 @@ The HUD state is mirrored in the query string, so any view can be shared:
 
 | Param   | Values                                 | Default    |
 | ------- | -------------------------------------- | ---------- |
-| `seed`  | any text (≤ 64 chars)                  | empty      |
+| `seed`  | any text (≤ 64 chars)                  | `HelloWorld` |
 | `mode`  | `newcomer` \| `veteran`                | `newcomer` |
 | `layer` | `biomes` \| `locations` \| `rings`     | `biomes`   |
 
@@ -73,6 +98,8 @@ Invalid values fall back to their defaults, and parameters left at their default
 | `npm run format`    | Prettier write                                  |
 | `npm test`          | Vitest unit tests                               |
 | `npm run perf`      | Time a 1024² world generation                   |
+| `npm run test:e2e`  | Playwright e2e (Chromium, software WebGL)       |
+| `npm run screens`   | Regenerate `docs/screens/*.png` + `stats.json`  |
 | `npm run check`     | typecheck, lint and test (run before pushing)   |
 
 ## Project layout
@@ -82,7 +109,8 @@ public/data/   sourced game data (JSON), fetched at runtime
 src/app/       root <App/>: full-screen Canvas + HUD overlay
 src/world/     world generation (runs in a Web Worker) + IndexedDB cache
 src/debug/     debug.html: 2D biome map
-src/render/    react-three-fiber scene
+src/render/    react-three-fiber scene, shaders, terrain LOD, props
+tests/e2e/     Playwright specs
 src/data/      zod schemas + typed JSON loaders
 src/state/     Zustand stores, URL state helper
 src/ui/        HUD and panels
