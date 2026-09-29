@@ -1,6 +1,14 @@
 import { useFrame } from '@react-three/fiber';
 import { useEffect, useMemo, useRef } from 'react';
+import { appStore } from '../state/app-store';
+import { useMapStore } from '../state/map-store';
 import { useRenderStore } from '../state/render-store';
+import { useUiStore } from '../state/ui-store';
+import { BiomeLabels } from './BiomeLabels';
+import { computeBiomeAnchors } from './biome-anchors';
+import { Interaction } from './Interaction';
+import { Markers } from './Markers';
+import { MeasureLine } from './MeasureLine';
 import { useWorldStore } from '../state/world-store';
 import { CameraRig } from './CameraRig';
 import { atlasDebug } from './debug-hooks';
@@ -26,6 +34,15 @@ export function WorldScene() {
   );
   useEffect(() => () => model?.dispose(), [model]);
 
+  // Representative points per biome region, shared with the UI (labels, fly-to).
+  useEffect(() => {
+    useMapStore
+      .getState()
+      .setAnchors(
+        model ? computeBiomeAnchors(model.world, { maxRadiusM: model.worldRadiusM }) : [],
+      );
+  }, [model]);
+
   const shared = useMemo(
     () =>
       createSharedUniforms({
@@ -46,6 +63,16 @@ export function WorldScene() {
   useFrame(({ clock, gl }, delta) => {
     shared.uTime.value = clock.elapsedTime;
     shared.uExag.value = useRenderStore.getState().exaggeration;
+    shared.uGrid.value = appStore.getState().layers.includes('grid') ? 1 : 0;
+    const hl = useUiStore.getState().highlight;
+    shared.uHighlightOn.value = hl.biomes.length > 0 || hl.locationTypes.length > 0 ? 1 : 0;
+    if (model) {
+      const ids = model.world.biomeIds;
+      for (let k = 0; k < shared.uHighlight.value.length; k++) {
+        const id = ids[k];
+        shared.uHighlight.value[k] = id !== undefined && hl.biomes.includes(id) ? 1 : 0;
+      }
+    }
     if (delta > 0) frameStats.fps = frameStats.fps * 0.92 + (1 / delta) * 0.08;
     frameStats.drawCalls = gl.info.render.calls;
     frameStats.triangles = gl.info.render.triangles;
@@ -64,8 +91,12 @@ export function WorldScene() {
             <Water model={model} shared={shared} />
             <WorldRim model={model} shared={shared} />
             <Props model={model} shared={shared} />
+            <Markers model={model} shared={shared} />
+            <MeasureLine model={model} />
+            <BiomeLabels model={model} />
           </group>
           <SurfacePicker model={model} shared={shared} />
+          <Interaction model={model} shared={shared} />
         </>
       ) : null}
     </>

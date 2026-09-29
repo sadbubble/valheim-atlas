@@ -1,4 +1,4 @@
-import { LIGHT_GLSL, NOISE_GLSL, OUTPUT_GLSL } from './common';
+import { LIGHT_GLSL, NOISE_GLSL, OUTPUT_GLSL, OVERLAY_GLSL } from './common';
 
 export const TERRAIN_VERTEX = /* glsl */ `
 uniform float uExag;
@@ -6,9 +6,11 @@ uniform float uExtent;
 varying vec3 vWorld;
 varying vec2 vUv;
 varying float vHeight;
+varying vec2 vGame;
 
 void main() {
   vec3 p = position;
+  vGame = p.xz;
   vHeight = p.y;
   p.y *= uExag;
   vec4 wp = modelMatrix * vec4(p, 1.0);
@@ -29,11 +31,26 @@ uniform vec3 uSand;
 uniform vec3 uAsh;
 uniform vec3 uLava;
 uniform vec3 uMist;
+uniform sampler2D uBiomeIndex;
+uniform float uHighlight[9];
+uniform float uHighlightOn;
+uniform float uGridRes;
 varying vec3 vWorld;
 varying vec2 vUv;
 varying float vHeight;
+varying vec2 vGame;
+${OVERLAY_GLSL}
 ${NOISE_GLSL}
 ${LIGHT_GLSL}
+
+float highlightAt(vec2 uv) {
+  float bi = floor(texture2D(uBiomeIndex, uv).r * 255.0 + 0.5);
+  float hl = 0.0;
+  for (int k = 0; k < 9; k++) {
+    if (abs(bi - float(k)) < 0.5) hl = uHighlight[k];
+  }
+  return hl;
+}
 
 void main() {
   if (length(vWorld.xz) > uWaterEdge) discard;
@@ -82,6 +99,22 @@ void main() {
     lit = mix(lit, uMist * 1.15, clamp(mist, 0.0, 1.0) * 0.8);
   }
 
+  // Search highlight: pulse the matching biomes, dim the rest.
+  if (uHighlightOn > 0.5) {
+    // Bilinear blend of the four nearest cells' match, so edges are soft, not blocky.
+    vec2 ts = vec2(1.0 / uGridRes);
+    vec2 st = vUv / ts - 0.5;
+    vec2 f = fract(st);
+    vec2 c0 = (floor(st) + 0.5) * ts;
+    float hl = mix(
+      mix(highlightAt(c0), highlightAt(c0 + vec2(ts.x, 0.0)), f.x),
+      mix(highlightAt(c0 + vec2(0.0, ts.y)), highlightAt(c0 + ts), f.x),
+      f.y
+    );
+    float pulse = 0.5 + 0.5 * sin(uTime * 3.0);
+    lit = mix(lit * 0.5, lit, hl) + vec3(1.0, 0.82, 0.4) * hl * (0.08 + 0.12 * pulse);
+  }
+  lit = overlayGrid(lit, vGame);
   gl_FragColor = vec4(atmosphere(lit, vWorld), 1.0);
   ${OUTPUT_GLSL}
 }

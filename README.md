@@ -2,9 +2,9 @@
 
 An interactive, orbitable 3D map of a Valheim-style world for newcomers and veterans. It covers biomes, bosses, points of interest, progression and tips, and every game fact is sourced.
 
-> **Status: Phase 3.** The world (Path B, a rule-driven *approximation*; see
-> [`docs/DECISION.md`](docs/DECISION.md)) renders as a stylized 3D disc floating in space.
-> Locations, info panels and modes come in Phases 4–5.
+> **Status: Phase 4.** The world (Path B, a rule-driven *approximation*; see
+> [`docs/DECISION.md`](docs/DECISION.md)) renders as a stylized 3D disc floating in space, with
+> map markers, search, info panels, pins and measuring.
 
 | Overview | Region | Close-up |
 | --- | --- | --- |
@@ -28,6 +28,29 @@ The default seed's world is generated in a Web Worker and shown in 3D, with an
 **Approximation** badge. Drag to orbit, scroll to zoom, right-drag to pan, double-click to
 fly to a spot. The HUD has a relief (vertical exaggeration, default 1.5×) slider, a
 trees & rocks toggle, an FPS/draw-call overlay and a reset-view button.
+
+### Using the map
+
+- **Search** (press <kbd>/</kbd>): fuzzy search over biomes, locations, bosses, creatures,
+  items, resources and food. Choosing a result opens its info panel, highlights every biome
+  and location it occurs in, and flies the camera to the nearest one.
+- **Markers:** our own icons for boss altars, dungeons, traders, Vegvisirs, villages,
+  landmarks and your pins. They stay a readable size at every zoom and cluster when zoomed
+  out; click a cluster to zoom in. Hover for a tooltip; click to open the info panel.
+- **Info panel:** Overview / Threats / Loot / Tips tabs from `public/data`, with sources,
+  confidence and game version, plus a **Fly here** button. Every value we could not verify
+  shows an **unverified** tag (never hidden). Entries above your spoiler setting are hidden
+  until you choose "Show anyway".
+- **Layers panel:** biome names, bosses, dungeons, traders, Vegvisirs, villages, runestones and
+  landmarks, creatures and resources (per-biome badges that open the Threats/Loot tabs), a 1 km
+  grid, and your pins. The spoiler setting defaults to spoiler-free for newcomers and to
+  everything for veterans.
+- **Tools:** place, drag, rename and delete pins (also via the pin list); measure the distance
+  between two points; **Copy link** shares the seed, camera, layers, spoiler setting and pins.
+- **Cursor readout:** game-style X/Z coordinates, height above sea and distance from centre.
+- **Keyboard:** <kbd>/</kbd> search, arrow keys/<kbd>Enter</kbd> in results, arrow keys/<kbd>Home</kbd>/
+  <kbd>End</kbd> on tabs, <kbd>Esc</kbd> closes the tool or panel, <kbd>Delete</kbd> removes the selected pin.
+  Everything on the map is also reachable from search, biome labels (buttons) and the pin list.
 
 ### Renderer (`src/render`)
 
@@ -94,9 +117,12 @@ The HUD state is mirrored in the query string, so any view can be shared:
 | ------- | -------------------------------------- | ---------- |
 | `seed`  | any text (≤ 64 chars)                  | `HelloWorld` |
 | `mode`  | `newcomer` \| `veteran`                | `newcomer` |
-| `layer` | `biomes` \| `locations` \| `rings`     | `biomes`   |
+| `layers` | comma list of `biomes,bosses,dungeons,npcs,vegvisirs,villages,landmarks,creatures,resources,grid,pins` | `biomes,bosses,dungeons,npcs,vegvisirs,villages,pins` |
+| `spoiler` | `0` (spoiler-free) \| `1` (mild) \| `2` (all) | by mode: newcomer 0, veteran 2 |
+| `pins` | `x,z,label;x,z,label…` (game metres) | none |
+| `cam` | `x,z,distance,polar,azimuth` (applied on load; written by **Copy link**) | overview |
 
-Example: `http://localhost:5173/?seed=HelloWorld&mode=veteran&layer=rings`.
+Example: `http://localhost:5173/?seed=HelloWorld&mode=veteran&layers=bosses,dungeons,grid,pins&pins=-800,300,Base`.
 
 Invalid values fall back to their defaults, and parameters left at their default are removed from the URL.
 

@@ -5,4 +5,5 @@ export const frameStats = {
   triangles: 0,
   terrainChunks: 0,
   propInstances: 0,
+  markers: 0,
 };

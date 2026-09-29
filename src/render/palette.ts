@@ -36,3 +36,26 @@ export const SCENE_COLORS = {
   crustBottom: '#0d0b10',
   star: '#dfe9ff',
 } as const;
+
+/** Marker badge colour per map layer (our palette). */
+export const LAYER_COLORS = {
+  biomes: '#9fb3c0',
+  bosses: '#d8453a',
+  dungeons: '#8a5cc7',
+  npcs: '#e0b43c',
+  vegvisirs: '#3cb8d8',
+  villages: '#9a6b3f',
+  landmarks: '#7d8a7a',
+  creatures: '#c7643c',
+  resources: '#4fae6e',
+  grid: '#dfe9ff',
+  pins: '#ef6f9d',
+} as const;
+
+export const MARKER_COLORS = {
+  glyph: '#ffffff',
+  ring: '#f5e6c8',
+  selected: '#ffd166',
+  highlight: '#ffd166',
+  hidden: '#5b6470',
+} as const;

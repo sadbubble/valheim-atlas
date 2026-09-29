@@ -4,15 +4,16 @@ import { RENDER } from '../render/render-config';
 import { useAppStore } from '../state/app-store';
 import { useCameraStore } from '../state/camera-store';
 import { useRenderStore } from '../state/render-store';
-import { LAYERS, MODES, type Layer } from '../state/url-state';
+import { MODES } from '../state/url-state';
 import { useWorldStore, type WorldStatus } from '../state/world-store';
+import { CoordReadout } from './CoordReadout';
+import { InfoPanel } from './InfoPanel';
+import { LayerPanel } from './LayerPanel';
+import { SearchBar } from './SearchBar';
 import { StatsOverlay } from './StatsOverlay';
-
-const LAYER_LABELS: Record<Layer, string> = {
-  biomes: 'Biomes',
-  locations: 'Locations',
-  rings: 'Distance rings',
-};
+import { ToolPanel } from './ToolPanel';
+import { Tooltip } from './Tooltip';
+import { useShortcuts } from './use-shortcuts';
 
 function describeStatus(status: WorldStatus): string {
   switch (status.kind) {
@@ -21,16 +22,14 @@ function describeStatus(status: WorldStatus): string {
     case 'generating':
       return `Generating… ${Math.round(status.progress * 100)}%`;
     case 'ready':
-      return `World ready: ${status.world.locations.length} locations${
-        status.fromCache ? ' (cached)' : ''
-      }`;
+      return `World ready: ${status.world.locations.length} locations${status.fromCache ? ' (cached)' : ''}`;
     case 'error':
       return `Generation failed: ${status.message}`;
   }
 }
 
 export function Hud() {
-  const { seed, mode, layer, setSeed, setMode, setLayer } = useAppStore((s) => s);
+  const { seed, mode, setSeed, setMode } = useAppStore((s) => s);
   const status = useWorldStore((s) => s.status);
   const meta = useMeta();
   const exaggeration = useRenderStore((s) => s.exaggeration);
@@ -39,6 +38,7 @@ export function Hud() {
   const { setExaggeration, setShowProps, setShowStats } = useRenderStore.getState();
   const [draft, setDraft] = useState(seed);
   const [prevSeed, setPrevSeed] = useState(seed);
+  useShortcuts();
   if (seed !== prevSeed) {
     // Keep the input in sync when the seed changes externally (back/forward navigation).
     setPrevSeed(seed);
@@ -52,22 +52,22 @@ export function Hud() {
 
   return (
     <div className="hud">
-      <header className="hud-panel hud-top">
-        <h1 className="hud-title">Valheim Atlas</h1>
-        {status.kind === 'ready' && status.world.isApproximation ? (
-          <span
-            className="hud-badge"
-            title="This world follows Valheim's published layout rules but is not the real world for this seed."
-          >
-            Approximation
-          </span>
-        ) : null}
-        <a className="hud-link" href={`debug.html${window.location.search}`}>
-          Biome map (debug)
-        </a>
+      <header className="hud-top">
+        <div className="hud-panel hud-brand">
+          <h1 className="hud-title">Valheim Atlas</h1>
+          {status.kind === 'ready' && status.world.isApproximation ? (
+            <span
+              className="hud-badge"
+              title="This world follows Valheim's published layout rules but is not the real world for this seed."
+            >
+              Approximation
+            </span>
+          ) : null}
+        </div>
+        <SearchBar />
       </header>
 
-      <section className="hud-panel hud-controls" aria-label="Map controls">
+      <aside className="hud-panel hud-side" aria-label="Map controls">
         <form onSubmit={onSubmit} className="hud-row">
           <label htmlFor="seed-input">Seed</label>
           <input
@@ -98,24 +98,6 @@ export function Hud() {
               {m === 'newcomer' ? 'Newcomer' : 'Veteran'}
             </button>
           ))}
-        </div>
-
-        <div className="hud-row">
-          <label htmlFor="layer-select">Layer</label>
-          <select
-            id="layer-select"
-            value={layer}
-            onChange={(e) => {
-              const next = LAYERS.find((l) => l === e.target.value);
-              if (next) setLayer(next);
-            }}
-          >
-            {LAYERS.map((l) => (
-              <option key={l} value={l}>
-                {LAYER_LABELS[l]}
-              </option>
-            ))}
-          </select>
         </div>
 
         <div className="hud-row">
@@ -165,17 +147,22 @@ export function Hud() {
           </button>
         </div>
         <p className="hud-hint">
-          Drag to orbit · scroll to zoom · right-drag to pan · double-click to focus
+          Drag to orbit · scroll to zoom · right-drag to pan · double-click to focus · / to search
         </p>
-
         <p className="hud-status" aria-live="polite">
           {describeStatus(status)}
         </p>
-      </section>
 
+        <LayerPanel />
+        <ToolPanel />
+      </aside>
+
+      <InfoPanel />
+      <Tooltip />
       {showStats ? <StatsOverlay /> : null}
 
       <footer className="hud-panel hud-footer">
+        <CoordReadout />
         <span>
           {meta.status === 'ready'
             ? `Target game version ${meta.meta.targetGameVersion}`

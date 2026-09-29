@@ -36,6 +36,9 @@ export const RENDER = {
     overviewPolar: 0.85,
     focusDurationS: 1.4,
     focusDistanceM: 2200,
+    /** Search / "Fly here" distances for a location vs a whole biome. */
+    flyLocationDistanceM: 2200,
+    flyBiomeDistanceM: 6500,
   },
   rim: {
     /** Depth of the stylized crust wall below sea level, metres. */
@@ -45,6 +48,23 @@ export const RENDER = {
     haloWidthFactor: 0.35,
   },
   stars: { count: 3500 },
+  overlay: {
+    /** Coordinate grid spacing (visual choice). */
+    gridSpacingM: 1000,
+  },
+  markers: {
+    /** Upper bound of drawn markers (instances). */
+    max: 8000,
+    /** Icon size in CSS pixels at the reference distance; scaled by refDistanceM / distance. */
+    sizePx: { important: 30, normal: 23, minor: 18, pin: 30, badge: 26 },
+    refDistanceM: 6000,
+    minScale: 0.7,
+    maxScale: 1.35,
+    /** Hit radius padding around an icon, CSS pixels. */
+    pickPaddingPx: 4,
+    /** A pointer that moves less than this between down and up is a click. */
+    clickSlopPx: 5,
+  },
   quality: {
     /** Default device-pixel-ratio cap; lowered to 1 if fps falls below minFps. */
     maxDpr: 1.5,

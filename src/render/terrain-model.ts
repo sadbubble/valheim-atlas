@@ -2,6 +2,7 @@ import {
   DataTexture,
   HalfFloatType,
   LinearFilter,
+  NearestFilter,
   NoColorSpace,
   RedFormat,
   RGBAFormat,
@@ -28,6 +29,8 @@ export interface TerrainModel {
   colorTex: DataTexture;
   weightsTex: DataTexture;
   heightTex: DataTexture;
+  /** R8: biome index per cell (nearest filtering) for highlighting. */
+  biomeIndexTex: DataTexture;
   dispose(): void;
 }
 
@@ -55,6 +58,9 @@ export function createTerrainModel(world: GeneratedWorld, c: WorldConstants): Te
   const colorTex = dataTexture(surf.color, n, RGBAFormat, UnsignedByteType, true);
   const weightsTex = dataTexture(surf.weights, n, RGBAFormat, UnsignedByteType, false);
   const heightTex = dataTexture(surf.height, n, RedFormat, HalfFloatType, false);
+  const biomeIndexTex = dataTexture(world.biomes, n, RedFormat, UnsignedByteType, false);
+  biomeIndexTex.magFilter = NearestFilter;
+  biomeIndexTex.minFilter = NearestFilter;
   let maxHeightM = 0;
   for (const ch of chunks) maxHeightM = Math.max(maxHeightM, ch.maxY);
   const first = chunks[0];
@@ -69,7 +75,9 @@ export function createTerrainModel(world: GeneratedWorld, c: WorldConstants): Te
     colorTex,
     weightsTex,
     heightTex,
+    biomeIndexTex,
     dispose() {
+      biomeIndexTex.dispose();
       colorTex.dispose();
       weightsTex.dispose();
       heightTex.dispose();

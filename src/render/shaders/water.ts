@@ -1,10 +1,12 @@
-import { LIGHT_GLSL, NOISE_GLSL, OUTPUT_GLSL } from './common';
+import { LIGHT_GLSL, NOISE_GLSL, OUTPUT_GLSL, OVERLAY_GLSL } from './common';
 
 export const WATER_VERTEX = /* glsl */ `
 uniform float uExtent;
 varying vec3 vWorld;
 varying vec2 vUv;
+varying vec2 vGame;
 void main() {
+  vGame = position.xz;
   vec4 wp = modelMatrix * vec4(position, 1.0);
   vWorld = wp.xyz;
   // Local position is in game coordinates (the world group mirrors z for three.js).
@@ -22,6 +24,8 @@ uniform vec3 uDeep;
 uniform vec3 uFoam;
 varying vec3 vWorld;
 varying vec2 vUv;
+varying vec2 vGame;
+${OVERLAY_GLSL}
 ${NOISE_GLSL}
 ${LIGHT_GLSL}
 
@@ -62,6 +66,7 @@ void main() {
   float foam = clamp(shore * (0.35 + 0.65 * bands), 0.0, 1.0) * mix(0.35, 1.0, near);
   lit = mix(lit, uFoam, foam * 0.75);
 
+  lit = overlayGrid(lit, vGame);
   gl_FragColor = vec4(atmosphere(lit, vWorld), 1.0);
   ${OUTPUT_GLSL}
 }

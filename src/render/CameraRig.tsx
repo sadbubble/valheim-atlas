@@ -3,6 +3,7 @@ import { useFrame } from '@react-three/fiber';
 import { useEffect, useRef } from 'react';
 import { MathUtils, Spherical, Vector3, type PerspectiveCamera } from 'three';
 import type { OrbitControls as OrbitControlsImpl } from 'three-stdlib';
+import { appStore } from '../state/app-store';
 import { useCameraStore, type CameraRequest } from '../state/camera-store';
 import { atlasDebug, type AtlasView } from './debug-hooks';
 import { RENDER } from './render-config';
@@ -62,11 +63,13 @@ export function CameraRig({ worldRadiusM }: { worldRadiusM: number | null }) {
     c.update();
   };
 
-  // Jump to the overview whenever a new world arrives.
+  // Jump to the shared link's view (first world only) or the overview when a world arrives.
   useEffect(() => {
     if (worldRadiusM === null) return;
     anim.current = null;
-    apply(viewToState(overview(worldRadiusM)));
+    const shared = appStore.getState().cam;
+    if (shared) appStore.setState({ cam: null });
+    apply(viewToState(shared ?? overview(worldRadiusM)));
   }, [worldRadiusM]);
 
   // Expose the view to e2e tests / screenshot scripts.
@@ -76,7 +79,7 @@ export function CameraRig({ worldRadiusM }: { worldRadiusM: number | null }) {
       anim.current = null;
       apply(viewToState(v));
     };
-    dbg.getView = () => {
+    const getView = (): AtlasView | null => {
       const s = current();
       if (!s) return null;
       return {
@@ -87,6 +90,8 @@ export function CameraRig({ worldRadiusM }: { worldRadiusM: number | null }) {
         azimuth: s.spherical.theta,
       };
     };
+    dbg.getView = getView;
+    useCameraStore.setState({ getView });
   }, []);
 
   useEffect(() => {

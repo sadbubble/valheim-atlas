@@ -1,4 +1,5 @@
 import { create } from 'zustand';
+import type { CamView } from './url-state';
 
 export type CameraRequest =
   | { id: number; kind: 'focus'; x: number; z: number; distanceM: number | null }
@@ -10,6 +11,8 @@ interface CameraState {
   focus: (x: number, z: number, distanceM?: number) => void;
   /** Smoothly return to the whole-world overview. */
   overview: () => void;
+  /** Current view in game coordinates; installed by the CameraRig. */
+  getView: () => CamView | null;
 }
 
 let nextId = 1;
@@ -22,4 +25,5 @@ export const useCameraStore = create<CameraState>()((set) => ({
   overview: () => {
     set({ request: { id: nextId++, kind: 'overview' } });
   },
+  getView: () => null,
 }));

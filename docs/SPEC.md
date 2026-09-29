@@ -93,6 +93,11 @@ Each panel shows a "Sources" footer listing source IDs and their confidence.
 ### F12. About / data
 - A page listing the target game version, all sources, the generator path, and a disclaimer: fan-made, not affiliated with Iron Gate or Coffee Stain.
 
+> **Implementation status (Phase 4):** F1–F5, F9 (seed input), F10 (measure + X/Z readout) and
+> F11 (shareable URL incl. camera, layers, spoiler setting and pins) are implemented; F7 is
+> implemented as a spoiler setting (0/1/2) with per-entry reveal; F6/F8 are available as
+> data (`progression.json`, `tips.json`) and tips are shown in the info panel.
+
 ## 4. User stories
 
 ### Newcomer

@@ -38,6 +38,10 @@ export interface SharedUniforms {
   uEdgeGlow: IUniform<Color>;
   uWorldRadius: IUniform<number>;
   uWaterEdge: IUniform<number>;
+  uGrid: IUniform<number>;
+  uGridSpacing: IUniform<number>;
+  uHighlight: IUniform<number[]>;
+  uHighlightOn: IUniform<number>;
 }
 
 export interface WorldDims {
@@ -61,6 +65,10 @@ export function createSharedUniforms(dims: WorldDims): SharedUniforms {
     uEdgeGlow: { value: new Color(SCENE_COLORS.edgeGlow) },
     uWorldRadius: { value: dims.worldRadiusM },
     uWaterEdge: { value: dims.waterEdgeM },
+    uGrid: { value: 0 },
+    uGridSpacing: { value: RENDER.overlay.gridSpacingM },
+    uHighlight: { value: new Array<number>(9).fill(0) },
+    uHighlightOn: { value: 0 },
   };
 }
 
@@ -68,6 +76,8 @@ export function createTerrainMaterial(
   shared: SharedUniforms,
   color: Texture,
   weights: Texture,
+  biomeIndex: Texture,
+  gridResolution: number,
   snowLineM: number,
 ): ShaderMaterial {
   return new ShaderMaterial({
@@ -78,6 +88,8 @@ export function createTerrainMaterial(
       ...shared,
       uColor: { value: color },
       uWeights: { value: weights },
+      uBiomeIndex: { value: biomeIndex },
+      uGridRes: { value: gridResolution },
       uSnowLine: { value: snowLineM },
       uRock: { value: new Color(SCENE_COLORS.rock) },
       uSnow: { value: new Color(SCENE_COLORS.snow) },

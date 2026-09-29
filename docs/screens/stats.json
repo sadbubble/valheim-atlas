@@ -1,17 +1,17 @@
 {
   "1-overview": {
-    "drawCalls": 221,
-    "triangles": 71960,
+    "drawCalls": 222,
+    "triangles": 72480,
     "props": 0
   },
   "2-region": {
-    "drawCalls": 92,
-    "triangles": 36332,
+    "drawCalls": 93,
+    "triangles": 39106,
     "props": 0
   },
   "3-close": {
-    "drawCalls": 92,
-    "triangles": 363498,
+    "drawCalls": 93,
+    "triangles": 368766,
     "props": 7819
   }
 }

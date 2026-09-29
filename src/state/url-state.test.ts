@@ -1,26 +1,45 @@
 import { describe, expect, it } from 'vitest';
-import { DEFAULT_URL_STATE, MAX_SEED_LENGTH, parseUrlState, toSearch } from './url-state';
+import {
+  DEFAULT_LAYERS,
+  DEFAULT_URL_STATE,
+  MAX_SEED_LENGTH,
+  effectiveSpoiler,
+  parseUrlState,
+  toSearch,
+  type UrlState,
+} from './url-state';
 
 describe('parseUrlState', () => {
   it('returns defaults for an empty query', () => {
     expect(parseUrlState('')).toEqual(DEFAULT_URL_STATE);
   });
 
-  it('reads valid params', () => {
-    expect(parseUrlState('?seed=HelloWorld&mode=veteran&layer=locations')).toEqual({
+  it('reads every param', () => {
+    const s = parseUrlState(
+      '?seed=HelloWorld&mode=veteran&layers=grid,pins&spoiler=1&pins=10,-20,Base;300,40,Mine%2C%20copper&cam=1,2,3000,0.9,1.2',
+    );
+    expect(s).toEqual({
       seed: 'HelloWorld',
       mode: 'veteran',
-      layer: 'locations',
+      layers: ['grid', 'pins'],
+      spoiler: 1,
+      pins: [
+        { id: 'pin-1', x: 10, z: -20, label: 'Base' },
+        { id: 'pin-2', x: 300, z: 40, label: 'Mine, copper' },
+      ],
+      cam: { x: 1, z: 2, distanceM: 3000, polar: 0.9, azimuth: 1.2 },
     });
   });
 
   it('falls back per field on invalid values', () => {
-    const state = parseUrlState(`?seed=${'x'.repeat(MAX_SEED_LENGTH + 1)}&mode=god&layer=rings`);
-    expect(state).toEqual({ ...DEFAULT_URL_STATE, layer: 'rings' });
+    const s = parseUrlState(
+      `?seed=${'x'.repeat(MAX_SEED_LENGTH + 1)}&mode=god&layers=grid,nope&spoiler=7&pins=a,b&cam=1,2`,
+    );
+    expect(s).toEqual(DEFAULT_URL_STATE);
   });
 
-  it('trims and decodes the seed', () => {
-    expect(parseUrlState('?seed=%20a%20b%20').seed).toBe('a b');
+  it('allows an empty layer list', () => {
+    expect(parseUrlState('?layers=').layers).toEqual([]);
   });
 });
 
@@ -30,13 +49,32 @@ describe('toSearch', () => {
   });
 
   it('round-trips through parseUrlState', () => {
-    const state = { seed: 'a b&c', mode: 'veteran', layer: 'rings' } as const;
+    const state: UrlState = {
+      seed: 'a b&c',
+      mode: 'veteran',
+      layers: ['creatures', 'grid'],
+      spoiler: 2,
+      pins: [{ id: 'pin-1', x: 5, z: -7, label: 'A;b,c' }],
+      cam: { x: 100, z: -200, distanceM: 4000, polar: 1.1, azimuth: -0.5 },
+    };
     expect(parseUrlState(toSearch(state))).toEqual(state);
   });
 
-  it('preserves unrelated params', () => {
-    expect(toSearch({ ...DEFAULT_URL_STATE, mode: 'veteran' }, '?debug=1&seed=old')).toBe(
+  it('preserves unrelated params and drops the legacy layer param', () => {
+    expect(toSearch({ ...DEFAULT_URL_STATE, mode: 'veteran' }, '?debug=1&layer=rings')).toBe(
       '?debug=1&mode=veteran',
     );
+  });
+
+  it('treats layers as a set when comparing to the default', () => {
+    expect(toSearch({ ...DEFAULT_URL_STATE, layers: [...DEFAULT_LAYERS].reverse() })).toBe('');
+  });
+});
+
+describe('effectiveSpoiler', () => {
+  it('defaults by mode and respects an explicit choice', () => {
+    expect(effectiveSpoiler({ mode: 'newcomer', spoiler: null })).toBe(0);
+    expect(effectiveSpoiler({ mode: 'veteran', spoiler: null })).toBe(2);
+    expect(effectiveSpoiler({ mode: 'veteran', spoiler: 1 })).toBe(1);
   });
 });

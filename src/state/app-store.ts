@@ -1,15 +1,30 @@
 import { createStore, useStore } from 'zustand';
-import { DEFAULT_URL_STATE, type Layer, type Mode, type UrlState } from './url-state';
+import {
+  DEFAULT_URL_STATE,
+  MAX_PIN_LABEL,
+  MAX_PINS,
+  type Layer,
+  type Mode,
+  type Pin,
+  type SpoilerLevel,
+  type UrlState,
+} from './url-state';
 
 export interface AppState extends UrlState {
   setSeed: (seed: string) => void;
   setMode: (mode: Mode) => void;
-  setLayer: (layer: Layer) => void;
+  toggleLayer: (layer: Layer, on?: boolean) => void;
+  setSpoiler: (spoiler: SpoilerLevel) => void;
+  addPin: (x: number, z: number) => Pin | null;
+  movePin: (id: string, x: number, z: number) => void;
+  renamePin: (id: string, label: string) => void;
+  removePin: (id: string) => void;
   replaceUrlState: (state: UrlState) => void;
 }
 
 export function createAppStore(initial: UrlState = DEFAULT_URL_STATE) {
-  return createStore<AppState>()((set) => ({
+  let pinCounter = initial.pins.length;
+  return createStore<AppState>()((set, get) => ({
     ...initial,
     setSeed: (seed) => {
       set({ seed: seed.trim() });
@@ -17,10 +32,44 @@ export function createAppStore(initial: UrlState = DEFAULT_URL_STATE) {
     setMode: (mode) => {
       set({ mode });
     },
-    setLayer: (layer) => {
-      set({ layer });
+    toggleLayer: (layer, on) => {
+      const has = get().layers.includes(layer);
+      const want = on ?? !has;
+      if (want === has) return;
+      set({ layers: want ? [...get().layers, layer] : get().layers.filter((l) => l !== layer) });
+    },
+    setSpoiler: (spoiler) => {
+      set({ spoiler });
+    },
+    addPin: (x, z) => {
+      const pins = get().pins;
+      if (pins.length >= MAX_PINS) return null;
+      pinCounter = Math.max(pinCounter, pins.length) + 1;
+      let id = `pin-${pinCounter}`;
+      while (pins.some((p) => p.id === id)) id = `pin-${++pinCounter}`;
+      const pin: Pin = { id, x: Math.round(x), z: Math.round(z), label: `Pin ${pinCounter}` };
+      set({ pins: [...pins, pin] });
+      return pin;
+    },
+    movePin: (id, x, z) => {
+      set({
+        pins: get().pins.map((p) =>
+          p.id === id ? { ...p, x: Math.round(x), z: Math.round(z) } : p,
+        ),
+      });
+    },
+    renamePin: (id, label) => {
+      set({
+        pins: get().pins.map((p) =>
+          p.id === id ? { ...p, label: label.slice(0, MAX_PIN_LABEL) || p.label } : p,
+        ),
+      });
+    },
+    removePin: (id) => {
+      set({ pins: get().pins.filter((p) => p.id !== id) });
     },
     replaceUrlState: (state) => {
+      pinCounter = Math.max(pinCounter, state.pins.length);
       set(state);
     },
   }));

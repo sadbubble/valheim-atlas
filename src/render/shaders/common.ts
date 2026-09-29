@@ -54,3 +54,18 @@ export const OUTPUT_GLSL = /* glsl */ `
 #include <tonemapping_fragment>
 #include <colorspace_fragment>
 `;
+
+/** Optional 1 km coordinate grid in game coordinates (x east, z north); axes drawn brighter. */
+export const OVERLAY_GLSL = /* glsl */ `
+uniform float uGrid;
+uniform float uGridSpacing;
+vec3 overlayGrid(vec3 col, vec2 game) {
+  if (uGrid < 0.5) return col;
+  vec2 q = game / uGridSpacing;
+  vec2 g = abs(fract(q - 0.5) - 0.5) / fwidth(q);
+  float line = 1.0 - min(min(g.x, g.y), 1.0);
+  vec2 a = abs(game) / fwidth(game);
+  float axis = 1.0 - min(min(a.x, a.y) / 2.0, 1.0);
+  return mix(col, vec3(0.95, 0.97, 1.0), max(line * 0.3, axis * 0.6));
+}
+`;

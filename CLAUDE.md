@@ -78,14 +78,19 @@ Do not add new runtime dependencies without a one-line justification in the PR d
 │  │  ├─ surface-textures.ts  terrain-model.ts  props.ts  prop-geometry.ts  pick.ts
 │  │  ├─ materials.ts  shaders/        our own GLSL (no game assets)
 │  │  ├─ render-config.ts  palette.ts  props-config.ts   visual tuning + original palette
+│  │  ├─ Markers.tsx  Interaction.tsx  MeasureLine.tsx  BiomeLabels.tsx   map interactivity
+│  │  ├─ markers-model.ts  marker-registry.ts  navigation.ts  biome-anchors.ts  icons.ts  icon-atlas.ts
 │  │  └─ debug-hooks.ts   window.__atlas (ready, get/setView, stats) for e2e/screenshots
 │  ├─ data/               schema.ts + content-schema.ts (zod), load.ts (typed loaders incl. loadContent),
+│  │                      content-index.ts (id lookup across all content files),
 │  │                      validate.ts (all data rules; used by scripts/validate-data.ts and tests)
-│  ├─ state/              Zustand stores; url-state.ts (?seed=&mode=&layer=) + url-sync.ts
-│  ├─ ui/                 HUD, panels, drawers, legend, search, badges
+│  ├─ state/              Zustand stores: app (URL-synced: seed, mode, layers, spoiler, pins, cam),
+│  │                      content, map (biome anchors), ui (selection, tabs, hover, tools), camera, render
+│  ├─ ui/                 HUD, SearchBar, LayerPanel, ToolPanel, InfoPanel (+ tabs), Tooltip, CoordReadout;
+│  │                      null values render via <Unverified/>; spoiler gating via use-spoiler.ts
 │  ├─ debug/              debug.html app: biome map renderer, stats, placement report
 │  ├─ test/               Node-only test helpers (read public/data from disk)
-│  └─ lib/                small shared helpers (math, format, geometry)
+│  └─ lib/                small shared helpers (fuzzy search, formatting)
 ├─ docs/screens/          renderer screenshots at 3 zoom levels + stats.json (npm run screens)
 └─ tests/e2e/             Playwright specs (+ playwright.config.ts at the root)
 ```
@@ -117,7 +122,9 @@ Unit tests sit next to their code as `*.test.ts(x)`.
   - never call `setState` inside `useFrame`.
 - Units are metres. Coordinates are x = east, z = north, y = up. Name variables with a unit suffix: `distM`, `heightM`.
 - Comments explain *why*. Cite a source ID when code implements a documented rule, e.g. `// S-BIO-02: Ashlands tested before ocean`. The numbers themselves stay in `public/data/`.
-- UI text is plain and friendly for newcomers. Spoiler-sensitive content respects `progress.tier`.
+- UI text is plain and friendly for newcomers. Spoiler-sensitive content respects the user's spoiler setting (`effectiveSpoiler`, `useSpoilerHidden`): hide or grey out detail above it, never leak names through clusters or lists.
+- A null data value is always shown (as "unverified"), never silently dropped; `FactTable` appends any top-level null it wasn't given a row for.
+- Every map feature must stay keyboard reachable (search, labels as buttons, lists); canvas-only interactions need an accessible alternative.
 
 ## Commands
 

@@ -41,7 +41,15 @@ function makeGeometry(model: TerrainModel, chunk: ChunkInfo, level: number): Buf
 
 export function Terrain({ model, shared }: { model: TerrainModel; shared: SharedUniforms }) {
   const material = useMemo(
-    () => createTerrainMaterial(shared, model.colorTex, model.weightsTex, SNOW_LINE_M),
+    () =>
+      createTerrainMaterial(
+        shared,
+        model.colorTex,
+        model.weightsTex,
+        model.biomeIndexTex,
+        model.world.resolution,
+        SNOW_LINE_M,
+      ),
     [model, shared],
   );
 
