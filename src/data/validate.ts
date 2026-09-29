@@ -349,6 +349,28 @@ export function validateData(
     }
   }
 
+  // A guide step names its boss and biomes in its title, so they must not be gated more
+  // strictly than the step itself, or the guide leaks what the panels hide (SPEC N3).
+  const levelOf = new Map<string, number>();
+  for (const file of ['bosses', 'biomes'] as const) {
+    for (const e of entries(file)) levelOf.set(e.id, e.spoilerLevel as number);
+  }
+  for (const step of entries('progression')) {
+    const refs = [step.bossId, ...(step.biomeIds as string[])].filter(
+      (id): id is string => typeof id === 'string',
+    );
+    for (const ref of refs) {
+      const level = levelOf.get(ref);
+      if (level !== undefined && level > (step.spoilerLevel as number)) {
+        issues.push({
+          file: 'progression',
+          id: step.id,
+          message: `spoilerLevel is below that of ${ref}`,
+        });
+      }
+    }
+  }
+
   // The location-category glossary explains every category exactly once (SPEC N7).
   const categoryInfo = entries('location-categories');
   for (const cat of LOCATION_CATEGORIES) {

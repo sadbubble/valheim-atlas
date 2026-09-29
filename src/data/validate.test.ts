@@ -88,6 +88,13 @@ describe('validateData rejects broken data (deliberately broken fixtures)', () =
     expect(messages(raw).some((x) => x.includes('weaknesses disagree'))).toBe(true);
   });
 
+  it('fails when a guide step is less spoiler-gated than the boss it names', () => {
+    const raw = clone(load());
+    const boss = rows(raw, 'bosses').find((x) => x.id === 'the-elder');
+    if (boss) boss.spoilerLevel = 2;
+    expect(messages(raw)).toContain('progression:spoilerLevel is below that of the-elder');
+  });
+
   it('fails when a land biome lacks its boss or threats', () => {
     const raw = clone(load());
     const b = rows(raw, 'biomes').find((x) => x.id === 'swamp');

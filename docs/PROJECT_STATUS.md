@@ -50,6 +50,8 @@ When the two disagree, the gaps below are what is actually missing.
   - Details: `docs/SOURCES.md` §e.
 - **Spoiler defaults (implemented):** newcomers start spoiler-free (level 0) and veterans see
   everything (level 2). Users can change it (`?spoiler=`) or reveal single entries.
+  A boss shares the spoiler level of its biome and guide step (level 0 covers tiers 1–2), and
+  `validate:data` fails if a guide step is less gated than the boss or biome it names.
   - The choice is remembered in `localStorage` (`valheim-atlas:prefs`, `src/state/prefs.ts`).
     Precedence: URL > stored value > the mode's default.
   - Search never names an entry above the setting unless the query is its exact name; hidden
@@ -79,9 +81,6 @@ When the two disagree, the gaps below are what is actually missing.
 - **Newcomer tips are missing for 13 panels** (SPEC N6): Swamp, Mistlands, Ashlands, Deep
   North, Ocean and all 8 bosses have no tip tagged `newcomer`. The list is pinned by
   `src/data/story-coverage.test.ts`; closing it needs new sourced tips.
-- **Spoiler level mismatch in the data:** the tier-2 guide step is level 0 and its title names
-  The Elder, but the boss entry itself is level 1, so the guide's boss link shows "Hidden entry"
-  at level 0. Decide which level is right and align the data.
 
 ### Gaps against CLAUDE.md criteria
 
