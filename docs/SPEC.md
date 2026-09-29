@@ -93,10 +93,28 @@ Each panel shows a "Sources" footer listing source IDs and their confidence.
 ### F12. About / data
 - A page listing the target game version, all sources, the generator path, and a disclaimer: fan-made, not affiliated with Iron Gate or Coffee Stain.
 
-> **Implementation status (Phase 4):** F1–F5, F9 (seed input), F10 (measure + X/Z readout) and
-> F11 (shareable URL incl. camera, layers, spoiler setting and pins) are implemented; F7 is
-> implemented as a spoiler setting (0/1/2) with per-entry reveal; F6/F8 are available as
-> data (`progression.json`, `tips.json`) and tips are shown in the info panel.
+> **Implementation status (Phase 7):** F1–F12 are implemented.
+> - F12: an "About & sources" dialog opened from the bottom bar (deep link `?about=1`): target
+>   game version and data date from `meta.json`, generator id/revision with the approximation
+>   note, every entry of `sources.json`, the count of unverified values, a privacy note and the
+>   disclaimer "Fan-made. Not affiliated with or endorsed by Iron Gate or Coffee Stain.", which
+>   is also always in the bottom bar. §7 accessibility and §8 budget results: `docs/RELEASE.md`.
+> - F1: orbit/pan/zoom, fly-to, reset, a top-down (map) view (button and T key), keyboard
+>   camera keys, and `prefers-reduced-motion` (camera jumps instead of flying, no orbit drift,
+>   shader motion stops).
+> - F2/F3: layers with per-layer counts, per-type filters (`?hide=`), 1 km distance rings on
+>   the grid layer, and a legend explaining every location category.
+> - F4: location panels explain their category (`public/data/location-categories.json`).
+> - F5: search includes progression steps; "Find nearest…" works from a pin.
+> - F6: the progression guide sits in the left drawer ("Progression guide" tab).
+> - F7: a spoiler setting with three levels (0/1/2) and per-entry reveal, not "defeated up to
+>   boss N". It is saved in `localStorage` (URL > stored > mode default).
+> - F8: tips are shown in the info panel.
+> - F9: the valheim-map.world link opens the home page, because no per-seed URL format is
+>   sourced; the UI says so.
+> - F11: the URL also carries per-type filters, and shared links carry the open panel (`sel`).
+> - §7 first run: the "New to Valheim?" dialog and the on-screen controls hint are implemented.
+> - Story-by-story results: `docs/USER_STORIES.md`.
 
 ## 4. User stories
 
@@ -141,7 +159,8 @@ All game facts live in `public/data/*.json`, validated by `npm run validate:data
 `npm run check`). **`src/data/content-schema.ts` and `src/data/schema.ts` are authoritative**; the
 sketch below is the original design. Implemented files: `meta`, `sources`, `world`, `biome-rules`,
 `biomes`, `bosses`, `creatures`, `resources`, `items` (weapons, shields, armor, tools, ammo, meads),
-`crafting-stations`, `food`, `progression`, `locations`, `tips`.
+`crafting-stations`, `food`, `progression`, `locations`, `location-categories` (plain-language
+glossary per location category, our own words, sourced), `tips`.
 
 Every content entry shares: `id`, `name`, `description` (beginner-friendly), `veteranNotes`,
 `biomeIds`, `tier` (0–8), `dangerLevel` (editorial: none/low/medium/high/extreme), `spoilerLevel`
@@ -320,8 +339,8 @@ interface GeneratedWorld {
   - Honour `prefers-reduced-motion` (no fly animations).
 
 ## 8. Performance budget
-- World generation runs in a Web Worker; the main thread never blocks for more than 50 ms.
+- World generation runs in a Web Worker; the main thread never blocks for more than 50 ms while it runs. Turning the world into render buffers (surface textures, chunk layout, the coarsest chunk meshes, biome anchors, search-highlight masks) runs in a second worker; afterwards no single main-thread task takes more than 200 ms, even in software WebGL (shaders compile one at a time behind the loading screen).
 - The terrain uses the generated 1024² grid (about 20.5 m spacing) split into 16 × 16 chunks with 4 LOD levels (full detail only near the camera) and frustum culling. Biome colour/weight textures and a half-float height texture match the grid.
 - Props (trees, rocks) are instanced per chunk and only drawn within 2.6 km of the camera.
 - Markers use instanced meshes, with ≤ 5 draw calls per category group.
-- Target: 60 fps with orbiting on a mid-range laptop's integrated GPU at default settings (pixel ratio capped at 1.5, dropping to 1 below 50 fps). Measured workload at the screenshot views: ≤ 221 draw calls and ≤ 0.37 M triangles (`docs/screens/stats.json`). The initial JS bundle is < 1.5 MB gzipped, excluding data.
+- Target: 60 fps with orbiting on a mid-range laptop's integrated GPU at default settings (pixel ratio capped at 1.5, dropping to 1 below 50 fps). Measured workload at the screenshot views: ≤ 223 draw calls and ≤ 0.37 M triangles (`docs/screens/stats.json`). The initial JS bundle is < 1.5 MB gzipped, excluding data.

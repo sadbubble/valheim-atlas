@@ -2,8 +2,8 @@ import { vertexX, vertexZ, type ChunkInfo, type GridLike } from './chunks';
 
 export interface ChunkGeometryData {
   /** xyz per vertex; y = height above sea level in metres (exaggeration is applied in the shader). */
-  positions: Float32Array;
-  indices: Uint32Array;
+  positions: Float32Array<ArrayBuffer>;
+  indices: Uint32Array<ArrayBuffer>;
 }
 
 interface RingVertex {

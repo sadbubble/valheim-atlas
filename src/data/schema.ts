@@ -1,5 +1,10 @@
 import { z } from 'zod';
-import { ContentBaseSchema, ContentIdSchema } from './content-schema';
+import {
+  ContentBaseSchema,
+  ContentIdSchema,
+  SourceRefSchema as SourceCitationSchema,
+  SpoilerLevelSchema,
+} from './content-schema';
 
 /** Source IDs mirror docs/SOURCES.md, e.g. "S-LOC-01". */
 export const SourceIdSchema = z
@@ -179,6 +184,26 @@ export const LocationTypeSchema = ContentBaseSchema.extend({
 }).strict();
 export type LocationType = z.infer<typeof LocationTypeSchema>;
 export const LocationsFileSchema = z.array(LocationTypeSchema).min(1);
+
+/**
+ * public/data/location-categories.json: a plain-language glossary entry per location
+ * category (SPEC N7). Descriptions are our own words and make no numeric claims; every
+ * entry cites the sources its statements rest on.
+ */
+export const LocationCategoryInfoSchema = z
+  .object({
+    id: LocationCategorySchema,
+    /** Display name of the category. */
+    name: z.string().min(1),
+    /** Beginner-friendly explanation, our own words. */
+    description: z.string().min(15).max(500),
+    spoilerLevel: SpoilerLevelSchema,
+    sources: z.array(SourceCitationSchema).min(1),
+    notes: z.string().optional(),
+  })
+  .strict();
+export type LocationCategoryInfo = z.infer<typeof LocationCategoryInfoSchema>;
+export const LocationCategoriesFileSchema = z.array(LocationCategoryInfoSchema).min(1);
 
 /** Everything the world generator needs (also validated at the worker boundary). */
 export const WorldGenDataSchema = z.object({

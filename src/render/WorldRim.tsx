@@ -39,8 +39,8 @@ export function WorldRim({ model, shared }: { model: TerrainModel; shared: Share
       halo,
       glowWall,
       rimMat: createRimMaterial(shared, wallDepthM + undersideDepthM),
-      haloMat: createHaloMaterial(r, r * (1 + haloWidthFactor)),
-      glowMat: createGlowWallMaterial(GLOW_WALL_HEIGHT_M),
+      haloMat: createHaloMaterial(shared, r, r * (1 + haloWidthFactor)),
+      glowMat: createGlowWallMaterial(shared, GLOW_WALL_HEIGHT_M),
     };
   }, [r, wallDepthM, undersideDepthM, haloWidthFactor, shared]);
 

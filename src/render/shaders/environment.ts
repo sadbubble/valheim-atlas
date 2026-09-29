@@ -16,6 +16,8 @@ uniform vec3 uBottom;
 uniform vec3 uGlow;
 uniform float uDepth;
 uniform float uTime;
+uniform float uReveal;
+uniform vec3 uSpace;
 varying vec3 vWorld;
 ${NOISE_GLSL}
 void main() {
@@ -27,7 +29,7 @@ void main() {
   float waterline = 1.0 - smoothstep(0.0, 0.035, t);
   float vein = smoothstep(0.62, 0.66, fbm3(vec2(angle * 60.0, vWorld.y * 0.004 + uTime * 0.02)));
   col += uGlow * (waterline * 0.9 + vein * 0.35 * (1.0 - t));
-  gl_FragColor = vec4(col, 1.0);
+  gl_FragColor = vec4(mix(uSpace, col, uReveal), 1.0);
   ${OUTPUT_GLSL}
 }
 `;
@@ -49,12 +51,13 @@ uniform vec3 uGlow;
 uniform float uInner;
 uniform float uOuter;
 uniform float uStrength;
+uniform float uReveal;
 varying vec3 vWorld;
 varying vec3 vNormalW;
 void main() {
   float r = length(vWorld.xz);
   float t = clamp((r - uInner) / (uOuter - uInner), 0.0, 1.0);
-  float a = pow(1.0 - t, 2.2) * uStrength;
+  float a = pow(1.0 - t, 2.2) * uStrength * uReveal;
   gl_FragColor = vec4(uGlow * a, a);
   ${OUTPUT_GLSL}
 }
@@ -64,13 +67,14 @@ export const WALL_FRAGMENT = /* glsl */ `
 uniform vec3 uGlow;
 uniform float uHeight;
 uniform float uStrength;
+uniform float uReveal;
 varying vec3 vWorld;
 varying vec3 vNormalW;
 void main() {
   float t = clamp(vWorld.y / uHeight, 0.0, 1.0);
   vec3 viewDir = normalize(cameraPosition - vWorld);
   float rim = 1.0 - abs(dot(normalize(vNormalW), viewDir));
-  float a = pow(1.0 - t, 2.5) * (0.35 + 0.65 * rim) * uStrength;
+  float a = pow(1.0 - t, 2.5) * (0.35 + 0.65 * rim) * uStrength * uReveal;
   gl_FragColor = vec4(uGlow * a, a);
   ${OUTPUT_GLSL}
 }
@@ -100,6 +104,35 @@ void main() {
   float d = length(c);
   float a = (1.0 - smoothstep(0.1, 0.5, d)) * vAlpha;
   gl_FragColor = vec4(uColor * a, a);
+  ${OUTPUT_GLSL}
+}
+`;
+
+/** Sky backdrop on a camera-centred sphere (drawn first, never occludes anything). */
+export const SKY_VERTEX = /* glsl */ `
+uniform float uRadius;
+varying vec3 vDir;
+void main() {
+  vDir = normalize(position);
+  vec3 wp = cameraPosition + vDir * uRadius;
+  gl_Position = projectionMatrix * viewMatrix * vec4(wp, 1.0);
+}
+`;
+
+export const SKY_FRAGMENT = /* glsl */ `
+uniform vec3 uSpace;
+uniform vec3 uHorizon;
+uniform float uBandLow;
+uniform float uBandHigh;
+uniform float uStrength;
+varying vec3 vDir;
+void main() {
+  float e = normalize(vDir).y;
+  // Brightest just above the horizon, fading up into space and quickly below it.
+  float up = 1.0 - smoothstep(0.0, uBandHigh, e);
+  float down = smoothstep(uBandLow, 0.0, e);
+  float band = up * down;
+  gl_FragColor = vec4(mix(uSpace, uHorizon, band * band * uStrength), 1.0);
   ${OUTPUT_GLSL}
 }
 `;

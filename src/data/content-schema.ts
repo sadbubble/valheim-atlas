@@ -89,7 +89,7 @@ export const ContentBaseSchema = z.object({
   dangerLevel: DangerLevelSchema,
   spoilerLevel: SpoilerLevelSchema,
   sources: z.array(SourceRefSchema).min(1),
-  /** Game version the cited facts describe, e.g. "1.0" or "1.0.16". */
+  /** Game version the cited facts describe, e.g. "1.0" or a full patch number like "1.2.3". */
   gameVersion: z.string().regex(/^\d+\.\d+(\.\d+)?$/),
   /** Internal game prefab name, when there is one. */
   prefab: z.string().min(1).nullable().optional(),

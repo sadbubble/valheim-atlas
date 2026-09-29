@@ -1,0 +1,65 @@
+[
+  {
+    "id": "start",
+    "name": "Starting point",
+    "description": "The ring of stones where every new character first arrives, close to the middle of the world. It is a calm place to get your bearings, and later the place to bring the trophies of bosses you have beaten.",
+    "spoilerLevel": 0,
+    "sources": ["S-LOC-01", "S-LOC-02"]
+  },
+  {
+    "id": "boss-altar",
+    "name": "Boss altar",
+    "description": "A special site where you call a boss by offering the right items. Each boss has its own kind of altar in its home biome; open the boss's panel to see what to offer and how to prepare.",
+    "spoilerLevel": 0,
+    "sources": ["S-LOC-01", "S-LOC-02"]
+  },
+  {
+    "id": "trader",
+    "name": "Trader",
+    "description": "The camp of a friendly merchant. Traders do not fight you; you can buy useful gear and supplies from them. They are rare, so note where you find one.",
+    "spoilerLevel": 0,
+    "sources": ["S-LOC-01", "S-LOC-02"]
+  },
+  {
+    "id": "miniboss",
+    "name": "Mini-boss lair",
+    "description": "A place guarded by a single enemy that is much tougher than the creatures around it. Beating it usually earns a special reward, so it is worth coming back once you are well equipped.",
+    "spoilerLevel": 0,
+    "sources": ["S-LOC-01", "S-LOC-03"]
+  },
+  {
+    "id": "dungeon",
+    "name": "Dungeon",
+    "description": "An enclosed place, such as a crypt, a cave or a mine, that you enter through a doorway. Inside it is dark and full of enemies, but it also holds treasure and materials you cannot easily find elsewhere.",
+    "spoilerLevel": 0,
+    "sources": ["S-LOC-01"]
+  },
+  {
+    "id": "village",
+    "name": "Village",
+    "description": "An abandoned settlement now held by hostile creatures. Its buildings hold loot, but groups of enemies guard it, so visit when you are well equipped.",
+    "spoilerLevel": 0,
+    "sources": ["S-LOC-01"]
+  },
+  {
+    "id": "vegvisir",
+    "name": "Vegvisir site",
+    "description": "A ruin or stone ring that may hold a Vegvisir: a glowing stone that, when you read it, marks a boss altar on your map. Not every site of this kind has one, so you may need to check several.",
+    "spoilerLevel": 0,
+    "sources": ["S-LOC-01"]
+  },
+  {
+    "id": "runestone",
+    "name": "Runestone",
+    "description": "A standing stone you can read for a short piece of lore about the world. It is harmless in itself; any danger comes from the biome around it.",
+    "spoilerLevel": 0,
+    "sources": ["S-LOC-01"]
+  },
+  {
+    "id": "landmark",
+    "name": "Landmark",
+    "description": "A notable place that is easy to recognise, such as a ring of standing stones or a geyser. Some are only scenery; others have creatures or resources nearby.",
+    "spoilerLevel": 0,
+    "sources": ["S-LOC-01"]
+  }
+]

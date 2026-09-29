@@ -1,5 +1,6 @@
 import type { WorldGenData } from '../data/schema';
 import { WorkerResponseSchema } from './protocol';
+import type { GenerationStage } from './generate';
 import type { GeneratedWorld } from './types';
 
 export interface WorldClient {
@@ -7,7 +8,7 @@ export interface WorldClient {
     seed: string,
     resolution: number,
     data: WorldGenData,
-    onProgress?: (progress: number) => void,
+    onProgress?: (progress: number, stage: GenerationStage) => void,
   ): Promise<GeneratedWorld>;
   dispose(): void;
 }
@@ -21,7 +22,7 @@ export function createWorldClient(): WorldClient {
     {
       resolve: (w: GeneratedWorld) => void;
       reject: (e: Error) => void;
-      onProgress: ((p: number) => void) | undefined;
+      onProgress: ((p: number, stage: GenerationStage) => void) | undefined;
     }
   >();
 
@@ -49,7 +50,7 @@ export function createWorldClient(): WorldClient {
     if (!entry) return;
     switch (msg.type) {
       case 'progress':
-        entry.onProgress?.(msg.progress);
+        entry.onProgress?.(msg.progress, msg.stage);
         break;
       case 'done':
         pending.delete(msg.requestId);

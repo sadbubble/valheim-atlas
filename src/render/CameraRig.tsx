@@ -4,8 +4,10 @@ import { useEffect, useRef } from 'react';
 import { MathUtils, Spherical, Vector3, type PerspectiveCamera } from 'three';
 import type { OrbitControls as OrbitControlsImpl } from 'three-stdlib';
 import { appStore } from '../state/app-store';
-import { useCameraStore, type CameraRequest } from '../state/camera-store';
+import { prefersReducedMotion, useReducedMotion } from '../lib/reduced-motion';
+import { useCameraStore, type CameraNudge, type CameraRequest } from '../state/camera-store';
 import { atlasDebug, type AtlasView } from './debug-hooks';
+import { flightShape } from './navigation';
 import { RENDER } from './render-config';
 
 interface ViewState {
@@ -18,6 +20,9 @@ interface Anim {
   from: ViewState;
   to: ViewState;
   t: number;
+  durationS: number;
+  /** Extra orbit distance at mid-flight (the arc), metres. */
+  arcM: number;
 }
 
 const C = RENDER.camera;
@@ -39,6 +44,8 @@ export function CameraRig({ worldRadiusM }: { worldRadiusM: number | null }) {
   const anim = useRef<Anim | null>(null);
   const lastRequest = useRef(0);
   const scratch = useRef({ offset: new Vector3(), s: new Spherical() });
+  // SPEC §7: no drift after a drag either (damping keeps the view gliding) when motion is reduced.
+  const reducedMotion = useReducedMotion();
 
   const overview = (radius: number): AtlasView => ({
     x: 0,
@@ -106,12 +113,40 @@ export function CameraRig({ worldRadiusM }: { worldRadiusM: number | null }) {
     };
   }, []);
 
+  /** Keyboard control: an immediate relative move (no animation, so it feels direct). */
+  const applyNudge = (n: CameraNudge) => {
+    const v = current();
+    if (!v) return;
+    anim.current = null;
+    const s = v.spherical;
+    s.radius = MathUtils.clamp(s.radius * n.zoom, C.minDistanceM, C.maxDistanceM);
+    s.theta += n.rotate;
+    s.phi = MathUtils.clamp(s.phi + n.tilt, C.topDownPolar, C.maxPolarAngle);
+    // Pan along the ground in screen directions: right = (cos θ, 0, −sin θ) and
+    // "up the screen" = (−sin θ, 0, −cos θ) in scene space.
+    const sin = Math.sin(s.theta);
+    const cos = Math.cos(s.theta);
+    v.target.x += (cos * n.panRight - sin * n.panUp) * s.radius;
+    v.target.z += (-sin * n.panRight - cos * n.panUp) * s.radius;
+    apply(v);
+  };
+
   const startAnimation = (req: CameraRequest, radius: number) => {
+    if (req.kind === 'nudge') {
+      applyNudge(req);
+      return;
+    }
     const from = current();
     if (!from) return;
     let to: ViewState;
     if (req.kind === 'overview') {
       to = viewToState(overview(radius));
+    } else if (req.kind === 'top-down') {
+      // Map-style: same centre and distance, looking straight down with north up.
+      to = {
+        target: from.target.clone(),
+        spherical: new Spherical(from.spherical.radius, C.topDownPolar, 0),
+      };
     } else {
       const s = from.spherical.clone();
       s.radius = MathUtils.clamp(req.distanceM ?? s.radius, C.minDistanceM, C.maxDistanceM);
@@ -120,7 +155,18 @@ export function CameraRig({ worldRadiusM }: { worldRadiusM: number | null }) {
     // Rotate the short way round.
     const dTheta = to.spherical.theta - from.spherical.theta;
     to.spherical.theta = from.spherical.theta + Math.atan2(Math.sin(dTheta), Math.cos(dTheta));
-    anim.current = { from, to, t: 0 };
+    if (prefersReducedMotion()) {
+      // SPEC §7: no fly animations when the user prefers reduced motion; jump instead.
+      anim.current = null;
+      apply(to);
+      return;
+    }
+    anim.current = {
+      from,
+      to,
+      t: 0,
+      ...flightShape(from.target.distanceTo(to.target), from.spherical.radius, to.spherical.radius),
+    };
   };
 
   useFrame((state, delta) => {
@@ -137,12 +183,14 @@ export function CameraRig({ worldRadiusM }: { worldRadiusM: number | null }) {
 
     const a = anim.current;
     if (a) {
-      a.t = Math.min(1, a.t + delta / C.focusDurationS);
+      a.t = Math.min(1, a.t + delta / a.durationS);
       const k = easeInOut(a.t);
       const { offset, s } = scratch.current;
       c.target.lerpVectors(a.from.target, a.to.target, k);
       s.set(
-        MathUtils.lerp(a.from.spherical.radius, a.to.spherical.radius, k),
+        // Rise then descend: a parabola over the flight, zero at both ends.
+        MathUtils.lerp(a.from.spherical.radius, a.to.spherical.radius, k) +
+          a.arcM * 4 * k * (1 - k),
         MathUtils.lerp(a.from.spherical.phi, a.to.spherical.phi, k),
         MathUtils.lerp(a.from.spherical.theta, a.to.spherical.theta, k),
       );
@@ -171,7 +219,7 @@ export function CameraRig({ worldRadiusM }: { worldRadiusM: number | null }) {
     <OrbitControls
       ref={controls}
       makeDefault
-      enableDamping
+      enableDamping={!reducedMotion}
       dampingFactor={C.dampingFactor}
       minDistance={C.minDistanceM}
       maxDistance={C.maxDistanceM}

@@ -15,6 +15,8 @@ import {
   BIOME_IDS,
   BiomeRulesFileSchema,
   BiomesFileSchema,
+  LOCATION_CATEGORIES,
+  LocationCategoriesFileSchema,
   LocationsFileSchema,
   MetaSchema,
   SourcesFileSchema,
@@ -36,6 +38,7 @@ export const DATA_FILES = {
   food: z.array(FoodSchema).min(1),
   progression: z.array(ProgressionStepSchema).min(1),
   locations: LocationsFileSchema,
+  'location-categories': LocationCategoriesFileSchema,
   tips: z.array(TipSchema).min(1),
 } as const;
 export type DataFileName = keyof typeof DATA_FILES;
@@ -207,7 +210,7 @@ export function validateData(
     const v = parsed[file];
     if (isRecord(v)) checkSources(file, undefined, v.sources);
   }
-  for (const file of ['biome-rules', ...CONTENT_FILES] as DataFileName[]) {
+  for (const file of ['biome-rules', 'location-categories', ...CONTENT_FILES] as DataFileName[]) {
     for (const e of (parsed[file] as Entry[] | undefined) ?? []) {
       checkSources(file, typeof e.id === 'string' ? e.id : undefined, e.sources);
     }
@@ -343,6 +346,41 @@ export function validateData(
     }
     if ((boss.summonItems as unknown[]).length === 0) {
       issues.push({ file: 'bosses', id: boss.id, message: 'summonItems must not be empty' });
+    }
+  }
+
+  // A guide step names its boss and biomes in its title, so they must not be gated more
+  // strictly than the step itself, or the guide leaks what the panels hide (SPEC N3).
+  const levelOf = new Map<string, number>();
+  for (const file of ['bosses', 'biomes'] as const) {
+    for (const e of entries(file)) levelOf.set(e.id, e.spoilerLevel as number);
+  }
+  for (const step of entries('progression')) {
+    const refs = [step.bossId, ...(step.biomeIds as string[])].filter(
+      (id): id is string => typeof id === 'string',
+    );
+    for (const ref of refs) {
+      const level = levelOf.get(ref);
+      if (level !== undefined && level > (step.spoilerLevel as number)) {
+        issues.push({
+          file: 'progression',
+          id: step.id,
+          message: `spoilerLevel is below that of ${ref}`,
+        });
+      }
+    }
+  }
+
+  // The location-category glossary explains every category exactly once (SPEC N7).
+  const categoryInfo = entries('location-categories');
+  for (const cat of LOCATION_CATEGORIES) {
+    const n = categoryInfo.filter((c) => c.id === cat).length;
+    if (n !== 1) {
+      issues.push({
+        file: 'location-categories',
+        id: cat,
+        message: n === 0 ? 'category has no glossary entry' : `category listed ${n} times`,
+      });
     }
   }
 

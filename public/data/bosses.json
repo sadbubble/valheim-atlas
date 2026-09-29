@@ -88,7 +88,7 @@
     "biomeIds": ["black-forest"],
     "tier": 2,
     "dangerLevel": "extreme",
-    "spoilerLevel": 1,
+    "spoilerLevel": 0,
     "sources": [
       "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/creatures.ts",
       "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/resources.ts",
@@ -165,7 +165,7 @@
     "biomeIds": ["swamp"],
     "tier": 3,
     "dangerLevel": "extreme",
-    "spoilerLevel": 2,
+    "spoilerLevel": 1,
     "sources": [
       "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/creatures.ts",
       "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/resources.ts",
@@ -241,7 +241,7 @@
     "biomeIds": ["mountains"],
     "tier": 4,
     "dangerLevel": "extreme",
-    "spoilerLevel": 2,
+    "spoilerLevel": 1,
     "sources": [
       "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/creatures.ts",
       "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/resources.ts",
@@ -335,7 +335,7 @@
     "biomeIds": ["plains"],
     "tier": 5,
     "dangerLevel": "extreme",
-    "spoilerLevel": 2,
+    "spoilerLevel": 1,
     "sources": [
       "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/creatures.ts",
       "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/resources.ts",

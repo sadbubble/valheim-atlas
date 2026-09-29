@@ -21,6 +21,7 @@ export const WorkerResponseSchema = z.discriminatedUnion('type', [
     type: z.literal('progress'),
     requestId: z.number().int(),
     progress: z.number().min(0).max(1),
+    stage: z.enum(['terrain', 'locations']),
   }),
   z.object({ type: z.literal('done'), requestId: z.number().int(), world: GeneratedWorldSchema }),
   z.object({ type: z.literal('error'), requestId: z.number().int(), message: z.string() }),

@@ -21,7 +21,11 @@ interface ChunkEntry {
 }
 
 function makeGeometry(model: TerrainModel, chunk: ChunkInfo, level: number): BufferGeometry {
-  const { positions, indices } = buildChunkGeometry(model.world, chunk, level, model.seaLevelM);
+  // The coarsest level was built by the terrain-prep worker; finer ones are built here,
+  // a few per frame, as the camera comes near.
+  const pre = model.coarse.get(chunk.index);
+  const { positions, indices } =
+    pre?.level === level ? pre : buildChunkGeometry(model.world, chunk, level, model.seaLevelM);
   const geo = new BufferGeometry();
   geo.setAttribute('position', new BufferAttribute(positions, 3));
   geo.setIndex(new BufferAttribute(indices, 1));
@@ -41,15 +45,7 @@ function makeGeometry(model: TerrainModel, chunk: ChunkInfo, level: number): Buf
 
 export function Terrain({ model, shared }: { model: TerrainModel; shared: SharedUniforms }) {
   const material = useMemo(
-    () =>
-      createTerrainMaterial(
-        shared,
-        model.colorTex,
-        model.weightsTex,
-        model.biomeIndexTex,
-        model.world.resolution,
-        SNOW_LINE_M,
-      ),
+    () => createTerrainMaterial(shared, model.colorTex, model.weightsTex, SNOW_LINE_M),
     [model, shared],
   );
 

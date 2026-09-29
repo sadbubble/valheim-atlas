@@ -20,11 +20,13 @@ import {
 import {
   BiomeRulesFileSchema,
   BiomesFileSchema,
+  LocationCategoriesFileSchema,
   LocationsFileSchema,
   MetaSchema,
   SourcesFileSchema,
   WorldConstantsSchema,
   type Biome,
+  type LocationCategoryInfo,
   type LocationType,
   type Meta,
   type SourceRef,
@@ -81,6 +83,8 @@ export interface ContentData {
   food: Food[];
   progression: ProgressionStep[];
   locations: LocationType[];
+  /** Plain-language glossary of location categories (not id-indexed content). */
+  locationCategories: LocationCategoryInfo[];
   tips: Tip[];
 }
 
@@ -96,6 +100,7 @@ export async function loadContent(fetchImpl?: typeof fetch): Promise<ContentData
     food,
     progression,
     locations,
+    locationCategories,
     tips,
   ] = await Promise.all([
     loadDataFile('biomes', BiomesFileSchema, fetchImpl),
@@ -107,6 +112,7 @@ export async function loadContent(fetchImpl?: typeof fetch): Promise<ContentData
     loadDataFile('food', z.array(FoodSchema), fetchImpl),
     loadDataFile('progression', z.array(ProgressionStepSchema), fetchImpl),
     loadDataFile('locations', LocationsFileSchema, fetchImpl),
+    loadDataFile('location-categories', LocationCategoriesFileSchema, fetchImpl),
     loadDataFile('tips', z.array(TipSchema), fetchImpl),
   ]);
   return {
@@ -119,6 +125,7 @@ export async function loadContent(fetchImpl?: typeof fetch): Promise<ContentData
     food,
     progression,
     locations,
+    locationCategories,
     tips,
   };
 }

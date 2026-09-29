@@ -24,6 +24,10 @@ uniform vec3 uSkyAmbient;
 uniform vec3 uGroundAmbient;
 uniform vec3 uFogColor;
 uniform float uFogDensity;
+uniform float uFogStart;
+uniform float uFogMax;
+uniform float uReveal;
+uniform vec3 uSpace;
 uniform vec3 uEdgeGlow;
 uniform float uWorldRadius;
 uniform float uWaterEdge;
@@ -34,13 +38,17 @@ vec3 shade(vec3 albedo, vec3 n) {
   return albedo * (amb * 0.62 + uSunColor * diff * 0.95);
 }
 
+// Aerial perspective: clear up to about the orbit distance, then a haze that thickens with
+// distance (both scale with the zoom, see WorldScene), so far terrain reads as depth and
+// melts into the horizon band. Then the disc-edge glow and the fade-in (uReveal).
 vec3 atmosphere(vec3 col, vec3 worldPos) {
   float dist = length(worldPos - cameraPosition);
-  float fog = 1.0 - exp(-dist * uFogDensity);
-  col = mix(col, uFogColor, clamp(fog, 0.0, 1.0) * 0.8);
+  float fog = 1.0 - exp(-max(dist - uFogStart, 0.0) * uFogDensity);
+  col = mix(col, uFogColor, clamp(fog, 0.0, 1.0) * uFogMax);
   float r = length(worldPos.xz);
   float glow = smoothstep(uWorldRadius * 0.93, uWaterEdge, r);
-  return mix(col, uEdgeGlow, glow * 0.5);
+  col = mix(col, uEdgeGlow, glow * 0.5);
+  return mix(uSpace, col, uReveal);
 }
 
 vec3 flatNormal(vec3 worldPos) {
@@ -55,7 +63,11 @@ export const OUTPUT_GLSL = /* glsl */ `
 #include <colorspace_fragment>
 `;
 
-/** Optional 1 km coordinate grid in game coordinates (x east, z north); axes drawn brighter. */
+/**
+ * Optional 1 km coordinate grid in game coordinates (x east, z north), axes drawn brighter,
+ * plus warm distance rings around the world centre at the same spacing (SPEC F2/N1: how far
+ * from spawn you are).
+ */
 export const OVERLAY_GLSL = /* glsl */ `
 uniform float uGrid;
 uniform float uGridSpacing;
@@ -66,6 +78,10 @@ vec3 overlayGrid(vec3 col, vec2 game) {
   float line = 1.0 - min(min(g.x, g.y), 1.0);
   vec2 a = abs(game) / fwidth(game);
   float axis = 1.0 - min(min(a.x, a.y) / 2.0, 1.0);
-  return mix(col, vec3(0.95, 0.97, 1.0), max(line * 0.3, axis * 0.6));
+  col = mix(col, vec3(0.95, 0.97, 1.0), max(line * 0.3, axis * 0.6));
+  float rq = length(game) / uGridSpacing;
+  float rg = abs(fract(rq - 0.5) - 0.5) / fwidth(rq);
+  float ring = 1.0 - min(rg / 1.5, 1.0);
+  return mix(col, vec3(1.0, 0.85, 0.5), ring * 0.5);
 }
 `;

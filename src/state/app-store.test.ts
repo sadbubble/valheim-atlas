@@ -19,6 +19,21 @@ describe('app store', () => {
     expect(after.spoiler).toBe(1);
   });
 
+  it('sets layers as a set, filters single types and clears the spoiler setting', () => {
+    const store = createAppStore();
+    store.getState().setLayers(['grid', 'grid', 'pins']);
+    expect(store.getState().layers).toEqual(['grid', 'pins']);
+    store.getState().toggleType('test-type');
+    expect(store.getState().hide).toEqual(['test-type']);
+    store.getState().toggleType('test-type', false);
+    expect(store.getState().hide).toEqual(['test-type']);
+    store.getState().toggleType('test-type', true);
+    expect(store.getState().hide).toEqual([]);
+    store.getState().setSpoiler(2);
+    store.getState().setSpoiler(null);
+    expect(store.getState().spoiler).toBeNull();
+  });
+
   it('adds, moves, renames and removes pins with unique ids', () => {
     const store = createAppStore();
     const a = store.getState().addPin(10.4, 20.6);

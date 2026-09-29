@@ -31,10 +31,9 @@ uniform vec3 uSand;
 uniform vec3 uAsh;
 uniform vec3 uLava;
 uniform vec3 uMist;
-uniform sampler2D uBiomeIndex;
-uniform float uHighlight[9];
+uniform sampler2D uHighlightMask;
 uniform float uHighlightOn;
-uniform float uGridRes;
+uniform vec3 uHighlightColor;
 varying vec3 vWorld;
 varying vec2 vUv;
 varying float vHeight;
@@ -42,15 +41,6 @@ varying vec2 vGame;
 ${OVERLAY_GLSL}
 ${NOISE_GLSL}
 ${LIGHT_GLSL}
-
-float highlightAt(vec2 uv) {
-  float bi = floor(texture2D(uBiomeIndex, uv).r * 255.0 + 0.5);
-  float hl = 0.0;
-  for (int k = 0; k < 9; k++) {
-    if (abs(bi - float(k)) < 0.5) hl = uHighlight[k];
-  }
-  return hl;
-}
 
 void main() {
   if (length(vWorld.xz) > uWaterEdge) discard;
@@ -99,20 +89,17 @@ void main() {
     lit = mix(lit, uMist * 1.15, clamp(mist, 0.0, 1.0) * 0.8);
   }
 
-  // Search highlight: pulse the matching biomes, dim the rest.
+  // Search highlight: pulse the matching biomes, dim the rest. The mask is a blurred copy
+  // of the biome grid (render/highlight-mask.ts); its 0.5 iso-line is a smooth curve, drawn
+  // with a screen-space antialiased edge and a thin bright outline.
   if (uHighlightOn > 0.5) {
-    // Bilinear blend of the four nearest cells' match, so edges are soft, not blocky.
-    vec2 ts = vec2(1.0 / uGridRes);
-    vec2 st = vUv / ts - 0.5;
-    vec2 f = fract(st);
-    vec2 c0 = (floor(st) + 0.5) * ts;
-    float hl = mix(
-      mix(highlightAt(c0), highlightAt(c0 + vec2(ts.x, 0.0)), f.x),
-      mix(highlightAt(c0 + vec2(0.0, ts.y)), highlightAt(c0 + ts), f.x),
-      f.y
-    );
+    float m = texture2D(uHighlightMask, vUv).r;
+    float aa = max(fwidth(m), 0.002);
+    float hl = smoothstep(0.5 - aa, 0.5 + aa, m);
+    float outline = 1.0 - smoothstep(aa * 1.5, aa * 3.0, abs(m - 0.5));
     float pulse = 0.5 + 0.5 * sin(uTime * 3.0);
-    lit = mix(lit * 0.5, lit, hl) + vec3(1.0, 0.82, 0.4) * hl * (0.08 + 0.12 * pulse);
+    lit = mix(lit * 0.5, lit, hl) + uHighlightColor * hl * (0.08 + 0.12 * pulse);
+    lit = mix(lit, uHighlightColor, outline * (0.55 + 0.25 * pulse));
   }
   lit = overlayGrid(lit, vGame);
   gl_FragColor = vec4(atmosphere(lit, vWorld), 1.0);

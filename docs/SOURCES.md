@@ -360,6 +360,8 @@ All rows come from S-LOC-01 unless another source is named.
 | ID | Source | Kind | License | Confidence | Supports |
 |---|---|---|---|---|---|
 | S-DATA-01 | [kirilloid/valheim `src/data` + `public/lang/en.json` @ `ae63432`](https://github.com/kirilloid/valheim/tree/ae63432a485d92d88e97de28f21258b6208ba69b/src/data) (commit dated 2026-09-21, after 1.0) | community-data (game-data extraction) | **None**: we record facts only, never copy files or prose | read | Creature health, attacks, damage modifiers, drops, spawn biomes; boss summons and Forsaken powers (`effects.ts`); weapon/armor/tool stats and recipes; resources, food stats; crafting stations; weather per biome (`env.ts`); English names |
+| S-DATA-02 | [valheim.tools: Frostfire greatsword](https://www.valheim.tools/items/frostfire-greatsword) | community-data | not checked | snippet | The conflicting stat line for `frostfire-greatsword` (`items.json`, `confidence: "conflict"`). Registered in phase 7; cited since phase 4 |
+| S-DATA-03 | [valheimplanner.com: frigid kiln](https://www.valheimplanner.com/build/frigid-kiln/) | community-data | not checked | snippet | The conflicting recipe for `frigid-kiln` (`crafting-stations.json`, `confidence: "conflict"`; recipe left out). Registered in phase 7; cited since phase 4 |
 
 ### How the content was gathered (2026-09-29)
 

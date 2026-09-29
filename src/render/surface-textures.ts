@@ -1,5 +1,5 @@
-import { DataUtils } from 'three';
 import type { BiomeId } from '../data/schema';
+import { toHalfFloat } from './half-float';
 
 export interface SurfaceSource {
   resolution: number;
@@ -10,11 +10,11 @@ export interface SurfaceSource {
 
 export interface SurfaceTextureData {
   /** RGBA8: blurred biome ground colour (soft biome borders). */
-  color: Uint8Array;
+  color: Uint8Array<ArrayBuffer>;
   /** RGBA8: blurred biome weights: R mountains, G ashlands, B mistlands, A deep north. */
-  weights: Uint8Array;
+  weights: Uint8Array<ArrayBuffer>;
   /** R16F: ground height in metres (absolute, not relative to sea). */
-  height: Uint16Array;
+  height: Uint16Array<ArrayBuffer>;
 }
 
 const WEIGHT_BIOMES: readonly BiomeId[] = ['mountains', 'ashlands', 'mistlands', 'deep-north'];
@@ -24,7 +24,11 @@ function hexToRgb(hex: string): [number, number, number] {
   return [(v >> 16) & 255, (v >> 8) & 255, v & 255];
 }
 
-/** In-place separable box blur of `channels` interleaved planes, repeated `passes` times. */
+/**
+ * In-place separable box blur of `channels` interleaved planes, repeated `passes` times.
+ * Edges clamp. The inner loop is plain index arithmetic (no per-sample closure): it runs
+ * once per world (and once per search highlight) in the terrain-prep worker.
+ */
 export function boxBlur(
   data: Float32Array,
   n: number,
@@ -35,25 +39,48 @@ export function boxBlur(
   if (radius <= 0) return;
   const tmp = new Float32Array(data.length);
   const width = 2 * radius + 1;
-  const run = (src: Float32Array, dst: Float32Array, horizontal: boolean) => {
-    for (let line = 0; line < n; line++) {
+  const last = n - 1;
+  const clamp = (k: number) => (k < 0 ? 0 : k > last ? last : k);
+  const rowLen = n * channels;
+  // Along a row: each channel slides separately over cells `channels` apart.
+  const horizontal = (src: Float32Array, dst: Float32Array) => {
+    for (let row = 0; row < n; row++) {
       for (let ch = 0; ch < channels; ch++) {
-        const at = (k: number) => {
-          const c = k < 0 ? 0 : k >= n ? n - 1 : k;
-          return ((horizontal ? line * n + c : c * n + line) * channels + ch) | 0;
-        };
+        const base = row * rowLen + ch;
         let sum = 0;
-        for (let k = -radius; k <= radius; k++) sum += src[at(k)] ?? 0;
+        for (let k = -radius; k <= radius; k++) sum += src[base + clamp(k) * channels] ?? 0;
         for (let k = 0; k < n; k++) {
-          dst[at(k)] = sum / width;
-          sum += (src[at(k + radius + 1)] ?? 0) - (src[at(k - radius)] ?? 0);
+          dst[base + k * channels] = sum / width;
+          sum +=
+            (src[base + clamp(k + radius + 1) * channels] ?? 0) -
+            (src[base + clamp(k - radius) * channels] ?? 0);
         }
       }
     }
   };
+  // Down the columns, walked row by row with one running sum per column and channel so
+  // memory is read in order (same additions, in the same order, as a per-column loop).
+  const sums = new Float64Array(rowLen);
+  const vertical = (src: Float32Array, dst: Float32Array) => {
+    sums.fill(0);
+    for (let k = -radius; k <= radius; k++) {
+      const off = clamp(k) * rowLen;
+      for (let j = 0; j < rowLen; j++) sums[j] = (sums[j] ?? 0) + (src[off + j] ?? 0);
+    }
+    for (let k = 0; k < n; k++) {
+      const out = k * rowLen;
+      const add = clamp(k + radius + 1) * rowLen;
+      const sub = clamp(k - radius) * rowLen;
+      for (let j = 0; j < rowLen; j++) {
+        const sum = sums[j] ?? 0;
+        dst[out + j] = sum / width;
+        sums[j] = sum + ((src[add + j] ?? 0) - (src[sub + j] ?? 0));
+      }
+    }
+  };
   for (let p = 0; p < passes; p++) {
-    run(data, tmp, true);
-    run(tmp, data, false);
+    horizontal(data, tmp);
+    vertical(tmp, data);
   }
 }
 
@@ -94,7 +121,7 @@ export function buildSurfaceTextures(
     color[k * 4 + 2] = col[k * 3 + 2] ?? 0;
     color[k * 4 + 3] = 255;
     for (let c = 0; c < 4; c++) weights[k * 4 + c] = Math.round((wts[k * 4 + c] ?? 0) * 255);
-    height[k] = DataUtils.toHalfFloat(world.height[k] ?? 0);
+    height[k] = toHalfFloat(world.height[k] ?? 0);
   }
   return { color, weights, height };
 }

@@ -9,13 +9,17 @@ import {
   assertResolution,
 } from './generator-info';
 import { hashSeed } from './rng';
+import type { GenerationStage } from './generate';
 import type { GeneratedWorld } from './types';
 
 export { GENERATOR_ID, IS_APPROXIMATION } from './generator-info';
 export type { GeneratedWorld, PlacedLocation } from './types';
 
+/** Generator stages, plus 'cache' when a saved world is loaded instead. */
+export type LoadStage = GenerationStage | 'cache';
+
 export interface GenerateWorldOptions {
-  onProgress?: (progress: number) => void;
+  onProgress?: (progress: number, stage: LoadStage) => void;
   /** Override or disable (null) the IndexedDB cache. Defaults to the shared cache. */
   cache?: WorldCache | null;
 }
@@ -61,7 +65,7 @@ export async function generateWorld(
 
   const cached = await cache?.get(key).catch(() => undefined);
   if (cached) {
-    options.onProgress?.(1);
+    options.onProgress?.(1, 'cache');
     return { world: cached, fromCache: true };
   }
 

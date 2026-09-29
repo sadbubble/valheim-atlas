@@ -1,6 +1,7 @@
 :root {
   --bg: #0e1a24;
-  --panel: rgb(14 26 36 / 84%);
+  /* 90% so small coloured text keeps ≥ 5:1 contrast even over snow (docs/RELEASE.md). */
+  --panel: rgb(14 26 36 / 90%);
   --panel-solid: #122230;
   --panel-border: rgb(207 227 240 / 18%);
   --text: #e8eef2;
@@ -39,9 +40,43 @@ body,
   position: relative;
 }
 
+.map-main {
+  position: absolute;
+  inset: 0;
+}
+
 .world-canvas {
   position: absolute !important;
   inset: 0;
+}
+
+/*
+ * One-finger drags orbit the map instead of scrolling or zooming the page. This is the
+ * element the camera controls listen on; touch-action on it covers the canvas inside.
+ */
+.world-canvas {
+  touch-action: none;
+}
+
+/* Visible only when focused: the first Tab stop jumps to the search box. */
+.skip-link {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  z-index: 50;
+  padding: 8px 14px;
+  border-radius: var(--radius);
+  background: var(--panel-solid);
+  border: 2px solid var(--accent);
+  color: var(--text);
+  font-weight: 600;
+  transform: translateY(-200%);
+}
+
+.skip-link:focus {
+  transform: none;
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
 }
 
 /* The HUD overlay lets pointer events through to the canvas except on its panels. */
@@ -68,6 +103,9 @@ body,
 
 .hud-top {
   grid-column: 1 / -1;
+  /* Keeps the search results above the panels and camera buttons below the header. */
+  position: relative;
+  z-index: 2;
   display: flex;
   align-items: flex-start;
   gap: 14px;
@@ -84,6 +122,10 @@ body,
   font-size: 1.1rem;
   letter-spacing: 0.02em;
   white-space: nowrap;
+}
+
+.drawer-toggle {
+  display: none !important;
 }
 
 .hud-badge {
@@ -263,6 +305,13 @@ legend {
   gap: 7px;
   font-size: 0.85rem;
   padding: 2px 0;
+  /* WCAG 2.2 target size: rows far enough apart that each small control has 24 px. */
+  min-height: 28px;
+}
+
+.hud summary {
+  min-height: 24px;
+  padding: 3px 0;
 }
 
 .layer-swatch {
@@ -322,6 +371,17 @@ legend {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+/* The close button stays in reach while a long panel scrolls (bottom sheet on phones). */
+.info-panel > .info-head {
+  position: sticky;
+  top: -10px;
+  z-index: 1;
+  margin: -10px -14px 0;
+  padding: 6px 14px 2px;
+  background: var(--panel-solid);
+  border-radius: var(--radius) var(--radius) 0 0;
 }
 
 .kind {
@@ -462,6 +522,7 @@ legend {
 }
 
 .entity-link {
+  min-height: 24px;
   border: none !important;
   background: none !important;
   padding: 0 !important;
@@ -591,23 +652,46 @@ legend {
 }
 
 .biome-label {
+  /* WCAG 2.2 target size (24 px) for these map buttons. */
+  min-height: 24px;
   font:
     600 0.78rem system-ui,
     sans-serif;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: #fff;
-  background: rgb(10 20 28 / 55%);
+  background: rgb(10 20 28 / 75%);
   border: 1px solid rgb(255 255 255 / 25%);
   border-radius: 999px;
   padding: 2px 10px;
   cursor: pointer;
   white-space: nowrap;
   text-shadow: 0 1px 2px #000;
+  /* Fades in; hiding (visibility, below) is instant so a covered label never lingers. */
+  transition:
+    opacity 0.15s ease,
+    transform 0.12s ease,
+    border-color 0.12s ease,
+    background-color 0.12s ease;
+}
+
+/* Hover/focus feedback: a little lift and the accent border. */
+.biome-label:hover,
+.biome-label:focus-visible {
+  transform: scale(1.06);
+  border-color: var(--accent);
+  background: rgb(20 36 48 / 88%);
 }
 
 .biome-label:focus-visible {
   outline: 2px solid var(--accent);
+}
+
+/* Would sit under a HUD control or off screen (render/label-occlusion.ts): out of the way. */
+.biome-label.is-covered {
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
 }
 
 .biome-label.is-hidden {
@@ -620,11 +704,87 @@ legend {
   grid-row: 3;
   display: flex;
   justify-content: space-between;
-  gap: 12px;
+  align-items: center;
+  gap: 4px 12px;
   flex-wrap: wrap;
   font-size: 0.76rem;
   color: var(--muted);
   padding: 6px 12px;
+}
+
+.hud .about-button {
+  font-size: 0.76rem;
+  padding: 2px 9px;
+}
+
+/* About / data view */
+.about {
+  width: min(680px, 100%);
+  max-height: min(86vh, 900px);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background: var(--panel-solid);
+  padding: 16px 18px;
+}
+
+.about h2 {
+  margin: 0;
+  font-size: 1.3rem;
+}
+
+.about h2:focus {
+  outline: none;
+}
+
+.about h2:focus-visible {
+  outline: 2px solid var(--accent);
+}
+
+.about-body {
+  overflow-y: auto;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  padding-right: 4px;
+}
+
+.about-body h3 {
+  margin: 14px 0 4px;
+  font-size: 0.98rem;
+}
+
+.about-body p {
+  margin: 4px 0;
+}
+
+.about-disclaimer {
+  border-left: 3px solid var(--accent);
+  padding: 4px 10px;
+  background: rgb(216 180 90 / 7%);
+  border-radius: 0 6px 6px 0;
+}
+
+.about-sources {
+  margin: 6px 0 0;
+  padding-left: 18px;
+  display: grid;
+  gap: 5px;
+  font-size: 0.84rem;
+}
+
+.about-sources a,
+.about-body a {
+  color: #8fc6e6;
+}
+
+.about-source-id {
+  font-variant-numeric: tabular-nums;
+  color: var(--muted);
+  font-size: 0.78rem;
+}
+
+.about .hud-badge {
+  margin-right: 4px;
 }
 
 .coords {
@@ -642,18 +802,545 @@ legend {
   font-variant-numeric: tabular-nums;
 }
 
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+.world-canvas:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: -3px;
+}
+
+/* Left drawer tabs */
+.drawer-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.exact-map a {
+  color: #8fc6e6;
+  font-size: 0.85rem;
+}
+
+.link-button {
+  border: none !important;
+  background: none !important;
+  padding: 0 !important;
+  color: #8fc6e6 !important;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  font-size: inherit !important;
+}
+
+/* Loading screen (ui/LoadingOverlay.tsx): under the HUD, never takes pointer events. */
+.loading-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  display: grid;
+  place-items: center;
+  padding: 16px;
+  pointer-events: none;
+  opacity: 1;
+  transition-property: opacity;
+  transition-timing-function: ease;
+}
+
+.loading-overlay.is-leaving {
+  opacity: 0;
+}
+
+.loading-card {
+  width: min(340px, 100%);
+  display: grid;
+  gap: 10px;
+  padding: 18px 20px 16px;
+  background: rgb(10 20 30 / 82%);
+  border: 1px solid var(--panel-border);
+  border-radius: 14px;
+  box-shadow:
+    0 0 0 1px rgb(127 212 255 / 6%),
+    0 12px 40px rgb(0 0 0 / 45%);
+}
+
+.loading-title {
+  margin: 0;
+  font-weight: 650;
+  letter-spacing: 0.04em;
+}
+
+.loading-seed {
+  margin: -6px 0 0;
+  color: var(--muted);
+  font-size: 0.82rem;
+  overflow-wrap: anywhere;
+}
+
+.loading-steps {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 5px;
+  font-size: 0.86rem;
+  color: var(--muted);
+}
+
+.loading-steps li {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+/* Step marker: hollow when pending, filled when done, a glowing ring on the current step. */
+.loading-steps li::before {
+  content: '';
+  flex: none;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  border: 1.5px solid currentColor;
+  opacity: 0.6;
+}
+
+.loading-steps li.is-done::before {
+  background: currentColor;
+  opacity: 0.9;
+}
+
+.loading-steps li.is-current {
+  color: var(--text);
+}
+
+.loading-steps li.is-current::before {
+  border-color: var(--accent);
+  opacity: 1;
+  box-shadow: 0 0 8px var(--accent);
+  animation: loading-pulse 1.2s ease-in-out infinite alternate;
+}
+
+@keyframes loading-pulse {
+  from {
+    box-shadow: 0 0 2px var(--accent);
+  }
+  to {
+    box-shadow: 0 0 10px var(--accent);
+  }
+}
+
+.loading-bar {
+  height: 6px;
+  border-radius: 999px;
+  background: rgb(255 255 255 / 10%);
+  overflow: hidden;
+}
+
+.loading-bar-fill {
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #3fb0b8, var(--accent));
+  transition: width 0.25s ease;
+}
+
+.loading-percent {
+  margin: -4px 0 0;
+  font-size: 0.78rem;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+
+/* Camera buttons and controls help (middle column, bottom) */
+.hud-center {
+  grid-column: 2;
+  grid-row: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 8px;
+  min-height: 0;
+  pointer-events: none;
+}
+
+.hud-camera {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 6px 8px;
+}
+
+.controls-hint {
+  max-width: 560px;
+  font-size: 0.8rem;
+}
+
+.controls-hint h2 {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.controls-hint h3 {
+  margin: 4px 0 2px;
+  font-size: 0.78rem;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.controls-hint ul {
+  margin: 0;
+  padding-left: 14px;
+}
+
+.controls-cols {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 4px 14px;
+}
+
+kbd {
+  font: inherit;
+  font-size: 0.72rem;
+  padding: 0 4px;
+  border: 1px solid var(--panel-border);
+  border-radius: 4px;
+  background: rgb(255 255 255 / 6%);
+}
+
+/* First-run dialog */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  display: grid;
+  place-items: center;
+  padding: 16px;
+  background: rgb(5 10 15 / 60%);
+  pointer-events: auto;
+}
+
+.first-run {
+  max-width: 440px;
+  display: grid;
+  gap: 8px;
+  background: var(--panel-solid);
+  padding: 18px 20px;
+}
+
+.first-run h2 {
+  margin: 0;
+  font-size: 1.3rem;
+}
+
+.first-run p {
+  margin: 0;
+  line-height: 1.45;
+  font-size: 0.92rem;
+}
+
+.first-run-actions {
+  margin-top: 6px;
+}
+
+.hud button.primary {
+  border-color: var(--accent);
+  background: rgb(216 180 90 / 22%);
+}
+
+/* Progression guide */
+.guide {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.guide-title {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.guide-strip {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.hud .guide-chip {
+  font-size: 0.75rem;
+  padding: 2px 7px 2px 3px;
+  border-radius: 999px;
+}
+
+.guide-chip-tier {
+  display: inline-grid;
+  place-items: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: rgb(255 255 255 / 12%);
+  font-weight: 700;
+  font-size: 0.7rem;
+}
+
+.guide-chip.is-next .guide-chip-tier,
+.guide-step.is-next .guide-tier {
+  background: var(--accent);
+  color: #1b1b1b;
+}
+
+.guide-chip.is-done,
+.guide-step.is-done .guide-body {
+  opacity: 0.65;
+}
+
+.guide-steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+}
+
+.guide-step {
+  display: grid;
+  grid-template-columns: 30px 1fr;
+  gap: 8px;
+  border: 1px solid var(--panel-border);
+  border-radius: 8px;
+  padding: 7px 8px;
+  font-size: 0.82rem;
+  scroll-margin-top: 8px;
+}
+
+.guide-step.is-next {
+  border-color: var(--accent);
+}
+
+.guide-tier {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgb(255 255 255 / 10%);
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.guide-body {
+  display: grid;
+  gap: 5px;
+  min-width: 0;
+}
+
+.guide-head {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.guide-head h3 {
+  margin: 0;
+  font-size: 0.88rem;
+}
+
+.guide-next {
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  border-radius: 999px;
+  padding: 0 6px;
+}
+
+.guide-facts .fact {
+  grid-template-columns: 34% 1fr;
+}
+
+.guide-goals summary {
+  cursor: pointer;
+  color: var(--muted);
+}
+
+/* Filters, legend, glossary, behaviour */
+.type-filters summary,
+.legend summary {
+  cursor: pointer;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.type-filters fieldset {
+  margin-top: 6px;
+}
+
+.type-filters fieldset:disabled {
+  opacity: 0.55;
+}
+
+.legend dl {
+  margin: 6px 0 0;
+  display: grid;
+  gap: 6px;
+  font-size: 0.8rem;
+}
+
+.legend dt {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 600;
+}
+
+.legend dd {
+  margin: 2px 0 0 26px;
+  color: var(--muted);
+}
+
+.glossary {
+  border-left: 3px solid var(--accent);
+  padding: 4px 10px;
+  margin: 0 0 8px;
+  background: rgb(216 180 90 / 7%);
+  border-radius: 0 6px 6px 0;
+}
+
+.glossary p {
+  margin: 4px 0 0;
+}
+
+.behaviour {
+  font-size: 0.7rem;
+  padding: 0 6px;
+  border-radius: 999px;
+  border: 1px solid var(--panel-border);
+  color: var(--muted);
+}
+
+.behaviour-aggressive,
+.behaviour-boss {
+  border-color: #b44;
+  color: #f08a8a;
+}
+
+.behaviour-passive {
+  border-color: #4a8a5e;
+  color: var(--weak);
+}
+
+.search-hidden-note {
+  cursor: default !important;
+  font-style: italic;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    scroll-behavior: auto !important;
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+/*
+ * Small screens (phones, narrow tablets): the side drawer folds away behind a "Menu" button
+ * and opens as a bottom sheet; the info panel is a bottom sheet over it; camera buttons sit
+ * top right, out of the sheets' way.
+ */
 @media (max-width: 900px) {
   .hud {
-    grid-template-columns: 1fr;
-    grid-template-rows: auto auto minmax(0, 1fr) auto;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto minmax(0, 1fr) auto;
+    gap: 8px;
     padding: 8px;
   }
-  .hud-side {
-    grid-row: 2;
-    max-height: 35vh;
+  .hud-top {
+    flex-wrap: wrap;
+    gap: 8px;
   }
+  .hud-brand {
+    flex: 1 1 auto;
+    padding: 6px 10px;
+  }
+  .drawer-toggle {
+    display: inline-flex !important;
+    margin-left: auto;
+    white-space: nowrap;
+  }
+  .search {
+    flex: 1 1 100%;
+  }
+  .hud-side,
   .info-panel {
     grid-column: 1;
-    grid-row: 3;
+    grid-row: 2;
+    align-self: end;
+    max-height: 52vh;
+    overscroll-behavior: contain;
+  }
+  .hud-side[data-open='false'] {
+    display: none;
+  }
+  .info-panel {
+    z-index: 1;
+  }
+  .hud-center {
+    grid-column: 1;
+    grid-row: 2;
+    justify-content: flex-start;
+    align-items: flex-end;
+  }
+  .hud-camera {
+    justify-content: flex-end;
+  }
+  .controls-hint {
+    max-height: 30vh;
+    overflow-y: auto;
+  }
+  .hud-footer {
+    justify-content: flex-start;
+    font-size: 0.72rem;
+  }
+  .about {
+    max-height: 92vh;
+    padding: 12px;
+  }
+}
+
+/* Without a hovering pointer (touch screens) the cursor readout has nothing to show. */
+@media (hover: none) and (max-width: 900px) {
+  .hud-footer .coords {
+    display: none;
+  }
+}
+
+/* Touch-friendly targets (WCAG 2.5.5): at least 44 × 44 px for the main controls. */
+@media (max-width: 900px), (pointer: coarse) {
+  .hud-camera button,
+  .drawer-toggle,
+  .hud .icon-button,
+  .hud .about-button,
+  .hud .fly-button,
+  .hud [role='tab'],
+  .search input {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  .hud .icon-button {
+    justify-content: center;
   }
 }

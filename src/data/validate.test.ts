@@ -88,6 +88,13 @@ describe('validateData rejects broken data (deliberately broken fixtures)', () =
     expect(messages(raw).some((x) => x.includes('weaknesses disagree'))).toBe(true);
   });
 
+  it('fails when a guide step is less spoiler-gated than the boss it names', () => {
+    const raw = clone(load());
+    const boss = rows(raw, 'bosses').find((x) => x.id === 'the-elder');
+    if (boss) boss.spoilerLevel = 2;
+    expect(messages(raw)).toContain('progression:spoilerLevel is below that of the-elder');
+  });
+
   it('fails when a land biome lacks its boss or threats', () => {
     const raw = clone(load());
     const b = rows(raw, 'biomes').find((x) => x.id === 'swamp');
@@ -98,6 +105,32 @@ describe('validateData rejects broken data (deliberately broken fixtures)', () =
     const m = messages(raw);
     expect(m).toContain('biomes:bossId missing');
     expect(m).toContain('biomes:threats must not be empty');
+  });
+
+  it('fails when the location-category glossary is incomplete or unsourced', () => {
+    const raw = clone(load());
+    const cats = rows(raw, 'location-categories');
+    raw['location-categories'] = cats.filter((c) => c.id !== 'dungeon');
+    expect(messages(raw)).toContain('location-categories:category has no glossary entry');
+
+    const dup = clone(load());
+    rows(dup, 'location-categories').push({ ...rows(dup, 'location-categories')[0] });
+    expect(messages(dup).some((m) => m.includes('category listed 2 times'))).toBe(true);
+
+    const broken = clone(load());
+    const first = rows(broken, 'location-categories')[0];
+    if (first) {
+      first.sources = [];
+      first.madeUpCount = 3;
+    }
+    const m = messages(broken);
+    expect(m.some((x) => x.startsWith('location-categories:') && x.includes('sources'))).toBe(true);
+    expect(m.some((x) => x.includes('madeUpCount'))).toBe(true);
+
+    const unregistered = clone(load());
+    const second = rows(unregistered, 'location-categories')[1];
+    if (second) second.sources = ['S-NOPE-99'];
+    expect(messages(unregistered)).toContain('location-categories:unknown source id S-NOPE-99');
   });
 
   it('fails when DATA_TODO.md is stale', () => {

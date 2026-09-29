@@ -71,17 +71,44 @@ export interface MarkerInputs {
   biomes: ReadonlyMap<string, { name: string; spoilerLevel: number }>;
   pins: readonly Pin[];
   layers: readonly Layer[];
+  /** Location type ids filtered off the map (per-type filter). */
+  hide?: readonly string[];
+}
+
+export interface LocationCounts {
+  /** Placed locations per layer. */
+  byLayer: Map<Layer, number>;
+  /** Placed locations per location type id. */
+  byType: Map<string, number>;
+}
+
+/** How many locations of each layer and type this world has (filter counts; SPEC V2). */
+export function countLocations(
+  locations: readonly { type: string }[],
+  types: ReadonlyMap<string, { category: LocationCategory }>,
+): LocationCounts {
+  const byLayer = new Map<Layer, number>();
+  const byType = new Map<string, number>();
+  for (const loc of locations) {
+    const t = types.get(loc.type);
+    if (!t) continue;
+    const layer = CATEGORY_LAYER[t.category];
+    byLayer.set(layer, (byLayer.get(layer) ?? 0) + 1);
+    byType.set(loc.type, (byType.get(loc.type) ?? 0) + 1);
+  }
+  return { byLayer, byType };
 }
 
 /** Everything that could be drawn for the active layers (before clustering). */
 export function buildMarkerSources(inp: MarkerInputs): MarkerSource[] {
   const on = new Set(inp.layers);
+  const hide = new Set(inp.hide ?? []);
   const out: MarkerSource[] = [];
   for (const loc of inp.locations) {
     const t = inp.types.get(loc.type);
     if (!t) continue;
     const layer = CATEGORY_LAYER[t.category];
-    if (!on.has(layer)) continue;
+    if (!on.has(layer) || hide.has(loc.type)) continue;
     out.push({
       key: loc.id,
       layer,

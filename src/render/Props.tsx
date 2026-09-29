@@ -21,10 +21,20 @@ const BUILDS_PER_FRAME = 2;
 export function Props({ model, shared }: { model: TerrainModel; shared: SharedUniforms }) {
   const res = useMemo(() => {
     const maxDist = RENDER.props.maxDistanceM;
+    const group = new Group();
+    const geometries = createPropGeometries();
+    const material = createPropMaterial(shared, maxDist);
+    // Never drawn: lets the loading screen precompile the prop shader (instanced, with
+    // instance colours) so the first zoom-in doesn't stall on it.
+    const warmUp = new InstancedMesh(geometries[PROP_KINDS[0]], material, 1);
+    warmUp.setColorAt(0, new Color(1, 1, 1));
+    warmUp.visible = false;
+    group.add(warmUp);
     return {
-      group: new Group(),
-      geometries: createPropGeometries(),
-      material: createPropMaterial(shared, maxDist),
+      group,
+      geometries,
+      material,
+      warmUp,
       built: new Map<number, InstancedMesh[]>(),
       chunks: model.chunks.filter((c) => c.drawable && c.maxY > RENDER.props.minAltitudeM),
     };
@@ -34,6 +44,7 @@ export function Props({ model, shared }: { model: TerrainModel; shared: SharedUn
     () => () => {
       for (const meshes of res.built.values()) for (const m of meshes) m.dispose();
       for (const g of Object.values(res.geometries)) g.dispose();
+      res.warmUp.dispose();
       res.material.dispose();
     },
     [res],

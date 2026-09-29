@@ -53,9 +53,14 @@ describe('generateWorldSync', () => {
     expect(() => generateWorldSync('r', 100.5, data)).toThrow(RangeError);
   });
 
-  it('reports monotonic progress ending at 1', () => {
+  it('reports monotonic progress ending at 1, terrain stage before locations', () => {
     const seen: number[] = [];
-    generateWorldSync('progress', 128, data, (p) => seen.push(p));
+    const stages: string[] = [];
+    generateWorldSync('progress', 128, data, (p, stage) => {
+      seen.push(p);
+      if (stages.at(-1) !== stage) stages.push(stage);
+    });
+    expect(stages).toEqual(['terrain', 'locations']);
     expect(seen[0]).toBe(0);
     expect(seen.at(-1)).toBe(1);
     expect(seen.every((p, i) => i === 0 || p >= (seen[i - 1] ?? 0))).toBe(true);

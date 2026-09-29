@@ -1,4 +1,5 @@
 import { create } from 'zustand';
+import type { BiomeId } from '../data/schema';
 import { EMPTY_HIGHLIGHT, type Highlight } from '../render/navigation';
 
 export type InfoTab = 'overview' | 'threats' | 'loot' | 'tips';
@@ -20,12 +21,21 @@ export interface HoverInfo {
   screenY: number;
 }
 
+/** Which view the left drawer shows: map setup (layers, tools) or the progression guide. */
+export type Drawer = 'map' | 'guide';
+
 interface UiState {
+  drawer: Drawer;
+  /** Picks the drawer's view and opens the drawer (it can be folded away on small screens). */
+  setDrawer: (drawer: Drawer) => void;
+  /** Small screens only: whether the side drawer is unfolded (desktop always shows it). */
+  drawerOpen: boolean;
+  setDrawerOpen: (open: boolean) => void;
   selection: Selection | null;
   tab: InfoTab;
   hover: HoverInfo | null;
   /** Game coordinates under the cursor, or null when off the world. */
-  cursor: { x: number; z: number; heightM: number } | null;
+  cursor: { x: number; z: number; heightM: number; biomeId: BiomeId | null } | null;
   tool: Tool;
   measure: { x: number; z: number }[];
   highlight: Highlight;
@@ -39,10 +49,18 @@ interface UiState {
   addMeasurePoint: (p: { x: number; z: number }) => void;
   clearMeasure: () => void;
   setHighlight: (h: Highlight) => void;
-  reveal: (id: string) => void;
+  reveal: (...ids: string[]) => void;
 }
 
 export const useUiStore = create<UiState>()((set, get) => ({
+  drawer: 'map',
+  setDrawer: (drawer) => {
+    set({ drawer, drawerOpen: true });
+  },
+  drawerOpen: false,
+  setDrawerOpen: (drawerOpen) => {
+    set({ drawerOpen });
+  },
   selection: null,
   tab: 'overview',
   hover: null,
@@ -76,7 +94,8 @@ export const useUiStore = create<UiState>()((set, get) => ({
   setHighlight: (highlight) => {
     set({ highlight });
   },
-  reveal: (id) => {
-    if (!get().revealed.includes(id)) set({ revealed: [...get().revealed, id] });
+  reveal: (...ids) => {
+    const add = ids.filter((id) => !get().revealed.includes(id));
+    if (add.length > 0) set({ revealed: [...get().revealed, ...add] });
   },
 }));

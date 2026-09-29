@@ -54,8 +54,11 @@ Do not add new runtime dependencies without a one-line justification in the PR d
 ├─ CLAUDE.md  README.md
 ├─ index.html  debug.html  app entry; biome-map debug page (2D canvas)
 ├─ docs/                  PROJECT_STATUS.md (read first), SPEC.md, DECISION.md, SOURCES.md,
-│                         DATA_TODO.md (generated list of nulls)
-├─ scripts/               validate-data.ts (npm run validate:data, run with tsx)
+│                         DATA_TODO.md (generated list of nulls), USER_STORIES.md (story audit),
+│                         RELEASE.md (release checklist, a11y/budget results, deploy steps)
+├─ scripts/               validate-data.ts (npm run validate:data), budget.ts (npm run budget),
+│                         serve-static.ts (npm run serve:subpath); all run with tsx
+├─ .github/workflows/     ci.yml (check, budget, e2e), deploy.yml (GitHub Pages)
 ├─ public/
 │  ├─ data/               game facts, all JSON, all sourced; fetched at runtime
 │  │  ├─ meta.json        targetGameVersion, worldGenVersion, dataUpdated
@@ -63,6 +66,7 @@ Do not add new runtime dependencies without a one-line justification in the PR d
 │  │  ├─ world.json  biome-rules.json           world generation facts
 │  │  ├─ biomes.json  bosses.json  creatures.json  resources.json  items.json
 │  │  ├─ crafting-stations.json  food.json  progression.json  locations.json  tips.json
+│  │  ├─ location-categories.json   plain-language glossary per location category (sourced)
 │  └─ favicon.svg         only self-made assets
 ├─ src/
 │  ├─ main.tsx            entry point
@@ -78,26 +82,43 @@ Do not add new runtime dependencies without a one-line justification in the PR d
 │  │  └─ cache.ts         IndexedDB cache (main thread)
 │  ├─ render/             3D renderer (r3f); game coords are mirrored (scale z = -1) in WorldScene
 │  │  ├─ WorldCanvas.tsx  WorldScene.tsx  Terrain.tsx  Water.tsx  WorldRim.tsx  Props.tsx
-│  │  ├─ Starfield.tsx  CameraRig.tsx  SurfacePicker.tsx  AdaptiveQuality.tsx
+│  │  ├─ Starfield.tsx  Sky.tsx  CameraRig.tsx  SurfacePicker.tsx  AdaptiveQuality.tsx
 │  │  ├─ chunks.ts  terrain-geometry.ts   LOD layout/selection; crack-free chunk meshes
-│  │  ├─ surface-textures.ts  terrain-model.ts  props.ts  prop-geometry.ts  pick.ts
+│  │  ├─ terrain-prep.ts  terrain-prep-protocol.ts  handle-prep-request.ts  terrain-prep-worker.ts
+│  │  │  terrain-prep-client.ts   second Web Worker: world → render buffers (surface textures,
+│  │  │                     chunk layout, coarse meshes, anchors) and search-highlight masks
+│  │  ├─ surface-textures.ts  half-float.ts  highlight-mask.ts  HighlightMask.tsx   (three-free
+│  │  │                     where the prep worker uses them)
+│  │  ├─ terrain-model.ts  precompile.ts  (wraps prepared buffers; shader warm-up behind the
+│  │  │                     loading screen)  props.ts  prop-geometry.ts  pick.ts
 │  │  ├─ materials.ts  shaders/        our own GLSL (no game assets)
 │  │  ├─ render-config.ts  palette.ts  props-config.ts   visual tuning + original palette
 │  │  ├─ Markers.tsx  Interaction.tsx  MeasureLine.tsx  BiomeLabels.tsx   map interactivity
+│  │  │                     (label-occlusion.ts: labels hide while under HUD controls)
 │  │  ├─ markers-model.ts  marker-registry.ts  navigation.ts  biome-anchors.ts  icons.ts  icon-atlas.ts
-│  │  └─ debug-hooks.ts   window.__atlas (ready, get/setView, stats) for e2e/screenshots
+│  │  └─ debug-hooks.ts   window.__atlas (ready, get/setView, biomeAt, stats) for e2e/screenshots
+│  │                      (User Timing marks atlas:generate:start/end, atlas:terrain-prepared,
+│  │                      atlas:renderer-ready for perf e2e)
 │  ├─ data/               schema.ts + content-schema.ts (zod), load.ts (typed loaders incl. loadContent),
 │  │                      content-index.ts (id lookup across all content files),
 │  │                      validate.ts (all data rules; used by scripts/validate-data.ts and tests)
-│  ├─ state/              Zustand stores: app (URL-synced: seed, mode, layers, spoiler, pins, cam),
-│  │                      content, map (biome anchors), ui (selection, tabs, hover, tools), camera, render
-│  ├─ ui/                 HUD, SearchBar, LayerPanel, ToolPanel, InfoPanel (+ tabs), Tooltip, CoordReadout;
+│  ├─ state/              Zustand stores: app (URL-synced: seed, mode, layers, spoiler, pins, hide, sel, cam, about),
+│  │                      content, map (biome anchors), ui (selection, tabs, drawer, hover, tools), camera,
+│  │                      render, prefs (localStorage: first-run answer, mode/spoiler, hint, guide progress)
+│  ├─ ui/                 HUD, SearchBar, LayerPanel, ToolPanel, InfoPanel (+ tabs), Tooltip, CoordReadout,
+│  │                      ProgressionGuide, FirstRunDialog, ControlsHint, CameraControls, ExactMapLink,
+│  │                      AboutDialog (lazy; about-model.ts, about-shared.ts), focus-trap.ts (modals),
+│  │                      LoadingOverlay (loading-model.ts: stage names + percent);
 │  │                      null values render via <Unverified/>; spoiler gating via use-spoiler.ts
 │  ├─ debug/              debug.html app: biome map renderer, stats, placement report
 │  ├─ test/               Node-only test helpers (read public/data from disk)
-│  └─ lib/                small shared helpers (fuzzy search, formatting)
+│  └─ lib/                small shared helpers (fuzzy search, formatting, reduced-motion);
+│                         outbound-links.test.ts enforces the outbound-link rule
 ├─ docs/screens/          renderer screenshots at 3 zoom levels + stats.json (npm run screens)
-└─ tests/e2e/             Playwright specs (+ playwright.config.ts at the root)
+└─ tests/e2e/             Playwright specs (+ playwright.config.ts at the root; tests start as a
+                          returning visitor via storageState so the first-run dialog stays closed).
+                          Project "chromium" = dev server; project "subpath" = subpath.spec.ts
+                          against the production build served under /valheim-atlas/
 ```
 
 Unit tests sit next to their code as `*.test.ts(x)`.
@@ -125,6 +146,11 @@ Unit tests sit next to their code as `*.test.ts(x)`.
   - reuse vectors;
   - use `InstancedMesh` for markers;
   - never call `setState` inside `useFrame`.
+- Keep per-world work off the main thread: generation runs in the world worker, and turning a
+  world into render buffers (textures, chunk meshes, anchors, highlight masks) runs in the
+  terrain-prep worker (`render/terrain-prep*.ts`, three-free). Buffers cross as transferables;
+  messages are zod-parsed discriminated unions. The e2e perf test fails on any long task
+  over 200 ms after generation.
 - Units are metres. Coordinates are x = east, z = north, y = up. Name variables with a unit suffix: `distM`, `heightM`.
 - Comments explain *why*. Cite a source ID when code implements a documented rule, e.g. `// S-BIO-02: Ashlands tested before ocean`. The numbers themselves stay in `public/data/`.
 - UI text is plain and friendly for newcomers. Spoiler-sensitive content respects the user's spoiler setting (`effectiveSpoiler`, `useSpoilerHidden`): hide or grey out detail above it, never leak names through clusters or lists.
@@ -146,7 +172,9 @@ Unit tests sit next to their code as `*.test.ts(x)`.
 | `npm run perf` | Times a 1024² world generation (target ~3 s on a mid-range laptop; the test fails above 6 s) |
 | `npm run check` | typecheck, lint, test and validate:data together: the pre-push gate |
 | `npm run validate:data` | Validates every `public/data/*.json`: strict schemas (missing or unknown fields fail), sources (URL or registered ID), unique ids, cross-references, per-biome completeness, weaknesses vs damage modifiers, and that `docs/DATA_TODO.md` is current. `-- --write-todo` regenerates DATA_TODO.md; `-- --schema-only --dir <path>` checks partial drafts |
-| `npm run test:e2e` | Playwright e2e in Chromium with software WebGL (SwiftShader); starts a dev server on :4179 |
+| `npm run test:e2e` | Playwright e2e in Chromium with software WebGL (SwiftShader): project `chromium` against a dev server on :4179 (incl. axe audit, reduced motion, phone layout), project `subpath` against the production build served under `/valheim-atlas/` on :4180 (builds first; checks data, worker, CSP, no external requests, long tasks) |
+| `npm run budget` | SPEC §8 budget: initial JS (entry + static imports, from the Vite manifest) must be < 1.5 MB gzipped; prints a table. Builds if `dist/` has no manifest; `-- --build` always rebuilds |
+| `npm run serve:subpath` | Serves `dist/` under `/valheim-atlas/` on :4180 like GitHub Pages (strict 404s, no SPA fallback) |
 | `npm run screens` | Regenerates `docs/screens/*.png` and `stats.json` (tagged `@screens`, skipped by `test:e2e`) |
 
 ## Definition of done
@@ -167,6 +195,7 @@ Unit tests sit next to their code as `*.test.ts(x)`.
 | **5: Interactivity** | Instanced markers, layers and legend, info panels, search and filter, fly-to | Every panel shows sources and confidence; unknown values show "Unknown"; e2e tests cover search → select → panel → fly-to |
 | **6: Newcomer and veteran modes** | Progression guide, spoiler-safe mode, tips, seed input, measure tool, URL state, approximation badge and link-out | All user stories N1–N8 and V1–V8 in SPEC §4 meet their acceptance criteria, each with a test or a documented manual check |
 | **7: Polish and release** | Accessibility, reduced motion, performance budget, About page, static deploy | Lighthouse accessibility ≥ 90; bundle under budget (SPEC §8); "not affiliated with Iron Gate/Coffee Stain" disclaimer shown; deployed build verified |
+| **8: Visual refinements** | Highlight smoothing, off-main-thread terrain prep, label/HUD overlap, game-feel pass | No long task > 200 ms after generation (software renderer); Lighthouse a11y 100; draw calls/triangles within +10% of phase 7; screens regenerated; reduced motion honoured |
 
 ## Workflow notes
 

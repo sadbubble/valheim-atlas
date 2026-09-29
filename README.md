@@ -2,15 +2,39 @@
 
 An interactive, orbitable 3D map of a Valheim-style world for newcomers and veterans. It covers biomes, bosses, points of interest, progression and tips, and every game fact is sourced.
 
-> **Status: Phase 4.** The world (Path B, a rule-driven *approximation*; see
-> [`docs/DECISION.md`](docs/DECISION.md)) renders as a stylized 3D disc floating in space, with
-> map markers, search, info panels, pins and measuring.
+> **Fan-made. Not affiliated with or endorsed by Iron Gate or Coffee Stain.** Contains no game
+> art, models, music, fonts or code: every icon, colour and shader is our own.
+
+**Live site:** _not deployed yet_ (it will be at `https://<owner>.github.io/<repo>/` once the
+repository owner enables GitHub Pages; see [Deploy](#deploy)).
+
+> **Status: Phase 7 (polish and release) done; deployment waits on the owner enabling Pages.**
+> The world (Path B, a rule-driven *approximation*; see [`docs/DECISION.md`](docs/DECISION.md))
+> renders as a stylized 3D disc floating in space, with map markers, search, info panels, a
+> progression guide, newcomer/veteran modes, pins, measuring and an About / data view.
+> Progress: [`docs/PROJECT_STATUS.md`](docs/PROJECT_STATUS.md).
 
 | Overview | Region | Close-up |
 | --- | --- | --- |
 | ![Overview](docs/screens/1-overview.png) | ![Region](docs/screens/2-region.png) | ![Close-up](docs/screens/3-close.png) |
->
-> Fan-made; not affiliated with Iron Gate or Coffee Stain. Contains no game assets.
+
+Screenshots are regenerated with `npm run screens` (`docs/screens/`).
+
+## Data and sourcing policy
+
+- Every game fact (a name, number, drop, biome rule or location constraint) lives in
+  `public/data/*.json` and cites where it came from: the exact page or file, or a source ID
+  from [`docs/SOURCES.md`](docs/SOURCES.md). The app never hard-codes game facts.
+- Nothing is invented. A value no source gives is `null`, shown as **unverified** in the app
+  and listed in [`docs/DATA_TODO.md`](docs/DATA_TODO.md). Sources that disagree are marked
+  `conflict` and explained.
+- Worlds from the `approx-v1` generator are always labelled **Approximation**: they follow the
+  published layout rules but are not the real world for a seed.
+- The target game version lives only in `public/data/meta.json`; the About view and bottom bar
+  read it from there.
+- No tracking, analytics, cookies, ads, CDNs or web fonts: the built site loads nothing from
+  other origins (tested), and outbound links go only to listed sources or valheim-map.world
+  (unit-tested).
 
 ## Requirements
 
@@ -26,8 +50,14 @@ npm run dev          # http://localhost:5173
 
 The default seed's world is generated in a Web Worker and shown in 3D, with an
 **Approximation** badge. Drag to orbit, scroll to zoom, right-drag to pan, double-click to
-fly to a spot. The HUD has a relief (vertical exaggeration, default 1.5×) slider, a
-trees & rocks toggle, an FPS/draw-call overlay and a reset-view button.
+fly to a spot (touch: one finger orbits, two pan, pinch zooms). The HUD has a relief
+(vertical exaggeration, default 1.5×) slider, a trees & rocks toggle, an FPS/draw-call overlay
+and reset / top-down view buttons. **About & sources** in the bottom bar shows the target game
+version, the source list, how the world is made and how many values are still unverified.
+
+To try the production build locally: `npm run build && npm run preview`
+(<http://localhost:4173/>), or under a GitHub-Pages-style sub-path:
+`npm run build && npm run serve:subpath` (<http://localhost:4180/valheim-atlas/>).
 
 ### Using the map
 
@@ -48,9 +78,17 @@ trees & rocks toggle, an FPS/draw-call overlay and a reset-view button.
 - **Tools:** place, drag, rename and delete pins (also via the pin list); measure the distance
   between two points; **Copy link** shares the seed, camera, layers, spoiler setting and pins.
 - **Cursor readout:** game-style X/Z coordinates, height above sea and distance from centre.
-- **Keyboard:** <kbd>/</kbd> search, arrow keys/<kbd>Enter</kbd> in results, arrow keys/<kbd>Home</kbd>/
-  <kbd>End</kbd> on tabs, <kbd>Esc</kbd> closes the tool or panel, <kbd>Delete</kbd> removes the selected pin.
-  Everything on the map is also reachable from search, biome labels (buttons) and the pin list.
+- **Keyboard:** the first <kbd>Tab</kbd> offers "Skip to search"; <kbd>/</kbd> search, arrow
+  keys/<kbd>Enter</kbd> in results, arrow keys/<kbd>Home</kbd>/<kbd>End</kbd> on tabs,
+  <kbd>Esc</kbd> closes the tool, panel or dialog, <kbd>Delete</kbd> removes the selected pin; on
+  the map, arrows pan, <kbd>+</kbd>/<kbd>−</kbd> zoom, <kbd>Q</kbd>/<kbd>E</kbd> rotate,
+  <kbd>T</kbd> top-down, <kbd>R</kbd> reset. Everything on the map is also reachable from search,
+  biome labels (buttons), the layer list, the guide and the pin list.
+- **Accessibility:** landmarks, visible focus, 44 px touch targets on small screens,
+  `prefers-reduced-motion` (camera jumps instead of flying; shader motion stops), axe-core e2e
+  audit and Lighthouse accessibility 96–100 (`docs/RELEASE.md`).
+- **Small screens:** the side drawer folds behind a **Menu** button and opens as a bottom
+  sheet; the info panel is a bottom sheet with a sticky close button.
 
 ### Renderer (`src/render`)
 
@@ -120,7 +158,10 @@ The HUD state is mirrored in the query string, so any view can be shared:
 | `layers` | comma list of `biomes,bosses,dungeons,npcs,vegvisirs,villages,landmarks,creatures,resources,grid,pins` | `biomes,bosses,dungeons,npcs,vegvisirs,villages,pins` |
 | `spoiler` | `0` (spoiler-free) \| `1` (mild) \| `2` (all) | by mode: newcomer 0, veteran 2 |
 | `pins` | `x,z,label;x,z,label…` (game metres) | none |
+| `hide` | comma list of location type ids filtered off the map | none |
+| `sel` | content or pin id: opens its panel on load | none |
 | `cam` | `x,z,distance,polar,azimuth` (applied on load; written by **Copy link**) | overview |
+| `about` | `1` opens the About / data view | closed |
 
 Example: `http://localhost:5173/?seed=HelloWorld&mode=veteran&layers=bosses,dungeons,grid,pins&pins=-800,300,Base`.
 
@@ -138,10 +179,12 @@ Invalid values fall back to their defaults, and parameters left at their default
 | `npm run format`    | Prettier write                                  |
 | `npm test`          | Vitest unit tests                               |
 | `npm run perf`      | Time a 1024² world generation                   |
-| `npm run test:e2e`  | Playwright e2e (Chromium, software WebGL)       |
+| `npm run test:e2e`  | Playwright e2e (Chromium, software WebGL): dev server, plus the production build under a sub-path |
 | `npm run screens`   | Regenerate `docs/screens/*.png` + `stats.json`  |
 | `npm run validate:data` | Validate `public/data` (+ `-- --write-todo`) |
 | `npm run check`     | typecheck, lint, test, validate:data            |
+| `npm run budget`    | Initial-JS size vs. the 1.5 MB gzip budget (`-- --build` to rebuild first) |
+| `npm run serve:subpath` | Serve `dist/` under `/valheim-atlas/` like GitHub Pages |
 
 ## Project layout
 
@@ -155,10 +198,27 @@ tests/e2e/     Playwright specs
 src/data/      zod schemas + typed JSON loaders
 src/state/     Zustand stores, URL state helper
 src/ui/        HUD and panels
-docs/          SPEC, DECISION, SOURCES
+docs/          PROJECT_STATUS, SPEC, DECISION, SOURCES, RELEASE, USER_STORIES
+scripts/       validate-data, budget, serve-static (dev tooling)
+.github/       CI and GitHub Pages workflows
 ```
 
 Contributor rules are in [`CLAUDE.md`](CLAUDE.md). In short: no game assets, every game fact lives in `public/data/*.json` with a source, and no invented stats.
+
+## Deploy
+
+The site is fully static. `.github/workflows/deploy.yml` builds it and publishes `dist/` to
+GitHub Pages on every push to `main` (or by hand from the Actions tab). One-time setup by the
+repository owner: **Settings → Pages → Build and deployment → Source: GitHub Actions**. The
+build uses relative asset URLs, so it works under `https://<owner>.github.io/<repo>/` or at a
+domain root without changes. `.github/workflows/ci.yml` runs the checks, the bundle budget and
+the e2e suite on pushes and pull requests. Details, the Content-Security-Policy and the release
+checklist: [`docs/RELEASE.md`](docs/RELEASE.md).
+
+## Licence
+
+No licence has been chosen yet (the repository owner decides). Until then, all rights are
+reserved by the authors. Game names belong to their owners.
 
 ## Tech
 
