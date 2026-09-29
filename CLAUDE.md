@@ -2,6 +2,10 @@
 
 Valheim Atlas is an interactive 3D, orbitable map of a Valheim world (a disc with a 10 km radius and ocean beyond it) for newcomers and veterans.
 
+> **Start here:** read `docs/PROJECT_STATUS.md` first in any new session, before touching code.
+> It is the single source of truth for phase status, key decisions and open items; update it
+> whenever a phase finishes or an open item changes.
+
 - Product spec: `docs/SPEC.md`
 - World-generation path: `docs/DECISION.md`
 - Research log and source IDs: `docs/SOURCES.md`
@@ -49,7 +53,8 @@ Do not add new runtime dependencies without a one-line justification in the PR d
 /
 ├─ CLAUDE.md  README.md
 ├─ index.html  debug.html  app entry; biome-map debug page (2D canvas)
-├─ docs/                  SPEC.md, DECISION.md, SOURCES.md, DATA_TODO.md (generated list of nulls)
+├─ docs/                  PROJECT_STATUS.md (read first), SPEC.md, DECISION.md, SOURCES.md,
+│                         DATA_TODO.md (generated list of nulls)
 ├─ scripts/               validate-data.ts (npm run validate:data, run with tsx)
 ├─ public/
 │  ├─ data/               game facts, all JSON, all sourced; fetched at runtime
@@ -164,6 +169,7 @@ Unit tests sit next to their code as `*.test.ts(x)`.
 
 ## Workflow notes
 
+- Read `docs/PROJECT_STATUS.md` at the start of every session; update it (phase table, decisions, open items) in the same commit as the change that affects it.
 - Work in plan mode for any multi-file change. Present the plan and wait for approval.
 - Research that adds facts must cite them (URL or registered ID) and record `confidence` honestly (`read` / `snippet` / `conflict`); new source families also get an entry in `docs/SOURCES.md` and `public/data/sources.json`.
 - The community wikis are blocked in this cloud environment; see `docs/SOURCES.md` §e for how content was sourced instead.
