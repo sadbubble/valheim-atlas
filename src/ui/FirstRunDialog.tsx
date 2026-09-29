@@ -1,10 +1,9 @@
-import { useEffect, useRef, useState, type KeyboardEvent } from 'react';
+import { useRef, useState, type KeyboardEvent } from 'react';
 import { appStore } from '../state/app-store';
 import { applyOnboardingChoice, type OnboardingChoice } from '../state/onboarding';
 import { prefsStore, shouldShowFirstRun } from '../state/prefs';
 import { useUiStore } from '../state/ui-store';
-
-const FOCUSABLE = 'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
+import { trapTabKey, useModalFocus } from './focus-trap';
 
 /**
  * First-run prompt (SPEC §7, N3/N8): "New to Valheim?". Shown once, on a visit with no
@@ -19,19 +18,8 @@ export function FirstRunDialog() {
   const dialogRef = useRef<HTMLDivElement>(null);
   const yesRef = useRef<HTMLButtonElement>(null);
 
-  useEffect(() => {
-    if (!open) return;
-    yesRef.current?.focus();
-    // Keep focus inside the dialog even if it escapes (e.g. a click on the backdrop).
-    const onFocusIn = (e: FocusEvent) => {
-      const d = dialogRef.current;
-      if (d && e.target instanceof Node && !d.contains(e.target)) yesRef.current?.focus();
-    };
-    document.addEventListener('focusin', onFocusIn);
-    return () => {
-      document.removeEventListener('focusin', onFocusIn);
-    };
-  }, [open]);
+  // Focus starts on "Yes" and stays inside the dialog even if it escapes (backdrop click).
+  useModalFocus(open, dialogRef, yesRef);
 
   if (!open) return null;
 
@@ -56,18 +44,7 @@ export function FirstRunDialog() {
       choose('dismissed');
       return;
     }
-    if (e.key !== 'Tab') return;
-    const nodes = dialogRef.current?.querySelectorAll<HTMLElement>(FOCUSABLE);
-    if (!nodes || nodes.length === 0) return;
-    const first = nodes[0];
-    const last = nodes[nodes.length - 1];
-    if (e.shiftKey && document.activeElement === first) {
-      e.preventDefault();
-      last?.focus();
-    } else if (!e.shiftKey && document.activeElement === last) {
-      e.preventDefault();
-      first?.focus();
-    }
+    trapTabKey(e, dialogRef.current);
   };
 
   return (

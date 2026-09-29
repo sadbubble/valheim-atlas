@@ -26,7 +26,11 @@ export type Drawer = 'map' | 'guide';
 
 interface UiState {
   drawer: Drawer;
+  /** Picks the drawer's view and opens the drawer (it can be folded away on small screens). */
   setDrawer: (drawer: Drawer) => void;
+  /** Small screens only: whether the side drawer is unfolded (desktop always shows it). */
+  drawerOpen: boolean;
+  setDrawerOpen: (open: boolean) => void;
   selection: Selection | null;
   tab: InfoTab;
   hover: HoverInfo | null;
@@ -51,7 +55,11 @@ interface UiState {
 export const useUiStore = create<UiState>()((set, get) => ({
   drawer: 'map',
   setDrawer: (drawer) => {
-    set({ drawer });
+    set({ drawer, drawerOpen: true });
+  },
+  drawerOpen: false,
+  setDrawerOpen: (drawerOpen) => {
+    set({ drawerOpen });
   },
   selection: null,
   tab: 'overview',

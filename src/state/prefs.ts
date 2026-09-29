@@ -81,12 +81,13 @@ export function applyStoredPrefs(state: UrlState, search: string, prefs: Prefs):
 
 /**
  * The "New to Valheim?" prompt appears only on a first visit: nothing stored yet and no
- * mode or spoiler setting in the URL (a shared link already decides those).
+ * mode or spoiler setting in the URL (a shared link already decides those). A link straight
+ * to the About view shows that instead of the prompt.
  */
 export function shouldShowFirstRun(search: string, prefs: Prefs): boolean {
   if (prefs.onboarding !== undefined) return false;
   const params = new URLSearchParams(search);
-  return !params.has('mode') && !params.has('spoiler');
+  return !params.has('mode') && !params.has('spoiler') && params.get('about') !== '1';
 }
 
 export interface PrefsState {

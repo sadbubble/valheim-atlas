@@ -1,7 +1,7 @@
 # User-story audit (SPEC §4)
 
 Audit of every user story in `docs/SPEC.md` §4 against its acceptance criteria, done in
-phase 6 (2026-09-29, branch `claude/eager-galileo-lw2rru`). Each row points to an automated
+phase 6 (2026-09-29, branch `claude/eager-galileo-lw2rru`) and updated in phase 7 (V7, N8). Each row points to an automated
 test, or to a manual check when automation is impractical. Re-run this audit whenever a
 story's feature changes.
 
@@ -11,6 +11,7 @@ Evidence abbreviations:
 - `modes` = `tests/e2e/modes.spec.ts`
 - `interaction` = `tests/e2e/interaction.spec.ts`
 - `scene` = `tests/e2e/scene.spec.ts`
+- `about` = `tests/e2e/about.spec.ts`; `subpath` = `tests/e2e/subpath.spec.ts` (phase 7)
 - Unit tests are given by path.
 
 ## Newcomer
@@ -28,7 +29,7 @@ Evidence abbreviations:
 | N7 | Location panel explains the category in plain language, with contents and biome | met | `modes` › "location panels explain their category in plain words (N7)"; `src/data/validate.test.ts` › "fails when the location-category glossary is incomplete or unsourced"; `src/data/story-coverage.test.ts` › "N7…" (glossary text in `public/data/location-categories.json`, our own words, sourced). Contents = description/veteran notes; biome = "Biomes" row |
 | N8 | On-screen controls hint | met | `modes` › "\"Yes\" gives the spoiler-free newcomer setup…" (hint shown on first visit, closed, re-opened via "Controls help") |
 | N8 | Reset view button | met | `scene` › "camera controls respond: drag orbits, wheel zooms, reset returns"; `modes` › "top-down view button and keyboard camera controls" (R key) |
-| N8 | Keyboard and touch both work | met | Keyboard: `modes` › "top-down view button and keyboard camera controls" (arrows pan, + zooms, T/R). Touch: manual check M2 below |
+| N8 | Keyboard and touch both work | met | Keyboard: `modes` › "top-down view button and keyboard camera controls" (arrows pan, + zooms, T/R); `tests/e2e/a11y.spec.ts` (skip link, Tab leaves the map). Touch: `tests/e2e/mobile.spec.ts` (390 × 844 touch: HUD usable, 44 px targets, search → panel → close by tap, `touch-action: none` on the map); gestures: manual check M2 below |
 
 ## Veteran
 
@@ -41,11 +42,11 @@ Evidence abbreviations:
 | V4 | The measure tool gives straight-line metres | met | `interaction` › "pins, measuring and a shareable link" |
 | V5 | Location panel shows quantity, prioritized flag, min/max distance and altitude, sourced | met | `modes` › "location panels explain their category in plain words (N7)" (checks the placement rows and the sources footer). Omitted limits show "no limit"; null ones show "unverified" |
 | V6 | Copying the URL reproduces the seed, camera, layers and selection | met | `interaction` › "pins, measuring and a shareable link" (seed, camera, layers, pins); `modes` › "a copied link reopens the selected panel (V6)" (`sel=`); `src/state/url-state.test.ts` (`hide=` and `sel=` round-trip) |
-| V7 | The version is always visible in the About page and footer | met (footer) | `modes` › "link-out to valheim-map.world…" (footer shows "Target game version x.y.z" from `meta.json`); manual check M4. The About page is phase 7 scope (SPEC F12) |
+| V7 | The version is always visible in the About page and footer | met | `about` › "opens from the bottom bar; shows version, generator, sources, disclaimer" (bottom bar shows "Target game version x.y.z"; the About view shows the same version, data date, generator and every source, all read from `public/data`); `about` › "deep link ?about=1 opens it…"; `modes` › "link-out to valheim-map.world…" (footer); `subpath` › production build shows the footer version; manual check M4 |
 | V8 | Under Path B, an outbound link to valheim-map.world with the seed | partial | `modes` › "link-out to valheim-map.world (seed format undocumented → home page)". **Why partial:** neither `docs/DECISION.md` nor `docs/SOURCES.md` records the site's per-seed URL format, so the link opens the home page instead of guessing one. The tooltip says so and names the seed, and a "Copy seed" button helps paste it there. Linking straight to the seed needs a sourced URL format first |
 
-> V7 is counted as met for the footer (the only surface that exists before phase 7). If the
-> About-page half is counted, V7 becomes partial until phase 7 ships.
+> V7 was met for the footer only in phase 6; the About page (SPEC F12) landed in phase 7, so
+> both halves are now covered.
 
 ## Manual checks
 
@@ -56,4 +57,4 @@ Run these against `npm run dev` (or the production build) when the related featu
 | M1 | Open Layers & tools, tick "Grid & coordinates, distance rings", zoom out to the whole world | Warm circles around the world centre every grid step (1 km, `render-config.ts`), plus the square grid with brighter axes |
 | M2 | On a phone or tablet (or Chrome DevTools device mode with touch), drag with one finger, drag with two fingers, pinch | One finger orbits, two fingers pan, pinch zooms (drei `OrbitControls` defaults); tap on a marker opens its panel |
 | M3 | On a mid-range laptop, enter a new seed and press Go; time until "World ready" | Under 10 s (the Node perf test targets ~3 s for the same 1024² grid) |
-| M4 | Look at the footer on any view | "Target game version 1.0.16" (read from `public/data/meta.json`) |
+| M4 | Look at the footer on any view, then open **About & sources** | "Target game version" followed by the value of `targetGameVersion` in `public/data/meta.json`, in both places |

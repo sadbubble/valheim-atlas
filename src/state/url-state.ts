@@ -51,6 +51,8 @@ export interface UrlState {
   sel: string | null;
   /** Initial camera from a shared link; null = overview. */
   cam: CamView | null;
+  /** The About / data view is open (`?about=1`; SPEC F12), so it can be linked to. */
+  about: boolean;
 }
 
 /** Upper bound on seed length accepted from the URL; a sanity limit, not a game rule. */
@@ -81,6 +83,7 @@ export const DEFAULT_URL_STATE: Readonly<UrlState> = {
   hide: [],
   sel: null,
   cam: null,
+  about: false,
 };
 
 /** Newcomers default to spoiler-safe (SPEC F7); veterans see everything. */
@@ -150,7 +153,7 @@ function parseCam(raw: string): CamView | null {
 }
 
 /**
- * Reads `?seed=&mode=&layers=&spoiler=&pins=&hide=&sel=&cam=` from a query string. Missing or invalid
+ * Reads `?seed=&mode=&layers=&spoiler=&pins=&hide=&sel=&cam=&about=` from a query string. Missing or invalid
  * values fall back to defaults field by field, so a hand-edited URL never breaks the app.
  */
 export function parseUrlState(search: string): UrlState {
@@ -177,6 +180,7 @@ export function parseUrlState(search: string): UrlState {
     hide: (hideRaw === null ? null : parseHide(hideRaw)) ?? [],
     sel: selRaw !== null && typeIdSchema.safeParse(selRaw).success ? selRaw : null,
     cam: camRaw === null ? null : parseCam(camRaw),
+    about: get('about') === '1',
   };
 }
 
@@ -223,6 +227,7 @@ export function toSearch(state: UrlState, base = ''): string {
   put('hide', state.hide.length === 0 ? null : state.hide.join(','));
   put('sel', state.sel);
   put('cam', state.cam === null ? null : encodeCam(state.cam));
+  put('about', state.about ? '1' : null);
   params.delete('layer'); // legacy single-layer param
   const qs = params.toString();
   return qs ? `?${qs}` : '';

@@ -4,12 +4,8 @@ import { useEffect, useRef } from 'react';
 import { MathUtils, Spherical, Vector3, type PerspectiveCamera } from 'three';
 import type { OrbitControls as OrbitControlsImpl } from 'three-stdlib';
 import { appStore } from '../state/app-store';
-import {
-  prefersReducedMotion,
-  useCameraStore,
-  type CameraNudge,
-  type CameraRequest,
-} from '../state/camera-store';
+import { prefersReducedMotion, useReducedMotion } from '../lib/reduced-motion';
+import { useCameraStore, type CameraNudge, type CameraRequest } from '../state/camera-store';
 import { atlasDebug, type AtlasView } from './debug-hooks';
 import { RENDER } from './render-config';
 
@@ -44,6 +40,8 @@ export function CameraRig({ worldRadiusM }: { worldRadiusM: number | null }) {
   const anim = useRef<Anim | null>(null);
   const lastRequest = useRef(0);
   const scratch = useRef({ offset: new Vector3(), s: new Spherical() });
+  // SPEC §7: no drift after a drag either (damping keeps the view gliding) when motion is reduced.
+  const reducedMotion = useReducedMotion();
 
   const overview = (radius: number): AtlasView => ({
     x: 0,
@@ -210,7 +208,7 @@ export function CameraRig({ worldRadiusM }: { worldRadiusM: number | null }) {
     <OrbitControls
       ref={controls}
       makeDefault
-      enableDamping
+      enableDamping={!reducedMotion}
       dampingFactor={C.dampingFactor}
       minDistance={C.minDistanceM}
       maxDistance={C.maxDistanceM}

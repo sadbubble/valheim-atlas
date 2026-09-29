@@ -115,5 +115,21 @@
     "accessed": "2026-09-29",
     "gameVersion": "1.0",
     "confidence": "read"
+  },
+  {
+    "id": "S-DATA-02",
+    "title": "valheim.tools item database: Frostfire greatsword (search summary only; cited as the conflicting value)",
+    "url": "https://www.valheim.tools/items/frostfire-greatsword",
+    "kind": "community-data",
+    "accessed": "2026-09-29",
+    "confidence": "snippet"
+  },
+  {
+    "id": "S-DATA-03",
+    "title": "valheimplanner.com: frigid kiln (search summary only; cited as the conflicting recipe)",
+    "url": "https://www.valheimplanner.com/build/frigid-kiln/",
+    "kind": "community-data",
+    "accessed": "2026-09-29",
+    "confidence": "snippet"
   }
 ]

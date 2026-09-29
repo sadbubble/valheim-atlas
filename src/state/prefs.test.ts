@@ -124,6 +124,8 @@ describe('first-run prompt', () => {
     expect(shouldShowFirstRun('?seed=abc', {})).toBe(true);
     expect(shouldShowFirstRun('?mode=veteran', {})).toBe(false);
     expect(shouldShowFirstRun('?spoiler=0', {})).toBe(false);
+    // A link to the About view opens that, not the prompt.
+    expect(shouldShowFirstRun('?about=1', {})).toBe(false);
     expect(shouldShowFirstRun('', { onboarding: 'dismissed' })).toBe(false);
   });
 

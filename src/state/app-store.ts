@@ -23,6 +23,8 @@ export interface AppState extends UrlState {
   movePin: (id: string, x: number, z: number) => void;
   renamePin: (id: string, label: string) => void;
   removePin: (id: string) => void;
+  /** Open or close the About / data view (URL-synced as `?about=1`). */
+  setAbout: (open: boolean) => void;
   replaceUrlState: (state: UrlState) => void;
 }
 
@@ -80,6 +82,9 @@ export function createAppStore(initial: UrlState = DEFAULT_URL_STATE) {
     },
     removePin: (id) => {
       set({ pins: get().pins.filter((p) => p.id !== id) });
+    },
+    setAbout: (about) => {
+      set({ about });
     },
     replaceUrlState: (state) => {
       pinCounter = Math.max(pinCounter, state.pins.length);

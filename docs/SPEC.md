@@ -93,9 +93,15 @@ Each panel shows a "Sources" footer listing source IDs and their confidence.
 ### F12. About / data
 - A page listing the target game version, all sources, the generator path, and a disclaimer: fan-made, not affiliated with Iron Gate or Coffee Stain.
 
-> **Implementation status (Phase 6):** F1–F11 are implemented; F12 (About page) is phase 7.
+> **Implementation status (Phase 7):** F1–F12 are implemented.
+> - F12: an "About & sources" dialog opened from the bottom bar (deep link `?about=1`): target
+>   game version and data date from `meta.json`, generator id/revision with the approximation
+>   note, every entry of `sources.json`, the count of unverified values, a privacy note and the
+>   disclaimer "Fan-made. Not affiliated with or endorsed by Iron Gate or Coffee Stain.", which
+>   is also always in the bottom bar. §7 accessibility and §8 budget results: `docs/RELEASE.md`.
 > - F1: orbit/pan/zoom, fly-to, reset, a top-down (map) view (button and T key), keyboard
->   camera keys, and `prefers-reduced-motion` (camera jumps instead of flying).
+>   camera keys, and `prefers-reduced-motion` (camera jumps instead of flying, no orbit drift,
+>   shader motion stops).
 > - F2/F3: layers with per-layer counts, per-type filters (`?hide=`), 1 km distance rings on
 >   the grid layer, and a legend explaining every location category.
 > - F4: location panels explain their category (`public/data/location-categories.json`).

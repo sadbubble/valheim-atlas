@@ -6,4 +6,6 @@ export const frameStats = {
   terrainChunks: 0,
   propInstances: 0,
   markers: 0,
+  /** Shader animation clock (s); stands still under prefers-reduced-motion. */
+  shaderTimeS: 0,
 };

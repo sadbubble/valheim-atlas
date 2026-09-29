@@ -61,12 +61,3 @@ export const useCameraStore = create<CameraState>()((set) => ({
   },
   getView: () => null,
 }));
-
-/** True when the user asked the OS/browser to minimise motion (SPEC §7). */
-export function prefersReducedMotion(): boolean {
-  try {
-    return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  } catch {
-    return false;
-  }
-}

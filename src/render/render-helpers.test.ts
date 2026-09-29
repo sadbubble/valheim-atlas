@@ -23,7 +23,55 @@ function fakeWorld(n = 64): PropSource {
   };
 }
 
+/** The original, straightforward blur: the optimised one must match it bit for bit. */
+function referenceBlur(
+  data: Float32Array,
+  n: number,
+  channels: number,
+  radius: number,
+  passes: number,
+) {
+  const tmp = new Float32Array(data.length);
+  const width = 2 * radius + 1;
+  const run = (src: Float32Array, dst: Float32Array, horizontal: boolean) => {
+    for (let line = 0; line < n; line++) {
+      for (let ch = 0; ch < channels; ch++) {
+        const at = (k: number) => {
+          const c = k < 0 ? 0 : k >= n ? n - 1 : k;
+          return (horizontal ? line * n + c : c * n + line) * channels + ch;
+        };
+        let sum = 0;
+        for (let k = -radius; k <= radius; k++) sum += src[at(k)] ?? 0;
+        for (let k = 0; k < n; k++) {
+          dst[at(k)] = sum / width;
+          sum += (src[at(k + radius + 1)] ?? 0) - (src[at(k - radius)] ?? 0);
+        }
+      }
+    }
+  };
+  for (let p = 0; p < passes; p++) {
+    run(data, tmp, true);
+    run(tmp, data, false);
+  }
+}
+
 describe('boxBlur', () => {
+  it('matches the straightforward per-line blur exactly', () => {
+    for (const [n, channels, radius] of [
+      [16, 1, 2],
+      [37, 3, 3],
+      [24, 4, 5],
+      [8, 4, 12],
+    ] as const) {
+      const input = new Float32Array(n * n * channels).map((_, i) => ((i * 7919) % 256) / 3);
+      const fast = input.slice();
+      const slow = input.slice();
+      boxBlur(fast, n, channels, radius, 2);
+      referenceBlur(slow, n, channels, radius, 2);
+      expect(fast).toEqual(slow);
+    }
+  });
+
   it('preserves the mean and softens a step edge', () => {
     const n = 16;
     const d = new Float32Array(n * n);

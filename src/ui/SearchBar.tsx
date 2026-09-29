@@ -93,8 +93,12 @@ export function SearchBar() {
                 role="option"
                 aria-selected={k === active}
                 className={`${k === active ? 'active' : ''}${isHidden ? ' is-hidden' : ''}`}
+                // Keep focus in the box on press (no blur closing the list), choose on click:
+                // that works the same for mouse and touch taps.
                 onMouseDown={(e) => {
                   e.preventDefault();
+                }}
+                onClick={() => {
                   choose(r);
                 }}
                 onMouseEnter={() => {

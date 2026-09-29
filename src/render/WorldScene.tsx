@@ -1,5 +1,6 @@
 import { useFrame } from '@react-three/fiber';
 import { useEffect, useMemo, useRef } from 'react';
+import { prefersReducedMotion } from '../lib/reduced-motion';
 import { appStore } from '../state/app-store';
 import { useMapStore } from '../state/map-store';
 import { useRenderStore } from '../state/render-store';
@@ -61,7 +62,10 @@ export function WorldScene() {
   }, [model]);
 
   useFrame(({ clock, gl }, delta) => {
-    shared.uTime.value = clock.elapsedTime;
+    // SPEC §7: shader motion (marker pulse, highlight pulse, lava, mist, stars, rim) stands
+    // still when the user prefers reduced motion.
+    if (!prefersReducedMotion()) shared.uTime.value = clock.elapsedTime;
+    frameStats.shaderTimeS = shared.uTime.value;
     shared.uExag.value = useRenderStore.getState().exaggeration;
     shared.uGrid.value = appStore.getState().layers.includes('grid') ? 1 : 0;
     const hl = useUiStore.getState().highlight;

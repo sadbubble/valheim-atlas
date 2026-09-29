@@ -16,7 +16,7 @@ describe('parseUrlState', () => {
 
   it('reads every param', () => {
     const s = parseUrlState(
-      '?seed=HelloWorld&mode=veteran&layers=grid,pins&spoiler=1&pins=10,-20,Base;300,40,Mine%2C%20copper&hide=test-type-a,test-type-b&sel=test-entry&cam=1,2,3000,0.9,1.2',
+      '?seed=HelloWorld&mode=veteran&layers=grid,pins&spoiler=1&pins=10,-20,Base;300,40,Mine%2C%20copper&hide=test-type-a,test-type-b&sel=test-entry&cam=1,2,3000,0.9,1.2&about=1',
     );
     expect(s).toEqual({
       seed: 'HelloWorld',
@@ -30,12 +30,13 @@ describe('parseUrlState', () => {
       hide: ['test-type-a', 'test-type-b'],
       sel: 'test-entry',
       cam: { x: 1, z: 2, distanceM: 3000, polar: 0.9, azimuth: 1.2 },
+      about: true,
     });
   });
 
   it('falls back per field on invalid values', () => {
     const s = parseUrlState(
-      `?seed=${'x'.repeat(MAX_SEED_LENGTH + 1)}&mode=god&layers=grid,nope&spoiler=7&pins=a,b&hide=Not_An_Id&sel=<script>&cam=1,2`,
+      `?seed=${'x'.repeat(MAX_SEED_LENGTH + 1)}&mode=god&layers=grid,nope&spoiler=7&pins=a,b&hide=Not_An_Id&sel=<script>&cam=1,2&about=yes`,
     );
     expect(s).toEqual(DEFAULT_URL_STATE);
   });
@@ -60,6 +61,7 @@ describe('toSearch', () => {
       hide: ['test-type'],
       sel: 'pin-1',
       cam: { x: 100, z: -200, distanceM: 4000, polar: 1.1, azimuth: -0.5 },
+      about: true,
     };
     expect(parseUrlState(toSearch(state))).toEqual(state);
   });

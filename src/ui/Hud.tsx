@@ -1,17 +1,19 @@
-import { useRef, useState, type KeyboardEvent, type SubmitEvent } from 'react';
+import { lazy, Suspense, useRef, useState, type KeyboardEvent, type SubmitEvent } from 'react';
 import { useMeta } from '../data/use-meta';
 import { RENDER } from '../render/render-config';
-import { useAppStore } from '../state/app-store';
+import { appStore, useAppStore } from '../state/app-store';
 import { useRenderStore } from '../state/render-store';
 import { useUiStore, type Drawer } from '../state/ui-store';
 import { MODES } from '../state/url-state';
 import { useWorldStore, type WorldStatus } from '../state/world-store';
 import { IS_APPROXIMATION } from '../world/generator-info';
+import { ABOUT_BUTTON_ID, DISCLAIMER } from './about-shared';
 import { CameraControls } from './CameraControls';
 import { ControlsHint } from './ControlsHint';
 import { CoordReadout } from './CoordReadout';
 import { ExactMapLink } from './ExactMapLink';
 import { FirstRunDialog } from './FirstRunDialog';
+import { Icon } from './Icon';
 import { InfoPanel } from './InfoPanel';
 import { LayerPanel } from './LayerPanel';
 import { ProgressionGuide } from './ProgressionGuide';
@@ -20,6 +22,11 @@ import { StatsOverlay } from './StatsOverlay';
 import { ToolPanel } from './ToolPanel';
 import { Tooltip } from './Tooltip';
 import { useShortcuts } from './use-shortcuts';
+
+// Not needed for the first paint: loaded when the About view is first opened (SPEC §8).
+const AboutDialog = lazy(() => import('./AboutDialog').then((m) => ({ default: m.AboutDialog })));
+
+const SIDE_DRAWER_ID = 'side-drawer';
 
 const DRAWER_TABS: { id: Drawer; label: string }[] = [
   { id: 'map', label: 'Layers & tools' },
@@ -41,8 +48,10 @@ function describeStatus(status: WorldStatus): string {
 
 export function Hud() {
   const { seed, mode, setSeed, setMode } = useAppStore((s) => s);
+  const aboutOpen = useAppStore((s) => s.about);
   const status = useWorldStore((s) => s.status);
   const drawer = useUiStore((s) => s.drawer);
+  const drawerOpen = useUiStore((s) => s.drawerOpen);
   const meta = useMeta();
   const exaggeration = useRenderStore((s) => s.exaggeration);
   const showProps = useRenderStore((s) => s.showProps);
@@ -89,11 +98,29 @@ export function Hud() {
               Approximation
             </span>
           ) : null}
+          {/* Small screens fold the side drawer away; this unfolds it (hidden on desktop). */}
+          <button
+            type="button"
+            className="drawer-toggle"
+            aria-expanded={drawerOpen}
+            aria-controls={SIDE_DRAWER_ID}
+            onClick={() => {
+              useUiStore.getState().setDrawerOpen(!drawerOpen);
+            }}
+          >
+            <Icon id={drawerOpen ? 'close' : 'layers'} size={16} />
+            {drawerOpen ? 'Hide menu' : 'Menu'}
+          </button>
         </div>
         <SearchBar />
       </header>
 
-      <aside className="hud-panel hud-side" aria-label="Map controls">
+      <aside
+        className="hud-panel hud-side"
+        aria-label="Map controls"
+        id={SIDE_DRAWER_ID}
+        data-open={drawerOpen}
+      >
         <form onSubmit={onSubmit} className="hud-row">
           <label htmlFor="seed-input">Seed</label>
           <input
@@ -213,10 +240,10 @@ export function Hud() {
         )}
       </aside>
 
-      <div className="hud-center">
+      <section className="hud-center" aria-label="Camera">
         <ControlsHint />
         <CameraControls />
-      </div>
+      </section>
 
       <InfoPanel />
       <Tooltip />
@@ -231,9 +258,31 @@ export function Hud() {
               ? 'Loading data…'
               : 'Data failed to load'}
         </span>
-        <span>Fan-made; not affiliated with Iron Gate or Coffee Stain.</span>
+        <span className="disclaimer" data-testid="disclaimer">
+          {DISCLAIMER}
+        </span>
+        <button
+          type="button"
+          id={ABOUT_BUTTON_ID}
+          className="about-button"
+          aria-haspopup="dialog"
+          onClick={() => {
+            appStore.getState().setAbout(true);
+          }}
+        >
+          About &amp; sources
+        </button>
       </footer>
       <FirstRunDialog />
+      {aboutOpen ? (
+        <Suspense fallback={null}>
+          <AboutDialog
+            onClose={() => {
+              appStore.getState().setAbout(false);
+            }}
+          />
+        </Suspense>
+      ) : null}
     </div>
   );
 }

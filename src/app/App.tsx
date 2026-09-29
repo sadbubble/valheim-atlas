@@ -5,6 +5,7 @@ import { ensureContentLoaded } from '../state/content-store';
 import { applyStoredPrefs, prefsStore, startPrefsSync } from '../state/prefs';
 import { startUrlSync } from '../state/url-sync';
 import { Hud } from '../ui/Hud';
+import { SEARCH_INPUT_ID } from '../ui/SearchBar';
 import { useSharedSelection } from './use-shared-selection';
 import { useWorldGeneration } from './use-world-generation';
 
@@ -27,9 +28,22 @@ export function App() {
   useSharedSelection();
 
   return (
-    <main className="app">
-      <WorldCanvas />
+    <div className="app">
+      {/* First stop for keyboard users: straight to the search box (SPEC §7). */}
+      <a
+        className="skip-link"
+        href={`#${SEARCH_INPUT_ID}`}
+        onClick={(e) => {
+          e.preventDefault();
+          document.getElementById(SEARCH_INPUT_ID)?.focus();
+        }}
+      >
+        Skip to search
+      </a>
+      <main className="map-main" aria-label="Map">
+        <WorldCanvas />
+      </main>
       <Hud />
-    </main>
+    </div>
   );
 }

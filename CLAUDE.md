@@ -54,8 +54,11 @@ Do not add new runtime dependencies without a one-line justification in the PR d
 ├─ CLAUDE.md  README.md
 ├─ index.html  debug.html  app entry; biome-map debug page (2D canvas)
 ├─ docs/                  PROJECT_STATUS.md (read first), SPEC.md, DECISION.md, SOURCES.md,
-│                         DATA_TODO.md (generated list of nulls), USER_STORIES.md (story audit)
-├─ scripts/               validate-data.ts (npm run validate:data, run with tsx)
+│                         DATA_TODO.md (generated list of nulls), USER_STORIES.md (story audit),
+│                         RELEASE.md (release checklist, a11y/budget results, deploy steps)
+├─ scripts/               validate-data.ts (npm run validate:data), budget.ts (npm run budget),
+│                         serve-static.ts (npm run serve:subpath); all run with tsx
+├─ .github/workflows/     ci.yml (check, budget, e2e), deploy.yml (GitHub Pages)
 ├─ public/
 │  ├─ data/               game facts, all JSON, all sourced; fetched at runtime
 │  │  ├─ meta.json        targetGameVersion, worldGenVersion, dataUpdated
@@ -87,21 +90,26 @@ Do not add new runtime dependencies without a one-line justification in the PR d
 │  │  ├─ Markers.tsx  Interaction.tsx  MeasureLine.tsx  BiomeLabels.tsx   map interactivity
 │  │  ├─ markers-model.ts  marker-registry.ts  navigation.ts  biome-anchors.ts  icons.ts  icon-atlas.ts
 │  │  └─ debug-hooks.ts   window.__atlas (ready, get/setView, stats) for e2e/screenshots
+│  │                      (User Timing marks atlas:generate:start/end, atlas:renderer-ready for perf e2e)
 │  ├─ data/               schema.ts + content-schema.ts (zod), load.ts (typed loaders incl. loadContent),
 │  │                      content-index.ts (id lookup across all content files),
 │  │                      validate.ts (all data rules; used by scripts/validate-data.ts and tests)
-│  ├─ state/              Zustand stores: app (URL-synced: seed, mode, layers, spoiler, pins, hide, sel, cam),
+│  ├─ state/              Zustand stores: app (URL-synced: seed, mode, layers, spoiler, pins, hide, sel, cam, about),
 │  │                      content, map (biome anchors), ui (selection, tabs, drawer, hover, tools), camera,
 │  │                      render, prefs (localStorage: first-run answer, mode/spoiler, hint, guide progress)
 │  ├─ ui/                 HUD, SearchBar, LayerPanel, ToolPanel, InfoPanel (+ tabs), Tooltip, CoordReadout,
-│  │                      ProgressionGuide, FirstRunDialog, ControlsHint, CameraControls, ExactMapLink;
+│  │                      ProgressionGuide, FirstRunDialog, ControlsHint, CameraControls, ExactMapLink,
+│  │                      AboutDialog (lazy; about-model.ts, about-shared.ts), focus-trap.ts (modals);
 │  │                      null values render via <Unverified/>; spoiler gating via use-spoiler.ts
 │  ├─ debug/              debug.html app: biome map renderer, stats, placement report
 │  ├─ test/               Node-only test helpers (read public/data from disk)
-│  └─ lib/                small shared helpers (fuzzy search, formatting)
+│  └─ lib/                small shared helpers (fuzzy search, formatting, reduced-motion);
+│                         outbound-links.test.ts enforces the outbound-link rule
 ├─ docs/screens/          renderer screenshots at 3 zoom levels + stats.json (npm run screens)
 └─ tests/e2e/             Playwright specs (+ playwright.config.ts at the root; tests start as a
-                          returning visitor via storageState so the first-run dialog stays closed)
+                          returning visitor via storageState so the first-run dialog stays closed).
+                          Project "chromium" = dev server; project "subpath" = subpath.spec.ts
+                          against the production build served under /valheim-atlas/
 ```
 
 Unit tests sit next to their code as `*.test.ts(x)`.
@@ -150,7 +158,9 @@ Unit tests sit next to their code as `*.test.ts(x)`.
 | `npm run perf` | Times a 1024² world generation (target ~3 s on a mid-range laptop; the test fails above 6 s) |
 | `npm run check` | typecheck, lint, test and validate:data together: the pre-push gate |
 | `npm run validate:data` | Validates every `public/data/*.json`: strict schemas (missing or unknown fields fail), sources (URL or registered ID), unique ids, cross-references, per-biome completeness, weaknesses vs damage modifiers, and that `docs/DATA_TODO.md` is current. `-- --write-todo` regenerates DATA_TODO.md; `-- --schema-only --dir <path>` checks partial drafts |
-| `npm run test:e2e` | Playwright e2e in Chromium with software WebGL (SwiftShader); starts a dev server on :4179 |
+| `npm run test:e2e` | Playwright e2e in Chromium with software WebGL (SwiftShader): project `chromium` against a dev server on :4179 (incl. axe audit, reduced motion, phone layout), project `subpath` against the production build served under `/valheim-atlas/` on :4180 (builds first; checks data, worker, CSP, no external requests, long tasks) |
+| `npm run budget` | SPEC §8 budget: initial JS (entry + static imports, from the Vite manifest) must be < 1.5 MB gzipped; prints a table. Builds if `dist/` has no manifest; `-- --build` always rebuilds |
+| `npm run serve:subpath` | Serves `dist/` under `/valheim-atlas/` on :4180 like GitHub Pages (strict 404s, no SPA fallback) |
 | `npm run screens` | Regenerates `docs/screens/*.png` and `stats.json` (tagged `@screens`, skipped by `test:e2e`) |
 
 ## Definition of done

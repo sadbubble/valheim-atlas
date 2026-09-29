@@ -1,6 +1,7 @@
 :root {
   --bg: #0e1a24;
-  --panel: rgb(14 26 36 / 84%);
+  /* 90% so small coloured text keeps ≥ 5:1 contrast even over snow (docs/RELEASE.md). */
+  --panel: rgb(14 26 36 / 90%);
   --panel-solid: #122230;
   --panel-border: rgb(207 227 240 / 18%);
   --text: #e8eef2;
@@ -39,9 +40,43 @@ body,
   position: relative;
 }
 
+.map-main {
+  position: absolute;
+  inset: 0;
+}
+
 .world-canvas {
   position: absolute !important;
   inset: 0;
+}
+
+/*
+ * One-finger drags orbit the map instead of scrolling or zooming the page. This is the
+ * element the camera controls listen on; touch-action on it covers the canvas inside.
+ */
+.world-canvas {
+  touch-action: none;
+}
+
+/* Visible only when focused: the first Tab stop jumps to the search box. */
+.skip-link {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  z-index: 50;
+  padding: 8px 14px;
+  border-radius: var(--radius);
+  background: var(--panel-solid);
+  border: 2px solid var(--accent);
+  color: var(--text);
+  font-weight: 600;
+  transform: translateY(-200%);
+}
+
+.skip-link:focus {
+  transform: none;
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
 }
 
 /* The HUD overlay lets pointer events through to the canvas except on its panels. */
@@ -68,6 +103,9 @@ body,
 
 .hud-top {
   grid-column: 1 / -1;
+  /* Keeps the search results above the panels and camera buttons below the header. */
+  position: relative;
+  z-index: 2;
   display: flex;
   align-items: flex-start;
   gap: 14px;
@@ -84,6 +122,10 @@ body,
   font-size: 1.1rem;
   letter-spacing: 0.02em;
   white-space: nowrap;
+}
+
+.drawer-toggle {
+  display: none !important;
 }
 
 .hud-badge {
@@ -263,6 +305,13 @@ legend {
   gap: 7px;
   font-size: 0.85rem;
   padding: 2px 0;
+  /* WCAG 2.2 target size: rows far enough apart that each small control has 24 px. */
+  min-height: 28px;
+}
+
+.hud summary {
+  min-height: 24px;
+  padding: 3px 0;
 }
 
 .layer-swatch {
@@ -322,6 +371,17 @@ legend {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+/* The close button stays in reach while a long panel scrolls (bottom sheet on phones). */
+.info-panel > .info-head {
+  position: sticky;
+  top: -10px;
+  z-index: 1;
+  margin: -10px -14px 0;
+  padding: 6px 14px 2px;
+  background: var(--panel-solid);
+  border-radius: var(--radius) var(--radius) 0 0;
 }
 
 .kind {
@@ -462,6 +522,7 @@ legend {
 }
 
 .entity-link {
+  min-height: 24px;
   border: none !important;
   background: none !important;
   padding: 0 !important;
@@ -591,13 +652,15 @@ legend {
 }
 
 .biome-label {
+  /* WCAG 2.2 target size (24 px) for these map buttons. */
+  min-height: 24px;
   font:
     600 0.78rem system-ui,
     sans-serif;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: #fff;
-  background: rgb(10 20 28 / 55%);
+  background: rgb(10 20 28 / 75%);
   border: 1px solid rgb(255 255 255 / 25%);
   border-radius: 999px;
   padding: 2px 10px;
@@ -620,11 +683,87 @@ legend {
   grid-row: 3;
   display: flex;
   justify-content: space-between;
-  gap: 12px;
+  align-items: center;
+  gap: 4px 12px;
   flex-wrap: wrap;
   font-size: 0.76rem;
   color: var(--muted);
   padding: 6px 12px;
+}
+
+.hud .about-button {
+  font-size: 0.76rem;
+  padding: 2px 9px;
+}
+
+/* About / data view */
+.about {
+  width: min(680px, 100%);
+  max-height: min(86vh, 900px);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background: var(--panel-solid);
+  padding: 16px 18px;
+}
+
+.about h2 {
+  margin: 0;
+  font-size: 1.3rem;
+}
+
+.about h2:focus {
+  outline: none;
+}
+
+.about h2:focus-visible {
+  outline: 2px solid var(--accent);
+}
+
+.about-body {
+  overflow-y: auto;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  padding-right: 4px;
+}
+
+.about-body h3 {
+  margin: 14px 0 4px;
+  font-size: 0.98rem;
+}
+
+.about-body p {
+  margin: 4px 0;
+}
+
+.about-disclaimer {
+  border-left: 3px solid var(--accent);
+  padding: 4px 10px;
+  background: rgb(216 180 90 / 7%);
+  border-radius: 0 6px 6px 0;
+}
+
+.about-sources {
+  margin: 6px 0 0;
+  padding-left: 18px;
+  display: grid;
+  gap: 5px;
+  font-size: 0.84rem;
+}
+
+.about-sources a,
+.about-body a {
+  color: #8fc6e6;
+}
+
+.about-source-id {
+  font-variant-numeric: tabular-nums;
+  color: var(--muted);
+  font-size: 0.78rem;
+}
+
+.about .hud-badge {
+  margin-right: 4px;
 }
 
 .coords {
@@ -978,26 +1117,91 @@ kbd {
   }
 }
 
+/*
+ * Small screens (phones, narrow tablets): the side drawer folds away behind a "Menu" button
+ * and opens as a bottom sheet; the info panel is a bottom sheet over it; camera buttons sit
+ * top right, out of the sheets' way.
+ */
 @media (max-width: 900px) {
   .hud {
-    grid-template-columns: 1fr;
-    grid-template-rows: auto auto minmax(0, 1fr) auto;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto minmax(0, 1fr) auto;
+    gap: 8px;
     padding: 8px;
   }
-  .hud-side {
-    grid-row: 2;
-    max-height: 35vh;
+  .hud-top {
+    flex-wrap: wrap;
+    gap: 8px;
   }
+  .hud-brand {
+    flex: 1 1 auto;
+    padding: 6px 10px;
+  }
+  .drawer-toggle {
+    display: inline-flex !important;
+    margin-left: auto;
+    white-space: nowrap;
+  }
+  .search {
+    flex: 1 1 100%;
+  }
+  .hud-side,
   .info-panel {
     grid-column: 1;
-    grid-row: 3;
+    grid-row: 2;
+    align-self: end;
+    max-height: 52vh;
+    overscroll-behavior: contain;
+  }
+  .hud-side[data-open='false'] {
+    display: none;
+  }
+  .info-panel {
+    z-index: 1;
   }
   .hud-center {
     grid-column: 1;
-    grid-row: 3;
+    grid-row: 2;
+    justify-content: flex-start;
+    align-items: flex-end;
+  }
+  .hud-camera {
+    justify-content: flex-end;
   }
   .controls-hint {
     max-height: 30vh;
     overflow-y: auto;
+  }
+  .hud-footer {
+    justify-content: flex-start;
+    font-size: 0.72rem;
+  }
+  .about {
+    max-height: 92vh;
+    padding: 12px;
+  }
+}
+
+/* Without a hovering pointer (touch screens) the cursor readout has nothing to show. */
+@media (hover: none) and (max-width: 900px) {
+  .hud-footer .coords {
+    display: none;
+  }
+}
+
+/* Touch-friendly targets (WCAG 2.5.5): at least 44 × 44 px for the main controls. */
+@media (max-width: 900px), (pointer: coarse) {
+  .hud-camera button,
+  .drawer-toggle,
+  .hud .icon-button,
+  .hud .about-button,
+  .hud .fly-button,
+  .hud [role='tab'],
+  .search input {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  .hud .icon-button {
+    justify-content: center;
   }
 }

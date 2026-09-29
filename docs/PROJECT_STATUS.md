@@ -18,7 +18,7 @@ Last updated: 2026-09-29 · Branch: `claude/eager-galileo-lw2rru` · Target game
 | 4 | Data layer | done | `5122666` (WIP `0ae5c83`) | Sourced content JSON (biomes, bosses, creatures, resources, items, stations, food, progression, locations, tips), `validate:data`, generated DATA_TODO |
 | 5 | Interactivity | done | `82104ee` | Clustered SVG-icon markers, layer panel, fuzzy search → fly → highlight, tabbed info panel with spoiler gating and "unverified", pins, measure, share link, X/Z readout |
 | 6 | Newcomer and veteran modes | done | `0895eeb` | Progression guide (tier strip, boss/summon/altar per step, fly-to, "next" tracking), first-run "New to Valheim?" dialog, controls hint, keyboard camera, top-down view, reduced motion, location-category glossary (`location-categories.json`), valheim-map.world link-out, spoiler/mode persistence, per-type filters with counts, "find nearest" from a pin, shared selection; user-story audit in `docs/USER_STORIES.md` (13 met, 3 partial) |
-| 7 | Polish and release | pending | – | See CLAUDE.md phase 7 (accessibility audit, reduced motion, performance budget, About page, static deploy) |
+| 7 | Polish and release | done (deploy pending: the owner must enable Pages) | see git log (`feat: polish and release (phase 7)`) | About / data view (`?about=1`, lazy-loaded) and an always-visible disclaimer; axe audit in e2e (0 violations) and Lighthouse accessibility 96–100; landmarks, skip link, inert modals, 24/44 px targets, contrast; live reduced motion (camera, damping, shader clock, CSS); phone layout with bottom sheets; `npm run budget` (389 kB gzipped of 1.5 MB); relative-base static build, CSP meta, sub-path smoke test; CI and GitHub Pages workflows; outbound-link test. Details: `docs/RELEASE.md` |
 | 8 | Visual refinements | pending | – | Deferred visual fixes (see open items) |
 
 ### How this numbering maps to CLAUDE.md's Definition of done
@@ -26,7 +26,9 @@ Last updated: 2026-09-29 · Branch: `claude/eager-galileo-lw2rru` · Target game
 CLAUDE.md's Definition-of-done table uses the same sequential numbering as this table.
 Phase 6 is done: every user story N1–N8 and V1–V8 has a test or a documented manual check
 (`docs/USER_STORIES.md`). Three stories are only partly met because of data or scope limits,
-listed under *Gaps against CLAUDE.md criteria* below. Phase 8 has no Definition-of-done row yet.
+listed under *Gaps against CLAUDE.md criteria* below. Phase 7 is done except the part only the
+repository owner can do: enabling GitHub Pages and verifying the deployed build (steps in
+`docs/RELEASE.md`). Phase 8 has no Definition-of-done row yet.
 
 When the two disagree, the gaps below are what is actually missing.
 
@@ -63,6 +65,13 @@ When the two disagree, the gaps below are what is actually missing.
 - **valheim-map.world link-out** goes to the site's home page: its per-seed URL format is not
   recorded in `docs/SOURCES.md`/`DECISION.md`, so we do not guess one. The UI says so and
   offers "Copy seed". If a sourced format is found, put the seed into the link.
+- **Static deploy (phase 7):** the build uses a relative base (`./`) so one `dist/` works at a
+  domain root or under GitHub Pages' `/<repo>/`; a Content-Security-Policy `<meta>` is added at
+  build time (static hosts can't send headers). Deploys go through
+  `.github/workflows/deploy.yml`; `ci.yml` runs check, budget and e2e. See `docs/RELEASE.md`.
+- **About view (F12):** a modal dialog, deep-linkable as `?about=1`, loaded on demand. It
+  reads the version from `meta.json`, lists `sources.json` and counts unverified values from
+  the loaded data (same rule as `DATA_TODO.md`).
 - **Unverified values:** `null` means unverified. It is never dropped: the UI shows it as
   "unverified" and it is listed in the generated `docs/DATA_TODO.md`.
 
@@ -78,6 +87,15 @@ When the two disagree, the gaps below are what is actually missing.
   altar count, Hildir's max distance, altitude reference, and others.
 - **Conflicting facts marked `confidence: "conflict"`:** the Queen's summon, three Deep North
   weapon stat lines, and the frigid kiln recipe.
+- **Main-thread work after generation:** building the terrain from a finished world (surface
+  textures, chunk meshes) and compiling shaders blocks the main thread once per world (long
+  tasks of 0.4–0.6 s and ~0.2 s in CI's software renderer; see `docs/RELEASE.md`). Generation itself is off
+  the main thread (tested). Moving the surface-texture build into the worker would fix it.
+- **No licence chosen:** the repository has no `LICENSE`. The owner must choose one (code
+  and our own assets); until then all rights are reserved. Game data stays facts-only.
+- **Deployment not yet verified:** the Pages workflow can't run until the owner sets
+  *Settings → Pages → Source: GitHub Actions*. After the first deploy, open the live URL,
+  check a world loads, and add the link to the README.
 - **Newcomer tips are missing for 13 panels** (SPEC N6): Swamp, Mistlands, Ashlands, Deep
   North, Ocean and all 8 bosses have no tip tagged `newcomer`. The list is pinned by
   `src/data/story-coverage.test.ts`; closing it needs new sourced tips.
@@ -93,3 +111,7 @@ When the two disagree, the gaps below are what is actually missing.
     format).
 - **Manual-only checks:** touch controls, distance rings, and generation time on a real
   mid-range laptop (`docs/USER_STORIES.md` M1–M4).
+- **Lighthouse is run by hand**, not in CI (recorded in `docs/RELEASE.md`: mobile main view 96
+  because a moving 3D map label can slide under a camera button; 100 otherwise).
+- **Phase 7 "deployed build verified"** is pending the owner enabling Pages; the production
+  build is verified locally under a sub-path by the `subpath` e2e project.
