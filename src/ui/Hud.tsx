@@ -15,7 +15,7 @@ import { ExactMapLink } from './ExactMapLink';
 import { FirstRunDialog } from './FirstRunDialog';
 import { Icon } from './Icon';
 import { InfoPanel } from './InfoPanel';
-import { CACHE_STEP_LABEL, LOADING_STEPS } from './loading-model';
+import { CACHE_STEP_LABEL, LOADING_STEPS, loadingView } from './loading-model';
 import { LayerPanel } from './LayerPanel';
 import { ProgressionGuide } from './ProgressionGuide';
 import { SearchBar } from './SearchBar';
@@ -38,10 +38,12 @@ function describeStatus(status: WorldStatus): string {
   switch (status.kind) {
     case 'idle':
       return 'No seed yet: enter one to generate';
-    case 'generating':
-      return status.stage === 'cache'
-        ? `${CACHE_STEP_LABEL}…`
-        : `${LOADING_STEPS[status.stage === 'locations' ? 1 : 0]}… ${Math.round(status.progress * 100)}%`;
+    case 'generating': {
+      if (status.stage === 'cache') return `${CACHE_STEP_LABEL}…`;
+      // Same overall percent as the loading screen, so the two never disagree.
+      const view = loadingView(status, 'empty');
+      return view ? `${view.label}… ${view.percent}%` : '';
+    }
     case 'preparing':
       return `${LOADING_STEPS[2]}…`;
     case 'ready':
