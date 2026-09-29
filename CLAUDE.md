@@ -18,10 +18,12 @@ Valheim Atlas is an interactive 3D, orbitable map of a Valheim world (a disc wit
    Write our own words and make our own assets: SVG icons, procedural shaders, our own colour palette.
 2. **Every game fact comes from `public/data/*.json` and carries a source.**
    - A game fact is a name, number, drop, biome rule or location constraint.
-   - Each record has a non-empty `sources: SourceId[]`, and every ID must exist in `public/data/sources.json`, which mirrors `docs/SOURCES.md`.
+   - Each record has a non-empty `sources` list. Each entry is either an https URL of the exact page or file the fact comes from (preferred for content, e.g. a pinned GitHub blob URL), or a source ID that exists in `public/data/sources.json`, which mirrors `docs/SOURCES.md`.
    - Components, generator code and tests read facts through `src/data/`. **Never write game facts as literals in TS/TSX.**
    - Test fixtures may use invented values only when they are clearly fake (e.g. `"test-biome"`).
 3. **No invented stats.** If no source gives a value, the field is `null` and the UI shows "Unknown". Never guess, interpolate or "fill in plausible" numbers. When sources conflict, set `confidence: "conflict"` and add `notes`.
+   - `null` always means "unknown / unverified" and is listed in `docs/DATA_TODO.md` (generated). It never means "not applicable": omit optional fields instead (e.g. a location with no distance limit has no `maxDistM`).
+   - Every content entry has `description` (beginner-friendly), `veteranNotes`, `biomeIds`, `tier`, `dangerLevel` (editorial rating), `spoilerLevel` (0 safe / 1 mild / 2 major), `sources` and `gameVersion`. See `src/data/content-schema.ts`.
 4. **Label approximations.** Anything produced by the `approx-v1` generator must show the "Approximation" badge. Never claim to show a player's real world unless the active `WorldSource.isExact` is true.
 5. **Pin the version.** When a patch changes a fact, update the data with new sources and bump `meta.targetGameVersion` in the same commit.
 6. **Security and hygiene.**
@@ -47,13 +49,15 @@ Do not add new runtime dependencies without a one-line justification in the PR d
 /
 ├─ CLAUDE.md  README.md
 ├─ index.html  debug.html  app entry; biome-map debug page (2D canvas)
-├─ docs/                  SPEC.md, DECISION.md, SOURCES.md
+├─ docs/                  SPEC.md, DECISION.md, SOURCES.md, DATA_TODO.md (generated list of nulls)
+├─ scripts/               validate-data.ts (npm run validate:data, run with tsx)
 ├─ public/
 │  ├─ data/               game facts, all JSON, all sourced; fetched at runtime
 │  │  ├─ meta.json        targetGameVersion, worldGenVersion, dataUpdated
 │  │  ├─ sources.json     SourceRef[]; IDs match docs/SOURCES.md
-│  │  ├─ world.json  biome-rules.json  biomes.json  locations.json   (implemented)
-│  │  └─ bosses.json  creatures.json  items.json  progression.json  tips.json   (planned)
+│  │  ├─ world.json  biome-rules.json           world generation facts
+│  │  ├─ biomes.json  bosses.json  creatures.json  resources.json  items.json
+│  │  ├─ crafting-stations.json  food.json  progression.json  locations.json  tips.json
 │  └─ favicon.svg         only self-made assets
 ├─ src/
 │  ├─ main.tsx            entry point
@@ -75,7 +79,8 @@ Do not add new runtime dependencies without a one-line justification in the PR d
 │  │  ├─ materials.ts  shaders/        our own GLSL (no game assets)
 │  │  ├─ render-config.ts  palette.ts  props-config.ts   visual tuning + original palette
 │  │  └─ debug-hooks.ts   window.__atlas (ready, get/setView, stats) for e2e/screenshots
-│  ├─ data/               schema.ts (zod), load.ts (typed fetch loaders), integrity checks
+│  ├─ data/               schema.ts + content-schema.ts (zod), load.ts (typed loaders incl. loadContent),
+│  │                      validate.ts (all data rules; used by scripts/validate-data.ts and tests)
 │  ├─ state/              Zustand stores; url-state.ts (?seed=&mode=&layer=) + url-sync.ts
 │  ├─ ui/                 HUD, panels, drawers, legend, search, badges
 │  ├─ debug/              debug.html app: biome map renderer, stats, placement report
@@ -127,15 +132,15 @@ Unit tests sit next to their code as `*.test.ts(x)`.
 | `npm run format` | Prettier write (Markdown is excluded so doc tables stay hand-aligned) |
 | `npm test` | Vitest (unit); `npm run test:watch` for watch mode |
 | `npm run perf` | Times a 1024² world generation (target ~3 s on a mid-range laptop; the test fails above 6 s) |
-| `npm run check` | typecheck, lint and test together: the pre-push gate |
-| `npm run validate:data` | *Planned (Phase 1 data work):* standalone data validator. Until then `src/data/data-files.test.ts` validates `public/data/*.json` and source-ID integrity inside `npm test` |
+| `npm run check` | typecheck, lint, test and validate:data together: the pre-push gate |
+| `npm run validate:data` | Validates every `public/data/*.json`: strict schemas (missing or unknown fields fail), sources (URL or registered ID), unique ids, cross-references, per-biome completeness, weaknesses vs damage modifiers, and that `docs/DATA_TODO.md` is current. `-- --write-todo` regenerates DATA_TODO.md; `-- --schema-only --dir <path>` checks partial drafts |
 | `npm run test:e2e` | Playwright e2e in Chromium with software WebGL (SwiftShader); starts a dev server on :4179 |
 | `npm run screens` | Regenerates `docs/screens/*.png` and `stats.json` (tagged `@screens`, skipped by `test:e2e`) |
 
 ## Definition of done
 
 **All phases** require:
-- `npm run check` passes, and `npm run test:e2e` / `validate:data` pass once they exist.
+- `npm run check` passes (includes `validate:data`), and `npm run test:e2e` passes.
 - No new un-sourced game facts, and no assets that break the rules above.
 - Docs are updated (SPEC, SOURCES, and this file if conventions change).
 - Changes are committed with a clear message and pushed.
@@ -153,5 +158,6 @@ Unit tests sit next to their code as `*.test.ts(x)`.
 ## Workflow notes
 
 - Work in plan mode for any multi-file change. Present the plan and wait for approval.
-- Research that adds facts must first add or update entries in `docs/SOURCES.md` and `public/data/sources.json`, with `confidence` recorded honestly (`read` / `snippet` / `conflict`).
+- Research that adds facts must cite them (URL or registered ID) and record `confidence` honestly (`read` / `snippet` / `conflict`); new source families also get an entry in `docs/SOURCES.md` and `public/data/sources.json`.
+- The community wikis are blocked in this cloud environment; see `docs/SOURCES.md` §e for how content was sourced instead.
 - Open verification items live at the bottom of `docs/SOURCES.md`. Don't ship data that depends on an open item. Leave that field `null`.

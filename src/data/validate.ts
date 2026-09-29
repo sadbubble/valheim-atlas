@@ -77,7 +77,10 @@ export function collectTodo(raw: Partial<Record<DataFileName, unknown>>): TodoIt
   const out: TodoItem[] = [];
   const walk = (file: string, id: string, v: unknown, path: string) => {
     if (v === null) out.push({ file, id, path });
-    else if (Array.isArray(v)) v.forEach((x, i) => walk(file, id, x, `${path}[${i}]`));
+    else if (Array.isArray(v))
+      v.forEach((x, i) => {
+        walk(file, id, x, `${path}[${i}]`);
+      });
     else if (isRecord(v)) {
       for (const [k, x] of Object.entries(v)) walk(file, id, x, path ? `${path}.${k}` : k);
     }

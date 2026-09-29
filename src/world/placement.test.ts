@@ -27,11 +27,11 @@ describe('location placement', () => {
         expect(type.biomeIds).toContain(loc.biomeId);
         const d = Math.hypot(loc.x, loc.z);
         expect(d).toBeLessThanOrEqual(data.world.worldRadiusM + 1);
-        if (type.minDistM !== null) expect(d).toBeGreaterThanOrEqual(type.minDistM - 1);
-        if (type.maxDistM !== null) expect(d).toBeLessThanOrEqual(type.maxDistM + 1);
+        if (type.minDistM != null) expect(d).toBeGreaterThanOrEqual(type.minDistM - 1);
+        if (type.maxDistM != null) expect(d).toBeLessThanOrEqual(type.maxDistM + 1);
         const alt = (w.height[cell] ?? 0) - data.world.seaLevelM;
         expect(alt).toBeGreaterThanOrEqual(type.minAltM ?? TUNING.placement.defaultMinAltitudeM);
-        if (type.maxAltM !== null) expect(alt).toBeLessThanOrEqual(type.maxAltM);
+        if (type.maxAltM != null) expect(alt).toBeLessThanOrEqual(type.maxAltM);
       }
     }
   });

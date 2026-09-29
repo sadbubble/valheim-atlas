@@ -1,0 +1,659 @@
+[
+  {
+    "id": "tip-fire-vs-greydwarfs",
+    "name": "Burn the greydwarfs",
+    "description": "Greydwarfs, their brutes and shamans are very weak to fire. Fire arrows (8 wood, 2 resin, 2 feathers make 20) or a torch make short work of them.",
+    "veteranNotes": "All three greydwarf types list fire as veryWeak and poison as resistant, and are immune to spirit.",
+    "biomeIds": ["black-forest", "meadows"],
+    "tier": 2,
+    "dangerLevel": "none",
+    "spoilerLevel": 0,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/creatures.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/arrows.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "confidence": "read",
+    "audience": "newcomer",
+    "subjectIds": ["greydwarf", "greydwarf-brute", "greydwarf-shaman", "fire-arrow"]
+  },
+  {
+    "id": "tip-blunt-vs-skeletons",
+    "name": "Smash skeletons",
+    "description": "Skeletons are weak to blunt and fire damage but resist pierce, so a club or mace beats arrows in the crypts. Poison does nothing to them.",
+    "veteranNotes": "Skeleton, rancid remains and the regional skeletons (Swamp, Mountain, Deep North) share: blunt weak, fire weak, pierce resistant, frost resistant, poison immune.",
+    "biomeIds": ["black-forest"],
+    "tier": 2,
+    "dangerLevel": "none",
+    "spoilerLevel": 0,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/creatures.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/weapons.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "confidence": "read",
+    "audience": "newcomer",
+    "subjectIds": ["skeleton", "rancid-remains", "club"]
+  },
+  {
+    "id": "tip-troll-pierce",
+    "name": "Use pierce on trolls",
+    "description": "Trolls are weak to pierce and resist blunt. Keep your distance and use arrows or a spear; their swings hit for 60 to 70 blunt.",
+    "veteranNotes": "A troll has 600 health and drops 5 troll hide. Its thrown rock deals 50 blunt.",
+    "biomeIds": ["black-forest"],
+    "tier": 2,
+    "dangerLevel": "none",
+    "spoilerLevel": 0,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/creatures.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "confidence": "read",
+    "audience": "newcomer",
+    "subjectIds": ["troll", "crude-bow"]
+  },
+  {
+    "id": "tip-bronze-axe-fine-wood",
+    "name": "Fine wood needs a better axe",
+    "description": "Birch and oak trees give fine wood, but they need an axe of tool tier 2. The flint axe (tier 1) cannot cut them; a bronze axe (tier 2) can.",
+    "veteranNotes": "Tool tiers from the data: stone axe 0, flint axe 1, bronze axe 2, iron axe 3, black metal axe 4.",
+    "biomeIds": ["meadows"],
+    "tier": 2,
+    "dangerLevel": "none",
+    "spoilerLevel": 0,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/objects.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/weapons.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "confidence": "read",
+    "audience": "newcomer",
+    "subjectIds": ["fine-wood", "bronze-axe", "flint-axe"]
+  },
+  {
+    "id": "tip-crypt-surtling-cores",
+    "name": "Surtling cores in burial chambers",
+    "description": "Burial chambers in the Black Forest contain surtling core stands. A smelter and a charcoal kiln each need 5 surtling cores and 20 stone, so crypts let you smelt before you ever visit the Swamp.",
+    "veteranNotes": "Forest crypt rooms also hold treasure chests, bone pile spawners and, in some rooms, a Vegvisir to The Elder (40% per room).",
+    "biomeIds": ["black-forest"],
+    "tier": 2,
+    "dangerLevel": "none",
+    "spoilerLevel": 0,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/location/BlackForest/Crypt2.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/rooms/forestcrypt.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/building.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "confidence": "read",
+    "audience": "all",
+    "subjectIds": ["crypt-2", "surtling-core", "smelter", "charcoal-kiln"]
+  },
+  {
+    "id": "tip-portal-ores",
+    "name": "Ores cannot use portals",
+    "description": "A portal costs 10 greydwarf eyes, 20 fine wood and 2 surtling cores. Ores and scrap metal cannot be teleported, so plan a boat or cart route for them.",
+    "veteranNotes": "Items flagged not teleportable in the data include copper ore, tin ore, iron scrap, silver ore, black metal scrap, flametal ore, petrified tissue and dragon eggs.",
+    "biomeIds": [],
+    "tier": 2,
+    "dangerLevel": "none",
+    "spoilerLevel": 0,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/building.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/resources.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "confidence": "read",
+    "audience": "newcomer",
+    "subjectIds": [
+      "greydwarf-eye",
+      "fine-wood",
+      "surtling-core",
+      "copper-ore",
+      "tin-ore",
+      "iron-scrap",
+      "silver-ore",
+      "black-metal-scrap"
+    ]
+  },
+  {
+    "id": "tip-boar-jerky",
+    "name": "Jerky lasts longer",
+    "description": "Boar jerky gives 23 health and 23 stamina for 1800 s, longer than cooked boar meat (30 health, 10 stamina, 1200 s). Make 2 at the cauldron from 1 raw boar meat and 1 honey.",
+    "veteranNotes": "Wolf jerky (Mountains) follows the same idea: 33 health, 33 stamina, 1800 s.",
+    "biomeIds": ["meadows"],
+    "tier": 2,
+    "dangerLevel": "none",
+    "spoilerLevel": 0,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/resources.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "confidence": "read",
+    "audience": "newcomer",
+    "subjectIds": ["boar-jerky", "cooked-boar-meat", "honey", "cauldron"]
+  },
+  {
+    "id": "tip-rested",
+    "name": "Get rested",
+    "description": "The Rested buff, earned by resting in a sheltered spot, gives faster health and stamina regeneration and 50% more skill experience. Rest before you head out.",
+    "veteranNotes": "Rested: health regen x1.5, stamina and eitr regen x2, experience x1.5, base duration 480 s. Shelter adds 2 comfort.",
+    "biomeIds": [],
+    "tier": 1,
+    "dangerLevel": "none",
+    "spoilerLevel": 0,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/effects.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "confidence": "read",
+    "audience": "newcomer",
+    "subjectIds": []
+  },
+  {
+    "id": "tip-swamp-wet",
+    "name": "The Swamp keeps you wet",
+    "description": "Swamp rain is the only weather in the Swamp. Being Wet slows your health regeneration and makes you weak to frost and lightning, though it also gives fire resistance.",
+    "veteranNotes": "Wet lasts 120 s after leaving the rain: health regen x0.75, stamina and eitr regen x0.85.",
+    "biomeIds": ["swamp"],
+    "tier": 3,
+    "dangerLevel": "none",
+    "spoilerLevel": 1,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/env.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/effects.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "confidence": "read",
+    "audience": "all",
+    "subjectIds": ["swamp"]
+  },
+  {
+    "id": "tip-blob-blunt",
+    "name": "Crush the blobs",
+    "description": "Blobs and oozers are weak to blunt, frost and lightning but resist slash, pierce and fire. Their poison hits for 90 and 115, so fight them from full health.",
+    "veteranNotes": "Blobs drop ooze (1-2), oozers drop 2-3. Both are immune to poison.",
+    "biomeIds": ["swamp"],
+    "tier": 3,
+    "dangerLevel": "none",
+    "spoilerLevel": 1,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/creatures.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "confidence": "read",
+    "audience": "all",
+    "subjectIds": ["blob", "oozer", "poison-resistance-mead"]
+  },
+  {
+    "id": "tip-poison-mead",
+    "name": "Poison resistance mead",
+    "description": "Poison resistance mead makes you very resistant to poison. The base needs 10 honey, 5 thistle, 10 coal and 1 neck tail; one base ferments into 6 meads.",
+    "veteranNotes": "Cooldown is 600 s. Base is made at the mead ketill; the fermenter takes 3600 s per batch.",
+    "biomeIds": ["swamp"],
+    "tier": 3,
+    "dangerLevel": "none",
+    "spoilerLevel": 1,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/resources.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "confidence": "read",
+    "audience": "all",
+    "subjectIds": ["poison-resistance-mead", "mead-base-poison-resistance", "fermenter"]
+  },
+  {
+    "id": "tip-surtling-geyser",
+    "name": "Surtlings at geysers",
+    "description": "Fire geysers in the Swamp spawn surtlings. Each surtling has a 50% chance to drop a surtling core and always drops coal. They are immune to fire and weak to frost.",
+    "veteranNotes": "A geyser location lists up to 3 surtlings; the spawner comment says one respawns every 5 minutes.",
+    "biomeIds": ["swamp"],
+    "tier": 3,
+    "dangerLevel": "none",
+    "spoilerLevel": 1,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/creatures.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/location/Swamp/FireHole.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "confidence": "read",
+    "audience": "all",
+    "subjectIds": ["surtling", "surtling-core", "surtling-geyser"]
+  },
+  {
+    "id": "tip-abomination",
+    "name": "Abominations hate fire",
+    "description": "Abominations resist blunt, are very resistant to pierce and immune to frost, but fire damage works well. Their slam hits for 80 blunt.",
+    "veteranNotes": "An abomination has 800 health and drops 5 root and 3-5 guck.",
+    "biomeIds": ["swamp"],
+    "tier": 3,
+    "dangerLevel": "none",
+    "spoilerLevel": 1,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/creatures.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "confidence": "read",
+    "audience": "all",
+    "subjectIds": ["abomination", "root", "guck"]
+  },
+  {
+    "id": "tip-wraith-spirit",
+    "name": "Wraiths and spirit damage",
+    "description": "Wraiths resist blunt, slash and pierce and are immune to frost and poison. Fire and spirit damage are their weak spots.",
+    "veteranNotes": "Wraiths have 100 health, hit for 60 slash and always drop a chain.",
+    "biomeIds": ["swamp"],
+    "tier": 3,
+    "dangerLevel": "none",
+    "spoilerLevel": 1,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/creatures.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "confidence": "read",
+    "audience": "all",
+    "subjectIds": ["wraith", "chain"]
+  },
+  {
+    "id": "tip-bonemass",
+    "name": "Fighting Bonemass",
+    "description": "Bonemass is weak to blunt and frost, very resistant to pierce and fire, and immune to poison. Bring a mace and poison resistance: his poison attack deals 130.",
+    "veteranNotes": "Summon with 10 withered bones. He has 5000 health and drops the Wishbone and his trophy.",
+    "biomeIds": ["swamp"],
+    "tier": 3,
+    "dangerLevel": "none",
+    "spoilerLevel": 2,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/creatures.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/resources.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "confidence": "read",
+    "audience": "veteran",
+    "subjectIds": ["bonemass", "withered-bone", "poison-resistance-mead"]
+  },
+  {
+    "id": "tip-frost-protection",
+    "name": "Stay warm in the Mountains",
+    "description": "Mountain snow brings the Freezing status: it drains health and cuts stamina regeneration. Frost resistance mead, the wolf armor chest, wolf fur cape, lox cape and fenris coat all give frost resistance.",
+    "veteranNotes": "Both Mountain weathers (Snow, Snow storm) carry the freeze flag. Freezing sets stamina and eitr regen to x0.4 and health regen to 0.",
+    "biomeIds": ["mountains"],
+    "tier": 4,
+    "dangerLevel": "none",
+    "spoilerLevel": 1,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/env.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/effects.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/armors.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/resources.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "confidence": "read",
+    "audience": "newcomer",
+    "subjectIds": [
+      "frost-resistance-mead",
+      "wolf-armor-chest",
+      "wolf-fur-cape",
+      "lox-cape",
+      "fenris-coat"
+    ]
+  },
+  {
+    "id": "tip-iron-pickaxe-silver",
+    "name": "Silver needs iron",
+    "description": "Silver veins and obsidian need a pickaxe of tool tier 2. The bronze pickaxe (tier 1) will not work; the iron pickaxe (tier 2) will.",
+    "veteranNotes": "Pickaxe tool tiers: antler 0, bronze 1, iron 2, black metal 3.",
+    "biomeIds": ["mountains"],
+    "tier": 4,
+    "dangerLevel": "none",
+    "spoilerLevel": 1,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/objects.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/weapons.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "confidence": "read",
+    "audience": "newcomer",
+    "subjectIds": ["silver-ore", "obsidian", "iron-pickaxe", "bronze-pickaxe"]
+  },
+  {
+    "id": "tip-stone-golem-pickaxe",
+    "name": "Mine the stone golem",
+    "description": "Stone golems are very weak to pickaxe damage and resist slash and pierce. Hitting one with your pickaxe is surprisingly effective.",
+    "veteranNotes": "They have 800 health, hit for 110 blunt, are immune to fire, frost, poison and spirit, and drop 8-12 crystals.",
+    "biomeIds": ["mountains"],
+    "tier": 4,
+    "dangerLevel": "none",
+    "spoilerLevel": 1,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/creatures.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "confidence": "read",
+    "audience": "all",
+    "subjectIds": ["stone-golem", "iron-pickaxe", "crystal"]
+  },
+  {
+    "id": "tip-drake-fire",
+    "name": "Drakes and fire",
+    "description": "Drakes are weak to fire and immune to frost. Their ice shards deal 90 frost, so shoot them down with fire arrows before they close in.",
+    "veteranNotes": "Drakes have 100 health and drop 1-2 freeze glands, used for frost arrows and Frostner.",
+    "biomeIds": ["mountains"],
+    "tier": 4,
+    "dangerLevel": "none",
+    "spoilerLevel": 1,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/creatures.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "confidence": "read",
+    "audience": "all",
+    "subjectIds": ["drake", "fire-arrow", "freeze-gland"]
+  },
+  {
+    "id": "tip-dragon-eggs",
+    "name": "Dragon eggs are heavy",
+    "description": "Dragon eggs weigh 200 each and cannot go through portals. Moder's altar needs 3, so plan a base or path near her altar.",
+    "veteranNotes": "Stack size is 1 and the egg floats in water.",
+    "biomeIds": ["mountains"],
+    "tier": 4,
+    "dangerLevel": "none",
+    "spoilerLevel": 1,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/resources.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "confidence": "read",
+    "audience": "all",
+    "subjectIds": ["dragon-egg", "moder-altar"]
+  },
+  {
+    "id": "tip-moder",
+    "name": "Fighting Moder",
+    "description": "Moder is weak to fire and immune to frost. Her breath and ice shards deal 200 frost, so frost resistance is essential.",
+    "veteranNotes": "She has 7500 health, is summoned with 3 dragon eggs and drops 10 dragon tears.",
+    "biomeIds": ["mountains"],
+    "tier": 4,
+    "dangerLevel": "none",
+    "spoilerLevel": 2,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/creatures.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/resources.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "confidence": "read",
+    "audience": "veteran",
+    "subjectIds": ["moder", "frost-resistance-mead", "fire-arrow"]
+  },
+  {
+    "id": "tip-deathsquito",
+    "name": "Deal with deathsquitos",
+    "description": "Deathsquitos have only 10 health but bite for 90 pierce. A single hit kills one, and the anti-sting concoction makes them flee for 600 s.",
+    "veteranNotes": "The anti-sting base needs 10 cloudberries, 3 grouper and 1 fragrant bundle; the fermenter makes 6.",
+    "biomeIds": ["plains"],
+    "tier": 5,
+    "dangerLevel": "none",
+    "spoilerLevel": 1,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/creatures.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/effects.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "confidence": "read",
+    "audience": "newcomer",
+    "subjectIds": ["deathsquito", "anti-sting-concoction"]
+  },
+  {
+    "id": "tip-lox",
+    "name": "Leave the lox alone early",
+    "description": "Lox have 1000 health and a stomp of 120 blunt. They resist blunt and slash but are weak to fire. Fight them only when you are ready.",
+    "veteranNotes": "Lox drop 4-6 lox meat and 2-3 lox pelts; cooked lox meat gives 50 health and 16 stamina for 1200 s.",
+    "biomeIds": ["plains"],
+    "tier": 5,
+    "dangerLevel": "none",
+    "spoilerLevel": 1,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/creatures.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "confidence": "read",
+    "audience": "newcomer",
+    "subjectIds": ["lox", "lox-meat", "lox-pelt"]
+  },
+  {
+    "id": "tip-fire-resistance-wine",
+    "name": "Fire resistance barley wine",
+    "description": "Fire resistance barley wine makes you resistant to fire. The base is 10 barley and 10 cloudberries; one base ferments into 6 bottles.",
+    "veteranNotes": "Cooldown 600 s. Several Ashlands foes deal fire damage (lava blob explosions, fallen valkyrie spit).",
+    "biomeIds": ["plains", "ashlands"],
+    "tier": 5,
+    "dangerLevel": "none",
+    "spoilerLevel": 1,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/resources.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "confidence": "read",
+    "audience": "all",
+    "subjectIds": ["fire-resistance-barley-wine", "barley", "cloudberries"]
+  },
+  {
+    "id": "tip-yagluth",
+    "name": "Fighting Yagluth",
+    "description": "Yagluth is very resistant to pierce, resistant to fire and immune to poison. His meteors, breath and nova combine fire and lightning damage.",
+    "veteranNotes": "He has 10000 health, is summoned with 5 fuling totems and drops 3 torn spirits.",
+    "biomeIds": ["plains"],
+    "tier": 5,
+    "dangerLevel": "none",
+    "spoilerLevel": 2,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/creatures.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/resources.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "confidence": "read",
+    "audience": "veteran",
+    "subjectIds": ["yagluth", "fuling-totem"]
+  },
+  {
+    "id": "tip-wisplight",
+    "name": "Clear the mist",
+    "description": "The Wisplight pushes back the Mistlands fog. Craft it at the workbench from 1 silver and 1 wisp; wisps come from a wisp fountain (10 stone + 1 torn spirit from Yagluth).",
+    "veteranNotes": "The wisp fountain is built at the stonecutter. The Wisplight's light has a 10 m range in the data.",
+    "biomeIds": ["mistlands"],
+    "tier": 6,
+    "dangerLevel": "none",
+    "spoilerLevel": 2,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/building.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/armors.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "confidence": "read",
+    "audience": "all",
+    "subjectIds": ["wisplight", "wisp", "wisp-fountain", "torn-spirit"]
+  },
+  {
+    "id": "tip-sealbreaker",
+    "name": "Opening the citadel",
+    "description": "The Queen's infested citadel needs a sealbreaker: 9 sealbreaker fragments combined at the galdr table. Fragments come from crystal altars inside infested mines.",
+    "veteranNotes": "Infested mine rooms can also hold a Vegvisir to the Queen (20% in some rooms), black cores and royal jelly.",
+    "biomeIds": ["mistlands"],
+    "tier": 6,
+    "dangerLevel": "none",
+    "spoilerLevel": 2,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/rooms/dvergrtown.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/location/Mistlands/Mistlands_DvergrBossEntrance1.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "confidence": "read",
+    "audience": "all",
+    "subjectIds": ["sealbreaker", "sealbreaker-fragment", "infested-mine-1", "queen-citadel"]
+  },
+  {
+    "id": "tip-giant-skeleton-tools",
+    "name": "Black metal tools for the Mistlands",
+    "description": "Giant skeleton parts need a tier 3 pickaxe (black metal) and yggdrasil shoots need a tier 4 axe (black metal axe). Bring both before heading into the mist.",
+    "veteranNotes": "Giant ribs and skulls give black marble, the brain gives soft tissue, and the sword and helmet pieces give copper and iron scrap.",
+    "biomeIds": ["mistlands"],
+    "tier": 6,
+    "dangerLevel": "none",
+    "spoilerLevel": 2,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/objects.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/weapons.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "confidence": "read",
+    "audience": "all",
+    "subjectIds": ["black-metal-pickaxe", "black-metal-axe", "black-marble", "yggdrasil-wood"]
+  },
+  {
+    "id": "tip-charred-spirit",
+    "name": "Charred are weak to spirit",
+    "description": "Charred warriors, marksmen, twitchers and warlocks are weak to spirit damage, very resistant to fire and resistant to pierce. Leave the fire weapons at home.",
+    "veteranNotes": "A charred warrior has 600 health and a thrust of 160 pierce; marksmen shoot for 120 pierce.",
+    "biomeIds": ["ashlands"],
+    "tier": 7,
+    "dangerLevel": "none",
+    "spoilerLevel": 2,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/creatures.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "confidence": "read",
+    "audience": "all",
+    "subjectIds": ["charred-warrior", "charred-marksman", "charred-twitcher", "charred-warlock"]
+  },
+  {
+    "id": "tip-morgen-lightning",
+    "name": "Morgens and lightning",
+    "description": "Morgens resist blunt, slash, pierce and fire but are weak to lightning. You find them in putrid holes, and they bite for 160 pierce.",
+    "veteranNotes": "A morgen has 1600 health and drops morgen sinew and morgen heart (50% each).",
+    "biomeIds": ["ashlands"],
+    "tier": 7,
+    "dangerLevel": "none",
+    "spoilerLevel": 2,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/creatures.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/location/Ashlands/MorgenHole1.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "confidence": "read",
+    "audience": "all",
+    "subjectIds": ["morgen", "putrid-hole-1"]
+  },
+  {
+    "id": "tip-lava-blob",
+    "name": "Kill lava blobs at range",
+    "description": "Lava blobs explode for heavy blunt and fire damage. They are weak to blunt, frost and lightning and immune to fire; kill them from a distance.",
+    "veteranNotes": "Explosion: 70 blunt, 30 fire, plus 160 chop and pickaxe damage to structures and terrain. 300 health.",
+    "biomeIds": ["ashlands"],
+    "tier": 7,
+    "dangerLevel": "none",
+    "spoilerLevel": 2,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/creatures.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "confidence": "read",
+    "audience": "all",
+    "subjectIds": ["lava-blob"]
+  },
+  {
+    "id": "tip-gammeltroll-remains",
+    "name": "Bloodgold needs a strong tool",
+    "description": "Gammeltroll remains, the source of petrified tissue for bloodgold, need tool tier 6. Weapons such as the flametal mace or the berserkir axes have that tier.",
+    "veteranNotes": "The tier 3 black metal pickaxe is not enough; tool tier 6 items in the data include the flametal mace, berserkir axes, Dyrnwyn and the nord sword.",
+    "biomeIds": ["deep-north"],
+    "tier": 8,
+    "dangerLevel": "none",
+    "spoilerLevel": 2,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/objects.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/weapons.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "confidence": "read",
+    "audience": "veteran",
+    "subjectIds": ["petrified-tissue", "gammeltroll", "flametal-mace"]
+  },
+  {
+    "id": "tip-hexen-lightning",
+    "name": "Hexen cast lightning",
+    "description": "Hexen blast you with up to 120 lightning, while krigen charge for 160 blunt and are very resistant to frost. Hexen have a 10% chance to drop an intricate key.",
+    "veteranNotes": "Hexen have 850 health, krigen 1200. Krigen can drop memorial coal (20%) and leather straps.",
+    "biomeIds": ["deep-north"],
+    "tier": 8,
+    "dangerLevel": "none",
+    "spoilerLevel": 2,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/creatures.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "confidence": "read",
+    "audience": "veteran",
+    "subjectIds": ["hexen", "krigen", "intricate-key"]
+  },
+  {
+    "id": "tip-megingjord",
+    "name": "Carry more with Megingjord",
+    "description": "Haldor the trader sells Megingjord for 950 coins; it adds 150 carry weight. Mead of troll endurance adds 250 carry weight for 300 s.",
+    "veteranNotes": "Haldor also sells the fishing rod (350) and fishing bait; some stock unlocks after bosses are defeated.",
+    "biomeIds": ["black-forest"],
+    "tier": 2,
+    "dangerLevel": "none",
+    "spoilerLevel": 0,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/effects.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/resources.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "confidence": "read",
+    "audience": "all",
+    "subjectIds": ["megingjord", "haldor", "mead-of-troll-endurance"]
+  }
+]

@@ -1,0 +1,363 @@
+[
+  {
+    "id": "progress-meadows",
+    "name": "Meadows: first steps and Eikthyr",
+    "description": "Settle in, craft your first tools and learn to hunt. When you are ready, offer two deer trophies at Eikthyr's altar and defeat him to earn the antler pickaxe.",
+    "veteranNotes": "Hammer: 3 wood + 2 stone; workbench: 10 wood. Eikthyr (500 health) is summoned with 2 deer trophies and drops 3 hard antlers plus his trophy. Antler pickaxe: 10 wood + 1 hard antler at the workbench. His Forsaken power cuts run, jump and swim stamina use by 60% for 300 s (1200 s cooldown).",
+    "biomeIds": ["meadows"],
+    "tier": 1,
+    "dangerLevel": "low",
+    "spoilerLevel": 0,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/creatures.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/resources.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/building.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/effects.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/weapons.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/tools.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "confidence": "read",
+    "order": 1,
+    "bossId": "eikthyr",
+    "goals": [
+      "Craft a hammer (3 wood, 2 stone) and build a workbench (10 wood).",
+      "Make flint tools and a crude bow, then hunt deer and boars for meat and hides.",
+      "Collect 2 deer trophies and offer them at Eikthyr's altar.",
+      "Defeat Eikthyr and take his 3 hard antlers and trophy.",
+      "Craft the antler pickaxe (10 wood, 1 hard antler) so you can mine copper and tin."
+    ],
+    "keyItemIds": [
+      "hammer",
+      "workbench",
+      "flint-axe",
+      "crude-bow",
+      "deer-trophy",
+      "hard-antlers",
+      "antler-pickaxe",
+      "eikthyr-trophy"
+    ]
+  },
+  {
+    "id": "progress-black-forest",
+    "name": "Black Forest: bronze and The Elder",
+    "description": "Mine copper and tin, smelt them and combine them into bronze for better tools and armor. Gather ancient seeds and summon The Elder, who drops the key to the Swamp crypts.",
+    "veteranNotes": "Smelter and charcoal kiln: 20 stone + 5 surtling cores each. Forge: 4 stone, 4 coal, 10 wood, 6 copper. Bronze: 2 copper + 1 tin at the forge. Portal: 10 greydwarf eyes, 20 fine wood, 2 surtling cores. The Elder (2500 health, very weak to fire) needs 3 ancient seeds and drops the swamp key.",
+    "biomeIds": ["black-forest"],
+    "tier": 2,
+    "dangerLevel": "medium",
+    "spoilerLevel": 0,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/creatures.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/resources.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/building.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/objects.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/weapons.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "confidence": "read",
+    "order": 2,
+    "bossId": "the-elder",
+    "goals": [
+      "Mine copper and tin with the antler pickaxe.",
+      "Build a smelter, a charcoal kiln and a forge; smelt copper and tin and make bronze.",
+      "Craft a bronze pickaxe and bronze gear; build a cauldron (10 tin) for cooked meals.",
+      "Craft a bronze axe: birch and oak (fine wood) need an axe of tool tier 2.",
+      "Build portals (10 greydwarf eyes, 20 fine wood, 2 surtling cores) to link your bases.",
+      "Collect 3 ancient seeds from greydwarf nests or brutes and summon The Elder.",
+      "Defeat The Elder and take the swamp key."
+    ],
+    "keyItemIds": [
+      "copper-ore",
+      "tin-ore",
+      "smelter",
+      "forge",
+      "bronze",
+      "bronze-pickaxe",
+      "bronze-axe",
+      "fine-wood",
+      "cauldron",
+      "ancient-seed",
+      "swamp-key",
+      "the-elder-trophy"
+    ]
+  },
+  {
+    "id": "progress-swamp",
+    "name": "Swamp: iron and Bonemass",
+    "description": "Use the swamp key to open sunken crypts and dig up scrap iron. Iron unlocks stronger weapons, armor and the iron pickaxe. Collect withered bones to summon Bonemass.",
+    "veteranNotes": "Sunken crypts need the swamp key. Muddy scrap piles drop iron scrap and withered bone; iron is smelted from scrap and coal. Iron pickaxe: 3 core wood + 20 iron at forge level 2. Bonemass (5000 health) needs 10 withered bones, deals up to 130 poison and drops the Wishbone.",
+    "biomeIds": ["swamp"],
+    "tier": 3,
+    "dangerLevel": "high",
+    "spoilerLevel": 1,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/creatures.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/resources.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/objects.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/weapons.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/armors.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/location/Swamp/SunkenCrypt4.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "confidence": "read",
+    "order": 3,
+    "bossId": "bonemass",
+    "goals": [
+      "Open sunken crypts with the swamp key and mine the muddy scrap piles for iron scrap.",
+      "Smelt the scrap into iron and upgrade to iron weapons and armor.",
+      "Craft an iron pickaxe (3 core wood, 20 iron, forge level 2).",
+      "Brew poison resistance mead for the swamp and the boss fight.",
+      "Collect 10 withered bones and summon Bonemass; take the Wishbone he drops."
+    ],
+    "keyItemIds": [
+      "swamp-key",
+      "iron-scrap",
+      "iron",
+      "iron-pickaxe",
+      "poison-resistance-mead",
+      "withered-bone",
+      "wishbone",
+      "bonemass-trophy"
+    ]
+  },
+  {
+    "id": "progress-mountains",
+    "name": "Mountains: silver and Moder",
+    "description": "Protect yourself from the cold, then mine silver for wolf armor and silver weapons. Take three dragon eggs to Moder's altar; her dragon tears unlock the artisan table.",
+    "veteranNotes": "Frost resistance mead, the wolf armor chest and the wolf fur cape grant frost resistance. Dragon eggs weigh 200 each and cannot be teleported; Moder (7500 health) needs 3. She drops 10 dragon tears; the artisan table costs 10 fine wood + 2 dragon tears.",
+    "biomeIds": ["mountains"],
+    "tier": 4,
+    "dangerLevel": "high",
+    "spoilerLevel": 1,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/creatures.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/resources.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/building.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/objects.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/armors.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/weapons.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "confidence": "read",
+    "order": 4,
+    "bossId": "moder",
+    "goals": [
+      "Brew frost resistance mead or craft frost-resistant wolf armor before long climbs.",
+      "Wear the Wishbone (it has a search effect) to find silver; silver veins need an iron pickaxe (tool tier 2).",
+      "Craft wolf armor and silver weapons.",
+      "Carry 3 dragon eggs to Moder's altar and defeat her.",
+      "Use her dragon tears to build the artisan table (10 fine wood, 2 dragon tears)."
+    ],
+    "keyItemIds": [
+      "frost-resistance-mead",
+      "wishbone",
+      "silver-ore",
+      "silver",
+      "wolf-armor-chest",
+      "dragon-egg",
+      "dragon-tear",
+      "artisan-table"
+    ]
+  },
+  {
+    "id": "progress-plains",
+    "name": "Plains: black metal and Yagluth",
+    "description": "Raid fuling camps for black metal scrap and build a blast furnace to smelt it. Farm barley and flax, then collect fuling totems to summon Yagluth.",
+    "veteranNotes": "Blast furnace (artisan table): 20 stone, 5 surtling cores, 10 iron, 20 fine wood. Black metal is smelted there from scrap and coal. Yagluth (10000 health) needs 5 fuling totems and drops 3 torn spirits; a wisp fountain costs 10 stone + 1 torn spirit.",
+    "biomeIds": ["plains"],
+    "tier": 5,
+    "dangerLevel": "high",
+    "spoilerLevel": 1,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/creatures.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/resources.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/building.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/objects.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/armors.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/location/Heath/GoblinCamp2.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "confidence": "read",
+    "order": 5,
+    "bossId": "yagluth",
+    "goals": [
+      "Build a blast furnace and smelt black metal scrap from fuling camps.",
+      "Gather barley and flax from fuling villages and start farming them.",
+      "Brew anti-sting concoction to keep deathsquitos away.",
+      "Collect 5 fuling totems and summon Yagluth.",
+      "Build a wisp fountain from a torn spirit and craft a Wisplight (1 silver, 1 wisp)."
+    ],
+    "keyItemIds": [
+      "black-metal-scrap",
+      "blast-furnace",
+      "black-metal",
+      "barley",
+      "flax",
+      "fuling-totem",
+      "torn-spirit",
+      "wisp-fountain",
+      "wisplight"
+    ]
+  },
+  {
+    "id": "progress-mistlands",
+    "name": "Mistlands: eitr and The Queen",
+    "description": "Light your way with the Wisplight and explore the fog. Black cores from infested mines unlock the black forge and galdr table. Assemble the sealbreaker to open The Queen's infested citadel.",
+    "veteranNotes": "Black forge: 10 black marble, 10 yggdrasil wood, 5 black cores. Galdr table: 20 yggdrasil wood, 10 black metal, 5 black cores, 5 refined eitr. Refined eitr: 1 sap + 1 soft tissue in the eitr refinery. Sealbreaker: 9 sealbreaker fragments at the galdr table. The Queen has 12500 health.",
+    "biomeIds": ["mistlands"],
+    "tier": 6,
+    "dangerLevel": "extreme",
+    "spoilerLevel": 2,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/creatures.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/resources.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/building.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/objects.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/weapons.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/location/Mistlands/Mistlands_DvergrBossEntrance1.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/rooms/dvergrtown.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "confidence": "read",
+    "order": 6,
+    "bossId": "the-queen",
+    "goals": [
+      "Equip the Wisplight; fell yggdrasil shoots with a tier 4 axe (black metal) and break giant skeletons with a black metal pickaxe.",
+      "Loot black cores in infested mines and build the black forge and galdr table.",
+      "Build a sap extractor and an eitr refinery to make refined eitr for magic gear.",
+      "Collect 9 sealbreaker fragments and craft the sealbreaker.",
+      "Open the infested citadel and defeat The Queen."
+    ],
+    "keyItemIds": [
+      "wisplight",
+      "black-metal-axe",
+      "black-metal-pickaxe",
+      "black-core",
+      "black-forge",
+      "galdr-table",
+      "refined-eitr",
+      "sealbreaker-fragment",
+      "sealbreaker",
+      "majestic-carapace"
+    ]
+  },
+  {
+    "id": "progress-ashlands",
+    "name": "Ashlands: flametal and Fader",
+    "description": "Sail far south, bring fire resistance and build a stone portal from local grausten. Mine flametal for new gear, and forge bells from fragments found in charred fortresses to summon Fader.",
+    "veteranNotes": "Stone portal: 10 greydwarf eyes, 30 grausten, 2 molten cores at the stonecutter. A bell is forged from 3 bell fragments at the black forge; the resource data lists 3 bells for Fader (20000 health). Fader drops fader relics; an eternal pyre costs 10 stone + 1 relic.",
+    "biomeIds": ["ashlands"],
+    "tier": 7,
+    "dangerLevel": "extreme",
+    "spoilerLevel": 2,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/creatures.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/resources.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/building.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/objects.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/location/Ashlands/CharredFortress.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "confidence": "read",
+    "order": 7,
+    "bossId": "fader",
+    "goals": [
+      "Brew fire resistance barley wine (10 barley, 10 cloudberries for the base).",
+      "Build a stone portal (10 greydwarf eyes, 30 grausten, 2 molten cores).",
+      "Mine flametal ore, smelt it in the blast furnace and craft flametal gear.",
+      "Take bell fragments from charred fortresses and forge bells at the black forge.",
+      "Summon and defeat Fader."
+    ],
+    "keyItemIds": [
+      "fire-resistance-barley-wine",
+      "grausten",
+      "molten-core",
+      "flametal-ore",
+      "flametal",
+      "bell-fragment",
+      "bell",
+      "fader-relic"
+    ]
+  },
+  {
+    "id": "progress-deep-north",
+    "name": "Deep North: bloodgold and Kall Fimbulbringer",
+    "description": "Brave the frozen north with strong frost protection. Harvest petrified tissue for bloodgold and frostcores for the frost foundry, then summon the final Forsaken, Kall Fimbulbringer.",
+    "veteranNotes": "Bloodgold is smelted from petrified tissue in the blast furnace. Frost foundry: 15 iron, 20 stone, 10 frostcores. Kall Fimbulbringer (10000 health) is summoned with 3 malicious blood; our data does not say how that item is obtained. The final phase drops sacrificial blood and the crown jewel.",
+    "biomeIds": ["deep-north"],
+    "tier": 8,
+    "dangerLevel": "extreme",
+    "spoilerLevel": 2,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/creatures.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/resources.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/building.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/objects.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/weapons.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json",
+      "S-VER-15"
+    ],
+    "gameVersion": "1.0",
+    "confidence": "read",
+    "order": 8,
+    "bossId": "kall-fimbulbringer",
+    "goals": [
+      "Wear frost-resistant gear and carry frost resistance mead.",
+      "Break gammeltroll remains (tool tier 6, e.g. a flametal mace) for petrified tissue and smelt it into bloodgold.",
+      "Gather frostcores and build the frost foundry (15 iron, 20 stone, 10 frostcores).",
+      "Collect 3 malicious blood and summon Kall Fimbulbringer.",
+      "Defeat every phase of the fight and take the crown jewel."
+    ],
+    "keyItemIds": [
+      "flametal-mace",
+      "petrified-tissue",
+      "bloodgold",
+      "frostcore",
+      "frost-foundry",
+      "malicious-blood",
+      "sacrificial-blood",
+      "crown-jewel"
+    ]
+  },
+  {
+    "id": "progress-crown-of-valheim",
+    "name": "Crown of Valheim",
+    "description": "With the last Forsaken defeated, bring the crown jewel home and craft the Crown of Valheim, the final item of the journey.",
+    "veteranNotes": "Crown of Valheim: 5 bloodgold + 1 crown jewel at black forge level 4. Wearing it grants the \"Crowned\" status effect and 0.4 eitr regeneration, and its stamina modifiers are -0.2 each for attacking, swimming, sneaking and running.",
+    "biomeIds": ["deep-north"],
+    "tier": 8,
+    "dangerLevel": "none",
+    "spoilerLevel": 2,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/creatures.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/armors.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/effects.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "confidence": "read",
+    "order": 9,
+    "goals": [
+      "Upgrade the black forge to level 4.",
+      "Craft the Crown of Valheim from 5 bloodgold and the crown jewel."
+    ],
+    "keyItemIds": ["crown-jewel", "bloodgold", "black-forge", "crown-of-valheim"]
+  }
+]

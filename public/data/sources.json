@@ -105,5 +105,15 @@
     "kind": "press",
     "accessed": "2026-09-28",
     "confidence": "snippet"
+  },
+  {
+    "id": "S-DATA-01",
+    "title": "kirilloid/valheim game-data extraction (src/data, public/lang/en.json) @ ae63432 (facts only; no OSS license)",
+    "url": "https://github.com/kirilloid/valheim/tree/ae63432a485d92d88e97de28f21258b6208ba69b/src/data",
+    "kind": "community-data",
+    "license": "none",
+    "accessed": "2026-09-29",
+    "gameVersion": "1.0",
+    "confidence": "read"
   }
 ]

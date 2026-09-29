@@ -36,7 +36,10 @@ describe('public/data', () => {
   const locations = LocationsFileSchema.parse(readData('locations'));
 
   it('every record in every file cites known sources', () => {
-    const cited = [world, ...rules, ...biomes, ...locations].flatMap((r) => r.sources);
+    // URL sources are checked by validate.ts; here only registered IDs must resolve.
+    const cited = [world, ...rules, ...biomes, ...locations]
+      .flatMap((r) => r.sources)
+      .filter((s) => s.startsWith('S-'));
     expect(findUnknownSourceIds(cited, sources)).toEqual([]);
   });
 
@@ -67,10 +70,10 @@ describe('public/data', () => {
   it('distance and altitude ranges are ordered', () => {
     expect(world.waterEdgeM).toBeGreaterThan(world.worldRadiusM);
     for (const l of locations) {
-      if (l.minDistM !== null && l.maxDistM !== null) {
+      if (l.minDistM != null && l.maxDistM != null) {
         expect(l.minDistM, l.id).toBeLessThan(l.maxDistM);
       }
-      if (l.minAltM !== null && l.maxAltM !== null) expect(l.minAltM, l.id).toBeLessThan(l.maxAltM);
+      if (l.minAltM != null && l.maxAltM != null) expect(l.minAltM, l.id).toBeLessThan(l.maxAltM);
     }
   });
 });

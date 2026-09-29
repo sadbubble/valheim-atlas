@@ -132,10 +132,19 @@ Each panel shows a "Sources" footer listing source IDs and their confidence.
 
 ## 6. Data model
 
-All game facts live in `public/data/*.json`. The files are validated by zod schemas in `src/data/schema.ts`,
-which mirror the types below, and are checked in `npm test` (`src/data/data-files.test.ts`; a standalone
-`validate:data` script is still planned). **`src/data/schema.ts` is authoritative** where this sketch and the
-code differ. Implemented so far: `meta`, `sources`, `world`, `biome-rules`, `biomes` (minimal) and `locations`.
+All game facts live in `public/data/*.json`, validated by `npm run validate:data` (also part of
+`npm run check`). **`src/data/content-schema.ts` and `src/data/schema.ts` are authoritative**; the
+sketch below is the original design. Implemented files: `meta`, `sources`, `world`, `biome-rules`,
+`biomes`, `bosses`, `creatures`, `resources`, `items` (weapons, shields, armor, tools, ammo, meads),
+`crafting-stations`, `food`, `progression`, `locations`, `tips`.
+
+Every content entry shares: `id`, `name`, `description` (beginner-friendly), `veteranNotes`,
+`biomeIds`, `tier` (0–8), `dangerLevel` (editorial: none/low/medium/high/extreme), `spoilerLevel`
+(0/1/2), `sources` (https URLs or registered IDs), `gameVersion`, optional `prefab`, `confidence`,
+`notes`. Biomes add `whatToBring`, `threats`, `keyResources`, `recommendedGearTier`, `weather`,
+`bossId`; creatures and bosses carry `damageModifiers` plus derived `weaknesses`/`resistances`/
+`immunities`; bosses add `summonItems` and `forsakenPower`. `null` = unverified (listed in
+`docs/DATA_TODO.md`).
 
 ```ts
 // ---- shared ----

@@ -353,6 +353,38 @@ All rows come from S-LOC-01 unless another source is named.
 
 ---
 
+## e. Content data (creatures, bosses, items, resources, food, stations)
+
+### Source list
+
+| ID | Source | Kind | License | Confidence | Supports |
+|---|---|---|---|---|---|
+| S-DATA-01 | [kirilloid/valheim `src/data` + `public/lang/en.json` @ `ae63432`](https://github.com/kirilloid/valheim/tree/ae63432a485d92d88e97de28f21258b6208ba69b/src/data) (commit dated 2026-09-21, after 1.0) | community-data (game-data extraction) | **None**: we record facts only, never copy files or prose | read | Creature health, attacks, damage modifiers, drops, spawn biomes; boss summons and Forsaken powers (`effects.ts`); weapon/armor/tool stats and recipes; resources, food stats; crafting stations; weather per biome (`env.ts`); English names |
+
+### How the content was gathered (2026-09-29)
+
+- **The community wikis were unreachable.** valheim.fandom.com, valheim.wiki.gg,
+  valheim.weirdgloop.org and kirilloid.ru were all refused by the session's network policy,
+  including through WebFetch. To use them, add those domains to the environment's allowed
+  network domains.
+- **Primary source.** Instead, research agents read kirilloid's data modules at a pinned commit.
+  - We evaluated the modules locally into JSON (outside the repo) so numbers were transcribed
+    mechanically, not retyped.
+  - Every content entry cites the exact file URL at that commit, e.g.
+    `.../blob/ae63432.../src/data/creatures.ts`.
+  - Entries backed by this dataset carry `"gameVersion": "1.0"`. It post-dates 1.0; the exact
+    patch is unknown.
+- **Search summaries.** A few facts come only from search-engine summaries of wiki pages. Those
+  entries cite the wiki URL and are marked `"confidence": "snippet"`. Examples: some item
+  names missing from `en.json`, and how Malicious blood is obtained.
+- **Name typos corrected.** kirilloid's `en.json` has a few typos: "Fulling" for Fuling,
+  "Wrait trophy", "Dvergr rouge". We corrected them because the same file spells them
+  correctly elsewhere ("Fuling totem", "Wraith"), and each corrected entry says so in `notes`.
+- **Conflicts** are marked `"confidence": "conflict"` with notes. Examples: the Queen's summon
+  (kirilloid: 3 Seeker Soldier trophies vs. a search summary describing only the Sealbreaker
+  door), three Deep North weapon stat lines, and the frigid kiln recipe.
+- **Unverified values** are `null` and listed in `docs/DATA_TODO.md`.
+
 ## Open verification items
 
 Each item must be resolved (source upgraded to `read`, or the data field left `null`)
@@ -369,6 +401,8 @@ before the related data ships.
 8. Typical mountain peak height and ocean depth distribution (for terrain scaling in Path B).
 9. The EULA wording (S-WG-23).
 10. The Ashlands/Deep North offset signs, as seen on a real minimap (Ashlands must be south).
+12. Everything in `docs/DATA_TODO.md` (generated list of null content values), and a second-source
+    check of the content data against a wiki once the wiki domains are allowed.
 11. The reference point for location altitude limits (`minAltitude`/`maxAltitude`, S-WG-13). The data
     and approx-v1 treat them as metres above sea level; confirm against a real install. Affects
     `moder-altar` (150–500 m) and `deep-north-boss` (≥ 80 m).

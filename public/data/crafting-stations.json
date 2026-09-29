@@ -1,0 +1,1488 @@
+[
+  {
+    "id": "beehive",
+    "name": "Beehive",
+    "description": "The beehive slowly produces honey over time. You need a queen bee to build one.",
+    "veteranNotes": "Place it where it can produce undisturbed and collect the honey when it is ready. Built with the hammer near a workbench: 10 Wood, 1 Queen bee. Crafts or processes 1 recipe.",
+    "biomeIds": ["meadows"],
+    "tier": 1,
+    "dangerLevel": "none",
+    "spoilerLevel": 0,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/building.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "piece_beehive",
+    "notes": "stationLevel 1: build pieces only need the station within range, at any level.",
+    "recipe": {
+      "stationId": "workbench",
+      "stationLevel": 1,
+      "materials": [
+        {
+          "itemId": "wood",
+          "count": 10
+        },
+        {
+          "itemId": "queen-bee",
+          "count": 1
+        }
+      ]
+    },
+    "upgrades": []
+  },
+  {
+    "id": "cooking-station",
+    "name": "Cooking station",
+    "description": "The cooking station is a simple spit you place over a fire to roast raw meat and fish.",
+    "veteranNotes": "It needs a fire. It holds 2 items at once; take the food off before it burns. Built with the hammer near a workbench: 2 Wood. Crafts or processes 10 recipes.",
+    "biomeIds": ["meadows"],
+    "tier": 1,
+    "dangerLevel": "none",
+    "spoilerLevel": 0,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/building.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "piece_cookingstation",
+    "notes": "stationLevel 1: build pieces only need the station within range, at any level.",
+    "recipe": {
+      "stationId": "workbench",
+      "stationLevel": 1,
+      "materials": [
+        {
+          "itemId": "wood",
+          "count": 2
+        }
+      ]
+    },
+    "upgrades": []
+  },
+  {
+    "id": "workbench",
+    "name": "Workbench",
+    "description": "The workbench is your first crafting station and the heart of an early base. It lets you craft basic tools, weapons and armor, and you must be near one to build most pieces.",
+    "veteranNotes": "It needs a roof over it to work. Extensions placed close by raise its level, which unlocks more recipes and higher upgrade levels. Built with the hammer, no station needed: 10 Wood. Extensions: Chopping block, Tanning rack, Adze, Tool shelf. Crafts or processes 88 recipes.",
+    "biomeIds": ["meadows"],
+    "tier": 1,
+    "dangerLevel": "none",
+    "spoilerLevel": 0,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/building.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "piece_workbench",
+    "notes": "Needs no crafting station to build, so no recipe object is given.",
+    "upgrades": [
+      {
+        "id": "chopping-block",
+        "name": "Chopping block",
+        "recipe": {
+          "stationId": "workbench",
+          "stationLevel": 1,
+          "materials": [
+            {
+              "itemId": "wood",
+              "count": 10
+            },
+            {
+              "itemId": "flint",
+              "count": 10
+            }
+          ]
+        }
+      },
+      {
+        "id": "tanning-rack",
+        "name": "Tanning rack",
+        "recipe": {
+          "stationId": "workbench",
+          "stationLevel": 1,
+          "materials": [
+            {
+              "itemId": "wood",
+              "count": 10
+            },
+            {
+              "itemId": "flint",
+              "count": 15
+            },
+            {
+              "itemId": "leather-scraps",
+              "count": 20
+            },
+            {
+              "itemId": "deer-hide",
+              "count": 5
+            }
+          ]
+        }
+      },
+      {
+        "id": "adze",
+        "name": "Adze",
+        "recipe": {
+          "stationId": "forge",
+          "stationLevel": 1,
+          "materials": [
+            {
+              "itemId": "fine-wood",
+              "count": 10
+            },
+            {
+              "itemId": "bronze",
+              "count": 3
+            }
+          ]
+        }
+      },
+      {
+        "id": "tool-shelf",
+        "name": "Tool shelf",
+        "recipe": {
+          "stationId": "forge",
+          "stationLevel": 1,
+          "materials": [
+            {
+              "itemId": "fine-wood",
+              "count": 10
+            },
+            {
+              "itemId": "iron",
+              "count": 4
+            },
+            {
+              "itemId": "obsidian",
+              "count": 4
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "cauldron",
+    "name": "Cauldron",
+    "description": "The cauldron is a cooking station for meals that need more than a fire. Place it over a fire to use it.",
+    "veteranNotes": "It needs a fire underneath. Its extensions raise its level, unlocking later-game dishes. Built with the hammer near a forge: 10 Tin. Extensions: Spice rack, Butcher's table, Pots and pans, Mortar and pestle, Rolling Pins and Cutting Boards, Smoker. Crafts or processes 42 recipes.",
+    "biomeIds": ["black-forest"],
+    "tier": 2,
+    "dangerLevel": "none",
+    "spoilerLevel": 0,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/building.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "piece_cauldron",
+    "notes": "stationLevel 1: build pieces only need the station within range, at any level.",
+    "recipe": {
+      "stationId": "forge",
+      "stationLevel": 1,
+      "materials": [
+        {
+          "itemId": "tin",
+          "count": 10
+        }
+      ]
+    },
+    "upgrades": [
+      {
+        "id": "spice-rack",
+        "name": "Spice rack",
+        "recipe": {
+          "stationId": "workbench",
+          "stationLevel": 1,
+          "materials": [
+            {
+              "itemId": "dandelion",
+              "count": 3
+            },
+            {
+              "itemId": "carrot",
+              "count": 2
+            },
+            {
+              "itemId": "mushroom",
+              "count": 5
+            },
+            {
+              "itemId": "thistle",
+              "count": 3
+            },
+            {
+              "itemId": "turnip",
+              "count": 3
+            }
+          ]
+        }
+      },
+      {
+        "id": "butcher-s-table",
+        "name": "Butcher's table",
+        "recipe": {
+          "stationId": "workbench",
+          "stationLevel": 1,
+          "materials": [
+            {
+              "itemId": "ancient-bark",
+              "count": 2
+            },
+            {
+              "itemId": "core-wood",
+              "count": 4
+            },
+            {
+              "itemId": "fine-wood",
+              "count": 4
+            },
+            {
+              "itemId": "silver",
+              "count": 2
+            }
+          ]
+        }
+      },
+      {
+        "id": "pots-and-pans",
+        "name": "Pots and pans",
+        "recipe": {
+          "stationId": "workbench",
+          "stationLevel": 1,
+          "materials": [
+            {
+              "itemId": "iron",
+              "count": 5
+            },
+            {
+              "itemId": "copper",
+              "count": 5
+            },
+            {
+              "itemId": "black-metal",
+              "count": 5
+            },
+            {
+              "itemId": "fine-wood",
+              "count": 10
+            }
+          ]
+        }
+      },
+      {
+        "id": "mortar-and-pestle",
+        "name": "Mortar and pestle",
+        "recipe": {
+          "stationId": "workbench",
+          "stationLevel": 1,
+          "materials": [
+            {
+              "itemId": "black-marble",
+              "count": 8
+            },
+            {
+              "itemId": "fine-wood",
+              "count": 6
+            },
+            {
+              "itemId": "core-wood",
+              "count": 4
+            }
+          ]
+        }
+      },
+      {
+        "id": "rolling-pins-and-cutting-boards",
+        "name": "Rolling Pins and Cutting Boards",
+        "recipe": {
+          "stationId": "workbench",
+          "stationLevel": 1,
+          "materials": [
+            {
+              "itemId": "ashwood",
+              "count": 8
+            },
+            {
+              "itemId": "fine-wood",
+              "count": 6
+            },
+            {
+              "itemId": "flametal",
+              "count": 4
+            }
+          ]
+        }
+      },
+      {
+        "id": "smoker",
+        "name": "Smoker",
+        "recipe": {
+          "stationId": "workbench",
+          "stationLevel": 1,
+          "materials": [
+            {
+              "itemId": "bloodgold",
+              "count": 5
+            },
+            {
+              "itemId": "timberwood",
+              "count": 6
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "charcoal-kiln",
+    "name": "Charcoal kiln",
+    "description": "The charcoal kiln burns wood into coal, which you need to fuel smelters.",
+    "veteranNotes": "It holds up to 25 items in its queue. It cannot be placed on wood. Built with the hammer near a workbench: 20 Stone, 5 Surtling core. Crafts or processes 3 recipes.",
+    "biomeIds": ["black-forest"],
+    "tier": 2,
+    "dangerLevel": "none",
+    "spoilerLevel": 0,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/building.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "charcoal_kiln",
+    "notes": "stationLevel 1: build pieces only need the station within range, at any level.",
+    "recipe": {
+      "stationId": "workbench",
+      "stationLevel": 1,
+      "materials": [
+        {
+          "itemId": "stone",
+          "count": 20
+        },
+        {
+          "itemId": "surtling-core",
+          "count": 5
+        }
+      ]
+    },
+    "upgrades": []
+  },
+  {
+    "id": "fermenter",
+    "name": "Fermenter",
+    "description": "The fermenter turns mead bases into finished meads and potions over time.",
+    "veteranNotes": "It needs a roof. Load a mead base and wait; each batch produces several drinks. Built with the hammer near a workbench: 30 Fine wood, 5 Bronze, 10 Resin. Crafts or processes 20 recipes.",
+    "biomeIds": ["black-forest"],
+    "tier": 2,
+    "dangerLevel": "none",
+    "spoilerLevel": 0,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/building.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "fermenter",
+    "notes": "stationLevel 1: build pieces only need the station within range, at any level.",
+    "recipe": {
+      "stationId": "workbench",
+      "stationLevel": 1,
+      "materials": [
+        {
+          "itemId": "fine-wood",
+          "count": 30
+        },
+        {
+          "itemId": "bronze",
+          "count": 5
+        },
+        {
+          "itemId": "resin",
+          "count": 10
+        }
+      ]
+    },
+    "upgrades": []
+  },
+  {
+    "id": "forge",
+    "name": "Forge",
+    "description": "The forge is where you turn metal bars into weapons, armor and tools. You unlock it once you have copper from the Black Forest.",
+    "veteranNotes": "It needs a roof. Build range 20 m. Place its extensions nearby to raise its level for better recipes and upgrades. Built with the hammer near a workbench: 4 Stone, 4 Coal, 10 Wood, 6 Copper. Extensions: Forge bellows, Anvils, Grinding wheel, Smith's Anvil, Forge cooler, Forge toolrack. Crafts or processes 76 recipes.",
+    "biomeIds": ["black-forest"],
+    "tier": 2,
+    "dangerLevel": "none",
+    "spoilerLevel": 0,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/building.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "forge",
+    "notes": "stationLevel 1: build pieces only need the station within range, at any level.",
+    "recipe": {
+      "stationId": "workbench",
+      "stationLevel": 1,
+      "materials": [
+        {
+          "itemId": "stone",
+          "count": 4
+        },
+        {
+          "itemId": "coal",
+          "count": 4
+        },
+        {
+          "itemId": "wood",
+          "count": 10
+        },
+        {
+          "itemId": "copper",
+          "count": 6
+        }
+      ]
+    },
+    "upgrades": [
+      {
+        "id": "forge-bellows",
+        "name": "Forge bellows",
+        "recipe": {
+          "stationId": "workbench",
+          "stationLevel": 1,
+          "materials": [
+            {
+              "itemId": "wood",
+              "count": 5
+            },
+            {
+              "itemId": "deer-hide",
+              "count": 5
+            },
+            {
+              "itemId": "chain",
+              "count": 4
+            }
+          ]
+        }
+      },
+      {
+        "id": "anvils",
+        "name": "Anvils",
+        "recipe": {
+          "stationId": "workbench",
+          "stationLevel": 1,
+          "materials": [
+            {
+              "itemId": "wood",
+              "count": 5
+            },
+            {
+              "itemId": "bronze",
+              "count": 2
+            }
+          ]
+        }
+      },
+      {
+        "id": "grinding-wheel",
+        "name": "Grinding wheel",
+        "recipe": {
+          "stationId": "workbench",
+          "stationLevel": 1,
+          "materials": [
+            {
+              "itemId": "wood",
+              "count": 25
+            },
+            {
+              "itemId": "sharpening-stone",
+              "count": 1
+            }
+          ]
+        }
+      },
+      {
+        "id": "smith-s-anvil",
+        "name": "Smith's Anvil",
+        "recipe": {
+          "stationId": "workbench",
+          "stationLevel": 1,
+          "materials": [
+            {
+              "itemId": "iron",
+              "count": 20
+            },
+            {
+              "itemId": "wood",
+              "count": 5
+            }
+          ]
+        }
+      },
+      {
+        "id": "forge-cooler",
+        "name": "Forge cooler",
+        "recipe": {
+          "stationId": "workbench",
+          "stationLevel": 1,
+          "materials": [
+            {
+              "itemId": "fine-wood",
+              "count": 25
+            },
+            {
+              "itemId": "copper",
+              "count": 10
+            }
+          ]
+        }
+      },
+      {
+        "id": "forge-toolrack",
+        "name": "Forge toolrack",
+        "recipe": {
+          "stationId": "workbench",
+          "stationLevel": 1,
+          "materials": [
+            {
+              "itemId": "iron",
+              "count": 15
+            },
+            {
+              "itemId": "wood",
+              "count": 10
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "mead-ketill",
+    "name": "Mead Ketill",
+    "description": "The mead ketill is used to brew mead bases, which you then leave in a fermenter to become potions.",
+    "veteranNotes": "It needs a fire underneath. Built with the hammer near a forge: 4 Tin, 6 Copper, 2 Leather scraps. Crafts or processes 21 recipes.",
+    "biomeIds": ["black-forest"],
+    "tier": 2,
+    "dangerLevel": "none",
+    "spoilerLevel": 0,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/building.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "piece_MeadCauldron",
+    "notes": "stationLevel 1: build pieces only need the station within range, at any level.",
+    "recipe": {
+      "stationId": "forge",
+      "stationLevel": 1,
+      "materials": [
+        {
+          "itemId": "tin",
+          "count": 4
+        },
+        {
+          "itemId": "copper",
+          "count": 6
+        },
+        {
+          "itemId": "leather-scraps",
+          "count": 2
+        }
+      ]
+    },
+    "upgrades": []
+  },
+  {
+    "id": "smelter",
+    "name": "Smelter",
+    "description": "The smelter turns ore into metal bars. Feed it coal and ore and collect the bars that come out.",
+    "veteranNotes": "It holds up to 10 items in its queue. It cannot be placed on wood. Built with the hammer near a workbench: 20 Stone, 5 Surtling core. Crafts or processes 7 recipes.",
+    "biomeIds": ["black-forest"],
+    "tier": 2,
+    "dangerLevel": "none",
+    "spoilerLevel": 0,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/building.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "smelter",
+    "notes": "stationLevel 1: build pieces only need the station within range, at any level.",
+    "recipe": {
+      "stationId": "workbench",
+      "stationLevel": 1,
+      "materials": [
+        {
+          "itemId": "stone",
+          "count": 20
+        },
+        {
+          "itemId": "surtling-core",
+          "count": 5
+        }
+      ]
+    },
+    "upgrades": []
+  },
+  {
+    "id": "birds-nest",
+    "name": "Birds' Nest",
+    "description": "The birds' nest is a small structure that slowly produces feathers over time.",
+    "veteranNotes": "Collect from it now and then like a beehive. Built with the hammer near a workbench: 2 WrithanRoots, 3 Acorns, 5 Thistle. Crafts or processes 1 recipe.",
+    "biomeIds": ["swamp"],
+    "tier": 3,
+    "dangerLevel": "none",
+    "spoilerLevel": 1,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/building.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "piece_birdnest",
+    "notes": "stationLevel 1: build pieces only need the station within range, at any level.",
+    "recipe": {
+      "stationId": "workbench",
+      "stationLevel": 1,
+      "materials": [
+        {
+          "itemId": "writhanroots",
+          "count": 2
+        },
+        {
+          "itemId": "acorns",
+          "count": 3
+        },
+        {
+          "itemId": "thistle",
+          "count": 5
+        }
+      ]
+    },
+    "upgrades": []
+  },
+  {
+    "id": "food-preparation-table",
+    "name": "Food Preparation Table",
+    "description": "The food preparation table is used to prepare raw ingredients, such as dough and uncooked dishes, before they are baked or cooked.",
+    "veteranNotes": "It needs a roof. Many later meals start here and then go into the oven. Built with the hammer near a workbench: 5 Iron, 20 Fine wood, 15 Leather scraps. Crafts or processes 27 recipes.",
+    "biomeIds": ["swamp"],
+    "tier": 3,
+    "dangerLevel": "none",
+    "spoilerLevel": 1,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/building.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "piece_preptable",
+    "notes": "stationLevel 1: build pieces only need the station within range, at any level.",
+    "recipe": {
+      "stationId": "workbench",
+      "stationLevel": 1,
+      "materials": [
+        {
+          "itemId": "iron",
+          "count": 5
+        },
+        {
+          "itemId": "fine-wood",
+          "count": 20
+        },
+        {
+          "itemId": "leather-scraps",
+          "count": 15
+        }
+      ]
+    },
+    "upgrades": []
+  },
+  {
+    "id": "iron-cooking-station",
+    "name": "Iron cooking station",
+    "description": "The iron cooking station is a larger spit for roasting many pieces of meat at once over a fire.",
+    "veteranNotes": "It needs a fire. It holds 5 items at once. Built with the hammer near a forge: 3 Iron, 3 Chain. Crafts or processes 14 recipes.",
+    "biomeIds": ["swamp"],
+    "tier": 3,
+    "dangerLevel": "none",
+    "spoilerLevel": 1,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/building.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "piece_cookingstation_iron",
+    "notes": "stationLevel 1: build pieces only need the station within range, at any level.",
+    "recipe": {
+      "stationId": "forge",
+      "stationLevel": 1,
+      "materials": [
+        {
+          "itemId": "iron",
+          "count": 3
+        },
+        {
+          "itemId": "chain",
+          "count": 3
+        }
+      ]
+    },
+    "upgrades": []
+  },
+  {
+    "id": "stonecutter",
+    "name": "Stonecutter",
+    "description": "The stonecutter lets you build stone walls, floors and stairs, and it crafts sharpening stones.",
+    "veteranNotes": "It needs a roof. Build range 20 m. Stone pieces must be placed near it. Built with the hammer near a forge: 10 Wood, 2 Iron, 4 Stone. Crafts or processes 1 recipe.",
+    "biomeIds": ["swamp"],
+    "tier": 3,
+    "dangerLevel": "none",
+    "spoilerLevel": 1,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/building.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "piece_stonecutter",
+    "notes": "stationLevel 1: build pieces only need the station within range, at any level.",
+    "recipe": {
+      "stationId": "forge",
+      "stationLevel": 1,
+      "materials": [
+        {
+          "itemId": "wood",
+          "count": 10
+        },
+        {
+          "itemId": "iron",
+          "count": 2
+        },
+        {
+          "itemId": "stone",
+          "count": 4
+        }
+      ]
+    },
+    "upgrades": []
+  },
+  {
+    "id": "artisan-table",
+    "name": "Artisan table",
+    "description": "The artisan table unlocks fine building pieces and mechanisms such as the windmill, spinning wheel and blast furnace.",
+    "veteranNotes": "It needs a roof. Build range 40 m. It also crafts ballista missiles and ceramic plates. Built with the hammer near a workbench: 10 Fine wood, 2 Dragon tear. Extensions: Artisan Press. Crafts or processes 7 recipes.",
+    "biomeIds": ["plains"],
+    "tier": 5,
+    "dangerLevel": "none",
+    "spoilerLevel": 1,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/building.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "piece_artisanstation",
+    "notes": "stationLevel 1: build pieces only need the station within range, at any level.",
+    "recipe": {
+      "stationId": "workbench",
+      "stationLevel": 1,
+      "materials": [
+        {
+          "itemId": "fine-wood",
+          "count": 10
+        },
+        {
+          "itemId": "dragon-tear",
+          "count": 2
+        }
+      ]
+    },
+    "upgrades": [
+      {
+        "id": "artisan-press",
+        "name": "Artisan Press",
+        "recipe": {
+          "stationId": "artisan-table",
+          "stationLevel": 1,
+          "materials": [
+            {
+              "itemId": "black-marble",
+              "count": 5
+            },
+            {
+              "itemId": "bronze",
+              "count": 5
+            },
+            {
+              "itemId": "majestic-carapace",
+              "count": 5
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "blast-furnace",
+    "name": "Blast furnace",
+    "description": "The blast furnace is a hotter smelter needed for tougher ores such as black metal.",
+    "veteranNotes": "It holds up to 10 items in its queue. It cannot be placed on wood. Built with the hammer near an artisan table: 20 Stone, 5 Surtling core, 10 Iron, 20 Fine wood. Crafts or processes 3 recipes.",
+    "biomeIds": ["plains"],
+    "tier": 5,
+    "dangerLevel": "none",
+    "spoilerLevel": 1,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/building.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "blastfurnace",
+    "notes": "stationLevel 1: build pieces only need the station within range, at any level.",
+    "recipe": {
+      "stationId": "artisan-table",
+      "stationLevel": 1,
+      "materials": [
+        {
+          "itemId": "stone",
+          "count": 20
+        },
+        {
+          "itemId": "surtling-core",
+          "count": 5
+        },
+        {
+          "itemId": "iron",
+          "count": 10
+        },
+        {
+          "itemId": "fine-wood",
+          "count": 20
+        }
+      ]
+    },
+    "upgrades": []
+  },
+  {
+    "id": "spinning-wheel",
+    "name": "Spinning wheel",
+    "description": "The spinning wheel turns flax into linen thread for clothing and gear.",
+    "veteranNotes": "It needs a roof. It holds up to 40 items in its queue. Built with the hammer near an artisan table: 20 Fine wood, 10 Iron nails, 5 Leather scraps. Crafts or processes 1 recipe.",
+    "biomeIds": ["plains"],
+    "tier": 5,
+    "dangerLevel": "none",
+    "spoilerLevel": 1,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/building.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "piece_spinningwheel",
+    "notes": "stationLevel 1: build pieces only need the station within range, at any level.",
+    "recipe": {
+      "stationId": "artisan-table",
+      "stationLevel": 1,
+      "materials": [
+        {
+          "itemId": "fine-wood",
+          "count": 20
+        },
+        {
+          "itemId": "iron-nails",
+          "count": 10
+        },
+        {
+          "itemId": "leather-scraps",
+          "count": 5
+        }
+      ]
+    },
+    "upgrades": []
+  },
+  {
+    "id": "stone-oven",
+    "name": "Stone oven",
+    "description": "The stone oven bakes bread, pies and other prepared foods from the food preparation table.",
+    "veteranNotes": "It needs fuel to run. Built with the hammer near an artisan table: 15 Iron, 20 Stone, 4 Surtling core. Crafts or processes 14 recipes.",
+    "biomeIds": ["plains"],
+    "tier": 5,
+    "dangerLevel": "none",
+    "spoilerLevel": 1,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/building.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "piece_oven",
+    "notes": "stationLevel 1: build pieces only need the station within range, at any level.",
+    "recipe": {
+      "stationId": "artisan-table",
+      "stationLevel": 1,
+      "materials": [
+        {
+          "itemId": "iron",
+          "count": 15
+        },
+        {
+          "itemId": "stone",
+          "count": 20
+        },
+        {
+          "itemId": "surtling-core",
+          "count": 4
+        }
+      ]
+    },
+    "upgrades": []
+  },
+  {
+    "id": "windmill",
+    "name": "Windmill",
+    "description": "The windmill grinds barley into flour. It works faster when the wind is stronger.",
+    "veteranNotes": "It holds up to 50 items in its queue. Its blades hurt anyone they hit. Built with the hammer near an artisan table: 20 Stone, 30 Wood, 30 Iron nails. Crafts or processes 3 recipes.",
+    "biomeIds": ["plains"],
+    "tier": 5,
+    "dangerLevel": "none",
+    "spoilerLevel": 1,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/building.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "windmill",
+    "notes": "stationLevel 1: build pieces only need the station within range, at any level.",
+    "recipe": {
+      "stationId": "artisan-table",
+      "stationLevel": 1,
+      "materials": [
+        {
+          "itemId": "stone",
+          "count": 20
+        },
+        {
+          "itemId": "wood",
+          "count": 30
+        },
+        {
+          "itemId": "iron-nails",
+          "count": 30
+        }
+      ]
+    },
+    "upgrades": []
+  },
+  {
+    "id": "black-forge",
+    "name": "Black forge",
+    "description": "The black forge is the advanced forge of the Mistlands and later biomes, used for carapace, flametal and other late-game gear.",
+    "veteranNotes": "It needs a roof. Its extensions raise its level for late-game recipes and upgrades. Built with the hammer near a workbench: 10 Black marble, 10 Yggdrasil wood, 5 Black core. Extensions: Black forge cooler, Vice, Metal Cutter, Gem Cutter, Smith's Aprons. Crafts or processes 123 recipes.",
+    "biomeIds": ["mistlands"],
+    "tier": 6,
+    "dangerLevel": "none",
+    "spoilerLevel": 2,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/building.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "blackforge",
+    "notes": "stationLevel 1: build pieces only need the station within range, at any level.",
+    "recipe": {
+      "stationId": "workbench",
+      "stationLevel": 1,
+      "materials": [
+        {
+          "itemId": "black-marble",
+          "count": 10
+        },
+        {
+          "itemId": "yggdrasil-wood",
+          "count": 10
+        },
+        {
+          "itemId": "black-core",
+          "count": 5
+        }
+      ]
+    },
+    "upgrades": [
+      {
+        "id": "black-forge-cooler",
+        "name": "Black forge cooler",
+        "recipe": {
+          "stationId": "black-forge",
+          "stationLevel": 1,
+          "materials": [
+            {
+              "itemId": "iron",
+              "count": 5
+            },
+            {
+              "itemId": "copper",
+              "count": 5
+            },
+            {
+              "itemId": "black-marble",
+              "count": 4
+            }
+          ]
+        }
+      },
+      {
+        "id": "vice",
+        "name": "Vice",
+        "recipe": {
+          "stationId": "black-forge",
+          "stationLevel": 1,
+          "materials": [
+            {
+              "itemId": "iron",
+              "count": 5
+            },
+            {
+              "itemId": "copper",
+              "count": 8
+            },
+            {
+              "itemId": "mechanical-spring",
+              "count": 2
+            }
+          ]
+        }
+      },
+      {
+        "id": "metal-cutter",
+        "name": "Metal Cutter",
+        "recipe": {
+          "stationId": "black-forge",
+          "stationLevel": 1,
+          "materials": [
+            {
+              "itemId": "black-marble",
+              "count": 5
+            },
+            {
+              "itemId": "flametal",
+              "count": 5
+            },
+            {
+              "itemId": "ashwood",
+              "count": 5
+            },
+            {
+              "itemId": "charred-bone",
+              "count": 4
+            }
+          ]
+        }
+      },
+      {
+        "id": "gem-cutter",
+        "name": "Gem Cutter",
+        "recipe": {
+          "stationId": "black-forge",
+          "stationLevel": 1,
+          "materials": [
+            {
+              "itemId": "flametal",
+              "count": 5
+            },
+            {
+              "itemId": "ashwood",
+              "count": 8
+            },
+            {
+              "itemId": "morgen-sinew",
+              "count": 2
+            },
+            {
+              "itemId": "bloodstone",
+              "count": 1
+            }
+          ]
+        }
+      },
+      {
+        "id": "smith-s-aprons",
+        "name": "Smith's Aprons",
+        "recipe": {
+          "stationId": "black-forge",
+          "stationLevel": 1,
+          "materials": [
+            {
+              "itemId": "bloodgold",
+              "count": 5
+            },
+            {
+              "itemId": "timberwood",
+              "count": 8
+            },
+            {
+              "itemId": "moose-hide",
+              "count": 2
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "eitr-refinery",
+    "name": "Eitr refinery",
+    "description": "The eitr refinery turns soft tissue into eitr, a key material for magic gear.",
+    "veteranNotes": "It holds up to 20 items in its queue. It runs on sap. Built with the hammer near an artisan table: 20 Black marble, 5 Black Metal, 10 Yggdrasil wood, 5 Black core, 3 Sap. Crafts or processes 1 recipe.",
+    "biomeIds": ["mistlands"],
+    "tier": 6,
+    "dangerLevel": "none",
+    "spoilerLevel": 2,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/building.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "eitrrefinery",
+    "notes": "stationLevel 1: build pieces only need the station within range, at any level.",
+    "recipe": {
+      "stationId": "artisan-table",
+      "stationLevel": 1,
+      "materials": [
+        {
+          "itemId": "black-marble",
+          "count": 20
+        },
+        {
+          "itemId": "black-metal",
+          "count": 5
+        },
+        {
+          "itemId": "yggdrasil-wood",
+          "count": 10
+        },
+        {
+          "itemId": "black-core",
+          "count": 5
+        },
+        {
+          "itemId": "sap",
+          "count": 3
+        }
+      ]
+    },
+    "upgrades": []
+  },
+  {
+    "id": "galdr-table",
+    "name": "Galdr table",
+    "description": "The galdr table is the crafting station for magic gear: staffs, eitr-weave clothing and other items for mages.",
+    "veteranNotes": "It needs a roof. Its extensions raise its level for stronger magic items and upgrades. Built with the hammer near a workbench: 20 Yggdrasil wood, 10 Black Metal, 5 Black core, 5 Refined eitr. Extensions: Rune table, Unfading candles, Feathery Wreath, Standing Loom. Crafts or processes 26 recipes.",
+    "biomeIds": ["mistlands"],
+    "tier": 6,
+    "dangerLevel": "none",
+    "spoilerLevel": 2,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/building.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "piece_magetable",
+    "notes": "stationLevel 1: build pieces only need the station within range, at any level.",
+    "recipe": {
+      "stationId": "workbench",
+      "stationLevel": 1,
+      "materials": [
+        {
+          "itemId": "yggdrasil-wood",
+          "count": 20
+        },
+        {
+          "itemId": "black-metal",
+          "count": 10
+        },
+        {
+          "itemId": "black-core",
+          "count": 5
+        },
+        {
+          "itemId": "refined-eitr",
+          "count": 5
+        }
+      ]
+    },
+    "upgrades": [
+      {
+        "id": "rune-table",
+        "name": "Rune table",
+        "recipe": {
+          "stationId": "workbench",
+          "stationLevel": 1,
+          "materials": [
+            {
+              "itemId": "black-marble",
+              "count": 10
+            },
+            {
+              "itemId": "skeleton-trophy",
+              "count": 3
+            },
+            {
+              "itemId": "refined-eitr",
+              "count": 10
+            },
+            {
+              "itemId": "resin",
+              "count": 15
+            }
+          ]
+        }
+      },
+      {
+        "id": "unfading-candles",
+        "name": "Unfading candles",
+        "recipe": {
+          "stationId": "workbench",
+          "stationLevel": 1,
+          "materials": [
+            {
+              "itemId": "black-marble",
+              "count": 10
+            },
+            {
+              "itemId": "yggdrasil-wood",
+              "count": 5
+            },
+            {
+              "itemId": "refined-eitr",
+              "count": 10
+            },
+            {
+              "itemId": "resin",
+              "count": 15
+            }
+          ]
+        }
+      },
+      {
+        "id": "feathery-wreath",
+        "name": "Feathery Wreath",
+        "recipe": {
+          "stationId": "workbench",
+          "stationLevel": 1,
+          "materials": [
+            {
+              "itemId": "celestial-feather",
+              "count": 8
+            },
+            {
+              "itemId": "asksvin-trophy",
+              "count": 1
+            },
+            {
+              "itemId": "refined-eitr",
+              "count": 10
+            },
+            {
+              "itemId": "ashwood",
+              "count": 3
+            }
+          ]
+        }
+      },
+      {
+        "id": "standing-loom",
+        "name": "Standing Loom",
+        "recipe": {
+          "stationId": "workbench",
+          "stationLevel": 1,
+          "materials": [
+            {
+              "itemId": "timberwood",
+              "count": 5
+            },
+            {
+              "itemId": "nornathread",
+              "count": 10
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "sap-extractor",
+    "name": "Sap extractor",
+    "description": "The sap extractor draws sap from the giant roots of the Mistlands over time.",
+    "veteranNotes": "It must be placed on a Yggdrasil root. It produces 1 sap every 60 s and holds up to 10. Built with the hammer near a workbench: 10 Yggdrasil wood, 5 Black Metal, 1 Dvergr extractor. Crafts or processes 1 recipe.",
+    "biomeIds": ["mistlands"],
+    "tier": 6,
+    "dangerLevel": "none",
+    "spoilerLevel": 2,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/building.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "piece_sapcollector",
+    "notes": "stationLevel 1: build pieces only need the station within range, at any level.",
+    "recipe": {
+      "stationId": "workbench",
+      "stationLevel": 1,
+      "materials": [
+        {
+          "itemId": "yggdrasil-wood",
+          "count": 10
+        },
+        {
+          "itemId": "black-metal",
+          "count": 5
+        },
+        {
+          "itemId": "dvergr-extractor",
+          "count": 1
+        }
+      ]
+    },
+    "upgrades": []
+  },
+  {
+    "id": "wisp-fountain",
+    "name": "Wisp fountain",
+    "description": "The wisp fountain attracts wisps at night, letting you gather wisps near your base.",
+    "veteranNotes": "It clears Mistlands mist around it. Built with the hammer near a stonecutter: 10 Stone, 1 Torn spirit. Crafts or processes 1 recipe.",
+    "biomeIds": ["mistlands"],
+    "tier": 6,
+    "dangerLevel": "none",
+    "spoilerLevel": 2,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/building.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "piece_wisplure",
+    "notes": "stationLevel 1: build pieces only need the station within range, at any level.",
+    "recipe": {
+      "stationId": "stonecutter",
+      "stationLevel": 1,
+      "materials": [
+        {
+          "itemId": "stone",
+          "count": 10
+        },
+        {
+          "itemId": "torn-spirit",
+          "count": 1
+        }
+      ]
+    },
+    "upgrades": []
+  },
+  {
+    "id": "eternal-pyre",
+    "name": "Eternal Pyre",
+    "description": "The eternal pyre attracts glowing embers that you can gather, much like a wisp fountain does with wisps.",
+    "veteranNotes": "It is built with a trophy material from the Ashlands boss. Built with the hammer near a stonecutter: 10 Stone, 1 Fader Relic. Crafts or processes 1 recipe.",
+    "biomeIds": ["deep-north"],
+    "tier": 8,
+    "dangerLevel": "none",
+    "spoilerLevel": 2,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/building.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "piece_EternalPyre",
+    "notes": "stationLevel 1: build pieces only need the station within range, at any level.",
+    "recipe": {
+      "stationId": "stonecutter",
+      "stationLevel": 1,
+      "materials": [
+        {
+          "itemId": "stone",
+          "count": 10
+        },
+        {
+          "itemId": "fader-relic",
+          "count": 1
+        }
+      ]
+    },
+    "upgrades": []
+  },
+  {
+    "id": "frigid-kiln",
+    "name": "Frigid Kiln",
+    "description": "The frigid kiln turns ice into a frozen fuel used by the Frost Foundry.",
+    "veteranNotes": "It holds up to 25 items in its queue. It cannot be placed on wood. The build cost is disputed; see notes. Crafts or processes 1 recipe.",
+    "biomeIds": ["deep-north"],
+    "tier": 8,
+    "dangerLevel": "none",
+    "spoilerLevel": 2,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/building.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json",
+      "https://www.valheimplanner.com/build/frigid-kiln/"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "piece_FrostKiln",
+    "confidence": "conflict",
+    "notes": "kirilloid lists 20 Stone + 5 Surtling core at a workbench (identical to the charcoal kiln, possibly a copy-paste); search summaries of guide sites say 20 Stone, 10 Frostcore and 5 Ice. Recipe omitted until verified.",
+    "upgrades": []
+  },
+  {
+    "id": "frost-foundry",
+    "name": "Frost Foundry",
+    "description": "The Frost Foundry is where cast Deep North gear is finished into usable weapons and armor.",
+    "veteranNotes": "It holds up to 25 items in its queue. It cannot be placed on wood. Built with the hammer near a workbench: 15 Iron, 20 Stone, 10 Frostcore. Crafts or processes 29 recipes.",
+    "biomeIds": ["deep-north"],
+    "tier": 8,
+    "dangerLevel": "none",
+    "spoilerLevel": 2,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/building.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "piece_FrostFoundry",
+    "notes": "stationLevel 1: build pieces only need the station within range, at any level.",
+    "recipe": {
+      "stationId": "workbench",
+      "stationLevel": 1,
+      "materials": [
+        {
+          "itemId": "iron",
+          "count": 15
+        },
+        {
+          "itemId": "stone",
+          "count": 20
+        },
+        {
+          "itemId": "frostcore",
+          "count": 10
+        }
+      ]
+    },
+    "upgrades": []
+  }
+]

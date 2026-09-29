@@ -1,0 +1,771 @@
+[
+  {
+    "id": "eikthyr",
+    "name": "Eikthyr",
+    "description": "Eikthyr is the first boss: a great stag crackling with lightning. Summon him at his altar in the Meadows by offering deer trophies.",
+    "veteranNotes": "Only 500 health. Charge and stomp deal lightning; the antler swing deals pierce. Drops hard antlers for the first pickaxe.",
+    "biomeIds": ["meadows"],
+    "tier": 1,
+    "dangerLevel": "high",
+    "spoilerLevel": 0,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/creatures.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/resources.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/effects.ts"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "Eikthyr",
+    "confidence": "read",
+    "order": 1,
+    "altarLocationId": "eikthyr-altar",
+    "summonItems": [
+      {
+        "itemId": "deer-trophy",
+        "count": 2
+      }
+    ],
+    "health": 500,
+    "attacks": [
+      {
+        "name": "antlers",
+        "damage": {
+          "pierce": 20,
+          "chop": 1000,
+          "pickaxe": 1000
+        }
+      },
+      {
+        "name": "charge",
+        "damage": {
+          "lightning": 15
+        }
+      },
+      {
+        "name": "stomp",
+        "damage": {
+          "lightning": 15
+        }
+      }
+    ],
+    "damageModifiers": {
+      "blunt": "normal",
+      "slash": "normal",
+      "pierce": "normal",
+      "chop": "ignore",
+      "pickaxe": "ignore",
+      "fire": "normal",
+      "frost": "normal",
+      "lightning": "normal",
+      "poison": "normal",
+      "spirit": "normal"
+    },
+    "weaknesses": [],
+    "resistances": [],
+    "immunities": [],
+    "drops": [
+      {
+        "itemId": "hard-antlers",
+        "chance": 1
+      },
+      {
+        "itemId": "eikthyr-trophy",
+        "chance": 1
+      }
+    ],
+    "forsakenPower": {
+      "name": "Eikthyr power",
+      "effect": "60% less stamina used while running, jumping and swimming.",
+      "durationS": 300,
+      "cooldownS": 1200
+    }
+  },
+  {
+    "id": "the-elder",
+    "name": "The Elder",
+    "description": "The Elder is an ancient tree giant, the boss of the Black Forest. Offer ancient seeds at its altar to summon it.",
+    "veteranNotes": "Very weak to fire, immune to poison and spirit. Summons many roots from the ground during the fight. Drops the Swamp key that opens sunken crypts.",
+    "biomeIds": ["black-forest"],
+    "tier": 2,
+    "dangerLevel": "extreme",
+    "spoilerLevel": 1,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/creatures.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/resources.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/effects.ts"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "gd_king",
+    "confidence": "read",
+    "order": 2,
+    "altarLocationId": "elder-altar",
+    "summonItems": [
+      {
+        "itemId": "ancient-seed",
+        "count": 3
+      }
+    ],
+    "health": 2500,
+    "attacks": [
+      {
+        "name": "Vine Shoot",
+        "damage": {
+          "pierce": 35,
+          "chop": 20,
+          "pickaxe": 20
+        }
+      },
+      {
+        "name": "Stomp",
+        "damage": {
+          "blunt": 60,
+          "chop": 1000,
+          "pickaxe": 1000
+        }
+      }
+    ],
+    "damageModifiers": {
+      "blunt": "normal",
+      "slash": "normal",
+      "pierce": "normal",
+      "chop": "ignore",
+      "pickaxe": "ignore",
+      "fire": "veryWeak",
+      "frost": "normal",
+      "lightning": "normal",
+      "poison": "immune",
+      "spirit": "immune"
+    },
+    "weaknesses": ["fire"],
+    "resistances": [],
+    "immunities": ["poison", "spirit"],
+    "drops": [
+      {
+        "itemId": "swamp-key",
+        "chance": 1
+      },
+      {
+        "itemId": "the-elder-trophy",
+        "chance": 1
+      }
+    ],
+    "forsakenPower": {
+      "name": "Elder power",
+      "effect": "30% faster health regeneration and 60% more chop and pickaxe damage.",
+      "durationS": 300,
+      "cooldownS": 1200
+    }
+  },
+  {
+    "id": "bonemass",
+    "name": "Bonemass",
+    "description": "Bonemass is a huge mound of rotting flesh and bone, the Swamp boss. Offer withered bones at its altar to summon it.",
+    "veteranNotes": "Weak to blunt and frost; very resistant to pierce and fire; immune to poison. Its poison cloud does 130 poison. It calls skeletons and blobs to help. Bring poison resistance mead and a mace.",
+    "biomeIds": ["swamp"],
+    "tier": 3,
+    "dangerLevel": "extreme",
+    "spoilerLevel": 2,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/creatures.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/resources.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/effects.ts"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "Bonemass",
+    "confidence": "read",
+    "order": 3,
+    "altarLocationId": "bonemass-altar",
+    "summonItems": [
+      {
+        "itemId": "withered-bone",
+        "count": 10
+      }
+    ],
+    "health": 5000,
+    "attacks": [
+      {
+        "name": "poison",
+        "damage": {
+          "poison": 130
+        }
+      },
+      {
+        "name": "punch",
+        "damage": {
+          "blunt": 80,
+          "chop": 1000,
+          "pickaxe": 1000,
+          "poison": 50
+        }
+      }
+    ],
+    "damageModifiers": {
+      "blunt": "weak",
+      "slash": "resistant",
+      "pierce": "veryResistant",
+      "chop": "ignore",
+      "pickaxe": "ignore",
+      "fire": "veryResistant",
+      "frost": "weak",
+      "lightning": "normal",
+      "poison": "immune",
+      "spirit": "normal"
+    },
+    "weaknesses": ["blunt", "frost"],
+    "resistances": ["slash", "pierce", "fire"],
+    "immunities": ["poison"],
+    "drops": [
+      {
+        "itemId": "wishbone",
+        "chance": 1
+      },
+      {
+        "itemId": "bonemass-trophy",
+        "chance": 1
+      }
+    ],
+    "forsakenPower": {
+      "name": "Bonemass power",
+      "effect": "Changes the stamina cost of blocking (the data lists a -100% modifier and -5 flat) and makes you slightly resistant to blunt, slash and pierce damage.",
+      "durationS": 300,
+      "cooldownS": 1200
+    }
+  },
+  {
+    "id": "moder",
+    "name": "Moder",
+    "description": "Moder is a mighty frost dragon, the Mountain boss. Place dragon eggs on her altar high in the Mountains to summon her.",
+    "veteranNotes": "Weak to fire, immune to frost and spirit. Her breath and ice shards deal 200 frost; bring frost resistance. She flies, so a bow is essential. Drops dragon tears.",
+    "biomeIds": ["mountains"],
+    "tier": 4,
+    "dangerLevel": "extreme",
+    "spoilerLevel": 2,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/creatures.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/resources.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/effects.ts"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "Dragon",
+    "confidence": "read",
+    "order": 4,
+    "altarLocationId": "moder-altar",
+    "summonItems": [
+      {
+        "itemId": "dragon-egg",
+        "count": 3
+      }
+    ],
+    "health": 7500,
+    "attacks": [
+      {
+        "name": "bite",
+        "damage": {
+          "pierce": 120,
+          "chop": 1000,
+          "pickaxe": 1000
+        }
+      },
+      {
+        "name": "claw",
+        "damage": {
+          "slash": 110,
+          "chop": 1000,
+          "pickaxe": 1000
+        }
+      },
+      {
+        "name": "ice shards",
+        "damage": {
+          "pierce": 30,
+          "chop": 200,
+          "pickaxe": 200,
+          "frost": 200
+        }
+      },
+      {
+        "name": "breath",
+        "damage": {
+          "chop": 200,
+          "pickaxe": 200,
+          "frost": 200
+        }
+      }
+    ],
+    "damageModifiers": {
+      "blunt": "normal",
+      "slash": "normal",
+      "pierce": "normal",
+      "chop": "ignore",
+      "pickaxe": "ignore",
+      "fire": "weak",
+      "frost": "immune",
+      "lightning": "normal",
+      "poison": "normal",
+      "spirit": "immune"
+    },
+    "weaknesses": ["fire"],
+    "resistances": [],
+    "immunities": ["frost", "spirit"],
+    "drops": [
+      {
+        "itemId": "dragon-tear",
+        "chance": 1
+      },
+      {
+        "itemId": "moder-trophy",
+        "chance": 1
+      }
+    ],
+    "forsakenPower": {
+      "name": "Moder power",
+      "effect": "Wind always blows behind your ship, you move 10% faster, carry 300 more weight and become resistant to frost.",
+      "durationS": 300,
+      "cooldownS": 1200
+    }
+  },
+  {
+    "id": "yagluth",
+    "name": "Yagluth",
+    "description": "Yagluth is the undead Fuling king and the Plains boss. Offer Fuling totems at his altar to summon him.",
+    "veteranNotes": "Very resistant to pierce, resistant to fire, immune to poison. Meteors deal 120 fire plus 40 blunt. Drops torn spirits.",
+    "biomeIds": ["plains"],
+    "tier": 5,
+    "dangerLevel": "extreme",
+    "spoilerLevel": 2,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/creatures.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/resources.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/effects.ts"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "GoblinKing",
+    "confidence": "read",
+    "order": 5,
+    "altarLocationId": "yagluth-altar",
+    "summonItems": [
+      {
+        "itemId": "fuling-totem",
+        "count": 5
+      }
+    ],
+    "health": 10000,
+    "attacks": [
+      {
+        "name": "meteors",
+        "damage": {
+          "blunt": 40,
+          "chop": 50,
+          "pickaxe": 50,
+          "fire": 120
+        }
+      },
+      {
+        "name": "fire Breath",
+        "damage": {
+          "chop": 50,
+          "pickaxe": 50,
+          "fire": 40,
+          "lightning": 20
+        }
+      },
+      {
+        "name": "nova",
+        "damage": {
+          "chop": 100,
+          "pickaxe": 100,
+          "fire": 65,
+          "lightning": 65
+        }
+      }
+    ],
+    "damageModifiers": {
+      "blunt": "normal",
+      "slash": "normal",
+      "pierce": "veryResistant",
+      "chop": "ignore",
+      "pickaxe": "ignore",
+      "fire": "resistant",
+      "frost": "normal",
+      "lightning": "normal",
+      "poison": "immune",
+      "spirit": "normal"
+    },
+    "weaknesses": [],
+    "resistances": ["pierce", "fire"],
+    "immunities": ["poison"],
+    "drops": [
+      {
+        "itemId": "torn-spirit",
+        "chance": 1
+      },
+      {
+        "itemId": "yagluth-trophy",
+        "chance": 1
+      }
+    ],
+    "forsakenPower": {
+      "name": "Yagluth power",
+      "effect": "+25 Farming skill and 10% more damage dealt.",
+      "durationS": 300,
+      "cooldownS": 1200
+    }
+  },
+  {
+    "id": "the-queen",
+    "name": "The Queen",
+    "description": "The Queen is the giant insect ruler of the Mistlands, waiting inside an infested Dvergr citadel.",
+    "veteranNotes": "Resistant to pierce, immune to spirit. Bite deals 140 pierce plus 100 poison, and she calls seekers and swarms of brood. The sealed citadel door needs a Sealbreaker (crafted from 9 Sealbreaker fragments at the Galdr table). Drops Majestic Carapace.",
+    "biomeIds": ["mistlands"],
+    "tier": 6,
+    "dangerLevel": "extreme",
+    "spoilerLevel": 2,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/creatures.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/resources.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/effects.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts",
+      "S-VER-11"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "SeekerQueen",
+    "confidence": "conflict",
+    "notes": "Summon item and count come from kirilloid resources.ts summon data (3 Seeker soldier trophies). The dump lists the Majestic Carapace drop with min 3 / max 1; the count is not shown here. Summon conflict: kirilloid's game-data extraction lists 3 Seeker Soldier trophies as the Queen's summon (resources.ts, TrophySeekerBrute summon), while a search summary of the wiki (S-VER-11, snippet) describes only opening her sealed door with the Sealbreaker. Verify in game.",
+    "order": 6,
+    "altarLocationId": "queen-citadel",
+    "summonItems": [
+      {
+        "itemId": "seeker-soldier-trophy",
+        "count": 3
+      }
+    ],
+    "health": 12500,
+    "attacks": [
+      {
+        "name": "rush",
+        "damage": {
+          "slash": 100,
+          "chop": 300,
+          "pickaxe": 300
+        }
+      },
+      {
+        "name": "bite",
+        "damage": {
+          "pierce": 140,
+          "chop": 300,
+          "pickaxe": 300,
+          "poison": 100
+        }
+      },
+      {
+        "name": "slap",
+        "damage": {
+          "slash": 130,
+          "chop": 300,
+          "pickaxe": 300
+        }
+      },
+      {
+        "name": "pirce_aoe",
+        "damage": {
+          "pierce": 150,
+          "chop": 300,
+          "pickaxe": 300
+        }
+      }
+    ],
+    "damageModifiers": {
+      "blunt": "normal",
+      "slash": "normal",
+      "pierce": "resistant",
+      "chop": "ignore",
+      "pickaxe": "ignore",
+      "fire": "normal",
+      "frost": "normal",
+      "lightning": "normal",
+      "poison": "normal",
+      "spirit": "immune"
+    },
+    "weaknesses": [],
+    "resistances": ["pierce"],
+    "immunities": ["spirit"],
+    "drops": [
+      {
+        "itemId": "queen-trophy",
+        "chance": 1
+      },
+      {
+        "itemId": "majestic-carapace",
+        "chance": 1
+      }
+    ],
+    "forsakenPower": {
+      "name": "Queen power",
+      "effect": "Resistant to poison, no stamina used while sneaking, and eitr regenerates twice as fast.",
+      "durationS": 300,
+      "cooldownS": 1200
+    }
+  },
+  {
+    "id": "fader",
+    "name": "Fader",
+    "description": "Fader is a colossal fire dragon, the Ashlands boss. Ring bells at its altar to call it.",
+    "veteranNotes": "20000 health; immune to fire and spirit, resistant to pierce. Bite deals 210 pierce, meteors 120 fire. It summons Charred warriors during the fight. Drops Fader relics.",
+    "biomeIds": ["ashlands"],
+    "tier": 7,
+    "dangerLevel": "extreme",
+    "spoilerLevel": 2,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/creatures.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/resources.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/effects.ts"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "Fader",
+    "confidence": "read",
+    "notes": "The dump lists the Fader Relic drop with min 3 / max 1; the count is not shown here.",
+    "order": 7,
+    "altarLocationId": "fader-altar",
+    "summonItems": [
+      {
+        "itemId": "bell",
+        "count": 3
+      }
+    ],
+    "health": 20000,
+    "attacks": [
+      {
+        "name": "fissure",
+        "damage": {
+          "pierce": 120,
+          "chop": 1000,
+          "pickaxe": 1000
+        }
+      },
+      {
+        "name": "bite",
+        "damage": {
+          "pierce": 210,
+          "chop": 300,
+          "pickaxe": 300
+        }
+      },
+      {
+        "name": "claw-left",
+        "damage": {
+          "pierce": 200,
+          "chop": 300,
+          "pickaxe": 300
+        }
+      },
+      {
+        "name": "claw-right",
+        "damage": {
+          "pierce": 200,
+          "chop": 300,
+          "pickaxe": 300
+        }
+      },
+      {
+        "name": "spin",
+        "damage": {
+          "pierce": 140,
+          "chop": 300,
+          "pickaxe": 300
+        }
+      },
+      {
+        "name": "flamebreath",
+        "damage": {
+          "chop": 40,
+          "pickaxe": 40,
+          "fire": 60
+        }
+      },
+      {
+        "name": "meteors",
+        "damage": {
+          "blunt": 40,
+          "chop": 100,
+          "pickaxe": 100,
+          "fire": 120
+        }
+      },
+      {
+        "name": "wall of fire",
+        "damage": {
+          "pierce": 120,
+          "chop": 1000,
+          "pickaxe": 1000
+        }
+      }
+    ],
+    "damageModifiers": {
+      "blunt": "normal",
+      "slash": "normal",
+      "pierce": "resistant",
+      "chop": "ignore",
+      "pickaxe": "ignore",
+      "fire": "immune",
+      "frost": "normal",
+      "lightning": "normal",
+      "poison": "normal",
+      "spirit": "immune"
+    },
+    "weaknesses": [],
+    "resistances": ["pierce"],
+    "immunities": ["fire", "spirit"],
+    "drops": [
+      {
+        "itemId": "fader-trophy",
+        "chance": 1
+      },
+      {
+        "itemId": "fader-relic",
+        "chance": 1
+      }
+    ],
+    "forsakenPower": {
+      "name": "Fader power",
+      "effect": "Resistant to fire and 50% less stagger buildup.",
+      "durationS": 300,
+      "cooldownS": 1200
+    }
+  },
+  {
+    "id": "kall-fimbulbringer",
+    "name": "Kall Fimbulbringer",
+    "description": "Kall Fimbulbringer is the final boss, ruling the frozen Deep North. Offer Malicious Blood to summon him.",
+    "veteranNotes": "Main phase: 10000 health, resistant to pierce, fire, frost and lightning. Flurry hits for 250 blunt. The fight continues with aspects of earlier bosses and a final phase (prefab FrozenKing_p3, 20000 health, same resistances) that drops the listed Sacrificial Blood and Crown Jewel.",
+    "biomeIds": ["deep-north"],
+    "tier": 8,
+    "dangerLevel": "extreme",
+    "spoilerLevel": 2,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/creatures.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/resources.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "FrozenKing",
+    "confidence": "read",
+    "notes": "en.json name \"Kall Fimbulbringer\" matches the name used in guides. No GP_* forsaken power for this boss exists in effects.json, so forsakenPower is omitted. Drops are taken from FrozenKing_p3 (final phase); the main-phase drop list only spawns the next phases.",
+    "order": 8,
+    "altarLocationId": "deep-north-boss",
+    "summonItems": [
+      {
+        "itemId": "malicious-blood",
+        "count": 3
+      }
+    ],
+    "health": 10000,
+    "attacks": [
+      {
+        "name": "flurry",
+        "damage": {
+          "blunt": 250,
+          "chop": 200,
+          "pickaxe": 200
+        }
+      },
+      {
+        "name": "rush",
+        "damage": {
+          "blunt": 125,
+          "pierce": 125,
+          "chop": 300,
+          "pickaxe": 300
+        }
+      },
+      {
+        "name": "slam L",
+        "damage": {
+          "blunt": 160,
+          "chop": 300,
+          "pickaxe": 300
+        }
+      },
+      {
+        "name": "slam LL",
+        "damage": {
+          "blunt": 160,
+          "chop": 300,
+          "pickaxe": 300
+        }
+      },
+      {
+        "name": "slam RR",
+        "damage": {
+          "blunt": 160,
+          "chop": 300,
+          "pickaxe": 300
+        }
+      },
+      {
+        "name": "sweep L",
+        "damage": {
+          "pierce": 180,
+          "chop": 300,
+          "pickaxe": 300
+        }
+      },
+      {
+        "name": "sweep R",
+        "damage": {
+          "pierce": 180,
+          "chop": 300,
+          "pickaxe": 300
+        }
+      },
+      {
+        "name": "whirl",
+        "damage": {
+          "blunt": 150,
+          "chop": 300,
+          "pickaxe": 300,
+          "frost": 20
+        }
+      },
+      {
+        "name": "sweep2",
+        "damage": {
+          "blunt": 160,
+          "chop": 300,
+          "pickaxe": 300
+        }
+      }
+    ],
+    "damageModifiers": {
+      "blunt": "normal",
+      "slash": "normal",
+      "pierce": "resistant",
+      "chop": "ignore",
+      "pickaxe": "ignore",
+      "fire": "resistant",
+      "frost": "resistant",
+      "lightning": "resistant",
+      "poison": "normal",
+      "spirit": "immune"
+    },
+    "weaknesses": [],
+    "resistances": ["pierce", "fire", "frost", "lightning"],
+    "immunities": ["spirit"],
+    "drops": [
+      {
+        "itemId": "sacrificial-blood",
+        "chance": 1
+      },
+      {
+        "itemId": "crown-jewel",
+        "chance": 1
+      }
+    ]
+  }
+]

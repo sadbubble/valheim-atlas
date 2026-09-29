@@ -72,6 +72,20 @@ Biome layout rules, world size, sea level and location constraints come from sou
 Resolution can be 64–2048. A 1024² world takes about 1.5–2 s in Node on the dev container
 (`npm run perf`).
 
+## Game data
+
+`public/data/*.json` holds every game fact, each entry with sources and a spoiler level:
+
+- 9 biomes, with what to bring, threats, key resources, recommended gear tier, weather and boss
+- 8 bosses (summon items, Forsaken powers)
+- 85 creatures, with weaknesses and resistances
+- 348 resources, 345 items (weapons, armor, tools, ammo, meads), 26 crafting stations and 87 foods
+- a 9-step progression guide, 66 location types and 34 tips
+
+Numbers come from a game-data extraction pinned to a commit (see `docs/SOURCES.md` §e); anything
+unverified is `null` and listed in `docs/DATA_TODO.md`. Typed loaders are in `src/data/load.ts`
+(`loadContent()`). Run `npm run validate:data` after editing data.
+
 ### URL parameters
 
 The HUD state is mirrored in the query string, so any view can be shared:
@@ -100,7 +114,8 @@ Invalid values fall back to their defaults, and parameters left at their default
 | `npm run perf`      | Time a 1024² world generation                   |
 | `npm run test:e2e`  | Playwright e2e (Chromium, software WebGL)       |
 | `npm run screens`   | Regenerate `docs/screens/*.png` + `stats.json`  |
-| `npm run check`     | typecheck, lint and test (run before pushing)   |
+| `npm run validate:data` | Validate `public/data` (+ `-- --write-todo`) |
+| `npm run check`     | typecheck, lint, test, validate:data            |
 
 ## Project layout
 

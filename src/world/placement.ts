@@ -45,8 +45,8 @@ export function placeLocations(input: PlacementInput): PlacementResult {
     const z = Math.round(rawZ * 10) / 10;
     const d = Math.sqrt(x * x + z * z);
     if (d > w.worldRadiusM) return null;
-    if (type.minDistM !== null && d < type.minDistM) return null;
-    if (type.maxDistM !== null && d > type.maxDistM) return null;
+    if (type.minDistM != null && d < type.minDistM) return null;
+    if (type.maxDistM != null && d > type.maxDistM) return null;
     const zoneKey = `${Math.floor(x / w.zoneSizeM)},${Math.floor(z / w.zoneSizeM)}`;
     if (occupiedZones.has(zoneKey)) return null;
     const cell = cellIndexAt(grid, x, z);
@@ -56,7 +56,7 @@ export function placeLocations(input: PlacementInput): PlacementResult {
     const minAlt =
       type.minAltM ?? (type.biomeIds.includes('ocean') ? -Infinity : P.defaultMinAltitudeM);
     if (altitudeM < minAlt) return null;
-    if (type.maxAltM !== null && altitudeM > type.maxAltM) return null;
+    if (type.maxAltM != null && altitudeM > type.maxAltM) return null;
     occupiedZones.add(zoneKey);
     return {
       id: '',

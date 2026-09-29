@@ -1,0 +1,5877 @@
+[
+  {
+    "id": "deer",
+    "name": "Deer",
+    "description": "A skittish deer that runs away as soon as it notices you. Hunting deer is your first source of hide and meat, and its trophy is needed to summon Eikthyr.",
+    "veteranNotes": "Only 10 health, so one good arrow drops it. It never fights back. Sneak up on it with a bow; it spawns in Meadows and Black Forest.",
+    "biomeIds": ["meadows", "black-forest"],
+    "tier": 1,
+    "dangerLevel": "none",
+    "spoilerLevel": 0,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/creatures.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/spawn-list.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "Deer",
+    "confidence": "read",
+    "behaviour": "passive",
+    "kind": "animal",
+    "health": 10,
+    "attacks": [],
+    "damageModifiers": {
+      "blunt": "normal",
+      "slash": "normal",
+      "pierce": "normal",
+      "chop": "ignore",
+      "pickaxe": "ignore",
+      "fire": "normal",
+      "frost": "normal",
+      "lightning": "normal",
+      "poison": "normal",
+      "spirit": "immune"
+    },
+    "weaknesses": [],
+    "resistances": [],
+    "immunities": ["spirit"],
+    "drops": [
+      {
+        "itemId": "deer-meat",
+        "chance": 1
+      },
+      {
+        "itemId": "deer-hide",
+        "chance": 1
+      },
+      {
+        "itemId": "deer-trophy",
+        "chance": 0.5
+      }
+    ],
+    "tameable": false
+  },
+  {
+    "id": "seagull",
+    "name": "Seagull",
+    "description": "A harmless seabird that circles over shorelines and water. It can be shot down for feathers.",
+    "veteranNotes": "Has just 1 health and always drops feathers, which makes it an early feather source for arrows if you are a good shot.",
+    "biomeIds": ["meadows", "black-forest", "plains", "ocean"],
+    "tier": 1,
+    "dangerLevel": "none",
+    "spoilerLevel": 0,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/creatures.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/spawn-list.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "Seagal",
+    "confidence": "read",
+    "behaviour": "passive",
+    "kind": "animal",
+    "health": 1,
+    "attacks": [],
+    "damageModifiers": {
+      "blunt": "normal",
+      "slash": "normal",
+      "pierce": "normal",
+      "chop": "ignore",
+      "pickaxe": "ignore",
+      "fire": "normal",
+      "frost": "normal",
+      "lightning": "normal",
+      "poison": "normal",
+      "spirit": "immune"
+    },
+    "weaknesses": [],
+    "resistances": [],
+    "immunities": ["spirit"],
+    "drops": [
+      {
+        "itemId": "feathers",
+        "chance": 1
+      }
+    ],
+    "tameable": false
+  },
+  {
+    "id": "greyling",
+    "name": "Greyling",
+    "description": "A small, weak forest creature that wanders into the Meadows. It attacks, but barely hurts; a good first fight for new players.",
+    "veteranNotes": "Very weak to fire and resistant to poison, like all greydwarf-kin. Drops resin.",
+    "biomeIds": ["meadows"],
+    "tier": 1,
+    "dangerLevel": "low",
+    "spoilerLevel": 0,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/creatures.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/spawn-list.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "Greyling",
+    "confidence": "read",
+    "behaviour": "aggressive",
+    "kind": "monster",
+    "health": 20,
+    "attacks": [
+      {
+        "name": "bite",
+        "damage": {
+          "slash": 5
+        }
+      }
+    ],
+    "damageModifiers": {
+      "blunt": "normal",
+      "slash": "normal",
+      "pierce": "normal",
+      "chop": "ignore",
+      "pickaxe": "ignore",
+      "fire": "veryWeak",
+      "frost": "normal",
+      "lightning": "normal",
+      "poison": "resistant",
+      "spirit": "immune"
+    },
+    "weaknesses": ["fire"],
+    "resistances": ["poison"],
+    "immunities": ["spirit"],
+    "drops": [
+      {
+        "itemId": "resin",
+        "chance": 1
+      }
+    ],
+    "tameable": false
+  },
+  {
+    "id": "neck",
+    "name": "Neck",
+    "description": "A small lizard-like creature found near water in the Meadows. It bites, but only weakly.",
+    "veteranNotes": "Spawns near lakes and shores, and in larger numbers during rain. Neck tails are an early cooking ingredient. Also appears in a Meadows raid that can happen before Eikthyr is defeated.",
+    "biomeIds": ["meadows"],
+    "tier": 1,
+    "dangerLevel": "low",
+    "spoilerLevel": 0,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/creatures.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/spawn-list.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/events.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "Neck",
+    "confidence": "read",
+    "behaviour": "aggressive",
+    "kind": "monster",
+    "health": 5,
+    "attacks": [
+      {
+        "name": "bite",
+        "damage": {
+          "slash": 6
+        }
+      }
+    ],
+    "damageModifiers": {
+      "blunt": "normal",
+      "slash": "normal",
+      "pierce": "normal",
+      "chop": "ignore",
+      "pickaxe": "ignore",
+      "fire": "normal",
+      "frost": "normal",
+      "lightning": "normal",
+      "poison": "normal",
+      "spirit": "immune"
+    },
+    "weaknesses": [],
+    "resistances": [],
+    "immunities": ["spirit"],
+    "drops": [
+      {
+        "itemId": "neck-tail",
+        "chance": 0.75
+      },
+      {
+        "itemId": "neck-trophy",
+        "chance": 0.05
+      }
+    ],
+    "tameable": false
+  },
+  {
+    "id": "boar",
+    "name": "Boar",
+    "description": "A wild pig that charges at you when you get close. It is an easy early source of meat and leather scraps, and it can be tamed.",
+    "veteranNotes": "Tame it by leaving food it eats (berries, mushrooms, vegetables) nearby and staying close. Boars do not spawn within 800 m of the world centre, per the spawn data. Also appears in a Meadows raid that can happen before Eikthyr is defeated.",
+    "biomeIds": ["meadows"],
+    "tier": 1,
+    "dangerLevel": "low",
+    "spoilerLevel": 0,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/creatures.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/spawn-list.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/events.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "Boar",
+    "confidence": "read",
+    "behaviour": "aggressive",
+    "kind": "animal",
+    "health": 10,
+    "attacks": [
+      {
+        "name": "tusks",
+        "damage": {
+          "blunt": 10
+        }
+      }
+    ],
+    "damageModifiers": {
+      "blunt": "normal",
+      "slash": "normal",
+      "pierce": "normal",
+      "chop": "ignore",
+      "pickaxe": "ignore",
+      "fire": "normal",
+      "frost": "normal",
+      "lightning": "normal",
+      "poison": "normal",
+      "spirit": "immune"
+    },
+    "weaknesses": [],
+    "resistances": [],
+    "immunities": ["spirit"],
+    "drops": [
+      {
+        "itemId": "boar-meat",
+        "chance": 1
+      },
+      {
+        "itemId": "leather-scraps",
+        "chance": 1
+      },
+      {
+        "itemId": "boar-trophy",
+        "chance": 0.15
+      }
+    ],
+    "tameable": true
+  },
+  {
+    "id": "skeleton-meadows-noarcher",
+    "name": "Skeleton (Meadows)",
+    "description": "A weak sword-wielding skeleton that guards the stone dolmens of the Meadows, usually at night.",
+    "veteranNotes": "Weak to blunt and fire, resists pierce, so a club beats arrows here. No English name of its own in the source data; this label is ours.",
+    "biomeIds": ["meadows"],
+    "tier": 1,
+    "dangerLevel": "low",
+    "spoilerLevel": 0,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/creatures.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/location/Meadows/Dolmen01.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/location/Meadows/Dolmen02.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/location/Meadows/Dolmen03.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "Skeleton_Meadows_noarcher",
+    "confidence": "read",
+    "notes": "Prefab has no English name in en.json; the id follows the prefab and the display name is our label.",
+    "behaviour": "aggressive",
+    "kind": "monster",
+    "health": 30,
+    "attacks": [
+      {
+        "name": "sword",
+        "damage": {
+          "slash": 15
+        }
+      }
+    ],
+    "damageModifiers": {
+      "blunt": "weak",
+      "slash": "normal",
+      "pierce": "resistant",
+      "chop": "ignore",
+      "pickaxe": "ignore",
+      "fire": "weak",
+      "frost": "resistant",
+      "lightning": "normal",
+      "poison": "immune",
+      "spirit": "normal"
+    },
+    "weaknesses": ["blunt", "fire"],
+    "resistances": ["pierce", "frost"],
+    "immunities": ["poison"],
+    "drops": [
+      {
+        "itemId": "bone-fragments",
+        "chance": 1
+      },
+      {
+        "itemId": "skeleton-trophy",
+        "chance": 0.1
+      }
+    ],
+    "tameable": false
+  },
+  {
+    "id": "crow",
+    "name": "Crow",
+    "description": "A harmless crow that perches around ruins in the Black Forest and Swamp. It flies off when disturbed.",
+    "veteranNotes": "Has 1 health and always drops feathers.",
+    "biomeIds": ["black-forest", "swamp"],
+    "tier": 2,
+    "dangerLevel": "none",
+    "spoilerLevel": 0,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/creatures.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/location/BlackForest/Ruin1.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/location/Swamp/SwampHut.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "Crow",
+    "confidence": "read",
+    "behaviour": "passive",
+    "kind": "animal",
+    "health": 1,
+    "attacks": [],
+    "damageModifiers": {
+      "blunt": "normal",
+      "slash": "normal",
+      "pierce": "normal",
+      "chop": "ignore",
+      "pickaxe": "ignore",
+      "fire": "normal",
+      "frost": "normal",
+      "lightning": "normal",
+      "poison": "normal",
+      "spirit": "immune"
+    },
+    "weaknesses": [],
+    "resistances": [],
+    "immunities": ["spirit"],
+    "drops": [
+      {
+        "itemId": "feathers",
+        "chance": 1
+      }
+    ],
+    "tameable": false
+  },
+  {
+    "id": "skeleton",
+    "name": "Skeleton",
+    "description": "An undead skeleton armed with a sword or a bow. It lurks in Black Forest burial chambers and tower ruins.",
+    "veteranNotes": "Weak to blunt and fire, resistant to pierce and frost, immune to poison. Clubs and maces are the best answer. Bone piles in crypts keep spawning more. After Bonemass is defeated, skeletons can also spawn at night in Meadows, Black Forest, Swamp, Mountains and Plains. Also appears in the undead raid before Bonemass and the skeleton raid after it.",
+    "biomeIds": ["black-forest"],
+    "tier": 2,
+    "dangerLevel": "medium",
+    "spoilerLevel": 0,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/creatures.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/location/BlackForest/Crypt2.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/rooms/forestcrypt.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/objects.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/spawn-list.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/events.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "Skeleton",
+    "confidence": "read",
+    "behaviour": "aggressive",
+    "kind": "monster",
+    "health": 40,
+    "attacks": [
+      {
+        "name": "sword",
+        "damage": {
+          "slash": 25
+        }
+      },
+      {
+        "name": "bow",
+        "damage": {
+          "pierce": 20
+        }
+      }
+    ],
+    "damageModifiers": {
+      "blunt": "weak",
+      "slash": "normal",
+      "pierce": "resistant",
+      "chop": "ignore",
+      "pickaxe": "ignore",
+      "fire": "weak",
+      "frost": "resistant",
+      "lightning": "normal",
+      "poison": "immune",
+      "spirit": "normal"
+    },
+    "weaknesses": ["blunt", "fire"],
+    "resistances": ["pierce", "frost"],
+    "immunities": ["poison"],
+    "drops": [
+      {
+        "itemId": "bone-fragments",
+        "chance": 1
+      },
+      {
+        "itemId": "skeleton-trophy",
+        "chance": 0.1
+      }
+    ],
+    "tameable": false
+  },
+  {
+    "id": "rancid-remains",
+    "name": "Rancid remains",
+    "description": "A tougher, poison-dripping skeleton found deep inside Black Forest burial chambers. Its mace hits with both blunt and poison damage.",
+    "veteranNotes": "Weak to blunt and fire; immune to poison. Carry poison resistance mead if you are low on health. Also appears in the skeleton raid (after Bonemass).",
+    "biomeIds": ["black-forest"],
+    "tier": 2,
+    "dangerLevel": "medium",
+    "spoilerLevel": 0,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/creatures.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/rooms/forestcrypt.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/events.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "Skeleton_Poison",
+    "confidence": "read",
+    "behaviour": "aggressive",
+    "kind": "monster",
+    "health": 100,
+    "attacks": [
+      {
+        "name": "mace",
+        "damage": {
+          "blunt": 20,
+          "poison": 30
+        }
+      }
+    ],
+    "damageModifiers": {
+      "blunt": "weak",
+      "slash": "normal",
+      "pierce": "resistant",
+      "chop": "ignore",
+      "pickaxe": "ignore",
+      "fire": "weak",
+      "frost": "resistant",
+      "lightning": "normal",
+      "poison": "immune",
+      "spirit": "normal"
+    },
+    "weaknesses": ["blunt", "fire"],
+    "resistances": ["pierce", "frost"],
+    "immunities": ["poison"],
+    "drops": [
+      {
+        "itemId": "bone-fragments",
+        "chance": 1
+      },
+      {
+        "itemId": "rancid-remains-trophy",
+        "chance": 0.1
+      }
+    ],
+    "tameable": false
+  },
+  {
+    "id": "ghost",
+    "name": "Ghost",
+    "description": "A floating spirit that haunts Black Forest burial chambers. It is hard to hurt with ordinary weapons.",
+    "veteranNotes": "Resistant to blunt, slash and pierce but weak to spirit damage (e.g. silver weapons later on). Drops ectoplasm. Also appears in the ghost raid (after Bonemass, before Moder).",
+    "biomeIds": ["black-forest"],
+    "tier": 2,
+    "dangerLevel": "medium",
+    "spoilerLevel": 0,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/creatures.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/rooms/forestcrypt.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/events.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "Ghost",
+    "confidence": "read",
+    "behaviour": "aggressive",
+    "kind": "monster",
+    "health": 60,
+    "attacks": [
+      {
+        "name": "slash",
+        "damage": {
+          "slash": 25
+        }
+      }
+    ],
+    "damageModifiers": {
+      "blunt": "resistant",
+      "slash": "resistant",
+      "pierce": "resistant",
+      "chop": "ignore",
+      "pickaxe": "ignore",
+      "fire": "normal",
+      "frost": "normal",
+      "lightning": "normal",
+      "poison": "immune",
+      "spirit": "weak"
+    },
+    "weaknesses": ["spirit"],
+    "resistances": ["blunt", "slash", "pierce"],
+    "immunities": ["poison"],
+    "drops": [
+      {
+        "itemId": "ectoplasm",
+        "chance": 1
+      },
+      {
+        "itemId": "ghost-trophy",
+        "chance": 0.1
+      }
+    ],
+    "tameable": false
+  },
+  {
+    "id": "greydwarf",
+    "name": "Greydwarf",
+    "description": "The most common enemy of the Black Forest: a small, angry tree creature that throws stones and swipes at you, often in groups.",
+    "veteranNotes": "Very weak to fire, resistant to poison. Greydwarf nests keep spawning them until destroyed. Greydwarf eyes are a common crafting material. After Eikthyr is defeated, greydwarfs can also appear at night at forest edges in the Meadows. Also appears in the greydwarf raid (after Eikthyr, before The Elder).",
+    "biomeIds": ["black-forest"],
+    "tier": 2,
+    "dangerLevel": "low",
+    "spoilerLevel": 0,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/creatures.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/spawn-list.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/objects.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/events.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "Greydwarf",
+    "confidence": "read",
+    "behaviour": "aggressive",
+    "kind": "monster",
+    "health": 40,
+    "attacks": [
+      {
+        "name": "hit",
+        "damage": {
+          "slash": 14
+        }
+      },
+      {
+        "name": "stone",
+        "damage": {
+          "blunt": 10
+        }
+      }
+    ],
+    "damageModifiers": {
+      "blunt": "normal",
+      "slash": "normal",
+      "pierce": "normal",
+      "chop": "ignore",
+      "pickaxe": "ignore",
+      "fire": "veryWeak",
+      "frost": "normal",
+      "lightning": "normal",
+      "poison": "resistant",
+      "spirit": "immune"
+    },
+    "weaknesses": ["fire"],
+    "resistances": ["poison"],
+    "immunities": ["spirit"],
+    "drops": [
+      {
+        "itemId": "greydwarf-eye",
+        "chance": 0.5
+      },
+      {
+        "itemId": "stone",
+        "chance": 1
+      },
+      {
+        "itemId": "wood",
+        "chance": 1
+      },
+      {
+        "itemId": "resin",
+        "chance": 1
+      },
+      {
+        "itemId": "greydwarf-trophy",
+        "chance": 0.05
+      }
+    ],
+    "tameable": false
+  },
+  {
+    "id": "greydwarf-shaman",
+    "name": "Greydwarf shaman",
+    "description": "A greydwarf that spits poison and heals its allies. Kill it first when it shows up with a group.",
+    "veteranNotes": "Its poison breath does 30 poison damage; it also casts a healing effect on nearby greydwarfs. Very weak to fire. After The Elder is defeated, shamans can also spawn at night in the Meadows. Also appears in the greydwarf raid (after Eikthyr, before The Elder).",
+    "biomeIds": ["black-forest"],
+    "tier": 2,
+    "dangerLevel": "medium",
+    "spoilerLevel": 0,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/creatures.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/spawn-list.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/objects.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/events.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "Greydwarf_Shaman",
+    "confidence": "read",
+    "behaviour": "aggressive",
+    "kind": "monster",
+    "health": 60,
+    "attacks": [
+      {
+        "name": "poison breath",
+        "damage": {
+          "poison": 30
+        }
+      },
+      {
+        "name": "slash",
+        "damage": {
+          "slash": 14
+        }
+      }
+    ],
+    "damageModifiers": {
+      "blunt": "normal",
+      "slash": "normal",
+      "pierce": "normal",
+      "chop": "ignore",
+      "pickaxe": "ignore",
+      "fire": "veryWeak",
+      "frost": "normal",
+      "lightning": "normal",
+      "poison": "resistant",
+      "spirit": "immune"
+    },
+    "weaknesses": ["fire"],
+    "resistances": ["poison"],
+    "immunities": ["spirit"],
+    "drops": [
+      {
+        "itemId": "greydwarf-eye",
+        "chance": 0.5
+      },
+      {
+        "itemId": "wood",
+        "chance": 1
+      },
+      {
+        "itemId": "resin",
+        "chance": 1
+      },
+      {
+        "itemId": "greydwarf-shaman-trophy",
+        "chance": 0.1
+      },
+      {
+        "itemId": "bukeperries",
+        "chance": 1
+      }
+    ],
+    "tameable": false
+  },
+  {
+    "id": "greydwarf-brute",
+    "name": "Greydwarf brute",
+    "description": "A big, hulking greydwarf that hits much harder than its smaller kin. It guards Black Forest ruins and nests.",
+    "veteranNotes": "Can drop ancient seeds (33% chance), the item used to summon The Elder. Very weak to fire. kirilloid lists night spawns in the Meadows as well (one entry requires The Elder to be defeated, one has no key recorded). Also appears in the greydwarf raid (after Eikthyr, before The Elder).",
+    "biomeIds": ["black-forest"],
+    "tier": 2,
+    "dangerLevel": "medium",
+    "spoilerLevel": 0,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/creatures.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/objects.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/location/BlackForest/Ruin2.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/spawn-list.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/events.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "Greydwarf_Elite",
+    "confidence": "read",
+    "behaviour": "aggressive",
+    "kind": "monster",
+    "health": 150,
+    "attacks": [
+      {
+        "name": "bite",
+        "damage": {
+          "slash": 30
+        }
+      }
+    ],
+    "damageModifiers": {
+      "blunt": "normal",
+      "slash": "normal",
+      "pierce": "normal",
+      "chop": "ignore",
+      "pickaxe": "ignore",
+      "fire": "veryWeak",
+      "frost": "normal",
+      "lightning": "normal",
+      "poison": "resistant",
+      "spirit": "immune"
+    },
+    "weaknesses": ["fire"],
+    "resistances": ["poison"],
+    "immunities": ["spirit"],
+    "drops": [
+      {
+        "itemId": "greydwarf-eye",
+        "chance": 0.5
+      },
+      {
+        "itemId": "stone",
+        "chance": 1
+      },
+      {
+        "itemId": "wood",
+        "chance": 1
+      },
+      {
+        "itemId": "dandelion",
+        "chance": 1
+      },
+      {
+        "itemId": "ancient-seed",
+        "chance": 0.33
+      },
+      {
+        "itemId": "greydwarf-brute-trophy",
+        "chance": 0.1
+      }
+    ],
+    "tameable": false
+  },
+  {
+    "id": "bear",
+    "name": "Bear",
+    "description": "A large bear that roams the Black Forest. It hits very hard for this stage of the game, so keep your distance and bring a shield.",
+    "veteranNotes": "Resistant to blunt, pierce and frost, weak to fire. Bites for 55 pierce and slams for 50 blunt. Drops bear hide, meat and paws.",
+    "biomeIds": ["black-forest"],
+    "tier": 2,
+    "dangerLevel": "medium",
+    "spoilerLevel": 0,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/creatures.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/spawn-list.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/location/BlackForest/BearCave.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "Bjorn",
+    "confidence": "read",
+    "behaviour": "aggressive",
+    "kind": "animal",
+    "health": 500,
+    "attacks": [
+      {
+        "name": "bite",
+        "damage": {
+          "pierce": 55
+        }
+      },
+      {
+        "name": "claws",
+        "damage": {
+          "slash": 50,
+          "chop": 40
+        }
+      },
+      {
+        "name": "swipe_l",
+        "damage": {
+          "slash": 25,
+          "chop": 40
+        }
+      },
+      {
+        "name": "swipe_r",
+        "damage": {
+          "slash": 25,
+          "chop": 40
+        }
+      },
+      {
+        "name": "swipe_combo",
+        "damage": {
+          "slash": 25,
+          "chop": 40
+        }
+      },
+      {
+        "name": "slam",
+        "damage": {
+          "blunt": 50,
+          "chop": 40,
+          "pickaxe": 40
+        }
+      }
+    ],
+    "damageModifiers": {
+      "blunt": "resistant",
+      "slash": "normal",
+      "pierce": "resistant",
+      "chop": "ignore",
+      "pickaxe": "ignore",
+      "fire": "weak",
+      "frost": "resistant",
+      "lightning": "normal",
+      "poison": "normal",
+      "spirit": "immune"
+    },
+    "weaknesses": ["fire"],
+    "resistances": ["blunt", "pierce", "frost"],
+    "immunities": ["spirit"],
+    "drops": [
+      {
+        "itemId": "bear-paw",
+        "chance": 1
+      },
+      {
+        "itemId": "bear-meat",
+        "chance": 1
+      },
+      {
+        "itemId": "bear-hide",
+        "chance": 1
+      },
+      {
+        "itemId": "bear-trophy",
+        "chance": 0.1
+      }
+    ],
+    "tameable": false
+  },
+  {
+    "id": "troll",
+    "name": "Troll",
+    "description": "A huge blue troll that smashes trees and players alike. It is one of the first really dangerous enemies you meet.",
+    "veteranNotes": "Weak to pierce (arrows work well) and resistant to blunt. Rare world spawn that keeps at least 2 km from the centre; also lives in troll caves. Troll hide makes early light armour. Also appears in the troll raid (after The Elder and a troll kill).",
+    "biomeIds": ["black-forest"],
+    "tier": 2,
+    "dangerLevel": "high",
+    "spoilerLevel": 0,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/creatures.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/spawn-list.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/location/BlackForest/TrollCave02.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/events.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "Troll",
+    "confidence": "read",
+    "behaviour": "aggressive",
+    "kind": "monster",
+    "health": 600,
+    "attacks": [
+      {
+        "name": "unarmed: 1-hand hit",
+        "damage": {
+          "blunt": 60,
+          "chop": 100,
+          "pickaxe": 40
+        }
+      },
+      {
+        "name": "unarmed: 2-hand smash",
+        "damage": {
+          "blunt": 70,
+          "chop": 100,
+          "pickaxe": 40
+        }
+      },
+      {
+        "name": "unarmed: throw",
+        "damage": {
+          "blunt": 50,
+          "chop": 60,
+          "pickaxe": 40
+        }
+      },
+      {
+        "name": "log: v-swing",
+        "damage": {
+          "blunt": 70,
+          "chop": 100,
+          "pickaxe": 40
+        }
+      },
+      {
+        "name": "log: h-swing",
+        "damage": {
+          "blunt": 60,
+          "chop": 100,
+          "pickaxe": 40
+        }
+      }
+    ],
+    "damageModifiers": {
+      "blunt": "resistant",
+      "slash": "normal",
+      "pierce": "weak",
+      "chop": "ignore",
+      "pickaxe": "ignore",
+      "fire": "normal",
+      "frost": "normal",
+      "lightning": "normal",
+      "poison": "normal",
+      "spirit": "immune"
+    },
+    "weaknesses": ["pierce"],
+    "resistances": ["blunt"],
+    "immunities": ["spirit"],
+    "drops": [
+      {
+        "itemId": "troll-hide",
+        "chance": 1
+      },
+      {
+        "itemId": "coins",
+        "chance": 1
+      },
+      {
+        "itemId": "troll-trophy",
+        "chance": 0.5
+      }
+    ],
+    "tameable": false
+  },
+  {
+    "id": "brenna",
+    "name": "Brenna",
+    "description": "Brenna, a burning skeleton guarding one of Hildir's chests in a special Black Forest crypt. Beating her returns the chest to Hildir for a reward.",
+    "veteranNotes": "Immune to fire and poison, weak to blunt and frost. Her fire nova hits for 75 fire. Always drops her trophy and the brass chest. Also appears in a rematch raid after she is first defeated (a weaker 'event' version without the chest).",
+    "biomeIds": ["black-forest"],
+    "tier": 2,
+    "dangerLevel": "high",
+    "spoilerLevel": 0,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/creatures.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/location/BlackForest/Hildir_crypt.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/events.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "Skeleton_Hildir",
+    "confidence": "read",
+    "behaviour": "aggressive",
+    "kind": "miniboss",
+    "health": 1200,
+    "attacks": [
+      {
+        "name": "skeleton_hildir_firenova",
+        "damage": {
+          "fire": 75
+        }
+      },
+      {
+        "name": "skeleton_sword_hildir",
+        "damage": {
+          "slash": 60,
+          "fire": 20
+        }
+      }
+    ],
+    "damageModifiers": {
+      "blunt": "weak",
+      "slash": "normal",
+      "pierce": "resistant",
+      "chop": "ignore",
+      "pickaxe": "ignore",
+      "fire": "immune",
+      "frost": "weak",
+      "lightning": "normal",
+      "poison": "immune",
+      "spirit": "normal"
+    },
+    "weaknesses": ["blunt", "frost"],
+    "resistances": ["pierce"],
+    "immunities": ["fire", "poison"],
+    "drops": [
+      {
+        "itemId": "hildir-s-brass-chest",
+        "chance": 1
+      },
+      {
+        "itemId": "brenna-trophy",
+        "chance": 1
+      }
+    ],
+    "tameable": false
+  },
+  {
+    "id": "skeleton-swamp",
+    "name": "Skeleton (Swamp)",
+    "description": "A stronger skeleton variant that roams the Swamp with a sword or bow.",
+    "veteranNotes": "Same weaknesses as other skeletons (blunt, fire), resistant to pierce and frost. Sword hits for 48 slash, arrows for 55 pierce.",
+    "biomeIds": ["swamp"],
+    "tier": 3,
+    "dangerLevel": "medium",
+    "spoilerLevel": 1,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/creatures.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/spawn-list.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "Skeleton_Swamps",
+    "confidence": "read",
+    "behaviour": "aggressive",
+    "kind": "monster",
+    "health": 60,
+    "attacks": [
+      {
+        "name": "sword",
+        "damage": {
+          "slash": 48,
+          "chop": 10
+        }
+      },
+      {
+        "name": "bow",
+        "damage": {
+          "pierce": 55
+        }
+      }
+    ],
+    "damageModifiers": {
+      "blunt": "weak",
+      "slash": "normal",
+      "pierce": "resistant",
+      "chop": "ignore",
+      "pickaxe": "ignore",
+      "fire": "weak",
+      "frost": "resistant",
+      "lightning": "normal",
+      "poison": "immune",
+      "spirit": "normal"
+    },
+    "weaknesses": ["blunt", "fire"],
+    "resistances": ["pierce", "frost"],
+    "immunities": ["poison"],
+    "drops": [
+      {
+        "itemId": "bone-fragments",
+        "chance": 1
+      },
+      {
+        "itemId": "skeleton-trophy",
+        "chance": 0.1
+      }
+    ],
+    "tameable": false
+  },
+  {
+    "id": "blob",
+    "name": "Blob",
+    "description": "A slow, poisonous green blob. It bursts into a poison cloud when it attacks, so fight it from a distance or with poison resistance.",
+    "veteranNotes": "Weak to blunt, frost and lightning; immune to poison; resistant to slash, pierce and fire. Drops ooze. Also appears in the blob raid (after Bonemass).",
+    "biomeIds": ["swamp"],
+    "tier": 3,
+    "dangerLevel": "high",
+    "spoilerLevel": 1,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/creatures.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/spawn-list.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/rooms/sunkencrypt.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/events.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "Blob",
+    "confidence": "read",
+    "behaviour": "aggressive",
+    "kind": "monster",
+    "health": 50,
+    "attacks": [
+      {
+        "name": "poison",
+        "damage": {
+          "poison": 90
+        }
+      }
+    ],
+    "damageModifiers": {
+      "blunt": "weak",
+      "slash": "resistant",
+      "pierce": "resistant",
+      "chop": "ignore",
+      "pickaxe": "ignore",
+      "fire": "resistant",
+      "frost": "weak",
+      "lightning": "weak",
+      "poison": "immune",
+      "spirit": "normal"
+    },
+    "weaknesses": ["blunt", "frost", "lightning"],
+    "resistances": ["slash", "pierce", "fire"],
+    "immunities": ["poison"],
+    "drops": [
+      {
+        "itemId": "ooze",
+        "chance": 1
+      },
+      {
+        "itemId": "blob-trophy",
+        "chance": 0.1
+      }
+    ],
+    "tameable": false
+  },
+  {
+    "id": "oozer",
+    "name": "Oozer",
+    "description": "The Oozer: a bigger, nastier blob that splits into small blobs when it dies.",
+    "veteranNotes": "Poison attack of 115; weak to blunt, frost and lightning. On death it releases two Blobs. Can drop iron scrap (33%). Also appears in the blob raid (after Bonemass).",
+    "biomeIds": ["swamp"],
+    "tier": 3,
+    "dangerLevel": "high",
+    "spoilerLevel": 1,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/creatures.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/spawn-list.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/location/Swamp/SunkenCrypt4.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/events.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "BlobElite",
+    "confidence": "read",
+    "behaviour": "aggressive",
+    "kind": "monster",
+    "health": 150,
+    "attacks": [
+      {
+        "name": "poison",
+        "damage": {
+          "poison": 115
+        }
+      }
+    ],
+    "damageModifiers": {
+      "blunt": "weak",
+      "slash": "resistant",
+      "pierce": "resistant",
+      "chop": "ignore",
+      "pickaxe": "ignore",
+      "fire": "resistant",
+      "frost": "weak",
+      "lightning": "weak",
+      "poison": "immune",
+      "spirit": "normal"
+    },
+    "weaknesses": ["blunt", "frost", "lightning"],
+    "resistances": ["slash", "pierce", "fire"],
+    "immunities": ["poison"],
+    "drops": [
+      {
+        "itemId": "ooze",
+        "chance": 1
+      },
+      {
+        "itemId": "iron-scrap",
+        "chance": 0.33
+      },
+      {
+        "itemId": "blob-trophy",
+        "chance": 0.1
+      }
+    ],
+    "tameable": false
+  },
+  {
+    "id": "leech",
+    "name": "Leech",
+    "description": "A blood-sucking leech that hides in Swamp water. Stay out of deep water to avoid it.",
+    "veteranNotes": "Bite does 20 pierce plus 70 poison. Immune to fire. Drops bloodbags used for sausages.",
+    "biomeIds": ["swamp"],
+    "tier": 3,
+    "dangerLevel": "high",
+    "spoilerLevel": 1,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/creatures.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/spawn-list.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "Leech",
+    "confidence": "read",
+    "behaviour": "aggressive",
+    "kind": "monster",
+    "health": 60,
+    "attacks": [
+      {
+        "name": "bite",
+        "damage": {
+          "pierce": 20,
+          "poison": 70
+        }
+      }
+    ],
+    "damageModifiers": {
+      "blunt": "normal",
+      "slash": "normal",
+      "pierce": "normal",
+      "chop": "ignore",
+      "pickaxe": "ignore",
+      "fire": "immune",
+      "frost": "normal",
+      "lightning": "normal",
+      "poison": "resistant",
+      "spirit": "immune"
+    },
+    "weaknesses": [],
+    "resistances": ["poison"],
+    "immunities": ["fire", "spirit"],
+    "drops": [
+      {
+        "itemId": "bloodbag",
+        "chance": 1
+      },
+      {
+        "itemId": "leech-trophy",
+        "chance": 0.1
+      }
+    ],
+    "tameable": false
+  },
+  {
+    "id": "surtling",
+    "name": "Surtling",
+    "description": "A small fire creature that spawns around fire geysers in the Swamp and throws fireballs.",
+    "veteranNotes": "Immune to fire and poison, weak to frost. Drops coal and surtling cores (50%), key for smelters and portals. Also appears in the surtling raid (after Bonemass and a surtling kill).",
+    "biomeIds": ["swamp"],
+    "tier": 3,
+    "dangerLevel": "medium",
+    "spoilerLevel": 1,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/creatures.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/location/Swamp/FireHole.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/events.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "Surtling",
+    "confidence": "read",
+    "behaviour": "aggressive",
+    "kind": "monster",
+    "health": 20,
+    "attacks": [
+      {
+        "name": "fireball",
+        "damage": {
+          "blunt": 10,
+          "fire": 40
+        }
+      }
+    ],
+    "damageModifiers": {
+      "blunt": "normal",
+      "slash": "normal",
+      "pierce": "normal",
+      "chop": "ignore",
+      "pickaxe": "ignore",
+      "fire": "immune",
+      "frost": "weak",
+      "lightning": "normal",
+      "poison": "immune",
+      "spirit": "immune"
+    },
+    "weaknesses": ["frost"],
+    "resistances": [],
+    "immunities": ["fire", "poison", "spirit"],
+    "drops": [
+      {
+        "itemId": "coal",
+        "chance": 1
+      },
+      {
+        "itemId": "surtling-core",
+        "chance": 0.5
+      },
+      {
+        "itemId": "surtling-trophy",
+        "chance": 0.05
+      }
+    ],
+    "tameable": false
+  },
+  {
+    "id": "wraith",
+    "name": "Wraith",
+    "description": "A ghostly wraith that drifts through the Swamp at night. It hits hard and shrugs off most physical damage.",
+    "veteranNotes": "Resistant to blunt, slash and pierce; weak to fire and spirit; immune to frost and poison. Always drops a chain. Also appears in the ghost raid (after Bonemass, before Moder).",
+    "biomeIds": ["swamp"],
+    "tier": 3,
+    "dangerLevel": "medium",
+    "spoilerLevel": 1,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/creatures.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/spawn-list.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/location/Swamp/SwampHut.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/events.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "Wraith",
+    "confidence": "read",
+    "behaviour": "aggressive",
+    "kind": "monster",
+    "health": 100,
+    "attacks": [
+      {
+        "name": "slash",
+        "damage": {
+          "slash": 60
+        }
+      }
+    ],
+    "damageModifiers": {
+      "blunt": "resistant",
+      "slash": "resistant",
+      "pierce": "resistant",
+      "chop": "ignore",
+      "pickaxe": "ignore",
+      "fire": "weak",
+      "frost": "immune",
+      "lightning": "normal",
+      "poison": "immune",
+      "spirit": "weak"
+    },
+    "weaknesses": ["fire", "spirit"],
+    "resistances": ["blunt", "slash", "pierce"],
+    "immunities": ["frost", "poison"],
+    "drops": [
+      {
+        "itemId": "chain",
+        "chance": 1
+      },
+      {
+        "itemId": "wraith-trophy",
+        "chance": 0.05
+      }
+    ],
+    "tameable": false
+  },
+  {
+    "id": "draugr",
+    "name": "Draugr",
+    "description": "An undead Viking warrior with an axe or bow. Draugr are common in the Swamp and also guard abandoned villages in the Meadows.",
+    "veteranNotes": "Resistant to fire, immune to poison. Axe hits for 48 slash. Also found in some Mountain tower ruins. After The Elder is defeated, small groups can also spawn in misty weather at night in Meadows, Black Forest, Mountains and Plains. Also appears in the undead raid before Bonemass (after The Elder).",
+    "biomeIds": ["swamp", "meadows"],
+    "tier": 3,
+    "dangerLevel": "medium",
+    "spoilerLevel": 1,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/creatures.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/spawn-list.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/rooms/woodvillage.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/location/Meadows/WoodVillage1.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/rooms/sunkencrypt.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/location/Mountains/StoneTowerRuins04.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/events.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "Draugr",
+    "confidence": "read",
+    "behaviour": "aggressive",
+    "kind": "monster",
+    "health": 100,
+    "attacks": [
+      {
+        "name": "axe",
+        "damage": {
+          "slash": 48,
+          "chop": 15
+        }
+      },
+      {
+        "name": "bow",
+        "damage": {
+          "pierce": 48
+        }
+      }
+    ],
+    "damageModifiers": {
+      "blunt": "normal",
+      "slash": "normal",
+      "pierce": "normal",
+      "chop": "ignore",
+      "pickaxe": "ignore",
+      "fire": "resistant",
+      "frost": "normal",
+      "lightning": "normal",
+      "poison": "immune",
+      "spirit": "normal"
+    },
+    "weaknesses": [],
+    "resistances": ["fire"],
+    "immunities": ["poison"],
+    "drops": [
+      {
+        "itemId": "entrails",
+        "chance": 1
+      },
+      {
+        "itemId": "draugr-trophy",
+        "chance": 0.1
+      }
+    ],
+    "tameable": false
+  },
+  {
+    "id": "draugr-ranged",
+    "name": "Draugr (ranged)",
+    "description": "A draugr archer. It stays back and shoots arrows at you, often from rooftops in draugr villages.",
+    "veteranNotes": "Bow hits for 48 pierce. Resistant to fire, immune to poison. No English name of its own in the source data; this label is ours.",
+    "biomeIds": ["swamp", "meadows"],
+    "tier": 3,
+    "dangerLevel": "medium",
+    "spoilerLevel": 1,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/creatures.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/location/Swamp/SwampHut.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/rooms/woodvillage.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "Draugr_Ranged",
+    "confidence": "read",
+    "notes": "Prefab has no English name in en.json; the id follows the prefab and the display name is our label.",
+    "behaviour": "aggressive",
+    "kind": "monster",
+    "health": 100,
+    "attacks": [
+      {
+        "name": "bow",
+        "damage": {
+          "pierce": 48
+        }
+      }
+    ],
+    "damageModifiers": {
+      "blunt": "normal",
+      "slash": "normal",
+      "pierce": "normal",
+      "chop": "ignore",
+      "pickaxe": "ignore",
+      "fire": "resistant",
+      "frost": "normal",
+      "lightning": "normal",
+      "poison": "immune",
+      "spirit": "normal"
+    },
+    "weaknesses": [],
+    "resistances": ["fire"],
+    "immunities": ["poison"],
+    "drops": [
+      {
+        "itemId": "entrails",
+        "chance": 1
+      },
+      {
+        "itemId": "draugr-trophy",
+        "chance": 0.1
+      }
+    ],
+    "tameable": false
+  },
+  {
+    "id": "elite-draugr",
+    "name": "Elite draugr",
+    "description": "A heavily armed draugr champion. It has twice the health of a normal draugr and a strong sword.",
+    "veteranNotes": "Sword hits for 58 slash. Resistant to fire, immune to poison. Found in Swamp ruins, sunken crypts and draugr villages.",
+    "biomeIds": ["swamp", "meadows"],
+    "tier": 3,
+    "dangerLevel": "medium",
+    "spoilerLevel": 1,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/creatures.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/spawn-list.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/location/Swamp/SwampRuin1.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/rooms/sunkencrypt.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/rooms/woodvillage.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "Draugr_Elite",
+    "confidence": "read",
+    "behaviour": "aggressive",
+    "kind": "monster",
+    "health": 200,
+    "attacks": [
+      {
+        "name": "sword",
+        "damage": {
+          "slash": 58
+        }
+      }
+    ],
+    "damageModifiers": {
+      "blunt": "normal",
+      "slash": "normal",
+      "pierce": "normal",
+      "chop": "ignore",
+      "pickaxe": "ignore",
+      "fire": "resistant",
+      "frost": "normal",
+      "lightning": "normal",
+      "poison": "immune",
+      "spirit": "normal"
+    },
+    "weaknesses": [],
+    "resistances": ["fire"],
+    "immunities": ["poison"],
+    "drops": [
+      {
+        "itemId": "entrails",
+        "chance": 1
+      },
+      {
+        "itemId": "elite-draugr-trophy",
+        "chance": 0.1
+      }
+    ],
+    "tameable": false
+  },
+  {
+    "id": "abomination",
+    "name": "Abomination",
+    "description": "A giant mass of roots and swamp muck that bursts out of the ground. Very tough for Swamp-level gear.",
+    "veteranNotes": "Very resistant to pierce, resistant to blunt, weak to fire; immune to frost, poison and spirit. Drops roots and guck.",
+    "biomeIds": ["swamp"],
+    "tier": 3,
+    "dangerLevel": "high",
+    "spoilerLevel": 1,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/creatures.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/spawn-list.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "Abomination",
+    "confidence": "read",
+    "behaviour": "aggressive",
+    "kind": "monster",
+    "health": 800,
+    "attacks": [
+      {
+        "name": "swing",
+        "damage": {
+          "blunt": 60,
+          "chop": 100,
+          "pickaxe": 60
+        }
+      },
+      {
+        "name": "slam",
+        "damage": {
+          "blunt": 80,
+          "chop": 100,
+          "pickaxe": 60
+        }
+      },
+      {
+        "name": "stub",
+        "damage": {
+          "blunt": 80,
+          "chop": 100,
+          "pickaxe": 60
+        }
+      }
+    ],
+    "damageModifiers": {
+      "blunt": "resistant",
+      "slash": "normal",
+      "pierce": "veryResistant",
+      "chop": "ignore",
+      "pickaxe": "ignore",
+      "fire": "weak",
+      "frost": "immune",
+      "lightning": "normal",
+      "poison": "immune",
+      "spirit": "immune"
+    },
+    "weaknesses": ["fire"],
+    "resistances": ["blunt", "pierce"],
+    "immunities": ["frost", "poison", "spirit"],
+    "drops": [
+      {
+        "itemId": "root",
+        "chance": 1
+      },
+      {
+        "itemId": "guck",
+        "chance": 1
+      },
+      {
+        "itemId": "abomination-trophy",
+        "chance": 0.5
+      }
+    ],
+    "tameable": false
+  },
+  {
+    "id": "writhan",
+    "name": "Writhan",
+    "description": "A rare, dangerous swamp creature that bites with poison and can explode in a burst of fire.",
+    "veteranNotes": "Weak to slash; resistant to blunt and fire; immune to poison. Very rare world spawn (at least 5 km from the centre). Killing one unlocks a Bog Witch recipe.",
+    "biomeIds": ["swamp"],
+    "tier": 3,
+    "dangerLevel": "high",
+    "spoilerLevel": 1,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/creatures.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/spawn-list.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "Writhan",
+    "confidence": "read",
+    "notes": "No English name in en.json for this prefab; the name follows the prefab.",
+    "behaviour": "aggressive",
+    "kind": "monster",
+    "health": 400,
+    "attacks": [
+      {
+        "name": "bite",
+        "damage": {
+          "pierce": 40,
+          "poison": 30
+        }
+      },
+      {
+        "name": "explosion",
+        "damage": {
+          "blunt": 60,
+          "chop": 50,
+          "pickaxe": 50,
+          "fire": 40
+        }
+      }
+    ],
+    "damageModifiers": {
+      "blunt": "resistant",
+      "slash": "weak",
+      "pierce": "normal",
+      "chop": "ignore",
+      "pickaxe": "ignore",
+      "fire": "resistant",
+      "frost": "normal",
+      "lightning": "normal",
+      "poison": "immune",
+      "spirit": "normal"
+    },
+    "weaknesses": ["slash"],
+    "resistances": ["blunt", "fire"],
+    "immunities": ["poison"],
+    "drops": [
+      {
+        "itemId": "trophywrithan",
+        "chance": 0.1
+      },
+      {
+        "itemId": "writhanroots",
+        "chance": 1
+      }
+    ],
+    "tameable": false
+  },
+  {
+    "id": "kvastur",
+    "name": "Kvastur",
+    "description": "Kvastur guards the Bog Witch's camp in the Swamp. It leaves you alone unless you attack it.",
+    "veteranNotes": "Neutral until provoked. Weak to chop and very weak to fire. Always drops its trophy.",
+    "biomeIds": ["swamp"],
+    "tier": 3,
+    "dangerLevel": "high",
+    "spoilerLevel": 1,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/creatures.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/location/Ashlands/BogWitch_Camp.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "BogWitchKvastur",
+    "confidence": "read",
+    "behaviour": "neutral",
+    "kind": "monster",
+    "health": 700,
+    "attacks": [
+      {
+        "name": "attack",
+        "damage": {
+          "blunt": 80
+        }
+      }
+    ],
+    "damageModifiers": {
+      "blunt": "normal",
+      "slash": "normal",
+      "pierce": "normal",
+      "chop": "weak",
+      "pickaxe": "ignore",
+      "fire": "veryWeak",
+      "frost": "normal",
+      "lightning": "normal",
+      "poison": "immune",
+      "spirit": "immune"
+    },
+    "weaknesses": ["chop", "fire"],
+    "resistances": [],
+    "immunities": ["poison", "spirit"],
+    "drops": [
+      {
+        "itemId": "wood",
+        "chance": 1
+      },
+      {
+        "itemId": "resin",
+        "chance": 1
+      },
+      {
+        "itemId": "kvastur-trophy",
+        "chance": 1
+      }
+    ],
+    "tameable": false
+  },
+  {
+    "id": "serpent",
+    "name": "Serpent",
+    "description": "A giant sea serpent that attacks boats in the open ocean, especially at night and in storms.",
+    "veteranNotes": "Immune to fire, weak to frost. Drops a lot of serpent scales and meat, and its trophy 33% of the time.",
+    "biomeIds": ["ocean"],
+    "tier": 2,
+    "dangerLevel": "high",
+    "spoilerLevel": 0,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/creatures.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/spawn-list.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "Serpent",
+    "confidence": "read",
+    "behaviour": "aggressive",
+    "kind": "monster",
+    "health": 400,
+    "attacks": [
+      {
+        "name": "attack",
+        "damage": {
+          "slash": 70
+        }
+      }
+    ],
+    "damageModifiers": {
+      "blunt": "normal",
+      "slash": "normal",
+      "pierce": "normal",
+      "chop": "ignore",
+      "pickaxe": "ignore",
+      "fire": "immune",
+      "frost": "weak",
+      "lightning": "normal",
+      "poison": "resistant",
+      "spirit": "immune"
+    },
+    "weaknesses": ["frost"],
+    "resistances": ["poison"],
+    "immunities": ["fire", "spirit"],
+    "drops": [
+      {
+        "itemId": "serpent-scale",
+        "chance": 1
+      },
+      {
+        "itemId": "serpent-meat",
+        "chance": 1
+      },
+      {
+        "itemId": "serpent-trophy",
+        "chance": 0.33
+      }
+    ],
+    "tameable": false
+  },
+  {
+    "id": "skeleton-mountain",
+    "name": "Skeleton (Mountain)",
+    "description": "A strong skeleton variant found in abandoned cabins and tower ruins in the Mountains.",
+    "veteranNotes": "Weak to blunt and fire, resistant to pierce and frost. Sword hits for 60 slash.",
+    "biomeIds": ["mountains"],
+    "tier": 4,
+    "dangerLevel": "medium",
+    "spoilerLevel": 1,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/creatures.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/location/Mountains/AbandonedLogCabin03.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/location/Mountains/StoneTowerRuins05.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "Skeleton_Mountain",
+    "confidence": "read",
+    "behaviour": "aggressive",
+    "kind": "monster",
+    "health": 75,
+    "attacks": [
+      {
+        "name": "sword",
+        "damage": {
+          "slash": 60,
+          "chop": 15
+        }
+      },
+      {
+        "name": "bow",
+        "damage": {
+          "pierce": 60
+        }
+      }
+    ],
+    "damageModifiers": {
+      "blunt": "weak",
+      "slash": "normal",
+      "pierce": "resistant",
+      "chop": "ignore",
+      "pickaxe": "ignore",
+      "fire": "weak",
+      "frost": "resistant",
+      "lightning": "normal",
+      "poison": "immune",
+      "spirit": "normal"
+    },
+    "weaknesses": ["blunt", "fire"],
+    "resistances": ["pierce", "frost"],
+    "immunities": ["poison"],
+    "drops": [
+      {
+        "itemId": "bone-fragments",
+        "chance": 1
+      },
+      {
+        "itemId": "skeleton-trophy",
+        "chance": 0.1
+      }
+    ],
+    "tameable": false
+  },
+  {
+    "id": "bat",
+    "name": "Bat",
+    "description": "A small bat that swarms in frost caves. Individually weak, but annoying in numbers.",
+    "veteranNotes": "Only 10 health; weak to fire and spirit. Also appears in the bat raid (after Bonemass and a bat kill).",
+    "biomeIds": ["mountains"],
+    "tier": 4,
+    "dangerLevel": "low",
+    "spoilerLevel": 1,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/creatures.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/location/Mountains/MountainCave02.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/rooms/caves.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/events.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "Bat",
+    "confidence": "read",
+    "behaviour": "aggressive",
+    "kind": "monster",
+    "health": 10,
+    "attacks": [
+      {
+        "name": "bite",
+        "damage": {
+          "slash": 20
+        }
+      }
+    ],
+    "damageModifiers": {
+      "blunt": "resistant",
+      "slash": "resistant",
+      "pierce": "resistant",
+      "chop": "ignore",
+      "pickaxe": "ignore",
+      "fire": "weak",
+      "frost": "immune",
+      "lightning": "normal",
+      "poison": "immune",
+      "spirit": "weak"
+    },
+    "weaknesses": ["fire", "spirit"],
+    "resistances": ["blunt", "slash", "pierce"],
+    "immunities": ["frost", "poison"],
+    "drops": [
+      {
+        "itemId": "leather-scraps",
+        "chance": 0.5
+      }
+    ],
+    "tameable": false
+  },
+  {
+    "id": "ulv",
+    "name": "Ulv",
+    "description": "A fast, wolf-like cave creature living in Mountain frost caves.",
+    "veteranNotes": "Bites for 80 slash. Very resistant to fire, weak to poison. Drops wolf fangs.",
+    "biomeIds": ["mountains"],
+    "tier": 4,
+    "dangerLevel": "high",
+    "spoilerLevel": 1,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/creatures.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/location/Mountains/MountainCave02.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/rooms/caves.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "Ulv",
+    "confidence": "read",
+    "behaviour": "aggressive",
+    "kind": "monster",
+    "health": 50,
+    "attacks": [
+      {
+        "name": "bite",
+        "damage": {
+          "slash": 80
+        }
+      },
+      {
+        "name": "slash",
+        "damage": {
+          "slash": 70
+        }
+      }
+    ],
+    "damageModifiers": {
+      "blunt": "normal",
+      "slash": "normal",
+      "pierce": "normal",
+      "chop": "ignore",
+      "pickaxe": "ignore",
+      "fire": "veryResistant",
+      "frost": "normal",
+      "lightning": "normal",
+      "poison": "weak",
+      "spirit": "normal"
+    },
+    "weaknesses": ["poison"],
+    "resistances": ["fire"],
+    "immunities": [],
+    "drops": [
+      {
+        "itemId": "wolf-fang",
+        "chance": 0.5
+      },
+      {
+        "itemId": "ulv-trophy",
+        "chance": 0.1
+      }
+    ],
+    "tameable": false
+  },
+  {
+    "id": "wolf",
+    "name": "Wolf",
+    "description": "A fast, hard-hitting wolf that hunts in packs in the Mountains, especially at night. Wolves can be tamed.",
+    "veteranNotes": "Bite of 70 slash. Tame by feeding meat. Packs of 2–4 at night. Drops pelts for cold-resistant armour. Also appears in the wolf raid in Mountains and Plains (after Bonemass).",
+    "biomeIds": ["mountains"],
+    "tier": 4,
+    "dangerLevel": "high",
+    "spoilerLevel": 1,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/creatures.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/spawn-list.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/events.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "Wolf",
+    "confidence": "read",
+    "behaviour": "aggressive",
+    "kind": "animal",
+    "health": 80,
+    "attacks": [
+      {
+        "name": "bite",
+        "damage": {
+          "slash": 70
+        }
+      }
+    ],
+    "damageModifiers": {
+      "blunt": "normal",
+      "slash": "normal",
+      "pierce": "normal",
+      "chop": "ignore",
+      "pickaxe": "ignore",
+      "fire": "normal",
+      "frost": "normal",
+      "lightning": "normal",
+      "poison": "normal",
+      "spirit": "immune"
+    },
+    "weaknesses": [],
+    "resistances": [],
+    "immunities": ["spirit"],
+    "drops": [
+      {
+        "itemId": "wolf-fang",
+        "chance": 0.4
+      },
+      {
+        "itemId": "wolf-meat",
+        "chance": 1
+      },
+      {
+        "itemId": "wolf-pelt",
+        "chance": 1
+      },
+      {
+        "itemId": "wolf-trophy",
+        "chance": 0.1
+      }
+    ],
+    "tameable": true
+  },
+  {
+    "id": "fenring",
+    "name": "Fenring",
+    "description": "A tall werewolf-like creature that stalks Mountain slopes at night and leaps at you.",
+    "veteranNotes": "Weak to fire, resistant to poison. Jump attack hits for 95 slash.",
+    "biomeIds": ["mountains"],
+    "tier": 4,
+    "dangerLevel": "high",
+    "spoilerLevel": 1,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/creatures.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/spawn-list.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/events.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "Fenring",
+    "confidence": "read",
+    "behaviour": "aggressive",
+    "kind": "monster",
+    "health": 300,
+    "attacks": [
+      {
+        "name": "hit",
+        "damage": {
+          "slash": 85
+        }
+      },
+      {
+        "name": "jump",
+        "damage": {
+          "slash": 95
+        }
+      }
+    ],
+    "damageModifiers": {
+      "blunt": "normal",
+      "slash": "normal",
+      "pierce": "normal",
+      "chop": "ignore",
+      "pickaxe": "ignore",
+      "fire": "weak",
+      "frost": "normal",
+      "lightning": "normal",
+      "poison": "resistant",
+      "spirit": "normal"
+    },
+    "weaknesses": ["fire"],
+    "resistances": ["poison"],
+    "immunities": [],
+    "drops": [
+      {
+        "itemId": "wolf-fang",
+        "chance": 1
+      },
+      {
+        "itemId": "fenring-trophy",
+        "chance": 0.1
+      }
+    ],
+    "tameable": false
+  },
+  {
+    "id": "cultist",
+    "name": "Cultist",
+    "description": "A fire-casting fenring cultist found in Mountain frost caves.",
+    "veteranNotes": "Immune to fire, weak to poison. Claws and flames deal fire damage, so fire-resistance helps. Drops red jute.",
+    "biomeIds": ["mountains"],
+    "tier": 4,
+    "dangerLevel": "high",
+    "spoilerLevel": 1,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/creatures.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/location/Mountains/MountainCave02.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/rooms/caves.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/events.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "Fenring_Cultist",
+    "confidence": "read",
+    "behaviour": "aggressive",
+    "kind": "monster",
+    "health": 200,
+    "attacks": [
+      {
+        "name": "claw",
+        "damage": {
+          "slash": 35,
+          "fire": 40
+        }
+      },
+      {
+        "name": "claw2",
+        "damage": {
+          "slash": 35,
+          "fire": 40
+        }
+      },
+      {
+        "name": "flames",
+        "damage": {
+          "fire": 50
+        }
+      }
+    ],
+    "damageModifiers": {
+      "blunt": "normal",
+      "slash": "normal",
+      "pierce": "normal",
+      "chop": "ignore",
+      "pickaxe": "ignore",
+      "fire": "immune",
+      "frost": "normal",
+      "lightning": "normal",
+      "poison": "weak",
+      "spirit": "normal"
+    },
+    "weaknesses": ["poison"],
+    "resistances": [],
+    "immunities": ["fire"],
+    "drops": [
+      {
+        "itemId": "red-jute",
+        "chance": 1
+      },
+      {
+        "itemId": "cultist-trophy",
+        "chance": 0.1
+      }
+    ],
+    "tameable": false
+  },
+  {
+    "id": "geirrhafa",
+    "name": "Geirrhafa",
+    "description": "Geirrhafa, a powerful cultist guarding one of Hildir's chests in a special Mountain cave.",
+    "veteranNotes": "Immune to frost, weak to fire. Frost attacks up to 100. Always drops her trophy and the silver chest. Also appears in a rematch raid after she is first defeated (a weaker 'event' version without the chest).",
+    "biomeIds": ["mountains"],
+    "tier": 4,
+    "dangerLevel": "extreme",
+    "spoilerLevel": 1,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/creatures.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/location/Mountains/Hildir_cave.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/events.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "Fenring_Cultist_Hildir",
+    "confidence": "read",
+    "behaviour": "aggressive",
+    "kind": "miniboss",
+    "health": 3700,
+    "attacks": [
+      {
+        "name": "claw",
+        "damage": {
+          "slash": 60,
+          "frost": 70
+        }
+      },
+      {
+        "name": "claw2",
+        "damage": {
+          "slash": 40,
+          "frost": 70
+        }
+      },
+      {
+        "name": "frost",
+        "damage": {
+          "frost": 100
+        }
+      },
+      {
+        "name": "nova",
+        "damage": {
+          "frost": 90
+        }
+      }
+    ],
+    "damageModifiers": {
+      "blunt": "normal",
+      "slash": "normal",
+      "pierce": "normal",
+      "chop": "ignore",
+      "pickaxe": "ignore",
+      "fire": "weak",
+      "frost": "immune",
+      "lightning": "normal",
+      "poison": "normal",
+      "spirit": "normal"
+    },
+    "weaknesses": ["fire"],
+    "resistances": [],
+    "immunities": ["frost"],
+    "drops": [
+      {
+        "itemId": "hildir-s-silver-chest",
+        "chance": 1
+      },
+      {
+        "itemId": "geirrhafa-trophy",
+        "chance": 1
+      }
+    ],
+    "tameable": false
+  },
+  {
+    "id": "stone-golem",
+    "name": "Stone golem",
+    "description": "A towering golem of rock and crystal that patrols high Mountain peaks. Slow but crushing.",
+    "veteranNotes": "Very weak to pickaxe damage, resistant to slash and pierce, immune to fire, frost, poison and spirit. Drops lots of crystal.",
+    "biomeIds": ["mountains"],
+    "tier": 4,
+    "dangerLevel": "high",
+    "spoilerLevel": 1,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/creatures.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/spawn-list.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/location/Mountains/AbandonedLogCabin02.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "StoneGolem",
+    "confidence": "read",
+    "behaviour": "aggressive",
+    "kind": "monster",
+    "health": 800,
+    "attacks": [
+      {
+        "name": "spike",
+        "damage": {
+          "blunt": 110,
+          "chop": 100,
+          "pickaxe": 100
+        }
+      },
+      {
+        "name": "spike: spike sweep",
+        "damage": {
+          "blunt": 110,
+          "chop": 100,
+          "pickaxe": 100
+        }
+      },
+      {
+        "name": "sledge: slam",
+        "damage": {
+          "blunt": 110,
+          "chop": 100,
+          "pickaxe": 100
+        }
+      },
+      {
+        "name": "sledge: double smash",
+        "damage": {
+          "blunt": 110,
+          "chop": 100,
+          "pickaxe": 100
+        }
+      }
+    ],
+    "damageModifiers": {
+      "blunt": "normal",
+      "slash": "resistant",
+      "pierce": "resistant",
+      "chop": "ignore",
+      "pickaxe": "veryWeak",
+      "fire": "immune",
+      "frost": "immune",
+      "lightning": "normal",
+      "poison": "immune",
+      "spirit": "immune"
+    },
+    "weaknesses": ["pickaxe"],
+    "resistances": ["slash", "pierce"],
+    "immunities": ["fire", "frost", "poison", "spirit"],
+    "drops": [
+      {
+        "itemId": "stone",
+        "chance": 1
+      },
+      {
+        "itemId": "crystal",
+        "chance": 1
+      },
+      {
+        "itemId": "stone-golem-trophy",
+        "chance": 0.05
+      }
+    ],
+    "tameable": false
+  },
+  {
+    "id": "drake",
+    "name": "Drake",
+    "description": "A small flying drake that shoots ice shards from the air in the Mountains.",
+    "veteranNotes": "Immune to frost, weak to fire; fire arrows work well. Drops freeze glands. Also appears in the drake raid (after Bonemass, before Moder).",
+    "biomeIds": ["mountains"],
+    "tier": 4,
+    "dangerLevel": "high",
+    "spoilerLevel": 1,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/creatures.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/spawn-list.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/location/Mountains/DrakeNest01.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/events.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "Hatchling",
+    "confidence": "read",
+    "behaviour": "aggressive",
+    "kind": "monster",
+    "health": 100,
+    "attacks": [
+      {
+        "name": "ice shards",
+        "damage": {
+          "frost": 90
+        }
+      }
+    ],
+    "damageModifiers": {
+      "blunt": "normal",
+      "slash": "normal",
+      "pierce": "normal",
+      "chop": "ignore",
+      "pickaxe": "ignore",
+      "fire": "weak",
+      "frost": "immune",
+      "lightning": "normal",
+      "poison": "normal",
+      "spirit": "immune"
+    },
+    "weaknesses": ["fire"],
+    "resistances": [],
+    "immunities": ["frost", "spirit"],
+    "drops": [
+      {
+        "itemId": "freeze-gland",
+        "chance": 1
+      },
+      {
+        "itemId": "drake-trophy",
+        "chance": 0.1
+      }
+    ],
+    "tameable": false
+  },
+  {
+    "id": "fuling",
+    "name": "Fuling",
+    "description": "A Fuling: a goblin-like warrior of the Plains that uses clubs, spears, swords or torches. They live in villages and roam in groups.",
+    "veteranNotes": "Weapon hits of 85. Drops black metal scrap and sometimes coins. After Yagluth is defeated, small Fuling groups can spawn at night in Meadows, Black Forest and Mountains. Also appears in the Fuling raid (after Moder, before Yagluth).",
+    "biomeIds": ["plains"],
+    "tier": 5,
+    "dangerLevel": "high",
+    "spoilerLevel": 1,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/creatures.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/spawn-list.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/rooms/gobvill.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/location/BlackForest/Ruin3.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/events.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "Goblin",
+    "confidence": "read",
+    "behaviour": "aggressive",
+    "kind": "monster",
+    "health": 175,
+    "attacks": [
+      {
+        "name": "club",
+        "damage": {
+          "blunt": 85
+        }
+      },
+      {
+        "name": "spear",
+        "damage": {
+          "pierce": 85
+        }
+      },
+      {
+        "name": "sword",
+        "damage": {
+          "slash": 85
+        }
+      },
+      {
+        "name": "torch",
+        "damage": {
+          "blunt": 45,
+          "fire": 45
+        }
+      }
+    ],
+    "damageModifiers": {
+      "blunt": "normal",
+      "slash": "normal",
+      "pierce": "normal",
+      "chop": "ignore",
+      "pickaxe": "ignore",
+      "fire": "normal",
+      "frost": "normal",
+      "lightning": "normal",
+      "poison": "normal",
+      "spirit": "immune"
+    },
+    "weaknesses": [],
+    "resistances": [],
+    "immunities": ["spirit"],
+    "drops": [
+      {
+        "itemId": "coins",
+        "chance": 0.25
+      },
+      {
+        "itemId": "black-metal-scrap",
+        "chance": 1
+      },
+      {
+        "itemId": "fuling-trophy",
+        "chance": 0.1
+      }
+    ],
+    "tameable": false,
+    "notes": "Name/id corrected from kirilloid en.json typo ('Fulling'); the same file spells it correctly elsewhere (e.g. 'Fuling totem', 'Wraith')."
+  },
+  {
+    "id": "fuling-shaman",
+    "name": "Fuling shaman",
+    "description": "A Fuling shaman that throws fireballs and shields its allies. Take it out early.",
+    "veteranNotes": "Fireball does 100 fire plus 20 blunt; it can also cast a protective shield on nearby Fulings. Also appears in the Fuling raid (after Moder, before Yagluth).",
+    "biomeIds": ["plains"],
+    "tier": 5,
+    "dangerLevel": "high",
+    "spoilerLevel": 1,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/creatures.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/location/Heath/GoblinCamp2.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/rooms/gobvill.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/events.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "GoblinShaman",
+    "confidence": "read",
+    "behaviour": "aggressive",
+    "kind": "monster",
+    "health": 100,
+    "attacks": [
+      {
+        "name": "staff",
+        "damage": {
+          "blunt": 100
+        }
+      },
+      {
+        "name": "fireball",
+        "damage": {
+          "blunt": 20,
+          "fire": 100
+        }
+      }
+    ],
+    "damageModifiers": {
+      "blunt": "normal",
+      "slash": "normal",
+      "pierce": "normal",
+      "chop": "ignore",
+      "pickaxe": "ignore",
+      "fire": "normal",
+      "frost": "normal",
+      "lightning": "normal",
+      "poison": "normal",
+      "spirit": "immune"
+    },
+    "weaknesses": [],
+    "resistances": [],
+    "immunities": ["spirit"],
+    "drops": [
+      {
+        "itemId": "coins",
+        "chance": 0.25
+      },
+      {
+        "itemId": "black-metal-scrap",
+        "chance": 1
+      },
+      {
+        "itemId": "bukeperries",
+        "chance": 1
+      },
+      {
+        "itemId": "fuling-shaman-trophy",
+        "chance": 0.1
+      }
+    ],
+    "tameable": false,
+    "notes": "Name/id corrected from kirilloid en.json typo ('Fulling shaman'); the same file spells it correctly elsewhere (e.g. 'Fuling totem', 'Wraith')."
+  },
+  {
+    "id": "fuling-berserker",
+    "name": "Fuling berserker",
+    "description": "A Fuling berserker: a huge Fuling that guards villages and stone circles in the Plains.",
+    "veteranNotes": "Hits for 130 blunt. Has a 10% chance to drop a Fuling totem, used to summon Yagluth. Also appears in the Fuling raid (after Moder, before Yagluth).",
+    "biomeIds": ["plains"],
+    "tier": 5,
+    "dangerLevel": "extreme",
+    "spoilerLevel": 1,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/creatures.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/location/Heath/StoneHenge1.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/rooms/gobvill.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/events.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "GoblinBrute",
+    "confidence": "read",
+    "behaviour": "aggressive",
+    "kind": "monster",
+    "health": 800,
+    "attacks": [
+      {
+        "name": "attack",
+        "damage": {
+          "blunt": 130,
+          "chop": 100,
+          "pickaxe": 40
+        }
+      },
+      {
+        "name": "rageattack",
+        "damage": {
+          "blunt": 130,
+          "chop": 100,
+          "pickaxe": 40
+        }
+      }
+    ],
+    "damageModifiers": {
+      "blunt": "normal",
+      "slash": "normal",
+      "pierce": "normal",
+      "chop": "ignore",
+      "pickaxe": "ignore",
+      "fire": "normal",
+      "frost": "normal",
+      "lightning": "normal",
+      "poison": "normal",
+      "spirit": "immune"
+    },
+    "weaknesses": [],
+    "resistances": [],
+    "immunities": ["spirit"],
+    "drops": [
+      {
+        "itemId": "coins",
+        "chance": 1
+      },
+      {
+        "itemId": "black-metal-scrap",
+        "chance": 1
+      },
+      {
+        "itemId": "fuling-totem",
+        "chance": 0.1
+      },
+      {
+        "itemId": "fuling-berserker-trophy",
+        "chance": 0.05
+      }
+    ],
+    "tameable": false,
+    "notes": "Name/id corrected from kirilloid en.json typo ('Fulling berserker'); the same file spells it correctly elsewhere (e.g. 'Fuling totem', 'Wraith')."
+  },
+  {
+    "id": "zil",
+    "name": "Zil",
+    "description": "Zil, a Fuling shaman brother guarding one of Hildir's chests in a special Plains fortress.",
+    "veteranNotes": "Fights alongside Thungr. Fireball hits for 100 fire plus 20 blunt. Always drops his trophy and the bronze chest.",
+    "biomeIds": ["plains"],
+    "tier": 5,
+    "dangerLevel": "high",
+    "spoilerLevel": 1,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/creatures.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/location/Heath/Hildir_plainsfortress.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "GoblinShaman_Hildir",
+    "confidence": "read",
+    "behaviour": "aggressive",
+    "kind": "miniboss",
+    "health": 2400,
+    "attacks": [
+      {
+        "name": "staff",
+        "damage": {
+          "blunt": 100
+        }
+      },
+      {
+        "name": "fireball",
+        "damage": {
+          "blunt": 20,
+          "fire": 100
+        }
+      }
+    ],
+    "damageModifiers": {
+      "blunt": "normal",
+      "slash": "normal",
+      "pierce": "normal",
+      "chop": "ignore",
+      "pickaxe": "ignore",
+      "fire": "normal",
+      "frost": "normal",
+      "lightning": "normal",
+      "poison": "normal",
+      "spirit": "immune"
+    },
+    "weaknesses": [],
+    "resistances": [],
+    "immunities": ["spirit"],
+    "drops": [
+      {
+        "itemId": "hildir-s-bronze-chest",
+        "chance": 1
+      },
+      {
+        "itemId": "zil-trophy",
+        "chance": 1
+      }
+    ],
+    "tameable": false
+  },
+  {
+    "id": "zil-thungr",
+    "name": "Zil & Thungr",
+    "description": "Thungr, the berserker brother of the Zil & Thungr fight at Hildir's Plains fortress.",
+    "veteranNotes": "In the data this prefab carries the pair's name, 4200 health and spawns Zil when needed. Hits for 150 blunt. Drops the Thungr trophy. Also appears in a rematch raid after they are first defeated (a weaker 'event' version without the chest).",
+    "biomeIds": ["plains"],
+    "tier": 5,
+    "dangerLevel": "extreme",
+    "spoilerLevel": 1,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/creatures.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/location/Heath/Hildir_plainsfortress.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/events.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "GoblinBruteBros",
+    "confidence": "read",
+    "behaviour": "aggressive",
+    "kind": "miniboss",
+    "health": 4200,
+    "attacks": [
+      {
+        "name": "attack",
+        "damage": {
+          "blunt": 150,
+          "chop": 100,
+          "pickaxe": 40
+        }
+      },
+      {
+        "name": "rageattack",
+        "damage": {
+          "blunt": 130,
+          "chop": 100,
+          "pickaxe": 40
+        }
+      },
+      {
+        "name": "fireball",
+        "damage": {
+          "blunt": 20,
+          "fire": 100
+        }
+      }
+    ],
+    "damageModifiers": {
+      "blunt": "normal",
+      "slash": "normal",
+      "pierce": "normal",
+      "chop": "ignore",
+      "pickaxe": "ignore",
+      "fire": "normal",
+      "frost": "normal",
+      "lightning": "normal",
+      "poison": "normal",
+      "spirit": "immune"
+    },
+    "weaknesses": [],
+    "resistances": [],
+    "immunities": ["spirit"],
+    "drops": [
+      {
+        "itemId": "thungr-trophy",
+        "chance": 1
+      }
+    ],
+    "tameable": false
+  },
+  {
+    "id": "deathsquito",
+    "name": "Deathsquito",
+    "description": "A giant mosquito that dives at you from the air across the Plains. Tiny but lethal for poorly armoured players.",
+    "veteranNotes": "Only 10 health but bites for 90 pierce. A shield block or a well-timed arrow stops it. Drops needles.",
+    "biomeIds": ["plains"],
+    "tier": 5,
+    "dangerLevel": "high",
+    "spoilerLevel": 1,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/creatures.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/spawn-list.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "Deathsquito",
+    "confidence": "read",
+    "behaviour": "aggressive",
+    "kind": "monster",
+    "health": 10,
+    "attacks": [
+      {
+        "name": "bite",
+        "damage": {
+          "pierce": 90
+        }
+      }
+    ],
+    "damageModifiers": {
+      "blunt": "normal",
+      "slash": "normal",
+      "pierce": "normal",
+      "chop": "ignore",
+      "pickaxe": "ignore",
+      "fire": "normal",
+      "frost": "normal",
+      "lightning": "normal",
+      "poison": "normal",
+      "spirit": "immune"
+    },
+    "weaknesses": [],
+    "resistances": [],
+    "immunities": ["spirit"],
+    "drops": [
+      {
+        "itemId": "needle",
+        "chance": 1
+      },
+      {
+        "itemId": "deathsquito-trophy",
+        "chance": 0.05
+      }
+    ],
+    "tameable": false
+  },
+  {
+    "id": "lox",
+    "name": "Lox",
+    "description": "A massive, shaggy beast of the Plains. It is slow to notice you but hits extremely hard. Lox can be tamed.",
+    "veteranNotes": "Resistant to blunt, slash and frost, weak to fire. Bite of 130 slash. It can be tamed by feeding it.",
+    "biomeIds": ["plains"],
+    "tier": 5,
+    "dangerLevel": "extreme",
+    "spoilerLevel": 1,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/creatures.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/spawn-list.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "Lox",
+    "confidence": "read",
+    "behaviour": "aggressive",
+    "kind": "animal",
+    "health": 1000,
+    "attacks": [
+      {
+        "name": "bite",
+        "damage": {
+          "slash": 130
+        }
+      },
+      {
+        "name": "stomp",
+        "damage": {
+          "blunt": 120,
+          "chop": 100,
+          "pickaxe": 100
+        }
+      }
+    ],
+    "damageModifiers": {
+      "blunt": "resistant",
+      "slash": "resistant",
+      "pierce": "normal",
+      "chop": "ignore",
+      "pickaxe": "ignore",
+      "fire": "weak",
+      "frost": "resistant",
+      "lightning": "normal",
+      "poison": "normal",
+      "spirit": "immune"
+    },
+    "weaknesses": ["fire"],
+    "resistances": ["blunt", "slash", "frost"],
+    "immunities": ["spirit"],
+    "drops": [
+      {
+        "itemId": "lox-meat",
+        "chance": 1
+      },
+      {
+        "itemId": "lox-pelt",
+        "chance": 1
+      },
+      {
+        "itemId": "lox-trophy",
+        "chance": 0.1
+      }
+    ],
+    "tameable": true
+  },
+  {
+    "id": "vile",
+    "name": "Vile",
+    "description": "The Vile: an undead bear that stalks the Plains at night. Very tough and very dangerous.",
+    "veteranNotes": "Rare night spawn at least 2 km from the centre. Bite of 130 pierce, slam of 150 blunt. Resistant to blunt, pierce and frost, weak to fire.",
+    "biomeIds": ["plains"],
+    "tier": 5,
+    "dangerLevel": "extreme",
+    "spoilerLevel": 1,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/creatures.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/spawn-list.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "Unbjorn",
+    "confidence": "read",
+    "behaviour": "aggressive",
+    "kind": "monster",
+    "health": 1200,
+    "attacks": [
+      {
+        "name": "bite",
+        "damage": {
+          "slash": 20,
+          "pierce": 130
+        }
+      },
+      {
+        "name": "claws",
+        "damage": {
+          "slash": 130,
+          "chop": 40
+        }
+      },
+      {
+        "name": "swipe_l",
+        "damage": {
+          "slash": 60,
+          "chop": 40
+        }
+      },
+      {
+        "name": "swipe_r",
+        "damage": {
+          "slash": 60,
+          "chop": 40
+        }
+      },
+      {
+        "name": "swipe_combo",
+        "damage": {
+          "slash": 60,
+          "chop": 40
+        }
+      },
+      {
+        "name": "slam",
+        "damage": {
+          "blunt": 150,
+          "chop": 40,
+          "pickaxe": 40
+        }
+      }
+    ],
+    "damageModifiers": {
+      "blunt": "resistant",
+      "slash": "normal",
+      "pierce": "resistant",
+      "chop": "ignore",
+      "pickaxe": "ignore",
+      "fire": "weak",
+      "frost": "resistant",
+      "lightning": "normal",
+      "poison": "normal",
+      "spirit": "immune"
+    },
+    "weaknesses": ["fire"],
+    "resistances": ["blunt", "pierce", "frost"],
+    "immunities": ["spirit"],
+    "drops": [
+      {
+        "itemId": "vile-trophy",
+        "chance": 0.1
+      },
+      {
+        "itemId": "bear-meat",
+        "chance": 1
+      },
+      {
+        "itemId": "rotten-meat",
+        "chance": 0.8
+      },
+      {
+        "itemId": "vile-ribcage",
+        "chance": 1
+      },
+      {
+        "itemId": "bear-hide",
+        "chance": 1
+      }
+    ],
+    "tameable": false
+  },
+  {
+    "id": "growth",
+    "name": "Growth",
+    "description": "The Growth: a sticky tar blob that lives in Plains tar pits and slows you down.",
+    "veteranNotes": "Weak to blunt and fire, resistant to slash, pierce and frost. Drops tar.",
+    "biomeIds": ["plains"],
+    "tier": 5,
+    "dangerLevel": "high",
+    "spoilerLevel": 1,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/creatures.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/location/Heath/TarPit1.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "BlobTar",
+    "confidence": "read",
+    "behaviour": "aggressive",
+    "kind": "monster",
+    "health": 100,
+    "attacks": [
+      {
+        "name": "stomp",
+        "damage": {
+          "blunt": 45,
+          "poison": 50
+        }
+      }
+    ],
+    "damageModifiers": {
+      "blunt": "weak",
+      "slash": "resistant",
+      "pierce": "resistant",
+      "chop": "ignore",
+      "pickaxe": "ignore",
+      "fire": "weak",
+      "frost": "resistant",
+      "lightning": "normal",
+      "poison": "immune",
+      "spirit": "normal"
+    },
+    "weaknesses": ["blunt", "fire"],
+    "resistances": ["slash", "pierce", "frost"],
+    "immunities": ["poison"],
+    "drops": [
+      {
+        "itemId": "tar",
+        "chance": 1
+      },
+      {
+        "itemId": "growth-trophy",
+        "chance": 0.1
+      }
+    ],
+    "tameable": false
+  },
+  {
+    "id": "hare",
+    "name": "Hare",
+    "description": "A timid hare that hops around the Mistlands. It never attacks.",
+    "veteranNotes": "Only 10 health. Drops hare meat and scale hide.",
+    "biomeIds": ["mistlands"],
+    "tier": 6,
+    "dangerLevel": "none",
+    "spoilerLevel": 2,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/creatures.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/spawn-list.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "Hare",
+    "confidence": "read",
+    "behaviour": "passive",
+    "kind": "animal",
+    "health": 10,
+    "attacks": [],
+    "damageModifiers": {
+      "blunt": "normal",
+      "slash": "normal",
+      "pierce": "normal",
+      "chop": "ignore",
+      "pickaxe": "ignore",
+      "fire": "normal",
+      "frost": "normal",
+      "lightning": "normal",
+      "poison": "normal",
+      "spirit": "immune"
+    },
+    "weaknesses": [],
+    "resistances": [],
+    "immunities": ["spirit"],
+    "drops": [
+      {
+        "itemId": "hare-meat",
+        "chance": 1
+      },
+      {
+        "itemId": "scale-hide",
+        "chance": 1
+      },
+      {
+        "itemId": "hare-trophy",
+        "chance": 0.05
+      }
+    ],
+    "tameable": false
+  },
+  {
+    "id": "dvergr-rogue",
+    "name": "Dvergr rogue",
+    "description": "A Dvergr rogue: one of the dwarf-like Dvergr who explore the Mistlands. They leave you alone unless you attack them or their property.",
+    "veteranNotes": "Neutral until provoked. Crossbow bolt hits for 110 pierce. Drops coins and black marble.",
+    "biomeIds": ["mistlands"],
+    "tier": 6,
+    "dangerLevel": "high",
+    "spoilerLevel": 2,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/creatures.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/spawn-list.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/location/Mistlands/Mistlands_Harbour1.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "Dverger",
+    "confidence": "read",
+    "behaviour": "neutral",
+    "kind": "npc",
+    "health": 350,
+    "attacks": [
+      {
+        "name": "arbalest",
+        "damage": {
+          "pierce": 110
+        }
+      },
+      {
+        "name": "melee",
+        "damage": {
+          "blunt": 70
+        }
+      }
+    ],
+    "damageModifiers": {
+      "blunt": "normal",
+      "slash": "normal",
+      "pierce": "normal",
+      "chop": "ignore",
+      "pickaxe": "ignore",
+      "fire": "normal",
+      "frost": "normal",
+      "lightning": "normal",
+      "poison": "normal",
+      "spirit": "immune"
+    },
+    "weaknesses": [],
+    "resistances": [],
+    "immunities": ["spirit"],
+    "drops": [
+      {
+        "itemId": "soft-tissue",
+        "chance": 0.25
+      },
+      {
+        "itemId": "black-marble",
+        "chance": 0.5
+      },
+      {
+        "itemId": "coins",
+        "chance": 1
+      },
+      {
+        "itemId": "dvergr-trophy",
+        "chance": 0.05
+      }
+    ],
+    "tameable": false
+  },
+  {
+    "id": "dvergr-mage",
+    "name": "Dvergr mage",
+    "description": "A Dvergr mage that casts fire, ice or healing magic. Neutral unless you anger the Dvergr.",
+    "veteranNotes": "Fire, ice and healer variants. The ice bolt hits for 200 frost; the healer summons Mistiles. Resistant to fire and frost.",
+    "biomeIds": ["mistlands"],
+    "tier": 6,
+    "dangerLevel": "extreme",
+    "spoilerLevel": 2,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/creatures.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/location/Mistlands/Mistlands_Harbour1.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/spawners.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "DvergerMage",
+    "confidence": "read",
+    "behaviour": "neutral",
+    "kind": "npc",
+    "health": 350,
+    "attacks": [
+      {
+        "name": "Fire: melee",
+        "damage": {
+          "blunt": 70
+        }
+      },
+      {
+        "name": "Fire: fireball",
+        "damage": {
+          "fire": 100
+        }
+      },
+      {
+        "name": "Fire: clusterbomb",
+        "damage": {
+          "fire": 100
+        }
+      },
+      {
+        "name": "Ice: melee",
+        "damage": {
+          "blunt": 70
+        }
+      },
+      {
+        "name": "Ice: icebolt",
+        "damage": {
+          "frost": 200
+        }
+      },
+      {
+        "name": "Ice: nova",
+        "damage": {
+          "frost": 150
+        }
+      }
+    ],
+    "damageModifiers": {
+      "blunt": "normal",
+      "slash": "normal",
+      "pierce": "normal",
+      "chop": "ignore",
+      "pickaxe": "ignore",
+      "fire": "resistant",
+      "frost": "resistant",
+      "lightning": "normal",
+      "poison": "normal",
+      "spirit": "immune"
+    },
+    "weaknesses": [],
+    "resistances": ["fire", "frost"],
+    "immunities": ["spirit"],
+    "drops": [
+      {
+        "itemId": "soft-tissue",
+        "chance": 0.25
+      },
+      {
+        "itemId": "black-marble",
+        "chance": 0.5
+      },
+      {
+        "itemId": "coins",
+        "chance": 1
+      },
+      {
+        "itemId": "dvergr-trophy",
+        "chance": 0.05
+      }
+    ],
+    "tameable": false
+  },
+  {
+    "id": "tick",
+    "name": "Tick",
+    "description": "A blood-sucking tick that latches on and drains you. It hides in Mistlands ruins and falls from Gjall.",
+    "veteranNotes": "Resistant to pierce. Drops blood clots. Also appears in the Gjall raid in the Mistlands (after Yagluth, before the Queen).",
+    "biomeIds": ["mistlands"],
+    "tier": 6,
+    "dangerLevel": "medium",
+    "spoilerLevel": 2,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/creatures.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/location/Mistlands/Mistlands_Giant1.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/rooms/dvergrtown.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/spawn-list.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/events.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "Tick",
+    "confidence": "read",
+    "behaviour": "aggressive",
+    "kind": "monster",
+    "health": 50,
+    "attacks": [
+      {
+        "name": "stick",
+        "damage": {
+          "pierce": 50
+        }
+      }
+    ],
+    "damageModifiers": {
+      "blunt": "normal",
+      "slash": "normal",
+      "pierce": "resistant",
+      "chop": "ignore",
+      "pickaxe": "ignore",
+      "fire": "normal",
+      "frost": "normal",
+      "lightning": "normal",
+      "poison": "normal",
+      "spirit": "immune"
+    },
+    "weaknesses": [],
+    "resistances": ["pierce"],
+    "immunities": ["spirit"],
+    "drops": [
+      {
+        "itemId": "blood-clot",
+        "chance": 1
+      },
+      {
+        "itemId": "tick-trophy",
+        "chance": 0.05
+      }
+    ],
+    "tameable": false
+  },
+  {
+    "id": "gjall",
+    "name": "Gjall",
+    "description": "A huge floating creature that spits fire bombs and drops ticks. Rare but very dangerous.",
+    "veteranNotes": "Spit hits for 80 fire plus 50 blunt; it also releases ticks. Resistant to fire. Drops bilebags. Also appears in the Gjall raid in the Mistlands (after Yagluth, before the Queen).",
+    "biomeIds": ["mistlands"],
+    "tier": 6,
+    "dangerLevel": "extreme",
+    "spoilerLevel": 2,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/creatures.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/spawn-list.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/events.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "Gjall",
+    "confidence": "read",
+    "behaviour": "aggressive",
+    "kind": "monster",
+    "health": 1500,
+    "attacks": [
+      {
+        "name": "spit",
+        "damage": {
+          "blunt": 50,
+          "fire": 80
+        }
+      },
+      {
+        "name": "shake",
+        "damage": {
+          "blunt": 20
+        }
+      }
+    ],
+    "damageModifiers": {
+      "blunt": "normal",
+      "slash": "normal",
+      "pierce": "normal",
+      "chop": "ignore",
+      "pickaxe": "ignore",
+      "fire": "resistant",
+      "frost": "normal",
+      "lightning": "normal",
+      "poison": "normal",
+      "spirit": "immune"
+    },
+    "weaknesses": [],
+    "resistances": ["fire"],
+    "immunities": ["spirit"],
+    "drops": [
+      {
+        "itemId": "bilebag",
+        "chance": 1
+      },
+      {
+        "itemId": "gjall-trophy",
+        "chance": 0.3
+      }
+    ],
+    "tameable": false
+  },
+  {
+    "id": "baby-seeker",
+    "name": "Baby seeker",
+    "description": "A baby seeker that hatches from eggs in the Mistlands. Weak alone but fast.",
+    "veteranNotes": "Resistant to blunt, slash and pierce. Drops royal jelly. Also spawned in swarms by the Queen. Also appears in the seeker raid (after Yagluth, before the Queen).",
+    "biomeIds": ["mistlands"],
+    "tier": 6,
+    "dangerLevel": "medium",
+    "spoilerLevel": 2,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/creatures.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/objects.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/spawn-list.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/events.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "SeekerBrood",
+    "confidence": "read",
+    "behaviour": "aggressive",
+    "kind": "monster",
+    "health": 20,
+    "attacks": [
+      {
+        "name": "pincers",
+        "damage": {
+          "pierce": 60
+        }
+      }
+    ],
+    "damageModifiers": {
+      "blunt": "resistant",
+      "slash": "resistant",
+      "pierce": "resistant",
+      "chop": "ignore",
+      "pickaxe": "ignore",
+      "fire": "normal",
+      "frost": "normal",
+      "lightning": "normal",
+      "poison": "normal",
+      "spirit": "immune"
+    },
+    "weaknesses": [],
+    "resistances": ["blunt", "slash", "pierce"],
+    "immunities": ["spirit"],
+    "drops": [
+      {
+        "itemId": "royal-jelly",
+        "chance": 1
+      }
+    ],
+    "tameable": false
+  },
+  {
+    "id": "seeker",
+    "name": "Seeker",
+    "description": "A large insect warrior of the Mistlands with sharp claws. One of the main threats in the mist.",
+    "veteranNotes": "Resistant to blunt, slash and pierce. Claws hit for 120 pierce. Drops seeker meat and carapace. After the Queen is defeated, small seeker groups can spawn at night in Meadows, Black Forest, Swamp, Mountains and Plains. Also appears in the seeker raid (after Yagluth, before the Queen).",
+    "biomeIds": ["mistlands"],
+    "tier": 6,
+    "dangerLevel": "high",
+    "spoilerLevel": 2,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/creatures.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/spawn-list.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/rooms/dvergrtown.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/events.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "Seeker",
+    "confidence": "read",
+    "behaviour": "aggressive",
+    "kind": "monster",
+    "health": 200,
+    "attacks": [
+      {
+        "name": "pincers",
+        "damage": {
+          "pierce": 90
+        }
+      },
+      {
+        "name": "claw",
+        "damage": {
+          "pierce": 120
+        }
+      },
+      {
+        "name": "claw2",
+        "damage": {
+          "pierce": 120
+        }
+      },
+      {
+        "name": "slam",
+        "damage": {
+          "blunt": 100
+        }
+      }
+    ],
+    "damageModifiers": {
+      "blunt": "resistant",
+      "slash": "resistant",
+      "pierce": "resistant",
+      "chop": "ignore",
+      "pickaxe": "ignore",
+      "fire": "normal",
+      "frost": "normal",
+      "lightning": "normal",
+      "poison": "normal",
+      "spirit": "immune"
+    },
+    "weaknesses": [],
+    "resistances": ["blunt", "slash", "pierce"],
+    "immunities": ["spirit"],
+    "drops": [
+      {
+        "itemId": "seeker-meat",
+        "chance": 1
+      },
+      {
+        "itemId": "carapace",
+        "chance": 1
+      },
+      {
+        "itemId": "seeker-trophy",
+        "chance": 0.1
+      }
+    ],
+    "tameable": false
+  },
+  {
+    "id": "seeker-soldier",
+    "name": "Seeker soldier",
+    "description": "A Seeker soldier: a heavily armoured giant seeker that guards infested mines.",
+    "veteranNotes": "Resistant to blunt, slash and pierce. Slam hits for 120 blunt. Drops carapace and mandibles. Also appears in the seeker raid (after Yagluth, before the Queen).",
+    "biomeIds": ["mistlands"],
+    "tier": 6,
+    "dangerLevel": "high",
+    "spoilerLevel": 2,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/creatures.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/spawn-list.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/rooms/dvergrtown.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/events.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "SeekerBrute",
+    "confidence": "read",
+    "behaviour": "aggressive",
+    "kind": "monster",
+    "health": 1500,
+    "attacks": [
+      {
+        "name": "ram",
+        "damage": {
+          "blunt": 100,
+          "chop": 100,
+          "pickaxe": 100
+        }
+      },
+      {
+        "name": "bite",
+        "damage": {
+          "slash": 100
+        }
+      },
+      {
+        "name": "slam",
+        "damage": {
+          "blunt": 120,
+          "chop": 100,
+          "pickaxe": 100
+        }
+      }
+    ],
+    "damageModifiers": {
+      "blunt": "resistant",
+      "slash": "resistant",
+      "pierce": "resistant",
+      "chop": "ignore",
+      "pickaxe": "ignore",
+      "fire": "normal",
+      "frost": "normal",
+      "lightning": "normal",
+      "poison": "normal",
+      "spirit": "immune"
+    },
+    "weaknesses": [],
+    "resistances": ["blunt", "slash", "pierce"],
+    "immunities": ["spirit"],
+    "drops": [
+      {
+        "itemId": "seeker-meat",
+        "chance": 1
+      },
+      {
+        "itemId": "carapace",
+        "chance": 1
+      },
+      {
+        "itemId": "seeker-soldier-trophy",
+        "chance": 0.05
+      },
+      {
+        "itemId": "mandible",
+        "chance": 1
+      }
+    ],
+    "tameable": false
+  },
+  {
+    "id": "bonemaw",
+    "name": "Bonemaw",
+    "description": "The Bonemaw, a bony sea serpent that lurks in the waters around the Ashlands.",
+    "veteranNotes": "Immune to fire, weak to frost. Bite hits for 140 slash. Drops lots of teeth and meat.",
+    "biomeIds": ["ashlands"],
+    "tier": 7,
+    "dangerLevel": "extreme",
+    "spoilerLevel": 2,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/creatures.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/spawn-list.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "BonemawSerpent",
+    "confidence": "read",
+    "behaviour": "aggressive",
+    "kind": "monster",
+    "health": 1100,
+    "attacks": [
+      {
+        "name": "spit",
+        "damage": {
+          "blunt": 40,
+          "fire": 20,
+          "poison": 20
+        }
+      },
+      {
+        "name": "bite",
+        "damage": {
+          "slash": 140
+        }
+      }
+    ],
+    "damageModifiers": {
+      "blunt": "normal",
+      "slash": "normal",
+      "pierce": "normal",
+      "chop": "ignore",
+      "pickaxe": "ignore",
+      "fire": "immune",
+      "frost": "weak",
+      "lightning": "normal",
+      "poison": "resistant",
+      "spirit": "immune"
+    },
+    "weaknesses": ["frost"],
+    "resistances": ["poison"],
+    "immunities": ["fire", "spirit"],
+    "drops": [
+      {
+        "itemId": "bonemaw-trophy",
+        "chance": 0.33
+      },
+      {
+        "itemId": "bonemaw-meat",
+        "chance": 1
+      },
+      {
+        "itemId": "bonemaw-tooth",
+        "chance": 1
+      }
+    ],
+    "tameable": false
+  },
+  {
+    "id": "volture",
+    "name": "Volture",
+    "description": "A vulture-like bird that swoops down from Ashlands skies.",
+    "veteranNotes": "Weak to frost, immune to poison. Talons hit for 110 slash. Drops volture meat, feathers and eggs.",
+    "biomeIds": ["ashlands"],
+    "tier": 7,
+    "dangerLevel": "high",
+    "spoilerLevel": 2,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/creatures.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/spawn-list.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "Volture",
+    "confidence": "read",
+    "behaviour": "aggressive",
+    "kind": "monster",
+    "health": 200,
+    "attacks": [
+      {
+        "name": "talons",
+        "damage": {
+          "slash": 110
+        }
+      }
+    ],
+    "damageModifiers": {
+      "blunt": "normal",
+      "slash": "normal",
+      "pierce": "normal",
+      "chop": "ignore",
+      "pickaxe": "ignore",
+      "fire": "normal",
+      "frost": "weak",
+      "lightning": "normal",
+      "poison": "immune",
+      "spirit": "normal"
+    },
+    "weaknesses": ["frost"],
+    "resistances": [],
+    "immunities": ["poison"],
+    "drops": [
+      {
+        "itemId": "volture-trophy",
+        "chance": 0.1
+      },
+      {
+        "itemId": "volture-meat",
+        "chance": 1
+      },
+      {
+        "itemId": "feathers",
+        "chance": 0.5
+      },
+      {
+        "itemId": "volture-egg",
+        "chance": 0.5
+      }
+    ],
+    "tameable": false
+  },
+  {
+    "id": "asksvin",
+    "name": "Asksvin",
+    "description": "A fast, lizard-like beast of the Ashlands. Dangerous in packs, but it can be tamed.",
+    "veteranNotes": "Pounce hits for 150 blunt. Resistant to fire and poison. Drops hide, tail meat and bladders.",
+    "biomeIds": ["ashlands"],
+    "tier": 7,
+    "dangerLevel": "extreme",
+    "spoilerLevel": 2,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/creatures.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/spawn-list.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "Asksvin",
+    "confidence": "read",
+    "behaviour": "aggressive",
+    "kind": "animal",
+    "health": 800,
+    "attacks": [
+      {
+        "name": "bite",
+        "damage": {
+          "blunt": 75,
+          "slash": 75,
+          "chop": 50,
+          "pickaxe": 50
+        }
+      },
+      {
+        "name": "ram",
+        "damage": {
+          "blunt": 120,
+          "chop": 100,
+          "pickaxe": 100
+        }
+      },
+      {
+        "name": "pounce",
+        "damage": {
+          "blunt": 150,
+          "chop": 50,
+          "pickaxe": 100
+        }
+      }
+    ],
+    "damageModifiers": {
+      "blunt": "normal",
+      "slash": "normal",
+      "pierce": "normal",
+      "chop": "ignore",
+      "pickaxe": "ignore",
+      "fire": "resistant",
+      "frost": "normal",
+      "lightning": "normal",
+      "poison": "resistant",
+      "spirit": "immune"
+    },
+    "weaknesses": [],
+    "resistances": ["fire", "poison"],
+    "immunities": ["spirit"],
+    "drops": [
+      {
+        "itemId": "asksvin-trophy",
+        "chance": 0.1
+      },
+      {
+        "itemId": "asksvin-bladder",
+        "chance": 1
+      },
+      {
+        "itemId": "asksvin-hide",
+        "chance": 1
+      },
+      {
+        "itemId": "asksvin-tail",
+        "chance": 1
+      }
+    ],
+    "tameable": true
+  },
+  {
+    "id": "charred-marksman",
+    "name": "Charred Marksman",
+    "description": "A Charred marksman: a burned skeletal archer that shoots powerful arrows from Ashlands fortresses.",
+    "veteranNotes": "Resistant to pierce, very resistant to fire, weak to spirit. Arrows hit for 120 pierce. After Fader is defeated, small groups can spawn at night in Meadows, Black Forest, Swamp, Mountains and Plains. Also appears in the Charred raids (after the Queen, before Fader).",
+    "biomeIds": ["ashlands"],
+    "tier": 7,
+    "dangerLevel": "high",
+    "spoilerLevel": 2,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/creatures.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/spawn-list.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/location/Ashlands/CharredFortress.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/objects.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/events.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "Charred_Archer",
+    "confidence": "read",
+    "behaviour": "aggressive",
+    "kind": "monster",
+    "health": 400,
+    "attacks": [
+      {
+        "name": "bow",
+        "damage": {
+          "pierce": 120
+        }
+      },
+      {
+        "name": "volley",
+        "damage": {
+          "pierce": 60
+        }
+      }
+    ],
+    "damageModifiers": {
+      "blunt": "normal",
+      "slash": "normal",
+      "pierce": "resistant",
+      "chop": "ignore",
+      "pickaxe": "ignore",
+      "fire": "veryResistant",
+      "frost": "normal",
+      "lightning": "normal",
+      "poison": "immune",
+      "spirit": "weak"
+    },
+    "weaknesses": ["spirit"],
+    "resistances": ["pierce", "fire"],
+    "immunities": ["poison"],
+    "drops": [
+      {
+        "itemId": "charred-bone",
+        "chance": 1
+      },
+      {
+        "itemId": "marksman-trophy",
+        "chance": 0.05
+      }
+    ],
+    "tameable": false
+  },
+  {
+    "id": "charred-warlock",
+    "name": "Charred Warlock",
+    "description": "A Charred warlock that raises twitchers to fight for it.",
+    "veteranNotes": "Resistant to pierce, very resistant to fire, weak to spirit. It keeps summoning Charred twitchers, so kill it first.",
+    "biomeIds": ["ashlands"],
+    "tier": 7,
+    "dangerLevel": "high",
+    "spoilerLevel": 2,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/creatures.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/location/Ashlands/CharredFortress.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/objects.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "Charred_Mage",
+    "confidence": "read",
+    "notes": "Its only listed attack summons Charred twitchers (no direct damage in the dump), so the danger rating reflects the summoned twitchers (100 slash scratch).",
+    "behaviour": "aggressive",
+    "kind": "monster",
+    "health": 600,
+    "attacks": [],
+    "damageModifiers": {
+      "blunt": "normal",
+      "slash": "normal",
+      "pierce": "resistant",
+      "chop": "ignore",
+      "pickaxe": "ignore",
+      "fire": "veryResistant",
+      "frost": "normal",
+      "lightning": "normal",
+      "poison": "immune",
+      "spirit": "weak"
+    },
+    "weaknesses": ["spirit"],
+    "resistances": ["pierce", "fire"],
+    "immunities": ["poison"],
+    "drops": [
+      {
+        "itemId": "charred-bone",
+        "chance": 1
+      },
+      {
+        "itemId": "warlock-trophy",
+        "chance": 0.05
+      }
+    ],
+    "tameable": false
+  },
+  {
+    "id": "charred-warrior",
+    "name": "Charred Warrior",
+    "description": "A Charred warrior: a burned skeletal swordsman, the backbone of the Ashlands armies.",
+    "veteranNotes": "Resistant to pierce, very resistant to fire, weak to spirit. Thrusts hit for 160 pierce. After Fader is defeated, small groups can spawn at night in Meadows, Black Forest, Swamp, Mountains and Plains. Also appears in the Charred raids (after the Queen, before Fader).",
+    "biomeIds": ["ashlands"],
+    "tier": 7,
+    "dangerLevel": "extreme",
+    "spoilerLevel": 2,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/creatures.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/spawn-list.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/objects.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/events.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "Charred_Melee",
+    "confidence": "read",
+    "behaviour": "aggressive",
+    "kind": "monster",
+    "health": 600,
+    "attacks": [
+      {
+        "name": "swing",
+        "damage": {
+          "slash": 150
+        }
+      },
+      {
+        "name": "thrust",
+        "damage": {
+          "pierce": 160
+        }
+      },
+      {
+        "name": "feint",
+        "damage": {
+          "slash": 130
+        }
+      },
+      {
+        "name": "thrust-feint",
+        "damage": {
+          "pierce": 160
+        }
+      }
+    ],
+    "damageModifiers": {
+      "blunt": "normal",
+      "slash": "normal",
+      "pierce": "resistant",
+      "chop": "ignore",
+      "pickaxe": "ignore",
+      "fire": "veryResistant",
+      "frost": "normal",
+      "lightning": "normal",
+      "poison": "immune",
+      "spirit": "weak"
+    },
+    "weaknesses": ["spirit"],
+    "resistances": ["pierce", "fire"],
+    "immunities": ["poison"],
+    "drops": [
+      {
+        "itemId": "charred-bone",
+        "chance": 1
+      },
+      {
+        "itemId": "warrior-trophy",
+        "chance": 0.05
+      }
+    ],
+    "tameable": false
+  },
+  {
+    "id": "charred-twitcher",
+    "name": "Charred Twitcher",
+    "description": "A twitching, fast Charred that scratches and throws debris. Often shows up in groups.",
+    "veteranNotes": "Resistant to pierce, very resistant to fire, weak to spirit. Scratches for 100 slash. Also appears in the Charred raids (after the Queen, before Fader).",
+    "biomeIds": ["ashlands"],
+    "tier": 7,
+    "dangerLevel": "high",
+    "spoilerLevel": 2,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/creatures.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/spawn-list.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/rooms/ashlands.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/events.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "Charred_Twitcher",
+    "confidence": "read",
+    "behaviour": "aggressive",
+    "kind": "monster",
+    "health": 220,
+    "attacks": [
+      {
+        "name": "scratch",
+        "damage": {
+          "slash": 100
+        }
+      },
+      {
+        "name": "throw",
+        "damage": {
+          "pierce": 75
+        }
+      }
+    ],
+    "damageModifiers": {
+      "blunt": "normal",
+      "slash": "normal",
+      "pierce": "resistant",
+      "chop": "ignore",
+      "pickaxe": "ignore",
+      "fire": "veryResistant",
+      "frost": "normal",
+      "lightning": "normal",
+      "poison": "immune",
+      "spirit": "weak"
+    },
+    "weaknesses": ["spirit"],
+    "resistances": ["pierce", "fire"],
+    "immunities": ["poison"],
+    "drops": [
+      {
+        "itemId": "charred-bone",
+        "chance": 1
+      }
+    ],
+    "tameable": false
+  },
+  {
+    "id": "lord-reto",
+    "name": "Lord Reto",
+    "description": "Lord Reto, an elite Charred warrior guarding a mausoleum in the Ashlands. Defeating him yields a piece of the Dyrnwyn sword.",
+    "veteranNotes": "Always spawns at level 3 per the data. Swings for up to 250 slash. Resistant to pierce, fire and frost, weak to spirit.",
+    "biomeIds": ["ashlands"],
+    "tier": 7,
+    "dangerLevel": "extreme",
+    "spoilerLevel": 2,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/creatures.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/location/Ashlands/PlaceofMystery3.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/spawners.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "Charred_Melee_Dyrnwyn",
+    "confidence": "read",
+    "behaviour": "aggressive",
+    "kind": "miniboss",
+    "health": 2500,
+    "attacks": [
+      {
+        "name": "swing",
+        "damage": {
+          "slash": 240
+        }
+      },
+      {
+        "name": "thrust",
+        "damage": {
+          "pierce": 230
+        }
+      },
+      {
+        "name": "feint",
+        "damage": {
+          "slash": 250
+        }
+      },
+      {
+        "name": "thrust-feint",
+        "damage": {
+          "pierce": 210
+        }
+      }
+    ],
+    "damageModifiers": {
+      "blunt": "normal",
+      "slash": "normal",
+      "pierce": "resistant",
+      "chop": "ignore",
+      "pickaxe": "ignore",
+      "fire": "resistant",
+      "frost": "resistant",
+      "lightning": "normal",
+      "poison": "immune",
+      "spirit": "weak"
+    },
+    "weaknesses": ["spirit"],
+    "resistances": ["pierce", "fire", "frost"],
+    "immunities": ["poison"],
+    "drops": [
+      {
+        "itemId": "dyrnwyn-hilt-fragment",
+        "chance": 1
+      }
+    ],
+    "tameable": false
+  },
+  {
+    "id": "dvergr-rogue-ashlands",
+    "name": "Dvergr rogue (Ashlands)",
+    "description": "A heavily equipped Dvergr rogue found at Dvergr outposts in the Ashlands. Neutral unless provoked.",
+    "veteranNotes": "Neutral until provoked. Crossbow bolt hits for 210 pierce. Drops coins and black marble.",
+    "biomeIds": ["ashlands"],
+    "tier": 7,
+    "dangerLevel": "extreme",
+    "spoilerLevel": 2,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/creatures.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/spawn-list.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/location/Ashlands/CharredTowerRuins1_dvergr.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "DvergerAshlands",
+    "confidence": "read",
+    "notes": "en.json labels this prefab 'Dvergr rouge' (apparent typo); the id follows the en.json rule, the display name is our correction. Name/id corrected from kirilloid en.json typo ('Dvergr rogue (Ashlands)'); the same file spells it correctly elsewhere (e.g. 'Fuling totem', 'Wraith').",
+    "behaviour": "neutral",
+    "kind": "npc",
+    "health": 1000,
+    "attacks": [
+      {
+        "name": "arbalest",
+        "damage": {
+          "pierce": 210
+        }
+      },
+      {
+        "name": "melee",
+        "damage": {
+          "blunt": 70
+        }
+      }
+    ],
+    "damageModifiers": {
+      "blunt": "normal",
+      "slash": "normal",
+      "pierce": "normal",
+      "chop": "ignore",
+      "pickaxe": "ignore",
+      "fire": "normal",
+      "frost": "normal",
+      "lightning": "normal",
+      "poison": "normal",
+      "spirit": "immune"
+    },
+    "weaknesses": [],
+    "resistances": [],
+    "immunities": ["spirit"],
+    "drops": [
+      {
+        "itemId": "soft-tissue",
+        "chance": 0.25
+      },
+      {
+        "itemId": "black-marble",
+        "chance": 0.5
+      },
+      {
+        "itemId": "coins",
+        "chance": 1
+      },
+      {
+        "itemId": "dvergr-trophy",
+        "chance": 0.05
+      }
+    ],
+    "tameable": false
+  },
+  {
+    "id": "lava-blob",
+    "name": "Lava Blob",
+    "description": "A lava blob that explodes in fire when it reaches you.",
+    "veteranNotes": "Immune to fire; weak to blunt, frost and lightning. Explosion hits for 70 blunt plus 30 fire. Drops sulfur and proustite powder.",
+    "biomeIds": ["ashlands"],
+    "tier": 7,
+    "dangerLevel": "high",
+    "spoilerLevel": 2,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/creatures.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/spawn-list.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "BlobLava",
+    "confidence": "read",
+    "behaviour": "aggressive",
+    "kind": "monster",
+    "health": 300,
+    "attacks": [
+      {
+        "name": "explosion",
+        "damage": {
+          "blunt": 70,
+          "chop": 160,
+          "pickaxe": 160,
+          "fire": 30
+        }
+      }
+    ],
+    "damageModifiers": {
+      "blunt": "weak",
+      "slash": "normal",
+      "pierce": "resistant",
+      "chop": "ignore",
+      "pickaxe": "ignore",
+      "fire": "immune",
+      "frost": "weak",
+      "lightning": "weak",
+      "poison": "resistant",
+      "spirit": "normal"
+    },
+    "weaknesses": ["blunt", "frost", "lightning"],
+    "resistances": ["pierce", "poison"],
+    "immunities": ["fire"],
+    "drops": [
+      {
+        "itemId": "proustite-powder",
+        "chance": 1
+      },
+      {
+        "itemId": "sulfur",
+        "chance": 1
+      },
+      {
+        "itemId": "lava-blob-trophy",
+        "chance": 0.1
+      }
+    ],
+    "tameable": false
+  },
+  {
+    "id": "morgen",
+    "name": "Morgen",
+    "description": "A hulking, slumbering horror that sleeps in Ashlands pits and wakes up angry. One of the strongest normal enemies in the game.",
+    "veteranNotes": "Resistant to blunt, slash, pierce and fire; weak to lightning. Swipes hit for 160 pierce. Drops sinew and hearts.",
+    "biomeIds": ["ashlands"],
+    "tier": 7,
+    "dangerLevel": "extreme",
+    "spoilerLevel": 2,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/creatures.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/spawn-list.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/location/Ashlands/MorgenHole1.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "Morgen",
+    "confidence": "read",
+    "behaviour": "aggressive",
+    "kind": "monster",
+    "health": 1600,
+    "attacks": [
+      {
+        "name": "bite",
+        "damage": {
+          "pierce": 160,
+          "chop": 100,
+          "pickaxe": 100
+        }
+      },
+      {
+        "name": "roll_right",
+        "damage": {
+          "blunt": 40,
+          "chop": 100,
+          "pickaxe": 100
+        }
+      },
+      {
+        "name": "roll_left",
+        "damage": {
+          "blunt": 40,
+          "chop": 100,
+          "pickaxe": 100
+        }
+      },
+      {
+        "name": "swipe 1",
+        "damage": {
+          "pierce": 160,
+          "chop": 100,
+          "pickaxe": 100
+        }
+      },
+      {
+        "name": "swipe 2",
+        "damage": {
+          "pierce": 160,
+          "chop": 100,
+          "pickaxe": 100
+        }
+      },
+      {
+        "name": "swipe 3",
+        "damage": {
+          "pierce": 160,
+          "chop": 100,
+          "pickaxe": 100
+        }
+      },
+      {
+        "name": "swipe 4",
+        "damage": {
+          "pierce": 160,
+          "chop": 100,
+          "pickaxe": 100
+        }
+      },
+      {
+        "name": "bodyslam",
+        "damage": {
+          "blunt": 160
+        }
+      }
+    ],
+    "damageModifiers": {
+      "blunt": "resistant",
+      "slash": "resistant",
+      "pierce": "resistant",
+      "chop": "ignore",
+      "pickaxe": "ignore",
+      "fire": "resistant",
+      "frost": "normal",
+      "lightning": "weak",
+      "poison": "normal",
+      "spirit": "normal"
+    },
+    "weaknesses": ["lightning"],
+    "resistances": ["blunt", "slash", "pierce", "fire"],
+    "immunities": [],
+    "drops": [
+      {
+        "itemId": "morgen-trophy",
+        "chance": 0.05
+      },
+      {
+        "itemId": "morgen-sinew",
+        "chance": 0.5
+      },
+      {
+        "itemId": "morgen-heart",
+        "chance": 0.5
+      }
+    ],
+    "tameable": false
+  },
+  {
+    "id": "fallen-valkyrie",
+    "name": "Fallen Valkyrie",
+    "description": "A fallen valkyrie that dives from the sky and spits fire in the Ashlands.",
+    "veteranNotes": "Weak to spirit, resistant to fire, immune to poison. Claws hit for 160 total. Drops celestial feathers.",
+    "biomeIds": ["ashlands"],
+    "tier": 7,
+    "dangerLevel": "extreme",
+    "spoilerLevel": 2,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/creatures.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/spawn-list.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "FallenValkyrie",
+    "confidence": "read",
+    "behaviour": "aggressive",
+    "kind": "monster",
+    "health": 1500,
+    "attacks": [
+      {
+        "name": "spit",
+        "damage": {
+          "fire": 80,
+          "poison": 18
+        }
+      },
+      {
+        "name": "claws",
+        "damage": {
+          "slash": 105,
+          "pierce": 55
+        }
+      },
+      {
+        "name": "spin",
+        "damage": {
+          "blunt": 80,
+          "pierce": 100,
+          "chop": 100,
+          "pickaxe": 100
+        }
+      },
+      {
+        "name": "taunt",
+        "damage": {
+          "slash": 20,
+          "pierce": 20
+        }
+      }
+    ],
+    "damageModifiers": {
+      "blunt": "normal",
+      "slash": "normal",
+      "pierce": "normal",
+      "chop": "ignore",
+      "pickaxe": "ignore",
+      "fire": "resistant",
+      "frost": "normal",
+      "lightning": "normal",
+      "poison": "immune",
+      "spirit": "weak"
+    },
+    "weaknesses": ["spirit"],
+    "resistances": ["fire"],
+    "immunities": ["poison"],
+    "drops": [
+      {
+        "itemId": "fallen-valkyrie-trophy",
+        "chance": 0.05
+      },
+      {
+        "itemId": "celestial-feather",
+        "chance": 0.5
+      }
+    ],
+    "tameable": false
+  },
+  {
+    "id": "seal",
+    "name": "Seal",
+    "description": "A seal lounging on Deep North shores. Usually the first creature you meet there; it does not attack.",
+    "veteranNotes": "Weak to fire. Drops seal pelts and blubber.",
+    "biomeIds": ["deep-north"],
+    "tier": 8,
+    "dangerLevel": "none",
+    "spoilerLevel": 2,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/creatures.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/spawn-list.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "Seal",
+    "confidence": "read",
+    "behaviour": "passive",
+    "kind": "animal",
+    "health": 400,
+    "attacks": [],
+    "damageModifiers": {
+      "blunt": "normal",
+      "slash": "normal",
+      "pierce": "normal",
+      "chop": "ignore",
+      "pickaxe": "ignore",
+      "fire": "weak",
+      "frost": "normal",
+      "lightning": "normal",
+      "poison": "normal",
+      "spirit": "immune"
+    },
+    "weaknesses": ["fire"],
+    "resistances": [],
+    "immunities": ["spirit"],
+    "drops": [
+      {
+        "itemId": "seal-pelt",
+        "chance": 1
+      },
+      {
+        "itemId": "seal-trophy",
+        "chance": 0.1
+      },
+      {
+        "itemId": "seal-blubber",
+        "chance": 1
+      }
+    ],
+    "tameable": false
+  },
+  {
+    "id": "baby-seal",
+    "name": "Baby Seal",
+    "description": "A baby seal on Deep North beaches. Harmless.",
+    "veteranNotes": "Only a 10% chance to drop blubber, so there is little reason to hunt it.",
+    "biomeIds": ["deep-north"],
+    "tier": 8,
+    "dangerLevel": "none",
+    "spoilerLevel": 2,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/creatures.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/spawn-list.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "Seal_Pup",
+    "confidence": "read",
+    "behaviour": "passive",
+    "kind": "animal",
+    "health": 200,
+    "attacks": [],
+    "damageModifiers": {
+      "blunt": "normal",
+      "slash": "normal",
+      "pierce": "normal",
+      "chop": "ignore",
+      "pickaxe": "ignore",
+      "fire": "normal",
+      "frost": "normal",
+      "lightning": "normal",
+      "poison": "normal",
+      "spirit": "immune"
+    },
+    "weaknesses": [],
+    "resistances": [],
+    "immunities": ["spirit"],
+    "drops": [
+      {
+        "itemId": "seal-blubber",
+        "chance": 0.1
+      }
+    ],
+    "tameable": false
+  },
+  {
+    "id": "moose",
+    "name": "Moose",
+    "description": "A large moose of the Deep North that charges and gores intruders. It can be tamed.",
+    "veteranNotes": "Resistant to blunt, slash and frost, weak to fire. Horns hit for 160 slash. Drops meat, hide and sinew.",
+    "biomeIds": ["deep-north"],
+    "tier": 8,
+    "dangerLevel": "extreme",
+    "spoilerLevel": 2,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/creatures.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/spawn-list.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "Moose",
+    "confidence": "read",
+    "behaviour": "aggressive",
+    "kind": "animal",
+    "health": 1000,
+    "attacks": [
+      {
+        "name": "hooves",
+        "damage": {
+          "blunt": 150
+        }
+      },
+      {
+        "name": "horns",
+        "damage": {
+          "slash": 160
+        }
+      },
+      {
+        "name": "sweep",
+        "damage": {
+          "slash": 145
+        }
+      }
+    ],
+    "damageModifiers": {
+      "blunt": "resistant",
+      "slash": "resistant",
+      "pierce": "normal",
+      "chop": "ignore",
+      "pickaxe": "ignore",
+      "fire": "weak",
+      "frost": "resistant",
+      "lightning": "normal",
+      "poison": "normal",
+      "spirit": "immune"
+    },
+    "weaknesses": ["fire"],
+    "resistances": ["blunt", "slash", "frost"],
+    "immunities": ["spirit"],
+    "drops": [
+      {
+        "itemId": "moose-meat",
+        "chance": 1
+      },
+      {
+        "itemId": "moose-trophy",
+        "chance": 0.1
+      },
+      {
+        "itemId": "moose-hide",
+        "chance": 1
+      },
+      {
+        "itemId": "moose-sinew",
+        "chance": 1
+      }
+    ],
+    "tameable": true
+  },
+  {
+    "id": "barka",
+    "name": "Barka",
+    "description": "A frozen tree-like giant that lashes out with icy branches.",
+    "veteranNotes": "Resistant to blunt, slash, pierce, frost and lightning; weak to fire; takes normal chop damage. Back slam hits for 190 blunt plus 80 frost.",
+    "biomeIds": ["deep-north"],
+    "tier": 8,
+    "dangerLevel": "extreme",
+    "spoilerLevel": 2,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/creatures.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/spawn-list.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "Barka",
+    "confidence": "read",
+    "behaviour": "aggressive",
+    "kind": "monster",
+    "health": 2200,
+    "attacks": [
+      {
+        "name": "heavyswing",
+        "damage": {
+          "blunt": 160,
+          "chop": 60,
+          "pickaxe": 30,
+          "frost": 100
+        }
+      },
+      {
+        "name": "slamdrive",
+        "damage": {
+          "blunt": 180,
+          "chop": 50,
+          "pickaxe": 25,
+          "frost": 100
+        }
+      },
+      {
+        "name": "whipflurry",
+        "damage": {
+          "blunt": 100,
+          "chop": 25,
+          "pickaxe": 10,
+          "frost": 100
+        }
+      },
+      {
+        "name": "whipslam",
+        "damage": {
+          "blunt": 100,
+          "pierce": 100,
+          "chop": 50,
+          "pickaxe": 30,
+          "frost": 40
+        }
+      },
+      {
+        "name": "backslam",
+        "damage": {
+          "blunt": 190,
+          "chop": 40,
+          "frost": 80
+        }
+      }
+    ],
+    "damageModifiers": {
+      "blunt": "resistant",
+      "slash": "resistant",
+      "pierce": "resistant",
+      "chop": "normal",
+      "pickaxe": "ignore",
+      "fire": "weak",
+      "frost": "resistant",
+      "lightning": "resistant",
+      "poison": "immune",
+      "spirit": "immune"
+    },
+    "weaknesses": ["fire"],
+    "resistances": ["blunt", "slash", "pierce", "frost", "lightning"],
+    "immunities": ["poison", "spirit"],
+    "drops": [
+      {
+        "itemId": "barka-trophy",
+        "chance": 0.1
+      },
+      {
+        "itemId": "frozen-branch",
+        "chance": 1
+      }
+    ],
+    "tameable": false
+  },
+  {
+    "id": "elaking",
+    "name": "Elaking",
+    "description": "An Elaking: a feral night hunter of the Deep North that leaps at you.",
+    "veteranNotes": "Weak to fire, resistant to frost. Claw hits for 140 total. Can drop an intricate key mould (20%). Also appears in the Elakingar raid (after an Elaking kill, before Kall Fimbulbringer).",
+    "biomeIds": ["deep-north"],
+    "tier": 8,
+    "dangerLevel": "extreme",
+    "spoilerLevel": 2,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/creatures.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/spawn-list.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/events.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "Elaking",
+    "confidence": "read",
+    "behaviour": "aggressive",
+    "kind": "monster",
+    "health": 350,
+    "attacks": [
+      {
+        "name": "claw",
+        "damage": {
+          "blunt": 40,
+          "slash": 100
+        }
+      },
+      {
+        "name": "jump",
+        "damage": {
+          "blunt": 75,
+          "slash": 30,
+          "chop": 200,
+          "pickaxe": 100
+        }
+      }
+    ],
+    "damageModifiers": {
+      "blunt": "normal",
+      "slash": "normal",
+      "pierce": "normal",
+      "chop": "ignore",
+      "pickaxe": "ignore",
+      "fire": "weak",
+      "frost": "resistant",
+      "lightning": "normal",
+      "poison": "normal",
+      "spirit": "immune"
+    },
+    "weaknesses": ["fire"],
+    "resistances": ["frost"],
+    "immunities": ["spirit"],
+    "drops": [
+      {
+        "itemId": "elaking-hair-bundle",
+        "chance": 1
+      },
+      {
+        "itemId": "elaking-trophy",
+        "chance": 0.1
+      },
+      {
+        "itemId": "mould-intricate-key",
+        "chance": 0.2
+      }
+    ],
+    "tameable": false
+  },
+  {
+    "id": "elaking-lantern",
+    "name": "Elaking (lantern)",
+    "description": "An Elaking carrying a lantern; it hunts at night alongside other Elakingar.",
+    "veteranNotes": "Same stats as the regular Elaking in the data. Weak to fire, resistant to frost. Also appears in the Elakingar raid (after an Elaking kill, before Kall Fimbulbringer).",
+    "biomeIds": ["deep-north"],
+    "tier": 8,
+    "dangerLevel": "extreme",
+    "spoilerLevel": 2,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/creatures.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/spawn-list.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/events.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "ElakingLantern",
+    "confidence": "read",
+    "notes": "Shares the en.json name \"Elaking\" with the Elaking prefab; the id and label are disambiguated by us.",
+    "behaviour": "aggressive",
+    "kind": "monster",
+    "health": 350,
+    "attacks": [
+      {
+        "name": "claw",
+        "damage": {
+          "blunt": 40,
+          "slash": 100
+        }
+      },
+      {
+        "name": "jump",
+        "damage": {
+          "blunt": 75,
+          "slash": 30,
+          "chop": 200,
+          "pickaxe": 100
+        }
+      }
+    ],
+    "damageModifiers": {
+      "blunt": "normal",
+      "slash": "normal",
+      "pierce": "normal",
+      "chop": "ignore",
+      "pickaxe": "ignore",
+      "fire": "weak",
+      "frost": "resistant",
+      "lightning": "normal",
+      "poison": "normal",
+      "spirit": "immune"
+    },
+    "weaknesses": ["fire"],
+    "resistances": ["frost"],
+    "immunities": ["spirit"],
+    "drops": [
+      {
+        "itemId": "elaking-hair-bundle",
+        "chance": 1
+      },
+      {
+        "itemId": "elaking-trophy",
+        "chance": 0.1
+      },
+      {
+        "itemId": "mould-intricate-key",
+        "chance": 0.2
+      }
+    ],
+    "tameable": false
+  },
+  {
+    "id": "eyeless-one",
+    "name": "Eyeless One",
+    "description": "The Eyeless One, a burrowing creature that wakes up inside Deep North holes.",
+    "veteranNotes": "Claws deal 100 poison plus blunt and slash. Resistant to frost. Can drop an intricate key mould (50%). Also appears in the Elakingar raid (after an Elaking kill, before Kall Fimbulbringer).",
+    "biomeIds": ["deep-north"],
+    "tier": 8,
+    "dangerLevel": "extreme",
+    "spoilerLevel": 2,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/creatures.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/rooms/thehole.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/location/DeepNorth/TheHole01.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/events.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "ElakingMole",
+    "confidence": "read",
+    "behaviour": "aggressive",
+    "kind": "monster",
+    "health": 1400,
+    "attacks": [
+      {
+        "name": "sandcloud",
+        "damage": {
+          "blunt": 60,
+          "slash": 40
+        }
+      },
+      {
+        "name": "claw",
+        "damage": {
+          "blunt": 80,
+          "slash": 40,
+          "poison": 100
+        }
+      },
+      {
+        "name": "claw2",
+        "damage": {
+          "blunt": 80,
+          "slash": 40,
+          "poison": 100
+        }
+      }
+    ],
+    "damageModifiers": {
+      "blunt": "normal",
+      "slash": "normal",
+      "pierce": "normal",
+      "chop": "ignore",
+      "pickaxe": "ignore",
+      "fire": "normal",
+      "frost": "resistant",
+      "lightning": "normal",
+      "poison": "normal",
+      "spirit": "immune"
+    },
+    "weaknesses": [],
+    "resistances": ["frost"],
+    "immunities": ["spirit"],
+    "drops": [
+      {
+        "itemId": "eyeless-one-trophy",
+        "chance": 0.1
+      },
+      {
+        "itemId": "long-claws",
+        "chance": 1
+      },
+      {
+        "itemId": "mould-intricate-key",
+        "chance": 0.5
+      }
+    ],
+    "tameable": false
+  },
+  {
+    "id": "krigen",
+    "name": "Krigen",
+    "description": "A Krigen: a giant armoured warrior of the Deep North with a sword or axe.",
+    "veteranNotes": "Very resistant to frost, resistant to pierce, immune to poison. Cleave hits for 170 slash. Rare mould drops (3% each). Its world patrols only start after a world key the data calls \"jotun\" is set. Also appears in the Jotun raid (after a Krigen kill, before Kall Fimbulbringer).",
+    "biomeIds": ["deep-north"],
+    "tier": 8,
+    "dangerLevel": "extreme",
+    "spoilerLevel": 2,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/creatures.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/spawn-list.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/rooms/morkhalla.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/events.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "JotunWarrior",
+    "confidence": "read",
+    "behaviour": "aggressive",
+    "kind": "monster",
+    "health": 1200,
+    "attacks": [
+      {
+        "name": "Sword: charge",
+        "damage": {
+          "blunt": 160,
+          "chop": 80,
+          "pickaxe": 80
+        }
+      },
+      {
+        "name": "Sword: cleave",
+        "damage": {
+          "slash": 170,
+          "chop": 40
+        }
+      },
+      {
+        "name": "Sword: dodge",
+        "damage": {
+          "slash": 150
+        }
+      },
+      {
+        "name": "Sword: slash",
+        "damage": {
+          "slash": 160,
+          "chop": 30
+        }
+      },
+      {
+        "name": "Axe: charge",
+        "damage": {
+          "blunt": 160,
+          "chop": 80,
+          "pickaxe": 80
+        }
+      },
+      {
+        "name": "Axe: cleave",
+        "damage": {
+          "slash": 170,
+          "chop": 90
+        }
+      },
+      {
+        "name": "Axe: dodge",
+        "damage": {
+          "slash": 150,
+          "chop": 40
+        }
+      },
+      {
+        "name": "Axe: slash",
+        "damage": {
+          "slash": 160,
+          "chop": 80
+        }
+      }
+    ],
+    "damageModifiers": {
+      "blunt": "normal",
+      "slash": "normal",
+      "pierce": "resistant",
+      "chop": "ignore",
+      "pickaxe": "ignore",
+      "fire": "normal",
+      "frost": "veryResistant",
+      "lightning": "normal",
+      "poison": "immune",
+      "spirit": "ignore"
+    },
+    "weaknesses": [],
+    "resistances": ["pierce", "frost"],
+    "immunities": ["poison"],
+    "drops": [
+      {
+        "itemId": "mould-chestpiece-of-the-vanguard",
+        "chance": 0.03
+      },
+      {
+        "itemId": "mould-hood-of-the-vanguard",
+        "chance": 0.03
+      },
+      {
+        "itemId": "mould-trousers-of-the-vanguard",
+        "chance": 0.03
+      },
+      {
+        "itemId": "memorial-coal",
+        "chance": 0.2
+      },
+      {
+        "itemId": "krigen-trophy",
+        "chance": 0.1
+      },
+      {
+        "itemId": "leather-straps",
+        "chance": 1
+      }
+    ],
+    "tameable": false
+  },
+  {
+    "id": "krigen-dual-wield",
+    "name": "Krigen (dual-wield)",
+    "description": "A Krigen fighting with two weapons, found inside Deep North halls.",
+    "veteranNotes": "Very resistant to frost, resistant to pierce, immune to poison. Cleave hits for 170 slash. Rare Protector armour mould drops (3% each).",
+    "biomeIds": ["deep-north"],
+    "tier": 8,
+    "dangerLevel": "extreme",
+    "spoilerLevel": 2,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/creatures.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/rooms/morkhalla.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/spawners.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "JotunWarriorDualWield",
+    "confidence": "read",
+    "notes": "Shares the en.json name \"Krigen\" with JotunWarrior; the id and label are disambiguated by us.",
+    "behaviour": "aggressive",
+    "kind": "monster",
+    "health": 1200,
+    "attacks": [
+      {
+        "name": "charge",
+        "damage": {
+          "blunt": 160,
+          "chop": 80,
+          "pickaxe": 80
+        }
+      },
+      {
+        "name": "cleave",
+        "damage": {
+          "slash": 170,
+          "chop": 40
+        }
+      },
+      {
+        "name": "dodge",
+        "damage": {
+          "slash": 150
+        }
+      },
+      {
+        "name": "slash",
+        "damage": {
+          "slash": 160,
+          "chop": 30
+        }
+      }
+    ],
+    "damageModifiers": {
+      "blunt": "normal",
+      "slash": "normal",
+      "pierce": "resistant",
+      "chop": "ignore",
+      "pickaxe": "ignore",
+      "fire": "normal",
+      "frost": "veryResistant",
+      "lightning": "normal",
+      "poison": "immune",
+      "spirit": "ignore"
+    },
+    "weaknesses": [],
+    "resistances": ["pierce", "frost"],
+    "immunities": ["poison"],
+    "drops": [
+      {
+        "itemId": "mould-breastplate-of-the-protector",
+        "chance": 0.03
+      },
+      {
+        "itemId": "mould-helmet-of-the-protector",
+        "chance": 0.03
+      },
+      {
+        "itemId": "mould-trousers-of-the-protector",
+        "chance": 0.03
+      },
+      {
+        "itemId": "memorial-coal",
+        "chance": 0.2
+      },
+      {
+        "itemId": "krigen-trophy",
+        "chance": 0.1
+      },
+      {
+        "itemId": "leather-straps",
+        "chance": 1
+      }
+    ],
+    "tameable": false
+  },
+  {
+    "id": "hexen",
+    "name": "Hexen",
+    "description": "A Hexen: a Jotun witch that blasts you with lightning.",
+    "veteranNotes": "Lightning blast hits for 120 lightning plus 30 blunt. Very resistant to frost, resistant to fire. Drops Nornathread. Its world patrols only start after a world key the data calls \"jotun\" is set. Also appears in the Jotun raid (after a Krigen kill, before Kall Fimbulbringer).",
+    "biomeIds": ["deep-north"],
+    "tier": 8,
+    "dangerLevel": "extreme",
+    "spoilerLevel": 2,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/creatures.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/spawn-list.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/rooms/morkhalla.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/events.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "JotunWitch",
+    "confidence": "read",
+    "behaviour": "aggressive",
+    "kind": "monster",
+    "health": 850,
+    "attacks": [
+      {
+        "name": "blast",
+        "damage": {
+          "blunt": 30,
+          "chop": 30,
+          "lightning": 120
+        }
+      },
+      {
+        "name": "lightning",
+        "damage": {
+          "chop": 20,
+          "lightning": 110,
+          "spirit": 15
+        }
+      }
+    ],
+    "damageModifiers": {
+      "blunt": "normal",
+      "slash": "normal",
+      "pierce": "normal",
+      "chop": "ignore",
+      "pickaxe": "ignore",
+      "fire": "resistant",
+      "frost": "veryResistant",
+      "lightning": "normal",
+      "poison": "immune",
+      "spirit": "immune"
+    },
+    "weaknesses": [],
+    "resistances": ["fire", "frost"],
+    "immunities": ["poison", "spirit"],
+    "drops": [
+      {
+        "itemId": "nornathread",
+        "chance": 1
+      },
+      {
+        "itemId": "hexen-trophy",
+        "chance": 0.1
+      },
+      {
+        "itemId": "intricate-key",
+        "chance": 0.1
+      },
+      {
+        "itemId": "mould-robes-of-the-caller",
+        "chance": 0.03
+      },
+      {
+        "itemId": "mould-headdress-of-the-caller",
+        "chance": 0.03
+      },
+      {
+        "itemId": "mould-trousers-of-the-caller",
+        "chance": 0.03
+      }
+    ],
+    "tameable": false
+  },
+  {
+    "id": "gammeltroll",
+    "name": "Gammeltroll",
+    "description": "The Gammeltroll, an enormous frost troll of the Deep North.",
+    "veteranNotes": "Resistant to blunt, slash, pierce and frost; weak to pickaxe. Punches hit for 220 blunt. Leaves a corpse behind on death.",
+    "biomeIds": ["deep-north"],
+    "tier": 8,
+    "dangerLevel": "extreme",
+    "spoilerLevel": 2,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/creatures.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/spawn-list.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/spawners.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "TrollFrost",
+    "confidence": "read",
+    "behaviour": "aggressive",
+    "kind": "monster",
+    "health": 3000,
+    "attacks": [
+      {
+        "name": "punch L",
+        "damage": {
+          "blunt": 220,
+          "chop": 100,
+          "pickaxe": 40
+        }
+      },
+      {
+        "name": "slam L",
+        "damage": {
+          "blunt": 200,
+          "chop": 100,
+          "pickaxe": 40
+        }
+      },
+      {
+        "name": "throw",
+        "damage": {
+          "blunt": 150,
+          "chop": 100,
+          "pickaxe": 80
+        }
+      },
+      {
+        "name": "punch R",
+        "damage": {
+          "blunt": 220,
+          "chop": 100,
+          "pickaxe": 40
+        }
+      },
+      {
+        "name": "slam R",
+        "damage": {
+          "blunt": 200,
+          "chop": 100,
+          "pickaxe": 40
+        }
+      }
+    ],
+    "damageModifiers": {
+      "blunt": "resistant",
+      "slash": "resistant",
+      "pierce": "resistant",
+      "chop": "ignore",
+      "pickaxe": "weak",
+      "fire": "normal",
+      "frost": "resistant",
+      "lightning": "normal",
+      "poison": "normal",
+      "spirit": "immune"
+    },
+    "weaknesses": ["pickaxe"],
+    "resistances": ["blunt", "slash", "pierce", "frost"],
+    "immunities": ["spirit"],
+    "drops": [],
+    "tameable": false
+  },
+  {
+    "id": "fallen-warrior",
+    "name": "Fallen Warrior",
+    "description": "A fallen warrior of the Deep North. It comes in several loadouts: axes, knives, bows, blades and magic staffs.",
+    "veteranNotes": "Resistant to blunt, slash, pierce and fire; weak to spirit. The fire-mage loadout hits for 240 total. Drops essences (20% each).",
+    "biomeIds": ["deep-north"],
+    "tier": 8,
+    "dangerLevel": "extreme",
+    "spoilerLevel": 2,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/creatures.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "FallenWarrior",
+    "confidence": "read",
+    "notes": "The dump does not say where it spawns; the Deep North biome follows its tier (8), as kirilloid groups creatures by tier.",
+    "behaviour": "aggressive",
+    "kind": "monster",
+    "health": 750,
+    "attacks": [
+      {
+        "name": "Bronze Armor Warrior: FW_AxeBronze",
+        "damage": {
+          "slash": 75,
+          "pierce": 45,
+          "chop": 40
+        }
+      },
+      {
+        "name": "Fenring Knifer: FW_KnifeSkollAndHati",
+        "damage": {
+          "slash": 45,
+          "pierce": 45
+        }
+      },
+      {
+        "name": "Lightning Mage: FW_StaffLightning",
+        "damage": {
+          "blunt": 20,
+          "lightning": 20
+        }
+      },
+      {
+        "name": "Two-Handed Axe: FW_BattleaxeCrystal",
+        "damage": {
+          "slash": 130,
+          "chop": 50,
+          "spirit": 30
+        }
+      },
+      {
+        "name": "Sword 'n Board: FW_SwordBlackmetal",
+        "damage": {
+          "slash": 95
+        }
+      },
+      {
+        "name": "Archer with Knife: FW_BowDraugrFang",
+        "damage": {
+          "pierce": 70,
+          "poison": 5
+        }
+      },
+      {
+        "name": "Archer with Knife: FW_KnifeSilver",
+        "damage": {
+          "slash": 65,
+          "pierce": 65
+        }
+      },
+      {
+        "name": "Fire Mage: FW_StaffFireball",
+        "damage": {
+          "blunt": 120,
+          "fire": 120
+        }
+      },
+      {
+        "name": "Fire Mage: FW_KnifeSilver",
+        "damage": {
+          "slash": 65,
+          "pierce": 65
+        }
+      }
+    ],
+    "damageModifiers": {
+      "blunt": "resistant",
+      "slash": "resistant",
+      "pierce": "resistant",
+      "chop": "ignore",
+      "pickaxe": "ignore",
+      "fire": "resistant",
+      "frost": "normal",
+      "lightning": "normal",
+      "poison": "immune",
+      "spirit": "weak"
+    },
+    "weaknesses": ["spirit"],
+    "resistances": ["blunt", "slash", "pierce", "fire"],
+    "immunities": ["poison"],
+    "drops": [
+      {
+        "itemId": "frostfire-essence",
+        "chance": 0.2
+      },
+      {
+        "itemId": "thunderblood-essence",
+        "chance": 0.2
+      }
+    ],
+    "tameable": false
+  },
+  {
+    "id": "shapeless-pulp",
+    "name": "Shapeless Pulp",
+    "description": "The Shapeless Pulp, a poisonous blob of the Deep North that splits into tiny pulps when it dies.",
+    "veteranNotes": "Poison attack of 110 plus 20 blunt. Weak to blunt, frost and lightning; immune to poison. Splits into 1–2 Tiny Pulps.",
+    "biomeIds": ["deep-north"],
+    "tier": 8,
+    "dangerLevel": "extreme",
+    "spoilerLevel": 2,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/creatures.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/objects.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "BlobMork",
+    "confidence": "read",
+    "behaviour": "aggressive",
+    "kind": "monster",
+    "health": 150,
+    "attacks": [
+      {
+        "name": "poison",
+        "damage": {
+          "blunt": 20,
+          "poison": 110
+        }
+      }
+    ],
+    "damageModifiers": {
+      "blunt": "weak",
+      "slash": "resistant",
+      "pierce": "resistant",
+      "chop": "ignore",
+      "pickaxe": "ignore",
+      "fire": "resistant",
+      "frost": "weak",
+      "lightning": "weak",
+      "poison": "immune",
+      "spirit": "normal"
+    },
+    "weaknesses": ["blunt", "frost", "lightning"],
+    "resistances": ["slash", "pierce", "fire"],
+    "immunities": ["poison"],
+    "drops": [
+      {
+        "itemId": "pulp-trophy",
+        "chance": 0.1
+      },
+      {
+        "itemId": "dead-pulp",
+        "chance": 0.5
+      }
+    ],
+    "tameable": false
+  },
+  {
+    "id": "skeleton-deep-north",
+    "name": "Skeleton (Deep North)",
+    "description": "A frost-armed skeleton that wanders the Deep North with a mace.",
+    "veteranNotes": "Weak to blunt and fire. Mace hits for 80 blunt plus 10 frost.",
+    "biomeIds": ["deep-north"],
+    "tier": 8,
+    "dangerLevel": "high",
+    "spoilerLevel": 2,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/creatures.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/spawn-list.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "Skeleton_DeepNorth",
+    "confidence": "read",
+    "behaviour": "aggressive",
+    "kind": "monster",
+    "health": 100,
+    "attacks": [
+      {
+        "name": "mace",
+        "damage": {
+          "blunt": 80,
+          "frost": 10
+        }
+      }
+    ],
+    "damageModifiers": {
+      "blunt": "weak",
+      "slash": "normal",
+      "pierce": "resistant",
+      "chop": "ignore",
+      "pickaxe": "ignore",
+      "fire": "weak",
+      "frost": "resistant",
+      "lightning": "normal",
+      "poison": "immune",
+      "spirit": "normal"
+    },
+    "weaknesses": ["blunt", "fire"],
+    "resistances": ["pierce", "frost"],
+    "immunities": ["poison"],
+    "drops": [
+      {
+        "itemId": "bone-fragments",
+        "chance": 1
+      },
+      {
+        "itemId": "skeleton-trophy",
+        "chance": 0.1
+      }
+    ],
+    "tameable": false
+  },
+  {
+    "id": "greydwarf-deep-north",
+    "name": "Greydwarf (Deep North)",
+    "description": "A frozen greydwarf of the Deep North, much tougher than its Black Forest cousins.",
+    "veteranNotes": "Very weak to fire, resistant to poison. Hits for 96 total. Drops ice and snowballs as well as the usual greydwarf loot.",
+    "biomeIds": ["deep-north"],
+    "tier": 8,
+    "dangerLevel": "high",
+    "spoilerLevel": 2,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/creatures.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/spawn-list.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "Greydwarf_Frozen",
+    "confidence": "read",
+    "behaviour": "aggressive",
+    "kind": "monster",
+    "health": 100,
+    "attacks": [
+      {
+        "name": "hit",
+        "damage": {
+          "blunt": 20,
+          "slash": 60,
+          "frost": 16
+        }
+      },
+      {
+        "name": "stone",
+        "damage": {
+          "blunt": 60,
+          "frost": 20
+        }
+      }
+    ],
+    "damageModifiers": {
+      "blunt": "normal",
+      "slash": "normal",
+      "pierce": "normal",
+      "chop": "ignore",
+      "pickaxe": "ignore",
+      "fire": "veryWeak",
+      "frost": "normal",
+      "lightning": "normal",
+      "poison": "resistant",
+      "spirit": "immune"
+    },
+    "weaknesses": ["fire"],
+    "resistances": ["poison"],
+    "immunities": ["spirit"],
+    "drops": [
+      {
+        "itemId": "greydwarf-eye",
+        "chance": 0.5
+      },
+      {
+        "itemId": "wood",
+        "chance": 1
+      },
+      {
+        "itemId": "resin",
+        "chance": 1
+      },
+      {
+        "itemId": "greydwarf-trophy",
+        "chance": 0.05
+      },
+      {
+        "itemId": "snowball",
+        "chance": 1
+      },
+      {
+        "itemId": "ice",
+        "chance": 1
+      }
+    ],
+    "tameable": false
+  },
+  {
+    "id": "greydwarf-shaman-deep-north",
+    "name": "Greydwarf Shaman (Deep North)",
+    "description": "A frozen greydwarf shaman that spits poison and heals its group in the Deep North.",
+    "veteranNotes": "Very weak to fire, resistant to poison. Also drops ice.",
+    "biomeIds": ["deep-north"],
+    "tier": 8,
+    "dangerLevel": "medium",
+    "spoilerLevel": 2,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/creatures.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/spawn-list.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "Greydwarf_Shaman_Frozen",
+    "confidence": "read",
+    "behaviour": "aggressive",
+    "kind": "monster",
+    "health": 120,
+    "attacks": [
+      {
+        "name": "poison breath",
+        "damage": {
+          "poison": 30
+        }
+      },
+      {
+        "name": "slash",
+        "damage": {
+          "slash": 14
+        }
+      }
+    ],
+    "damageModifiers": {
+      "blunt": "normal",
+      "slash": "normal",
+      "pierce": "normal",
+      "chop": "ignore",
+      "pickaxe": "ignore",
+      "fire": "veryWeak",
+      "frost": "normal",
+      "lightning": "normal",
+      "poison": "resistant",
+      "spirit": "immune"
+    },
+    "weaknesses": ["fire"],
+    "resistances": ["poison"],
+    "immunities": ["spirit"],
+    "drops": [
+      {
+        "itemId": "greydwarf-eye",
+        "chance": 0.5
+      },
+      {
+        "itemId": "wood",
+        "chance": 1
+      },
+      {
+        "itemId": "resin",
+        "chance": 1
+      },
+      {
+        "itemId": "greydwarf-shaman-trophy",
+        "chance": 0.1
+      },
+      {
+        "itemId": "bukeperries",
+        "chance": 1
+      },
+      {
+        "itemId": "ice",
+        "chance": 1
+      }
+    ],
+    "tameable": false
+  },
+  {
+    "id": "fuling-deep-north",
+    "name": "Fuling (Deep North)",
+    "description": "A Fuling of the Deep North, much stronger than its Plains relatives.",
+    "veteranNotes": "Clubs and swords hit for 160. Drops ancient coins and sometimes lingonberries. No English name of its own in the source data; this label is ours.",
+    "biomeIds": ["deep-north"],
+    "tier": 8,
+    "dangerLevel": "extreme",
+    "spoilerLevel": 2,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/creatures.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "GoblinDeepNorth",
+    "confidence": "read",
+    "notes": "No en.json name and no spawn location in the dump; the Deep North biome follows its tier (8). Display label is ours (en.json spells the base creature \"Fuling\"). Name/id corrected from kirilloid en.json typo ('Fulling (Deep North)'); the same file spells it correctly elsewhere (e.g. 'Fuling totem', 'Wraith').",
+    "behaviour": "aggressive",
+    "kind": "monster",
+    "health": 250,
+    "attacks": [
+      {
+        "name": "club",
+        "damage": {
+          "blunt": 160
+        }
+      },
+      {
+        "name": "spear",
+        "damage": {
+          "pierce": 150
+        }
+      },
+      {
+        "name": "sword",
+        "damage": {
+          "slash": 160
+        }
+      },
+      {
+        "name": "torch",
+        "damage": {
+          "blunt": 85,
+          "fire": 85
+        }
+      }
+    ],
+    "damageModifiers": {
+      "blunt": "normal",
+      "slash": "normal",
+      "pierce": "normal",
+      "chop": "ignore",
+      "pickaxe": "ignore",
+      "fire": "normal",
+      "frost": "normal",
+      "lightning": "normal",
+      "poison": "normal",
+      "spirit": "immune"
+    },
+    "weaknesses": [],
+    "resistances": [],
+    "immunities": ["spirit"],
+    "drops": [
+      {
+        "itemId": "coins",
+        "chance": 0.25
+      },
+      {
+        "itemId": "ancient-coin",
+        "chance": 1
+      },
+      {
+        "itemId": "lingonberries",
+        "chance": 0.2
+      }
+    ],
+    "tameable": false
+  },
+  {
+    "id": "dverger-deep-north",
+    "name": "Dverger (Deep North)",
+    "description": "A Dvergr of the Deep North, the strongest Dvergr variant. Neutral unless provoked.",
+    "veteranNotes": "Crossbow bolt hits for 250 pierce. Drops coins and has 10% chances for each of four ancient gemstones.",
+    "biomeIds": ["deep-north"],
+    "tier": 8,
+    "dangerLevel": "extreme",
+    "spoilerLevel": 2,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/creatures.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "DvergerDeepNorth",
+    "confidence": "read",
+    "notes": "No spawn location in the dump; the Deep North biome follows its tier (8).",
+    "behaviour": "neutral",
+    "kind": "npc",
+    "health": 1500,
+    "attacks": [
+      {
+        "name": "arbalest",
+        "damage": {
+          "pierce": 250
+        }
+      },
+      {
+        "name": "melee",
+        "damage": {
+          "blunt": 140
+        }
+      }
+    ],
+    "damageModifiers": {
+      "blunt": "normal",
+      "slash": "normal",
+      "pierce": "normal",
+      "chop": "ignore",
+      "pickaxe": "ignore",
+      "fire": "normal",
+      "frost": "normal",
+      "lightning": "normal",
+      "poison": "normal",
+      "spirit": "immune"
+    },
+    "weaknesses": [],
+    "resistances": [],
+    "immunities": ["spirit"],
+    "drops": [
+      {
+        "itemId": "coins",
+        "chance": 1
+      },
+      {
+        "itemId": "dvergr-trophy",
+        "chance": 0.05
+      },
+      {
+        "itemId": "draumyx",
+        "chance": 0.1
+      },
+      {
+        "itemId": "grimvarn",
+        "chance": 0.1
+      },
+      {
+        "itemId": "solryth",
+        "chance": 0.1
+      },
+      {
+        "itemId": "veydris",
+        "chance": 0.1
+      }
+    ],
+    "tameable": false
+  }
+]

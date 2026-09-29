@@ -159,11 +159,15 @@ export const LocationTypeSchema = ContentBaseSchema.extend({
   prioritized: z.boolean().nullable(),
   /** Only one instance is kept per world. */
   unique: z.boolean().nullable(),
-  minDistM: z.number().nonnegative().nullable(),
-  maxDistM: z.number().positive().nullable(),
+  /**
+   * Placement limits. Omitted = no limit; null = a limit exists but is unverified
+   * (listed in docs/DATA_TODO.md; approx-v1 then applies no limit).
+   */
+  minDistM: z.number().nonnegative().nullable().optional(),
+  maxDistM: z.number().positive().nullable().optional(),
   /** Metres above sea level. */
-  minAltM: z.number().nullable(),
-  maxAltM: z.number().nullable(),
+  minAltM: z.number().nullable().optional(),
+  maxAltM: z.number().nullable().optional(),
   /** How the game picks candidate spots: random zones, or searching outward from the centre. */
   placement: z.enum(['random', 'center-outward']),
   revealsLocationIds: z.array(z.string()).optional(),

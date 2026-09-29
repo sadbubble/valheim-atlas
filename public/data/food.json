@@ -1,0 +1,3082 @@
+[
+  {
+    "id": "raspberries",
+    "name": "Raspberries",
+    "description": "No cooking needed: you can eat this as soon as you have it. It is a stamina-focused food, good for running, building and long fights. It is also a common cooking ingredient. Pick them from raspberry bushes in the Meadows.",
+    "veteranNotes": "7 health, 20 stamina; lasts 600 s; heals 1 HP per tick. Weight 0.1, stacks to 50. Used in 12 recipes, including Mead base: minor healing, Mead base: minor stamina, Mead base: tasty and Yuleklapp.",
+    "biomeIds": ["meadows"],
+    "tier": 1,
+    "dangerLevel": "none",
+    "spoilerLevel": 0,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/resources.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/objects.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/location/biomes.ts"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "Raspberry",
+    "confidence": "read",
+    "health": 7,
+    "stamina": 20,
+    "eitr": 0,
+    "durationS": 600,
+    "healPerTick": 1,
+    "notes": "The source lists no eitr for this food; kirilloid treats a missing eitr value as 0 (optional field in its Food type), so 0 is used."
+  },
+  {
+    "id": "mushroom",
+    "name": "Mushroom",
+    "description": "No cooking needed: you can eat this as soon as you have it. It is a balanced food that gives both health and stamina. It is also a common cooking ingredient. Pick red mushrooms in the Meadows and Black Forest.",
+    "veteranNotes": "15 health, 15 stamina; lasts 900 s; heals 1 HP per tick. Weight 0.1, stacks to 50. Used in 5 recipes, including Carrot soup, Mead base: Berserkir, Serpent stew and Spice rack.",
+    "biomeIds": ["meadows"],
+    "tier": 1,
+    "dangerLevel": "none",
+    "spoilerLevel": 0,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/resources.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/objects.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/location/biomes.ts"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "Mushroom",
+    "confidence": "read",
+    "health": 15,
+    "stamina": 15,
+    "eitr": 0,
+    "durationS": 900,
+    "healPerTick": 1,
+    "notes": "The source lists no eitr for this food; kirilloid treats a missing eitr value as 0 (optional field in its Food type), so 0 is used."
+  },
+  {
+    "id": "honey",
+    "name": "Honey",
+    "description": "No cooking needed: you can eat this as soon as you have it. It is a stamina-focused food, good for running, building and long fights. It is also a common cooking ingredient. Build a beehive with a queen bee and collect the honey it makes.",
+    "veteranNotes": "8 health, 35 stamina; lasts 900 s; heals 1 HP per tick. Weight 0.2, stacks to 50. Used in 18 recipes, including Boar jerky, Mead base: minor healing, Mead base: minor stamina and Mead base: tasty.",
+    "biomeIds": ["meadows"],
+    "tier": 1,
+    "dangerLevel": "none",
+    "spoilerLevel": 0,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/resources.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/objects.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/location/biomes.ts"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "Honey",
+    "confidence": "read",
+    "health": 8,
+    "stamina": 35,
+    "eitr": 0,
+    "durationS": 900,
+    "healPerTick": 1,
+    "notes": "The source lists no eitr for this food; kirilloid treats a missing eitr value as 0 (optional field in its Food type), so 0 is used."
+  },
+  {
+    "id": "cooked-boar-meat",
+    "name": "Cooked boar meat",
+    "description": "Grill boar meat on a cooking station to get this. It is a health-focused food, good for fighting. Make it at the cooking station from 1 Boar meat.",
+    "veteranNotes": "30 health, 10 stamina; lasts 1200 s; heals 2 HP per tick. Weight 1, stacks to 20. Can also be made at the iron cooking station. Used to make Whole Roasted Meadow Boar.",
+    "biomeIds": ["meadows"],
+    "tier": 1,
+    "dangerLevel": "none",
+    "spoilerLevel": 0,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/resources.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "CookedMeat",
+    "confidence": "read",
+    "health": 30,
+    "stamina": 10,
+    "eitr": 0,
+    "durationS": 1200,
+    "healPerTick": 2,
+    "recipe": {
+      "stationId": "cooking-station",
+      "stationLevel": 1,
+      "materials": [
+        {
+          "itemId": "boar-meat",
+          "count": 1
+        }
+      ]
+    },
+    "notes": "The source lists no eitr for this food; kirilloid treats a missing eitr value as 0 (optional field in its Food type), so 0 is used."
+  },
+  {
+    "id": "boar-jerky",
+    "name": "Boar jerky",
+    "description": "A dish cooked in the cauldron. It is a balanced food that gives both health and stamina. Make it at the cauldron from 1 Boar meat and 1 Honey.",
+    "veteranNotes": "23 health, 23 stamina; lasts 1800 s; heals 2 HP per tick. Weight 0.5, stacks to 20. One batch yields 2.",
+    "biomeIds": ["meadows"],
+    "tier": 1,
+    "dangerLevel": "none",
+    "spoilerLevel": 0,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/resources.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "BoarJerky",
+    "confidence": "read",
+    "health": 23,
+    "stamina": 23,
+    "eitr": 0,
+    "durationS": 1800,
+    "healPerTick": 2,
+    "recipe": {
+      "stationId": "cauldron",
+      "stationLevel": 1,
+      "materials": [
+        {
+          "itemId": "boar-meat",
+          "count": 1
+        },
+        {
+          "itemId": "honey",
+          "count": 1
+        }
+      ]
+    },
+    "notes": "The source lists no eitr for this food; kirilloid treats a missing eitr value as 0 (optional field in its Food type), so 0 is used."
+  },
+  {
+    "id": "cooked-deer-meat",
+    "name": "Cooked deer meat",
+    "description": "Grill deer meat on a cooking station to get this. It is a health-focused food, good for fighting. Make it at the cooking station from 1 Deer meat.",
+    "veteranNotes": "35 health, 12 stamina; lasts 1200 s; heals 2 HP per tick. Weight 1, stacks to 20. Can also be made at the iron cooking station. Used to make Deer stew and Whole Roasted Meadow Boar.",
+    "biomeIds": ["meadows"],
+    "tier": 1,
+    "dangerLevel": "none",
+    "spoilerLevel": 0,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/resources.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "CookedDeerMeat",
+    "confidence": "read",
+    "health": 35,
+    "stamina": 12,
+    "eitr": 0,
+    "durationS": 1200,
+    "healPerTick": 2,
+    "recipe": {
+      "stationId": "cooking-station",
+      "stationLevel": 1,
+      "materials": [
+        {
+          "itemId": "deer-meat",
+          "count": 1
+        }
+      ]
+    },
+    "notes": "The source lists no eitr for this food; kirilloid treats a missing eitr value as 0 (optional field in its Food type), so 0 is used."
+  },
+  {
+    "id": "grilled-neck-tail",
+    "name": "Grilled neck tail",
+    "description": "Grill neck tail on a cooking station to get this. It is a health-focused food, good for fighting. Make it at the cooking station from 1 Neck tail.",
+    "veteranNotes": "25 health, 8 stamina; lasts 1200 s; heals 2 HP per tick. Weight 0.5, stacks to 20. Can also be made at the iron cooking station.",
+    "biomeIds": ["meadows"],
+    "tier": 1,
+    "dangerLevel": "none",
+    "spoilerLevel": 0,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/resources.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "NeckTailGrilled",
+    "confidence": "read",
+    "health": 25,
+    "stamina": 8,
+    "eitr": 0,
+    "durationS": 1200,
+    "healPerTick": 2,
+    "recipe": {
+      "stationId": "cooking-station",
+      "stationLevel": 1,
+      "materials": [
+        {
+          "itemId": "neck-tail",
+          "count": 1
+        }
+      ]
+    },
+    "notes": "The source lists no eitr for this food; kirilloid treats a missing eitr value as 0 (optional field in its Food type), so 0 is used."
+  },
+  {
+    "id": "cooked-fish",
+    "name": "Cooked fish",
+    "description": "Grill raw fish on a cooking station to get this. It is a health-focused food, good for fighting. Make it at the cooking station from 1 Raw fish.",
+    "veteranNotes": "45 health, 15 stamina; lasts 1200 s; heals 2 HP per tick. Weight 0.5, stacks to 20. Can also be made at the iron cooking station. Used to make Sailor's Bounty and Fish wraps.",
+    "biomeIds": [
+      "meadows",
+      "black-forest",
+      "swamp",
+      "mountains",
+      "plains",
+      "mistlands",
+      "ashlands",
+      "deep-north",
+      "ocean"
+    ],
+    "tier": 2,
+    "dangerLevel": "none",
+    "spoilerLevel": 0,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/resources.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "FishCooked",
+    "confidence": "read",
+    "health": 45,
+    "stamina": 15,
+    "eitr": 0,
+    "durationS": 1200,
+    "healPerTick": 2,
+    "recipe": {
+      "stationId": "cooking-station",
+      "stationLevel": 1,
+      "materials": [
+        {
+          "itemId": "raw-fish",
+          "count": 1
+        }
+      ]
+    },
+    "notes": "The source lists no eitr for this food; kirilloid treats a missing eitr value as 0 (optional field in its Food type), so 0 is used."
+  },
+  {
+    "id": "blueberries",
+    "name": "Blueberries",
+    "description": "No cooking needed: you can eat this as soon as you have it. It is a stamina-focused food, good for running, building and long fights. It is also a common cooking ingredient. Pick them from blueberry bushes in the Black Forest.",
+    "veteranNotes": "8 health, 25 stamina; lasts 600 s; heals 1 HP per tick. Weight 0.1, stacks to 50. Used in 15 recipes, including Mead base: minor healing, Mead base: tasty, Blue Fireworks and Blue banner.",
+    "biomeIds": ["black-forest"],
+    "tier": 2,
+    "dangerLevel": "none",
+    "spoilerLevel": 0,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/resources.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/objects.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/location/biomes.ts"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "Blueberries",
+    "confidence": "read",
+    "health": 8,
+    "stamina": 25,
+    "eitr": 0,
+    "durationS": 600,
+    "healPerTick": 1,
+    "notes": "The source lists no eitr for this food; kirilloid treats a missing eitr value as 0 (optional field in its Food type), so 0 is used."
+  },
+  {
+    "id": "queen-s-jam",
+    "name": "Queen's Jam",
+    "description": "A dish cooked in the cauldron. It is a stamina-focused food, good for running, building and long fights. Make it at the cauldron from 8 Raspberries and 6 Blueberries.",
+    "veteranNotes": "14 health, 40 stamina; lasts 1200 s; heals 2 HP per tick. Weight 1, stacks to 10. One batch yields 4. Used to make Black Forest Buffet Platter.",
+    "biomeIds": ["black-forest"],
+    "tier": 2,
+    "dangerLevel": "none",
+    "spoilerLevel": 0,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/resources.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "QueensJam",
+    "confidence": "read",
+    "health": 14,
+    "stamina": 40,
+    "eitr": 0,
+    "durationS": 1200,
+    "healPerTick": 2,
+    "recipe": {
+      "stationId": "cauldron",
+      "stationLevel": 1,
+      "materials": [
+        {
+          "itemId": "raspberries",
+          "count": 8
+        },
+        {
+          "itemId": "blueberries",
+          "count": 6
+        }
+      ]
+    },
+    "notes": "The source lists no eitr for this food; kirilloid treats a missing eitr value as 0 (optional field in its Food type), so 0 is used."
+  },
+  {
+    "id": "yellow-mushroom",
+    "name": "Yellow mushroom",
+    "description": "No cooking needed: you can eat this as soon as you have it. It is a stamina-focused food, good for running, building and long fights. It is also a common cooking ingredient. Pick yellow mushrooms, which grow in caves and dark places in the Black Forest and Swamp.",
+    "veteranNotes": "10 health, 30 stamina; lasts 600 s; heals 1 HP per tick. Weight 0.1, stacks to 50. Used to make Mead base: minor stamina, Mead base: Berserkir and Mead base: medium stamina.",
+    "biomeIds": ["black-forest", "swamp"],
+    "tier": 2,
+    "dangerLevel": "none",
+    "spoilerLevel": 0,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/resources.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/objects.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/location/biomes.ts"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "MushroomYellow",
+    "confidence": "read",
+    "health": 10,
+    "stamina": 30,
+    "eitr": 0,
+    "durationS": 600,
+    "healPerTick": 1,
+    "notes": "The source lists no eitr for this food; kirilloid treats a missing eitr value as 0 (optional field in its Food type), so 0 is used."
+  },
+  {
+    "id": "cooked-bear-meat",
+    "name": "Cooked Bear Meat",
+    "description": "Grill bear meat on a cooking station to get this. It is a health-focused food, good for fighting. Make it at the cooking station from 1 Bear Meat.",
+    "veteranNotes": "40 health, 13 stamina; lasts 1200 s; heals 2 HP per tick. Weight 1, stacks to 20. Can also be made at the iron cooking station. Used to make PulledBear.",
+    "biomeIds": ["black-forest"],
+    "tier": 2,
+    "dangerLevel": "none",
+    "spoilerLevel": 0,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/resources.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "CookedBjornMeat",
+    "confidence": "read",
+    "health": 40,
+    "stamina": 13,
+    "eitr": 0,
+    "durationS": 1200,
+    "healPerTick": 2,
+    "recipe": {
+      "stationId": "cooking-station",
+      "stationLevel": 1,
+      "materials": [
+        {
+          "itemId": "bear-meat",
+          "count": 1
+        }
+      ]
+    },
+    "notes": "The source lists no eitr for this food; kirilloid treats a missing eitr value as 0 (optional field in its Food type), so 0 is used."
+  },
+  {
+    "id": "pulledbear",
+    "name": "PulledBear",
+    "description": "A dish cooked in the cauldron. It is a health-focused food, good for fighting. Make it at the cauldron from 1 Cooked Bear Meat, 2 Carrot and 1 Blueberries.",
+    "veteranNotes": "37 health, 16 stamina; lasts 1800 s; heals 3 HP per tick. Weight 1, stacks to 10.",
+    "biomeIds": ["black-forest"],
+    "tier": 2,
+    "dangerLevel": "none",
+    "spoilerLevel": 0,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/resources.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "PulledBear",
+    "confidence": "read",
+    "health": 37,
+    "stamina": 16,
+    "eitr": 0,
+    "durationS": 1800,
+    "healPerTick": 3,
+    "recipe": {
+      "stationId": "cauldron",
+      "stationLevel": 1,
+      "materials": [
+        {
+          "itemId": "cooked-bear-meat",
+          "count": 1
+        },
+        {
+          "itemId": "carrot",
+          "count": 2
+        },
+        {
+          "itemId": "blueberries",
+          "count": 1
+        }
+      ]
+    },
+    "notes": "The source lists no eitr for this food; kirilloid treats a missing eitr value as 0 (optional field in its Food type), so 0 is used. The English language file has no translation for this prefab (placeholder text only), so the prefab id is used as the name and id."
+  },
+  {
+    "id": "carrot",
+    "name": "Carrot",
+    "description": "No cooking needed: you can eat this as soon as you have it. It is a stamina-focused food, good for running, building and long fights. It is also a common cooking ingredient. Grow carrots from carrot seeds with the cultivator.",
+    "veteranNotes": "10 health, 32 stamina; lasts 900 s; heals 1 HP per tick. Weight 0.3, stacks to 50. Used in 9 recipes, including Carrot soup, Deer stew, Minced meat Sauce and PulledBear.",
+    "biomeIds": ["black-forest"],
+    "tier": 2,
+    "dangerLevel": "none",
+    "spoilerLevel": 0,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/resources.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/objects.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/location/biomes.ts"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "Carrot",
+    "confidence": "read",
+    "health": 10,
+    "stamina": 32,
+    "eitr": 0,
+    "durationS": 900,
+    "healPerTick": 1,
+    "notes": "The source lists no eitr for this food; kirilloid treats a missing eitr value as 0 (optional field in its Food type), so 0 is used."
+  },
+  {
+    "id": "carrot-soup",
+    "name": "Carrot soup",
+    "description": "A dish cooked in the cauldron. It is a stamina-focused food, good for running, building and long fights. Make it at the cauldron from 1 Mushroom and 3 Carrot.",
+    "veteranNotes": "15 health, 45 stamina; lasts 1500 s; heals 2 HP per tick. Weight 1, stacks to 10.",
+    "biomeIds": ["black-forest"],
+    "tier": 2,
+    "dangerLevel": "none",
+    "spoilerLevel": 0,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/resources.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "CarrotSoup",
+    "confidence": "read",
+    "health": 15,
+    "stamina": 45,
+    "eitr": 0,
+    "durationS": 1500,
+    "healPerTick": 2,
+    "recipe": {
+      "stationId": "cauldron",
+      "stationLevel": 1,
+      "materials": [
+        {
+          "itemId": "mushroom",
+          "count": 1
+        },
+        {
+          "itemId": "carrot",
+          "count": 3
+        }
+      ]
+    },
+    "notes": "The source lists no eitr for this food; kirilloid treats a missing eitr value as 0 (optional field in its Food type), so 0 is used."
+  },
+  {
+    "id": "deer-stew",
+    "name": "Deer stew",
+    "description": "A dish cooked in the cauldron. It is a health-focused food, good for fighting. Make it at the cauldron from 1 Cooked deer meat, 1 Blueberries and 1 Carrot.",
+    "veteranNotes": "45 health, 15 stamina; lasts 1500 s; heals 3 HP per tick. Weight 1, stacks to 10. Used to make Black Forest Buffet Platter.",
+    "biomeIds": ["black-forest"],
+    "tier": 2,
+    "dangerLevel": "none",
+    "spoilerLevel": 0,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/resources.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "DeerStew",
+    "confidence": "read",
+    "health": 45,
+    "stamina": 15,
+    "eitr": 0,
+    "durationS": 1500,
+    "healPerTick": 3,
+    "recipe": {
+      "stationId": "cauldron",
+      "stationLevel": 1,
+      "materials": [
+        {
+          "itemId": "cooked-deer-meat",
+          "count": 1
+        },
+        {
+          "itemId": "blueberries",
+          "count": 1
+        },
+        {
+          "itemId": "carrot",
+          "count": 1
+        }
+      ]
+    },
+    "notes": "The source lists no eitr for this food; kirilloid treats a missing eitr value as 0 (optional field in its Food type), so 0 is used."
+  },
+  {
+    "id": "minced-meat-sauce",
+    "name": "Minced meat Sauce",
+    "description": "A dish cooked in the cauldron. It is a health-focused food, good for fighting. Make it at the cauldron from 1 Boar meat, 1 Neck tail and 1 Carrot.",
+    "veteranNotes": "40 health, 13 stamina; lasts 1500 s; heals 3 HP per tick. Weight 1, stacks to 10.",
+    "biomeIds": ["black-forest"],
+    "tier": 2,
+    "dangerLevel": "none",
+    "spoilerLevel": 0,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/resources.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "MinceMeatSauce",
+    "confidence": "read",
+    "health": 40,
+    "stamina": 13,
+    "eitr": 0,
+    "durationS": 1500,
+    "healPerTick": 3,
+    "recipe": {
+      "stationId": "cauldron",
+      "stationLevel": 1,
+      "materials": [
+        {
+          "itemId": "boar-meat",
+          "count": 1
+        },
+        {
+          "itemId": "neck-tail",
+          "count": 1
+        },
+        {
+          "itemId": "carrot",
+          "count": 1
+        }
+      ]
+    },
+    "notes": "The source lists no eitr for this food; kirilloid treats a missing eitr value as 0 (optional field in its Food type), so 0 is used."
+  },
+  {
+    "id": "turnip-stew",
+    "name": "Turnip stew",
+    "description": "A dish cooked in the cauldron. It is a stamina-focused food, good for running, building and long fights. Make it at the cauldron from 1 Boar meat and 3 Turnip.",
+    "veteranNotes": "18 health, 55 stamina; lasts 1500 s; heals 2 HP per tick. Weight 1, stacks to 10. Needs cauldron level 2. Used to make Swamp Dweller's Delight.",
+    "biomeIds": ["swamp"],
+    "tier": 3,
+    "dangerLevel": "none",
+    "spoilerLevel": 1,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/resources.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "TurnipStew",
+    "confidence": "read",
+    "health": 18,
+    "stamina": 55,
+    "eitr": 0,
+    "durationS": 1500,
+    "healPerTick": 2,
+    "recipe": {
+      "stationId": "cauldron",
+      "stationLevel": 2,
+      "materials": [
+        {
+          "itemId": "boar-meat",
+          "count": 1
+        },
+        {
+          "itemId": "turnip",
+          "count": 3
+        }
+      ]
+    },
+    "notes": "The source lists no eitr for this food; kirilloid treats a missing eitr value as 0 (optional field in its Food type), so 0 is used."
+  },
+  {
+    "id": "black-soup",
+    "name": "Black soup",
+    "description": "A dish cooked in the cauldron. It is a health-focused food, good for fighting. Make it at the cauldron from 1 Bloodbag, 1 Honey and 1 Turnip.",
+    "veteranNotes": "50 health, 17 stamina; lasts 1200 s; heals 3 HP per tick. Weight 1, stacks to 10. Needs cauldron level 2.",
+    "biomeIds": ["swamp"],
+    "tier": 3,
+    "dangerLevel": "none",
+    "spoilerLevel": 1,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/resources.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "BlackSoup",
+    "confidence": "read",
+    "health": 50,
+    "stamina": 17,
+    "eitr": 0,
+    "durationS": 1200,
+    "healPerTick": 3,
+    "recipe": {
+      "stationId": "cauldron",
+      "stationLevel": 2,
+      "materials": [
+        {
+          "itemId": "bloodbag",
+          "count": 1
+        },
+        {
+          "itemId": "honey",
+          "count": 1
+        },
+        {
+          "itemId": "turnip",
+          "count": 1
+        }
+      ]
+    },
+    "notes": "The source lists no eitr for this food; kirilloid treats a missing eitr value as 0 (optional field in its Food type), so 0 is used."
+  },
+  {
+    "id": "muckshake",
+    "name": "Muckshake",
+    "description": "A dish cooked in the cauldron. It is a stamina-focused food, good for running, building and long fights. Make it at the cauldron from 1 Ooze, 2 Raspberries and 2 Blueberries.",
+    "veteranNotes": "16 health, 50 stamina; lasts 1200 s; heals 1 HP per tick. Weight 1, stacks to 10. Needs cauldron level 2.",
+    "biomeIds": ["swamp"],
+    "tier": 3,
+    "dangerLevel": "none",
+    "spoilerLevel": 1,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/resources.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "ShocklateSmoothie",
+    "confidence": "read",
+    "health": 16,
+    "stamina": 50,
+    "eitr": 0,
+    "durationS": 1200,
+    "healPerTick": 1,
+    "recipe": {
+      "stationId": "cauldron",
+      "stationLevel": 2,
+      "materials": [
+        {
+          "itemId": "ooze",
+          "count": 1
+        },
+        {
+          "itemId": "raspberries",
+          "count": 2
+        },
+        {
+          "itemId": "blueberries",
+          "count": 2
+        }
+      ]
+    },
+    "notes": "The source lists no eitr for this food; kirilloid treats a missing eitr value as 0 (optional field in its Food type), so 0 is used."
+  },
+  {
+    "id": "sausages",
+    "name": "Sausages",
+    "description": "A dish cooked in the cauldron. It is a health-focused food, good for fighting. Make it at the cauldron from 2 Entrails, 1 Boar meat and 4 Thistle.",
+    "veteranNotes": "55 health, 18 stamina; lasts 1500 s; heals 3 HP per tick. Weight 0.5, stacks to 20. One batch yields 4. Needs cauldron level 2. Used to make Swamp Dweller's Delight.",
+    "biomeIds": ["swamp"],
+    "tier": 3,
+    "dangerLevel": "none",
+    "spoilerLevel": 1,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/resources.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/objects.ts"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "Sausages",
+    "confidence": "read",
+    "health": 55,
+    "stamina": 18,
+    "eitr": 0,
+    "durationS": 1500,
+    "healPerTick": 3,
+    "recipe": {
+      "stationId": "cauldron",
+      "stationLevel": 2,
+      "materials": [
+        {
+          "itemId": "entrails",
+          "count": 2
+        },
+        {
+          "itemId": "boar-meat",
+          "count": 1
+        },
+        {
+          "itemId": "thistle",
+          "count": 4
+        }
+      ]
+    },
+    "notes": "The source lists no eitr for this food; kirilloid treats a missing eitr value as 0 (optional field in its Food type), so 0 is used."
+  },
+  {
+    "id": "cooked-serpent-meat",
+    "name": "Cooked serpent meat",
+    "description": "Grill serpent meat on a cooking station to get this. It is a health-focused food, good for fighting. Make it at the iron cooking station from 1 Serpent meat.",
+    "veteranNotes": "70 health, 23 stamina; lasts 1500 s; heals 3 HP per tick. Weight 10, stacks to 50. Used to make Sailor's Bounty and Serpent stew.",
+    "biomeIds": ["ocean"],
+    "tier": 3,
+    "dangerLevel": "none",
+    "spoilerLevel": 1,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/resources.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "SerpentMeatCooked",
+    "confidence": "read",
+    "health": 70,
+    "stamina": 23,
+    "eitr": 0,
+    "durationS": 1500,
+    "healPerTick": 3,
+    "recipe": {
+      "stationId": "iron-cooking-station",
+      "stationLevel": 1,
+      "materials": [
+        {
+          "itemId": "serpent-meat",
+          "count": 1
+        }
+      ]
+    },
+    "notes": "The source lists no eitr for this food; kirilloid treats a missing eitr value as 0 (optional field in its Food type), so 0 is used."
+  },
+  {
+    "id": "serpent-stew",
+    "name": "Serpent stew",
+    "description": "A dish cooked in the cauldron. It is a health-focused food, good for fighting. Make it at the cauldron from 1 Mushroom, 1 Cooked serpent meat and 2 Honey.",
+    "veteranNotes": "80 health, 26 stamina; lasts 1800 s; heals 4 HP per tick. Weight 1, stacks to 10. Needs cauldron level 2.",
+    "biomeIds": ["ocean"],
+    "tier": 3,
+    "dangerLevel": "none",
+    "spoilerLevel": 1,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/resources.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "SerpentStew",
+    "confidence": "read",
+    "health": 80,
+    "stamina": 26,
+    "eitr": 0,
+    "durationS": 1800,
+    "healPerTick": 4,
+    "recipe": {
+      "stationId": "cauldron",
+      "stationLevel": 2,
+      "materials": [
+        {
+          "itemId": "mushroom",
+          "count": 1
+        },
+        {
+          "itemId": "cooked-serpent-meat",
+          "count": 1
+        },
+        {
+          "itemId": "honey",
+          "count": 2
+        }
+      ]
+    },
+    "notes": "The source lists no eitr for this food; kirilloid treats a missing eitr value as 0 (optional field in its Food type), so 0 is used."
+  },
+  {
+    "id": "onion",
+    "name": "Onion",
+    "description": "No cooking needed: you can eat this as soon as you have it. It is a stamina-focused food, good for running, building and long fights. It is also a common cooking ingredient. Grow onions from onion seeds with the cultivator.",
+    "veteranNotes": "13 health, 40 stamina; lasts 900 s; heals 1 HP per tick. Weight 0.3, stacks to 50. Used in 5 recipes, including Mead Base: Animal Whispers, Onion soup, Wolf skewer and Salad.",
+    "biomeIds": ["mountains"],
+    "tier": 4,
+    "dangerLevel": "none",
+    "spoilerLevel": 1,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/resources.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/objects.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/location/biomes.ts"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "Onion",
+    "confidence": "read",
+    "health": 13,
+    "stamina": 40,
+    "eitr": 0,
+    "durationS": 900,
+    "healPerTick": 1,
+    "notes": "The source lists no eitr for this food; kirilloid treats a missing eitr value as 0 (optional field in its Food type), so 0 is used."
+  },
+  {
+    "id": "cooked-wolf-meat",
+    "name": "Cooked wolf meat",
+    "description": "Grill wolf meat on a cooking station to get this. It is a health-focused food, good for fighting. Make it at the cooking station from 1 Wolf meat.",
+    "veteranNotes": "45 health, 15 stamina; lasts 1200 s; heals 3 HP per tick. Weight 1, stacks to 20.",
+    "biomeIds": ["mountains"],
+    "tier": 4,
+    "dangerLevel": "none",
+    "spoilerLevel": 1,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/resources.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "CookedWolfMeat",
+    "confidence": "read",
+    "health": 45,
+    "stamina": 15,
+    "eitr": 0,
+    "durationS": 1200,
+    "healPerTick": 3,
+    "recipe": {
+      "stationId": "cooking-station",
+      "stationLevel": 1,
+      "materials": [
+        {
+          "itemId": "wolf-meat",
+          "count": 1
+        }
+      ]
+    },
+    "notes": "The source lists no eitr for this food; kirilloid treats a missing eitr value as 0 (optional field in its Food type), so 0 is used."
+  },
+  {
+    "id": "wolf-skewer",
+    "name": "Wolf skewer",
+    "description": "A dish cooked in the cauldron. It is a health-focused food, good for fighting. Make it at the cauldron from 1 Wolf meat, 2 Mushroom and 1 Onion.",
+    "veteranNotes": "65 health, 21 stamina; lasts 1500 s; heals 3 HP per tick. Weight 0.5, stacks to 20. Needs cauldron level 3. Used to make Hearty Mountain Logger's Stew.",
+    "biomeIds": ["mountains"],
+    "tier": 4,
+    "dangerLevel": "none",
+    "spoilerLevel": 1,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/resources.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "WolfMeatSkewer",
+    "confidence": "read",
+    "health": 65,
+    "stamina": 21,
+    "eitr": 0,
+    "durationS": 1500,
+    "healPerTick": 3,
+    "recipe": {
+      "stationId": "cauldron",
+      "stationLevel": 3,
+      "materials": [
+        {
+          "itemId": "wolf-meat",
+          "count": 1
+        },
+        {
+          "itemId": "mushroom",
+          "count": 2
+        },
+        {
+          "itemId": "onion",
+          "count": 1
+        }
+      ]
+    },
+    "notes": "The source lists no eitr for this food; kirilloid treats a missing eitr value as 0 (optional field in its Food type), so 0 is used."
+  },
+  {
+    "id": "wolf-jerky",
+    "name": "Wolf jerky",
+    "description": "A dish cooked in the cauldron. It is a balanced food that gives both health and stamina. Make it at the cauldron from 1 Wolf meat and 1 Honey.",
+    "veteranNotes": "33 health, 33 stamina; lasts 1800 s; heals 3 HP per tick. Weight 0.5, stacks to 20. One batch yields 2. Needs cauldron level 3.",
+    "biomeIds": ["mountains"],
+    "tier": 4,
+    "dangerLevel": "none",
+    "spoilerLevel": 1,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/resources.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "WolfJerky",
+    "confidence": "read",
+    "health": 33,
+    "stamina": 33,
+    "eitr": 0,
+    "durationS": 1800,
+    "healPerTick": 3,
+    "recipe": {
+      "stationId": "cauldron",
+      "stationLevel": 3,
+      "materials": [
+        {
+          "itemId": "wolf-meat",
+          "count": 1
+        },
+        {
+          "itemId": "honey",
+          "count": 1
+        }
+      ]
+    },
+    "notes": "The source lists no eitr for this food; kirilloid treats a missing eitr value as 0 (optional field in its Food type), so 0 is used."
+  },
+  {
+    "id": "eyescream",
+    "name": "Eyescream",
+    "description": "A dish cooked in the cauldron. It is a stamina-focused food, good for running, building and long fights. Make it at the cauldron from 3 Greydwarf eye and 1 Freeze gland.",
+    "veteranNotes": "21 health, 65 stamina; lasts 1500 s; heals 1 HP per tick. Weight 0.5, stacks to 10. Needs cauldron level 3.",
+    "biomeIds": ["mountains"],
+    "tier": 4,
+    "dangerLevel": "none",
+    "spoilerLevel": 1,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/resources.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "Eyescream",
+    "confidence": "read",
+    "health": 21,
+    "stamina": 65,
+    "eitr": 0,
+    "durationS": 1500,
+    "healPerTick": 1,
+    "recipe": {
+      "stationId": "cauldron",
+      "stationLevel": 3,
+      "materials": [
+        {
+          "itemId": "greydwarf-eye",
+          "count": 3
+        },
+        {
+          "itemId": "freeze-gland",
+          "count": 1
+        }
+      ]
+    },
+    "notes": "The source lists no eitr for this food; kirilloid treats a missing eitr value as 0 (optional field in its Food type), so 0 is used."
+  },
+  {
+    "id": "onion-soup",
+    "name": "Onion soup",
+    "description": "A dish cooked in the cauldron. It is a stamina-focused food, good for running, building and long fights. Make it at the cauldron from 3 Onion.",
+    "veteranNotes": "20 health, 60 stamina; lasts 1200 s; heals 1 HP per tick. Weight 1, stacks to 10. Needs cauldron level 3.",
+    "biomeIds": ["mountains"],
+    "tier": 4,
+    "dangerLevel": "none",
+    "spoilerLevel": 1,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/resources.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "OnionSoup",
+    "confidence": "read",
+    "health": 20,
+    "stamina": 60,
+    "eitr": 0,
+    "durationS": 1200,
+    "healPerTick": 1,
+    "recipe": {
+      "stationId": "cauldron",
+      "stationLevel": 3,
+      "materials": [
+        {
+          "itemId": "onion",
+          "count": 3
+        }
+      ]
+    },
+    "notes": "The source lists no eitr for this food; kirilloid treats a missing eitr value as 0 (optional field in its Food type), so 0 is used."
+  },
+  {
+    "id": "cloudberries",
+    "name": "Cloudberries",
+    "description": "No cooking needed: you can eat this as soon as you have it. It is a stamina-focused food, good for running, building and long fights. It is also a common cooking ingredient. Pick them from cloudberry bushes in the Plains.",
+    "veteranNotes": "13 health, 40 stamina; lasts 900 s; heals 1 HP per tick. Weight 0.1, stacks to 50. Used in 12 recipes, including Blue, red and white banner, Mead Base: Anti-Sting, Mead base: medium stamina and MeadBaseBarleyWine.",
+    "biomeIds": ["plains"],
+    "tier": 5,
+    "dangerLevel": "none",
+    "spoilerLevel": 1,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/resources.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/objects.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/location/biomes.ts"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "Cloudberry",
+    "confidence": "read",
+    "health": 13,
+    "stamina": 40,
+    "eitr": 0,
+    "durationS": 900,
+    "healPerTick": 1,
+    "notes": "The source lists no eitr for this food; kirilloid treats a missing eitr value as 0 (optional field in its Food type), so 0 is used."
+  },
+  {
+    "id": "cooked-lox-meat",
+    "name": "Cooked lox meat",
+    "description": "Grill lox meat on a cooking station to get this. It is a health-focused food, good for fighting. Make it at the iron cooking station from 1 Lox meat.",
+    "veteranNotes": "50 health, 16 stamina; lasts 1200 s; heals 4 HP per tick. Weight 2, stacks to 20.",
+    "biomeIds": ["plains"],
+    "tier": 5,
+    "dangerLevel": "none",
+    "spoilerLevel": 1,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/resources.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "CookedLoxMeat",
+    "confidence": "read",
+    "health": 50,
+    "stamina": 16,
+    "eitr": 0,
+    "durationS": 1200,
+    "healPerTick": 4,
+    "recipe": {
+      "stationId": "iron-cooking-station",
+      "stationLevel": 1,
+      "materials": [
+        {
+          "itemId": "lox-meat",
+          "count": 1
+        }
+      ]
+    },
+    "notes": "The source lists no eitr for this food; kirilloid treats a missing eitr value as 0 (optional field in its Food type), so 0 is used."
+  },
+  {
+    "id": "blood-pudding",
+    "name": "Blood pudding",
+    "description": "A dish cooked in the cauldron. It is a stamina-focused food, good for running, building and long fights. Make it at the cauldron from 2 Bloodbag, 4 Barley flour and 2 Thistle.",
+    "veteranNotes": "25 health, 75 stamina; lasts 1800 s; heals 2 HP per tick. Weight 1, stacks to 10. Needs cauldron level 4.",
+    "biomeIds": ["plains"],
+    "tier": 5,
+    "dangerLevel": "none",
+    "spoilerLevel": 1,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/resources.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "BloodPudding",
+    "confidence": "read",
+    "health": 25,
+    "stamina": 75,
+    "eitr": 0,
+    "durationS": 1800,
+    "healPerTick": 2,
+    "recipe": {
+      "stationId": "cauldron",
+      "stationLevel": 4,
+      "materials": [
+        {
+          "itemId": "bloodbag",
+          "count": 2
+        },
+        {
+          "itemId": "barley-flour",
+          "count": 4
+        },
+        {
+          "itemId": "thistle",
+          "count": 2
+        }
+      ]
+    },
+    "notes": "The source lists no eitr for this food; kirilloid treats a missing eitr value as 0 (optional field in its Food type), so 0 is used."
+  },
+  {
+    "id": "bread",
+    "name": "Bread",
+    "description": "Baked in a stone oven from a prepared dish. It is a stamina-focused food, good for running, building and long fights. Make it at the stone oven from 1 Bread dough.",
+    "veteranNotes": "23 health, 70 stamina; lasts 1500 s; heals 2 HP per tick. Weight 0.5, stacks to 20. Used to make Plains Pie Picnic.",
+    "biomeIds": ["plains"],
+    "tier": 5,
+    "dangerLevel": "none",
+    "spoilerLevel": 1,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/resources.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/objects.ts"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "Bread",
+    "confidence": "read",
+    "health": 23,
+    "stamina": 70,
+    "eitr": 0,
+    "durationS": 1500,
+    "healPerTick": 2,
+    "recipe": {
+      "stationId": "stone-oven",
+      "stationLevel": 1,
+      "materials": [
+        {
+          "itemId": "bread-dough",
+          "count": 1
+        }
+      ]
+    },
+    "notes": "The source lists no eitr for this food; kirilloid treats a missing eitr value as 0 (optional field in its Food type), so 0 is used."
+  },
+  {
+    "id": "fish-wraps",
+    "name": "Fish wraps",
+    "description": "A dish cooked in the cauldron. It is a health-focused food, good for fighting. Make it at the cauldron from 2 Cooked fish and 4 Barley flour.",
+    "veteranNotes": "70 health, 23 stamina; lasts 1500 s; heals 4 HP per tick. Weight 1, stacks to 10. Needs cauldron level 4.",
+    "biomeIds": ["plains"],
+    "tier": 5,
+    "dangerLevel": "none",
+    "spoilerLevel": 1,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/resources.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "FishWraps",
+    "confidence": "read",
+    "health": 70,
+    "stamina": 23,
+    "eitr": 0,
+    "durationS": 1500,
+    "healPerTick": 4,
+    "recipe": {
+      "stationId": "cauldron",
+      "stationLevel": 4,
+      "materials": [
+        {
+          "itemId": "cooked-fish",
+          "count": 2
+        },
+        {
+          "itemId": "barley-flour",
+          "count": 4
+        }
+      ]
+    },
+    "notes": "The source lists no eitr for this food; kirilloid treats a missing eitr value as 0 (optional field in its Food type), so 0 is used."
+  },
+  {
+    "id": "lox-meat-pie",
+    "name": "Lox meat pie",
+    "description": "Baked in a stone oven from a prepared dish. It is a health-focused food, good for fighting. Make it at the stone oven from 1 Unbaked lox pie.",
+    "veteranNotes": "75 health, 24 stamina; lasts 1800 s; heals 4 HP per tick. Weight 1, stacks to 10. Used to make Plains Pie Picnic.",
+    "biomeIds": ["plains"],
+    "tier": 5,
+    "dangerLevel": "none",
+    "spoilerLevel": 1,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/resources.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "LoxPie",
+    "confidence": "read",
+    "health": 75,
+    "stamina": 24,
+    "eitr": 0,
+    "durationS": 1800,
+    "healPerTick": 4,
+    "recipe": {
+      "stationId": "stone-oven",
+      "stationLevel": 1,
+      "materials": [
+        {
+          "itemId": "unbaked-lox-pie",
+          "count": 1
+        }
+      ]
+    },
+    "notes": "The source lists no eitr for this food; kirilloid treats a missing eitr value as 0 (optional field in its Food type), so 0 is used."
+  },
+  {
+    "id": "frosted-sweetbread",
+    "name": "Frosted Sweetbread",
+    "description": "Baked in a stone oven from a prepared dish. It is a balanced food that gives both health and stamina. Make it at the stone oven from 1 Unbaked Sweetbread.",
+    "veteranNotes": "43 health, 43 stamina; lasts 1800 s; heals 4 HP per tick. Weight 1, stacks to 10.",
+    "biomeIds": ["plains"],
+    "tier": 5,
+    "dangerLevel": "none",
+    "spoilerLevel": 1,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/resources.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "VikingCupcake",
+    "confidence": "read",
+    "health": 43,
+    "stamina": 43,
+    "eitr": 0,
+    "durationS": 1800,
+    "healPerTick": 4,
+    "recipe": {
+      "stationId": "stone-oven",
+      "stationLevel": 1,
+      "materials": [
+        {
+          "itemId": "unbaked-sweetbread",
+          "count": 1
+        }
+      ]
+    },
+    "notes": "The source lists no eitr for this food; kirilloid treats a missing eitr value as 0 (optional field in its Food type), so 0 is used."
+  },
+  {
+    "id": "cooked-egg",
+    "name": "Cooked egg",
+    "description": "A dish cooked in the cauldron. It is a health-focused food, good for fighting. Make it at the cauldron from 1 Egg.",
+    "veteranNotes": "35 health, 12 stamina; lasts 1200 s; heals 2 HP per tick. Weight 1, stacks to 50.",
+    "biomeIds": ["mistlands"],
+    "tier": 6,
+    "dangerLevel": "none",
+    "spoilerLevel": 2,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/resources.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "CookedEgg",
+    "confidence": "read",
+    "health": 35,
+    "stamina": 12,
+    "eitr": 0,
+    "durationS": 1200,
+    "healPerTick": 2,
+    "recipe": {
+      "stationId": "cauldron",
+      "stationLevel": 1,
+      "materials": [
+        {
+          "itemId": "egg",
+          "count": 1
+        }
+      ]
+    },
+    "notes": "The source lists no eitr for this food; kirilloid treats a missing eitr value as 0 (optional field in its Food type), so 0 is used."
+  },
+  {
+    "id": "jotun-puffs",
+    "name": "Jotun puffs",
+    "description": "No cooking needed: you can eat this as soon as you have it. It is a balanced food that gives both health and stamina. It is also a common cooking ingredient. Pick Jotun puffs in the Mistlands, and grow more with the cultivator.",
+    "veteranNotes": "25 health, 25 stamina; lasts 900 s; heals 1 HP per tick. Weight 0.1, stacks to 50. Used in 7 recipes, including Mead base: Lingering stamina, Mead base: Minor eitr, Mushroom omelette and Salad.",
+    "biomeIds": ["mistlands"],
+    "tier": 6,
+    "dangerLevel": "none",
+    "spoilerLevel": 2,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/resources.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/objects.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/location/biomes.ts"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "MushroomJotunPuffs",
+    "confidence": "read",
+    "health": 25,
+    "stamina": 25,
+    "eitr": 0,
+    "durationS": 900,
+    "healPerTick": 1,
+    "notes": "The source lists no eitr for this food; kirilloid treats a missing eitr value as 0 (optional field in its Food type), so 0 is used."
+  },
+  {
+    "id": "magecap",
+    "name": "Magecap",
+    "description": "No cooking needed: you can eat this as soon as you have it. It is a balanced food that gives both health and stamina. It is also a common cooking ingredient. Pick magecaps in the Mistlands, and grow more with the cultivator.",
+    "veteranNotes": "25 health, 25 stamina, 25 eitr; lasts 900 s; heals 1 HP per tick. Weight 0.1, stacks to 50. Used in 7 recipes, including Mead base: Minor eitr, MeadBaseLightFoot, Seeker aspic and Uncooked magically stuffed shroom.",
+    "biomeIds": ["mistlands"],
+    "tier": 6,
+    "dangerLevel": "none",
+    "spoilerLevel": 2,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/resources.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/objects.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/location/biomes.ts"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "MushroomMagecap",
+    "confidence": "read",
+    "health": 25,
+    "stamina": 25,
+    "eitr": 25,
+    "durationS": 900,
+    "healPerTick": 1
+  },
+  {
+    "id": "cooked-hare-meat",
+    "name": "Cooked hare meat",
+    "description": "Grill hare meat on a cooking station to get this. It is a health-focused food, good for fighting. Make it at the cooking station from 1 Hare meat.",
+    "veteranNotes": "60 health, 20 stamina; lasts 1200 s; heals 5 HP per tick. Weight 1, stacks to 20. Can also be made at the iron cooking station.",
+    "biomeIds": ["mistlands"],
+    "tier": 6,
+    "dangerLevel": "none",
+    "spoilerLevel": 2,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/resources.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "CookedHareMeat",
+    "confidence": "read",
+    "health": 60,
+    "stamina": 20,
+    "eitr": 0,
+    "durationS": 1200,
+    "healPerTick": 5,
+    "recipe": {
+      "stationId": "cooking-station",
+      "stationLevel": 1,
+      "materials": [
+        {
+          "itemId": "hare-meat",
+          "count": 1
+        }
+      ]
+    },
+    "notes": "The source lists no eitr for this food; kirilloid treats a missing eitr value as 0 (optional field in its Food type), so 0 is used."
+  },
+  {
+    "id": "cooked-chicken-meat",
+    "name": "Cooked chicken meat",
+    "description": "Grill chicken meat on a cooking station to get this. It is a health-focused food, good for fighting. Make it at the cooking station from 1 Chicken meat.",
+    "veteranNotes": "60 health, 20 stamina; lasts 1200 s; heals 5 HP per tick. Weight 1, stacks to 20. Can also be made at the iron cooking station.",
+    "biomeIds": ["mistlands"],
+    "tier": 6,
+    "dangerLevel": "none",
+    "spoilerLevel": 2,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/resources.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "CookedChickenMeat",
+    "confidence": "read",
+    "health": 60,
+    "stamina": 20,
+    "eitr": 0,
+    "durationS": 1200,
+    "healPerTick": 5,
+    "recipe": {
+      "stationId": "cooking-station",
+      "stationLevel": 1,
+      "materials": [
+        {
+          "itemId": "chicken-meat",
+          "count": 1
+        }
+      ]
+    },
+    "notes": "The source lists no eitr for this food; kirilloid treats a missing eitr value as 0 (optional field in its Food type), so 0 is used."
+  },
+  {
+    "id": "fish-n-bread",
+    "name": "Fish n' bread",
+    "description": "Baked in a stone oven from a prepared dish. It is a stamina-focused food, good for running, building and long fights. Make it at the stone oven from 1 Uncooked fish n' bread.",
+    "veteranNotes": "30 health, 90 stamina; lasts 1800 s; heals 3 HP per tick. Weight 1, stacks to 10.",
+    "biomeIds": ["mistlands"],
+    "tier": 6,
+    "dangerLevel": "none",
+    "spoilerLevel": 2,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/resources.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "FishAndBread",
+    "confidence": "read",
+    "health": 30,
+    "stamina": 90,
+    "eitr": 0,
+    "durationS": 1800,
+    "healPerTick": 3,
+    "recipe": {
+      "stationId": "stone-oven",
+      "stationLevel": 1,
+      "materials": [
+        {
+          "itemId": "uncooked-fish-n-bread",
+          "count": 1
+        }
+      ]
+    },
+    "notes": "The source lists no eitr for this food; kirilloid treats a missing eitr value as 0 (optional field in its Food type), so 0 is used."
+  },
+  {
+    "id": "meat-platter",
+    "name": "Meat platter",
+    "description": "Baked in a stone oven from a prepared dish. It is a health-focused food, good for fighting. Make it at the stone oven from 1 Uncooked meat platter.",
+    "veteranNotes": "80 health, 26 stamina; lasts 1800 s; heals 5 HP per tick. Weight 1, stacks to 10.",
+    "biomeIds": ["mistlands"],
+    "tier": 6,
+    "dangerLevel": "none",
+    "spoilerLevel": 2,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/resources.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "MeatPlatter",
+    "confidence": "read",
+    "health": 80,
+    "stamina": 26,
+    "eitr": 0,
+    "durationS": 1800,
+    "healPerTick": 5,
+    "recipe": {
+      "stationId": "stone-oven",
+      "stationLevel": 1,
+      "materials": [
+        {
+          "itemId": "uncooked-meat-platter",
+          "count": 1
+        }
+      ]
+    },
+    "notes": "The source lists no eitr for this food; kirilloid treats a missing eitr value as 0 (optional field in its Food type), so 0 is used."
+  },
+  {
+    "id": "honey-glazed-chicken",
+    "name": "Honey glazed chicken",
+    "description": "Baked in a stone oven from a prepared dish. It is a health-focused food, good for fighting. Make it at the stone oven from 1 Uncooked honey glazed chicken.",
+    "veteranNotes": "80 health, 26 stamina; lasts 1800 s; heals 5 HP per tick. Weight 1, stacks to 10.",
+    "biomeIds": ["mistlands"],
+    "tier": 6,
+    "dangerLevel": "none",
+    "spoilerLevel": 2,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/resources.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "HoneyGlazedChicken",
+    "confidence": "read",
+    "health": 80,
+    "stamina": 26,
+    "eitr": 0,
+    "durationS": 1800,
+    "healPerTick": 5,
+    "recipe": {
+      "stationId": "stone-oven",
+      "stationLevel": 1,
+      "materials": [
+        {
+          "itemId": "uncooked-honey-glazed-chicken",
+          "count": 1
+        }
+      ]
+    },
+    "notes": "The source lists no eitr for this food; kirilloid treats a missing eitr value as 0 (optional field in its Food type), so 0 is used."
+  },
+  {
+    "id": "misthare-supreme",
+    "name": "Misthare supreme",
+    "description": "Baked in a stone oven from a prepared dish. It is a health-focused food, good for fighting. Make it at the stone oven from 1 Uncooked misthare supreme.",
+    "veteranNotes": "85 health, 28 stamina; lasts 1500 s; heals 5 HP per tick. Weight 1, stacks to 10. Used to make Mushrooms Galore á la Mistlands.",
+    "biomeIds": ["mistlands"],
+    "tier": 6,
+    "dangerLevel": "none",
+    "spoilerLevel": 2,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/resources.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "MisthareSupreme",
+    "confidence": "read",
+    "health": 85,
+    "stamina": 28,
+    "eitr": 0,
+    "durationS": 1500,
+    "healPerTick": 5,
+    "recipe": {
+      "stationId": "stone-oven",
+      "stationLevel": 1,
+      "materials": [
+        {
+          "itemId": "uncooked-misthare-supreme",
+          "count": 1
+        }
+      ]
+    },
+    "notes": "The source lists no eitr for this food; kirilloid treats a missing eitr value as 0 (optional field in its Food type), so 0 is used."
+  },
+  {
+    "id": "magically-stuffed-shroom",
+    "name": "Magically stuffed shroom",
+    "description": "Baked in a stone oven from a prepared dish. It is an eitr food for magic users. Make it at the stone oven from 1 Uncooked magically stuffed shroom.",
+    "veteranNotes": "25 health, 15 stamina, 75 eitr; lasts 1500 s; heals 3 HP per tick. Weight 1, stacks to 10.",
+    "biomeIds": ["mistlands"],
+    "tier": 6,
+    "dangerLevel": "none",
+    "spoilerLevel": 2,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/resources.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "MagicallyStuffedShroom",
+    "confidence": "read",
+    "health": 25,
+    "stamina": 15,
+    "eitr": 75,
+    "durationS": 1500,
+    "healPerTick": 3,
+    "recipe": {
+      "stationId": "stone-oven",
+      "stationLevel": 1,
+      "materials": [
+        {
+          "itemId": "uncooked-magically-stuffed-shroom",
+          "count": 1
+        }
+      ]
+    }
+  },
+  {
+    "id": "seeker-aspic",
+    "name": "Seeker aspic",
+    "description": "A dish cooked in the cauldron. It is an eitr food for magic users. Make it at the cauldron from 2 Seeker meat, 2 Magecap and 2 Royal jelly.",
+    "veteranNotes": "28 health, 14 stamina, 85 eitr; lasts 1800 s; heals 3 HP per tick. Weight 1, stacks to 10. One batch yields 2. Needs cauldron level 5.",
+    "biomeIds": ["mistlands"],
+    "tier": 6,
+    "dangerLevel": "none",
+    "spoilerLevel": 2,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/resources.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "SeekerAspic",
+    "confidence": "read",
+    "health": 28,
+    "stamina": 14,
+    "eitr": 85,
+    "durationS": 1800,
+    "healPerTick": 3,
+    "recipe": {
+      "stationId": "cauldron",
+      "stationLevel": 5,
+      "materials": [
+        {
+          "itemId": "seeker-meat",
+          "count": 2
+        },
+        {
+          "itemId": "magecap",
+          "count": 2
+        },
+        {
+          "itemId": "royal-jelly",
+          "count": 2
+        }
+      ]
+    }
+  },
+  {
+    "id": "cooked-seeker-meat",
+    "name": "Cooked seeker meat",
+    "description": "Grill seeker meat on a cooking station to get this. It is a health-focused food, good for fighting. Make it at the iron cooking station from 1 Seeker meat.",
+    "veteranNotes": "60 health, 20 stamina; lasts 1200 s; heals 5 HP per tick. Weight 1, stacks to 20. Used to make Mushrooms Galore á la Mistlands.",
+    "biomeIds": ["mistlands"],
+    "tier": 6,
+    "dangerLevel": "none",
+    "spoilerLevel": 2,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/resources.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "CookedBugMeat",
+    "confidence": "read",
+    "health": 60,
+    "stamina": 20,
+    "eitr": 0,
+    "durationS": 1200,
+    "healPerTick": 5,
+    "recipe": {
+      "stationId": "iron-cooking-station",
+      "stationLevel": 1,
+      "materials": [
+        {
+          "itemId": "seeker-meat",
+          "count": 1
+        }
+      ]
+    },
+    "notes": "The source lists no eitr for this food; kirilloid treats a missing eitr value as 0 (optional field in its Food type), so 0 is used."
+  },
+  {
+    "id": "mushroom-omelette",
+    "name": "Mushroom omelette",
+    "description": "A dish cooked in the cauldron. It is a stamina-focused food, good for running, building and long fights. Make it at the cauldron from 3 Egg and 3 Jotun puffs.",
+    "veteranNotes": "28 health, 85 stamina; lasts 1500 s; heals 3 HP per tick. Weight 1, stacks to 10. Needs cauldron level 5.",
+    "biomeIds": ["mistlands"],
+    "tier": 6,
+    "dangerLevel": "none",
+    "spoilerLevel": 2,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/resources.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "MushroomOmelette",
+    "confidence": "read",
+    "health": 28,
+    "stamina": 85,
+    "eitr": 0,
+    "durationS": 1500,
+    "healPerTick": 3,
+    "recipe": {
+      "stationId": "cauldron",
+      "stationLevel": 5,
+      "materials": [
+        {
+          "itemId": "egg",
+          "count": 3
+        },
+        {
+          "itemId": "jotun-puffs",
+          "count": 3
+        }
+      ]
+    },
+    "notes": "The source lists no eitr for this food; kirilloid treats a missing eitr value as 0 (optional field in its Food type), so 0 is used."
+  },
+  {
+    "id": "salad",
+    "name": "Salad",
+    "description": "A dish cooked in the cauldron. It is a stamina-focused food, good for running, building and long fights. Make it at the cauldron from 3 Jotun puffs, 3 Onion and 3 Cloudberries.",
+    "veteranNotes": "26 health, 80 stamina; lasts 1500 s; heals 3 HP per tick. Weight 1, stacks to 10. One batch yields 3. Needs cauldron level 3.",
+    "biomeIds": ["mistlands"],
+    "tier": 6,
+    "dangerLevel": "none",
+    "spoilerLevel": 2,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/resources.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "Salad",
+    "confidence": "read",
+    "health": 26,
+    "stamina": 80,
+    "eitr": 0,
+    "durationS": 1500,
+    "healPerTick": 3,
+    "recipe": {
+      "stationId": "cauldron",
+      "stationLevel": 3,
+      "materials": [
+        {
+          "itemId": "jotun-puffs",
+          "count": 3
+        },
+        {
+          "itemId": "onion",
+          "count": 3
+        },
+        {
+          "itemId": "cloudberries",
+          "count": 3
+        }
+      ]
+    },
+    "notes": "The source lists no eitr for this food; kirilloid treats a missing eitr value as 0 (optional field in its Food type), so 0 is used."
+  },
+  {
+    "id": "royal-jelly",
+    "name": "Royal jelly",
+    "description": "No cooking needed: you can eat this as soon as you have it. It is a balanced food that gives both health and stamina. It is also a common cooking ingredient. Collect it in the seeker hives of the Mistlands, or kill baby seekers.",
+    "veteranNotes": "15 health, 15 stamina; lasts 900 s; heals 1 HP per tick. Weight 0.1, stacks to 50. Used to make Mead base: Major healing, Seeker aspic and Yggdrasil porridge.",
+    "biomeIds": ["mistlands"],
+    "tier": 6,
+    "dangerLevel": "none",
+    "spoilerLevel": 2,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/resources.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/objects.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/creatures.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/location/biomes.ts"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "RoyalJelly",
+    "confidence": "read",
+    "health": 15,
+    "stamina": 15,
+    "eitr": 0,
+    "durationS": 900,
+    "healPerTick": 1,
+    "notes": "The source lists no eitr for this food; kirilloid treats a missing eitr value as 0 (optional field in its Food type), so 0 is used."
+  },
+  {
+    "id": "yggdrasil-porridge",
+    "name": "Yggdrasil porridge",
+    "description": "A dish cooked in the cauldron. It is an eitr food for magic users. Make it at the cauldron from 4 Sap, 3 Barley and 2 Royal jelly.",
+    "veteranNotes": "27 health, 13 stamina, 80 eitr; lasts 1500 s; heals 3 HP per tick. Weight 1, stacks to 10. Needs cauldron level 5. Used to make Mushrooms Galore á la Mistlands.",
+    "biomeIds": ["mistlands"],
+    "tier": 6,
+    "dangerLevel": "none",
+    "spoilerLevel": 2,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/resources.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "YggdrasilPorridge",
+    "confidence": "read",
+    "health": 27,
+    "stamina": 13,
+    "eitr": 80,
+    "durationS": 1500,
+    "healPerTick": 3,
+    "recipe": {
+      "stationId": "cauldron",
+      "stationLevel": 5,
+      "materials": [
+        {
+          "itemId": "sap",
+          "count": 4
+        },
+        {
+          "itemId": "barley",
+          "count": 3
+        },
+        {
+          "itemId": "royal-jelly",
+          "count": 2
+        }
+      ]
+    }
+  },
+  {
+    "id": "fiddlehead",
+    "name": "Fiddlehead",
+    "description": "No cooking needed: you can eat this as soon as you have it. It is a balanced food that gives both health and stamina. It is also a common cooking ingredient. Pick fiddleheads in the Ashlands.",
+    "veteranNotes": "30 health, 30 stamina; lasts 900 s; heals 1 HP per tick. Weight 0.1, stacks to 50. Used in 6 recipes, including Marinated Greens, Mashed Meat, Scorching Medley and Sizzling Berry Broth.",
+    "biomeIds": ["ashlands"],
+    "tier": 7,
+    "dangerLevel": "none",
+    "spoilerLevel": 2,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/resources.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/objects.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/location/biomes.ts"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "Fiddleheadfern",
+    "confidence": "read",
+    "health": 30,
+    "stamina": 30,
+    "eitr": 0,
+    "durationS": 900,
+    "healPerTick": 1,
+    "notes": "The source lists no eitr for this food; kirilloid treats a missing eitr value as 0 (optional field in its Food type), so 0 is used."
+  },
+  {
+    "id": "smoke-puff",
+    "name": "Smoke Puff",
+    "description": "No cooking needed: you can eat this as soon as you have it. It is a balanced food that gives both health and stamina. It is also a common cooking ingredient. Pick smoke puffs in the Ashlands (they can also be grown).",
+    "veteranNotes": "15 health, 15 stamina; lasts 900 s; heals 1 HP per tick. Weight 0.1, stacks to 50. Used in 5 recipes, including Fiery Svinstew, Marinated Greens, Mead Base: Lingering Health and Smoke Bomb.",
+    "biomeIds": ["ashlands"],
+    "tier": 7,
+    "dangerLevel": "none",
+    "spoilerLevel": 2,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/resources.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/objects.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/location/biomes.ts"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "MushroomSmokePuff",
+    "confidence": "read",
+    "health": 15,
+    "stamina": 15,
+    "eitr": 0,
+    "durationS": 900,
+    "healPerTick": 1,
+    "notes": "The source lists no eitr for this food; kirilloid treats a missing eitr value as 0 (optional field in its Food type), so 0 is used."
+  },
+  {
+    "id": "vineberry",
+    "name": "Vineberry",
+    "description": "No cooking needed: you can eat this as soon as you have it. It is a balanced food that gives both health and stamina. It is also a common cooking ingredient. Harvest vineberry vines in the Ashlands, or grow your own from seeds.",
+    "veteranNotes": "30 health, 30 stamina; lasts 900 s; heals 1 HP per tick. Weight 0.1, stacks to 50. Used in 9 recipes, including Ashlands Gourmet Bowl, Fiery Svinstew, Mead Base: Lingering Eitr and Mead Base: Lingering Health.",
+    "biomeIds": ["ashlands"],
+    "tier": 7,
+    "dangerLevel": "none",
+    "spoilerLevel": 2,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/resources.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/objects.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/location/biomes.ts"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "Vineberry",
+    "confidence": "read",
+    "health": 30,
+    "stamina": 30,
+    "eitr": 0,
+    "durationS": 900,
+    "healPerTick": 1,
+    "notes": "The source lists no eitr for this food; kirilloid treats a missing eitr value as 0 (optional field in its Food type), so 0 is used."
+  },
+  {
+    "id": "cooked-asksvin-tail",
+    "name": "Cooked Asksvin Tail",
+    "description": "Grill asksvin tail on a cooking station to get this. It is a health-focused food, good for fighting. Make it at the cooking station from 1 Asksvin Tail.",
+    "veteranNotes": "70 health, 24 stamina; lasts 1200 s; heals 6 HP per tick. Weight 1, stacks to 20. Can also be made at the iron cooking station. Used to make Ashlands Gourmet Bowl.",
+    "biomeIds": ["ashlands"],
+    "tier": 7,
+    "dangerLevel": "none",
+    "spoilerLevel": 2,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/resources.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "CookedAsksvinMeat",
+    "confidence": "read",
+    "health": 70,
+    "stamina": 24,
+    "eitr": 0,
+    "durationS": 1200,
+    "healPerTick": 6,
+    "recipe": {
+      "stationId": "cooking-station",
+      "stationLevel": 1,
+      "materials": [
+        {
+          "itemId": "asksvin-tail",
+          "count": 1
+        }
+      ]
+    },
+    "notes": "The source lists no eitr for this food; kirilloid treats a missing eitr value as 0 (optional field in its Food type), so 0 is used."
+  },
+  {
+    "id": "cooked-volture-meat",
+    "name": "Cooked Volture Meat",
+    "description": "Grill volture meat on a cooking station to get this. It is a health-focused food, good for fighting. Make it at the cooking station from 1 Volture Meat.",
+    "veteranNotes": "70 health, 24 stamina; lasts 1200 s; heals 6 HP per tick. Weight 1, stacks to 20. Can also be made at the iron cooking station.",
+    "biomeIds": ["ashlands"],
+    "tier": 7,
+    "dangerLevel": "none",
+    "spoilerLevel": 2,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/resources.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "CookedVoltureMeat",
+    "confidence": "read",
+    "health": 70,
+    "stamina": 24,
+    "eitr": 0,
+    "durationS": 1200,
+    "healPerTick": 6,
+    "recipe": {
+      "stationId": "cooking-station",
+      "stationLevel": 1,
+      "materials": [
+        {
+          "itemId": "volture-meat",
+          "count": 1
+        }
+      ]
+    },
+    "notes": "The source lists no eitr for this food; kirilloid treats a missing eitr value as 0 (optional field in its Food type), so 0 is used."
+  },
+  {
+    "id": "mashed-meat",
+    "name": "Mashed Meat",
+    "description": "A dish cooked in the cauldron. It is a health-focused food, good for fighting. Make it at the cauldron from 1 Asksvin Tail, 1 Volture Meat and 1 Fiddlehead.",
+    "veteranNotes": "100 health, 34 stamina; lasts 1500 s; heals 6 HP per tick. Weight 1, stacks to 10. Needs cauldron level 6.",
+    "biomeIds": ["ashlands"],
+    "tier": 7,
+    "dangerLevel": "none",
+    "spoilerLevel": 2,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/resources.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "MashedMeat",
+    "confidence": "read",
+    "health": 100,
+    "stamina": 34,
+    "eitr": 0,
+    "durationS": 1500,
+    "healPerTick": 6,
+    "recipe": {
+      "stationId": "cauldron",
+      "stationLevel": 6,
+      "materials": [
+        {
+          "itemId": "asksvin-tail",
+          "count": 1
+        },
+        {
+          "itemId": "volture-meat",
+          "count": 1
+        },
+        {
+          "itemId": "fiddlehead",
+          "count": 1
+        }
+      ]
+    },
+    "notes": "The source lists no eitr for this food; kirilloid treats a missing eitr value as 0 (optional field in its Food type), so 0 is used."
+  },
+  {
+    "id": "fiery-svinstew",
+    "name": "Fiery Svinstew",
+    "description": "A dish cooked in the cauldron. It is a health-focused food, good for fighting. Make it at the cauldron from 1 Asksvin Tail, 2 Vineberry and 1 Smoke Puff.",
+    "veteranNotes": "95 health, 32 stamina; lasts 1500 s; heals 6 HP per tick. Weight 1, stacks to 10. Needs cauldron level 5.",
+    "biomeIds": ["ashlands"],
+    "tier": 7,
+    "dangerLevel": "none",
+    "spoilerLevel": 2,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/resources.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "FierySvinstew",
+    "confidence": "read",
+    "health": 95,
+    "stamina": 32,
+    "eitr": 0,
+    "durationS": 1500,
+    "healPerTick": 6,
+    "recipe": {
+      "stationId": "cauldron",
+      "stationLevel": 5,
+      "materials": [
+        {
+          "itemId": "asksvin-tail",
+          "count": 1
+        },
+        {
+          "itemId": "vineberry",
+          "count": 2
+        },
+        {
+          "itemId": "smoke-puff",
+          "count": 1
+        }
+      ]
+    },
+    "notes": "The source lists no eitr for this food; kirilloid treats a missing eitr value as 0 (optional field in its Food type), so 0 is used."
+  },
+  {
+    "id": "piquant-pie",
+    "name": "Piquant Pie",
+    "description": "Baked in a stone oven from a prepared dish. It is a health-focused food, good for fighting. Make it at the stone oven from 1 Uncooked Piquant Pie.",
+    "veteranNotes": "105 health, 35 stamina; lasts 1800 s; heals 6 HP per tick. Weight 1, stacks to 10.",
+    "biomeIds": ["ashlands"],
+    "tier": 7,
+    "dangerLevel": "none",
+    "spoilerLevel": 2,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/resources.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "PiquantPie",
+    "confidence": "read",
+    "health": 105,
+    "stamina": 35,
+    "eitr": 0,
+    "durationS": 1800,
+    "healPerTick": 6,
+    "recipe": {
+      "stationId": "stone-oven",
+      "stationLevel": 1,
+      "materials": [
+        {
+          "itemId": "uncooked-piquant-pie",
+          "count": 1
+        }
+      ]
+    },
+    "notes": "The source lists no eitr for this food; kirilloid treats a missing eitr value as 0 (optional field in its Food type), so 0 is used."
+  },
+  {
+    "id": "cooked-bonemaw-meat",
+    "name": "Cooked Bonemaw Meat",
+    "description": "Grill bonemaw meat on a cooking station to get this. It is a health-focused food, good for fighting. Make it at the iron cooking station from 1 Bonemaw Meat.",
+    "veteranNotes": "90 health, 30 stamina; lasts 1500 s; heals 6 HP per tick. Weight 10, stacks to 50.",
+    "biomeIds": ["ashlands"],
+    "tier": 7,
+    "dangerLevel": "none",
+    "spoilerLevel": 2,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/resources.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "CookedBoneMawSerpentMeat",
+    "confidence": "read",
+    "health": 90,
+    "stamina": 30,
+    "eitr": 0,
+    "durationS": 1500,
+    "healPerTick": 6,
+    "recipe": {
+      "stationId": "iron-cooking-station",
+      "stationLevel": 1,
+      "materials": [
+        {
+          "itemId": "bonemaw-meat",
+          "count": 1
+        }
+      ]
+    },
+    "notes": "The source lists no eitr for this food; kirilloid treats a missing eitr value as 0 (optional field in its Food type), so 0 is used."
+  },
+  {
+    "id": "spicy-marmalade",
+    "name": "Spicy Marmalade",
+    "description": "A dish cooked in the cauldron. It is an eitr food for magic users. Make it at the cauldron from 3 Vineberry, 1 Honey and 1 Fiddlehead.",
+    "veteranNotes": "28 health, 14 stamina, 85 eitr; lasts 1500 s; heals 4 HP per tick. Weight 1, stacks to 10. Needs cauldron level 5.",
+    "biomeIds": ["ashlands"],
+    "tier": 7,
+    "dangerLevel": "none",
+    "spoilerLevel": 2,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/resources.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "SpicyMarmalade",
+    "confidence": "read",
+    "health": 28,
+    "stamina": 14,
+    "eitr": 85,
+    "durationS": 1500,
+    "healPerTick": 4,
+    "recipe": {
+      "stationId": "cauldron",
+      "stationLevel": 5,
+      "materials": [
+        {
+          "itemId": "vineberry",
+          "count": 3
+        },
+        {
+          "itemId": "honey",
+          "count": 1
+        },
+        {
+          "itemId": "fiddlehead",
+          "count": 1
+        }
+      ]
+    }
+  },
+  {
+    "id": "scorching-medley",
+    "name": "Scorching Medley",
+    "description": "A dish cooked in the cauldron. It is an eitr food for magic users. Make it at the cauldron from 3 Jotun puffs, 3 Onion and 3 Fiddlehead.",
+    "veteranNotes": "28 health, 14 stamina, 85 eitr; lasts 1500 s; heals 4 HP per tick. Weight 1, stacks to 10. One batch yields 3. Needs cauldron level 6. Used to make Ashlands Gourmet Bowl.",
+    "biomeIds": ["ashlands"],
+    "tier": 7,
+    "dangerLevel": "none",
+    "spoilerLevel": 2,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/resources.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "ScorchingMedley",
+    "confidence": "read",
+    "health": 28,
+    "stamina": 14,
+    "eitr": 85,
+    "durationS": 1500,
+    "healPerTick": 4,
+    "recipe": {
+      "stationId": "cauldron",
+      "stationLevel": 6,
+      "materials": [
+        {
+          "itemId": "jotun-puffs",
+          "count": 3
+        },
+        {
+          "itemId": "onion",
+          "count": 3
+        },
+        {
+          "itemId": "fiddlehead",
+          "count": 3
+        }
+      ]
+    }
+  },
+  {
+    "id": "roasted-crust-pie",
+    "name": "Roasted Crust Pie",
+    "description": "Baked in a stone oven from a prepared dish. It is a health-focused food, good for fighting. Make it at the stone oven from 1 Uncooked Roasted Crust Pie.",
+    "veteranNotes": "105 health, 24 stamina; lasts 1800 s; heals 6 HP per tick. Weight 1, stacks to 10.",
+    "biomeIds": ["ashlands"],
+    "tier": 7,
+    "dangerLevel": "none",
+    "spoilerLevel": 2,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/resources.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "RoastedCrustPie",
+    "confidence": "read",
+    "health": 105,
+    "stamina": 24,
+    "eitr": 0,
+    "durationS": 1800,
+    "healPerTick": 6,
+    "recipe": {
+      "stationId": "stone-oven",
+      "stationLevel": 1,
+      "materials": [
+        {
+          "itemId": "uncooked-roasted-crust-pie",
+          "count": 1
+        }
+      ]
+    },
+    "notes": "The source lists no eitr for this food; kirilloid treats a missing eitr value as 0 (optional field in its Food type), so 0 is used."
+  },
+  {
+    "id": "sizzling-berry-broth",
+    "name": "Sizzling Berry Broth",
+    "description": "A dish cooked in the cauldron. It is an eitr food for magic users. Make it at the cauldron from 3 Sap, 2 Fiddlehead and 2 Vineberry.",
+    "veteranNotes": "28 health, 14 stamina, 85 eitr; lasts 1500 s; heals 4 HP per tick. Weight 1, stacks to 10. Needs cauldron level 5.",
+    "biomeIds": ["ashlands"],
+    "tier": 7,
+    "dangerLevel": "none",
+    "spoilerLevel": 2,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/resources.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "SizzlingBerryBroth",
+    "confidence": "read",
+    "health": 28,
+    "stamina": 14,
+    "eitr": 85,
+    "durationS": 1500,
+    "healPerTick": 4,
+    "recipe": {
+      "stationId": "cauldron",
+      "stationLevel": 5,
+      "materials": [
+        {
+          "itemId": "sap",
+          "count": 3
+        },
+        {
+          "itemId": "fiddlehead",
+          "count": 2
+        },
+        {
+          "itemId": "vineberry",
+          "count": 2
+        }
+      ]
+    }
+  },
+  {
+    "id": "sparkling-shroomshake",
+    "name": "Sparkling Shroomshake",
+    "description": "A dish cooked in the cauldron. It is an eitr food for magic users. Make it at the cauldron from 4 Sap, 2 Vineberry, 2 Smoke Puff and 2 Magecap.",
+    "veteranNotes": "30 health, 15 stamina, 90 eitr; lasts 1500 s; heals 4 HP per tick. Weight 1, stacks to 10. Needs cauldron level 6.",
+    "biomeIds": ["ashlands"],
+    "tier": 7,
+    "dangerLevel": "none",
+    "spoilerLevel": 2,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/resources.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "SparklingShroomshake",
+    "confidence": "read",
+    "health": 30,
+    "stamina": 15,
+    "eitr": 90,
+    "durationS": 1500,
+    "healPerTick": 4,
+    "recipe": {
+      "stationId": "cauldron",
+      "stationLevel": 6,
+      "materials": [
+        {
+          "itemId": "sap",
+          "count": 4
+        },
+        {
+          "itemId": "vineberry",
+          "count": 2
+        },
+        {
+          "itemId": "smoke-puff",
+          "count": 2
+        },
+        {
+          "itemId": "magecap",
+          "count": 2
+        }
+      ]
+    }
+  },
+  {
+    "id": "marinated-greens",
+    "name": "Marinated Greens",
+    "description": "A dish cooked in the cauldron. It is an eitr food for magic users. Make it at the cauldron from 3 Sap, 2 Magecap, 2 Fiddlehead and 2 Smoke Puff.",
+    "veteranNotes": "32 health, 16 stamina, 95 eitr; lasts 1800 s; heals 4 HP per tick. Weight 1, stacks to 10. Needs cauldron level 6.",
+    "biomeIds": ["ashlands"],
+    "tier": 7,
+    "dangerLevel": "none",
+    "spoilerLevel": 2,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/resources.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "MarinatedGreens",
+    "confidence": "read",
+    "health": 32,
+    "stamina": 16,
+    "eitr": 95,
+    "durationS": 1800,
+    "healPerTick": 4,
+    "recipe": {
+      "stationId": "cauldron",
+      "stationLevel": 6,
+      "materials": [
+        {
+          "itemId": "sap",
+          "count": 3
+        },
+        {
+          "itemId": "magecap",
+          "count": 2
+        },
+        {
+          "itemId": "fiddlehead",
+          "count": 2
+        },
+        {
+          "itemId": "smoke-puff",
+          "count": 2
+        }
+      ]
+    }
+  },
+  {
+    "id": "cooked-moose-meat",
+    "name": "Cooked Moose Meat",
+    "description": "Grill moose meat on a cooking station to get this. It is a health-focused food, good for fighting. Make it at the iron cooking station from 1 Moose Meat.",
+    "veteranNotes": "80 health, 27 stamina; lasts 1200 s; heals 7 HP per tick. Weight 1, stacks to 20. Used to make Northern Morning Fare.",
+    "biomeIds": ["deep-north"],
+    "tier": 8,
+    "dangerLevel": "none",
+    "spoilerLevel": 2,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/resources.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "CookedMooseMeat",
+    "confidence": "read",
+    "health": 80,
+    "stamina": 27,
+    "eitr": 0,
+    "durationS": 1200,
+    "healPerTick": 7,
+    "recipe": {
+      "stationId": "iron-cooking-station",
+      "stationLevel": 1,
+      "materials": [
+        {
+          "itemId": "moose-meat",
+          "count": 1
+        }
+      ]
+    },
+    "notes": "The source lists no eitr for this food; kirilloid treats a missing eitr value as 0 (optional field in its Food type), so 0 is used."
+  },
+  {
+    "id": "cooked-seal-blubber",
+    "name": "Cooked Seal Blubber",
+    "description": "Baked in a stone oven. It is a health-focused food, good for fighting. Make it at the stone oven from 1 Seal Blubber.",
+    "veteranNotes": "60 health, 20 stamina; lasts 1200 s; heals 5 HP per tick. Weight 1, stacks to 20.",
+    "biomeIds": ["deep-north"],
+    "tier": 8,
+    "dangerLevel": "none",
+    "spoilerLevel": 2,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/resources.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "CookedSealBlubber",
+    "confidence": "read",
+    "health": 60,
+    "stamina": 20,
+    "eitr": 0,
+    "durationS": 1200,
+    "healPerTick": 5,
+    "recipe": {
+      "stationId": "stone-oven",
+      "stationLevel": 1,
+      "materials": [
+        {
+          "itemId": "seal-blubber",
+          "count": 1
+        }
+      ]
+    },
+    "notes": "The source lists no eitr for this food; kirilloid treats a missing eitr value as 0 (optional field in its Food type), so 0 is used."
+  },
+  {
+    "id": "kale",
+    "name": "Kale",
+    "description": "No cooking needed: you can eat this as soon as you have it. It is a balanced food that gives both health and stamina. It is also a common cooking ingredient. Pick wild kale in the Deep North, or grow it from kale seeds.",
+    "veteranNotes": "35 health, 35 stamina; lasts 900 s; heals 1 HP per tick. Weight 0.1, stacks to 50. Used in 7 recipes, including Fish Soup, Meat In Bread, Raw Kale Chips and Seal Meat Soup.",
+    "biomeIds": ["deep-north"],
+    "tier": 8,
+    "dangerLevel": "none",
+    "spoilerLevel": 2,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/resources.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/objects.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/location/biomes.ts"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "Kale",
+    "confidence": "read",
+    "health": 35,
+    "stamina": 35,
+    "eitr": 0,
+    "durationS": 900,
+    "healPerTick": 1,
+    "notes": "The source lists no eitr for this food; kirilloid treats a missing eitr value as 0 (optional field in its Food type), so 0 is used."
+  },
+  {
+    "id": "oats",
+    "name": "Oats",
+    "description": "A Deep North grain. It is a balanced food that gives both health and stamina. Grow oats from oat seeds; the windmill can also turn oat seeds into oats.",
+    "veteranNotes": "33 health, 33 stamina; lasts 1800 s; heals 3 HP per tick. Weight 0.1, stacks to 50. Used to make Oat Flour and Oatmeal.",
+    "biomeIds": ["deep-north"],
+    "tier": 8,
+    "dangerLevel": "none",
+    "spoilerLevel": 2,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/resources.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/location/biomes.ts"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "Oat",
+    "confidence": "read",
+    "health": 33,
+    "stamina": 33,
+    "eitr": 0,
+    "durationS": 1800,
+    "healPerTick": 3,
+    "recipe": {
+      "stationId": "windmill",
+      "stationLevel": 1,
+      "materials": [
+        {
+          "itemId": "oat-seeds",
+          "count": 1
+        }
+      ]
+    },
+    "notes": "The source lists no eitr for this food; kirilloid treats a missing eitr value as 0 (optional field in its Food type), so 0 is used."
+  },
+  {
+    "id": "poteitr",
+    "name": "Poteitr",
+    "description": "No cooking needed: you can eat this as soon as you have it. It is a balanced food that gives both health and stamina. It is also a common cooking ingredient. Dig up wild poteitr in the Deep North, or grow it from seeds.",
+    "veteranNotes": "35 health, 35 stamina, 35 eitr; lasts 900 s; heals 1 HP per tick. Weight 0.5, stacks to 50. Used in 5 recipes, including Meatballs and Poteitr, Northern Morning Fare, Oven Pancake Batter and Smoked Fish.",
+    "biomeIds": ["deep-north"],
+    "tier": 8,
+    "dangerLevel": "none",
+    "spoilerLevel": 2,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/resources.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/objects.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/location/biomes.ts"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "Poteitr",
+    "confidence": "read",
+    "health": 35,
+    "stamina": 35,
+    "eitr": 35,
+    "durationS": 900,
+    "healPerTick": 1
+  },
+  {
+    "id": "baked-poteitr",
+    "name": "Baked Poteitr",
+    "description": "Baked in a stone oven from a prepared dish. It is an eitr food for magic users. Make it at the stone oven from 1 Unbaked Poteitr.",
+    "veteranNotes": "34 health, 17 stamina, 100 eitr; lasts 1500 s; heals 5 HP per tick. Weight 1, stacks to 10.",
+    "biomeIds": ["deep-north"],
+    "tier": 8,
+    "dangerLevel": "none",
+    "spoilerLevel": 2,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/resources.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "BakedPoteitr",
+    "confidence": "read",
+    "health": 34,
+    "stamina": 17,
+    "eitr": 100,
+    "durationS": 1500,
+    "healPerTick": 5,
+    "recipe": {
+      "stationId": "stone-oven",
+      "stationLevel": 1,
+      "materials": [
+        {
+          "itemId": "unbaked-poteitr",
+          "count": 1
+        }
+      ]
+    }
+  },
+  {
+    "id": "fish-soup",
+    "name": "Fish Soup",
+    "description": "A dish cooked in the cauldron. It is an eitr food for magic users. Make it at the cauldron from 3 Raw fish, 2 Kale and 2 Ice.",
+    "veteranNotes": "37 health, 18 stamina, 105 eitr; lasts 1800 s; heals 5 HP per tick. Weight 1, stacks to 10. Needs cauldron level 7.",
+    "biomeIds": ["deep-north"],
+    "tier": 8,
+    "dangerLevel": "none",
+    "spoilerLevel": 2,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/resources.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "FishSoup",
+    "confidence": "read",
+    "health": 37,
+    "stamina": 18,
+    "eitr": 105,
+    "durationS": 1800,
+    "healPerTick": 5,
+    "recipe": {
+      "stationId": "cauldron",
+      "stationLevel": 7,
+      "materials": [
+        {
+          "itemId": "raw-fish",
+          "count": 3
+        },
+        {
+          "itemId": "kale",
+          "count": 2
+        },
+        {
+          "itemId": "ice",
+          "count": 2
+        }
+      ]
+    }
+  },
+  {
+    "id": "kale-chips",
+    "name": "Kale Chips",
+    "description": "Baked in a stone oven from a prepared dish. It is a stamina-focused food, good for running, building and long fights. Make it at the stone oven from 1 Raw Kale Chips.",
+    "veteranNotes": "35 health, 105 stamina; lasts 1500 s; heals 5 HP per tick. Weight 1, stacks to 10.",
+    "biomeIds": ["deep-north"],
+    "tier": 8,
+    "dangerLevel": "none",
+    "spoilerLevel": 2,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/resources.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "KaleChips",
+    "confidence": "read",
+    "health": 35,
+    "stamina": 105,
+    "eitr": 0,
+    "durationS": 1500,
+    "healPerTick": 5,
+    "recipe": {
+      "stationId": "stone-oven",
+      "stationLevel": 1,
+      "materials": [
+        {
+          "itemId": "raw-kale-chips",
+          "count": 1
+        }
+      ]
+    },
+    "notes": "The source lists no eitr for this food; kirilloid treats a missing eitr value as 0 (optional field in its Food type), so 0 is used."
+  },
+  {
+    "id": "lingonberries",
+    "name": "Lingonberries",
+    "description": "No cooking needed: you can eat this as soon as you have it. It is a balanced food that gives both health and stamina. It is also a common cooking ingredient. Pick them from lingonberry bushes in the Deep North.",
+    "veteranNotes": "35 health, 35 stamina; lasts 900 s; heals 1 HP per tick. Weight 0.1, stacks to 50. Used in 5 recipes, including Lingonberry Juice, Meat In Bread, Meatballs and Poteitr and Oatmeal.",
+    "biomeIds": ["deep-north"],
+    "tier": 8,
+    "dangerLevel": "none",
+    "spoilerLevel": 2,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/resources.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/objects.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/creatures.ts"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "Lingonberry",
+    "confidence": "read",
+    "health": 35,
+    "stamina": 35,
+    "eitr": 0,
+    "durationS": 900,
+    "healPerTick": 1,
+    "notes": "The source lists no eitr for this food; kirilloid treats a missing eitr value as 0 (optional field in its Food type), so 0 is used."
+  },
+  {
+    "id": "lingonberry-juice",
+    "name": "Lingonberry Juice",
+    "description": "A dish cooked in the cauldron. It is a stamina-focused food, good for running, building and long fights. Make it at the cauldron from 5 Lingonberries and 5 Ice.",
+    "veteranNotes": "35 health, 105 stamina; lasts 1500 s; heals 5 HP per tick. Weight 1, stacks to 10. Needs cauldron level 6.",
+    "biomeIds": ["deep-north"],
+    "tier": 8,
+    "dangerLevel": "none",
+    "spoilerLevel": 2,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/resources.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "Lingondricka",
+    "confidence": "read",
+    "health": 35,
+    "stamina": 105,
+    "eitr": 0,
+    "durationS": 1500,
+    "healPerTick": 5,
+    "recipe": {
+      "stationId": "cauldron",
+      "stationLevel": 6,
+      "materials": [
+        {
+          "itemId": "lingonberries",
+          "count": 5
+        },
+        {
+          "itemId": "ice",
+          "count": 5
+        }
+      ]
+    },
+    "notes": "The source lists no eitr for this food; kirilloid treats a missing eitr value as 0 (optional field in its Food type), so 0 is used."
+  },
+  {
+    "id": "luminous-larva",
+    "name": "Luminous Larva",
+    "description": "No cooking needed: you can eat this as soon as you have it. It is a balanced food that gives both health and stamina. Pick up luminous larvae in the Deep North.",
+    "veteranNotes": "30 health, 30 stamina; lasts 600 s; heals 1 HP per tick. Weight 0.2, stacks to 50. Used to make Hooded Lantern.",
+    "biomeIds": ["deep-north"],
+    "tier": 8,
+    "dangerLevel": "none",
+    "spoilerLevel": 2,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/resources.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/objects.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/location/biomes.ts"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "GlowWorm",
+    "confidence": "read",
+    "health": 30,
+    "stamina": 30,
+    "eitr": 0,
+    "durationS": 600,
+    "healPerTick": 1,
+    "notes": "The source lists no eitr for this food; kirilloid treats a missing eitr value as 0 (optional field in its Food type), so 0 is used."
+  },
+  {
+    "id": "meat-in-bread",
+    "name": "Meat In Bread",
+    "description": "A dish cooked in the cauldron. It is a health-focused food, good for fighting. Make it at the cauldron from 1 Moose Meat, 2 Kale, 1 Oat Flour and 2 Lingonberries.",
+    "veteranNotes": "110 health, 37 stamina; lasts 1800 s; heals 7 HP per tick. Weight 1, stacks to 10. One batch yields 2. Needs cauldron level 7.",
+    "biomeIds": ["deep-north"],
+    "tier": 8,
+    "dangerLevel": "none",
+    "spoilerLevel": 2,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/resources.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "MooseKebab",
+    "confidence": "read",
+    "health": 110,
+    "stamina": 37,
+    "eitr": 0,
+    "durationS": 1800,
+    "healPerTick": 7,
+    "recipe": {
+      "stationId": "cauldron",
+      "stationLevel": 7,
+      "materials": [
+        {
+          "itemId": "moose-meat",
+          "count": 1
+        },
+        {
+          "itemId": "kale",
+          "count": 2
+        },
+        {
+          "itemId": "oat-flour",
+          "count": 1
+        },
+        {
+          "itemId": "lingonberries",
+          "count": 2
+        }
+      ]
+    },
+    "notes": "The source lists no eitr for this food; kirilloid treats a missing eitr value as 0 (optional field in its Food type), so 0 is used."
+  },
+  {
+    "id": "meatballs-and-poteitr",
+    "name": "Meatballs and Poteitr",
+    "description": "A dish cooked in the cauldron. It is an eitr food for magic users. Make it at the cauldron from 1 Moose Meat, 2 Lingonberries and 2 Poteitr.",
+    "veteranNotes": "35 health, 18 stamina, 105 eitr; lasts 1500 s; heals 5 HP per tick. Weight 1, stacks to 10. Needs cauldron level 7.",
+    "biomeIds": ["deep-north"],
+    "tier": 8,
+    "dangerLevel": "none",
+    "spoilerLevel": 2,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/resources.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "MeatballsMashedPoteitr",
+    "confidence": "read",
+    "health": 35,
+    "stamina": 18,
+    "eitr": 105,
+    "durationS": 1500,
+    "healPerTick": 5,
+    "recipe": {
+      "stationId": "cauldron",
+      "stationLevel": 7,
+      "materials": [
+        {
+          "itemId": "moose-meat",
+          "count": 1
+        },
+        {
+          "itemId": "lingonberries",
+          "count": 2
+        },
+        {
+          "itemId": "poteitr",
+          "count": 2
+        }
+      ]
+    }
+  },
+  {
+    "id": "oat-milk",
+    "name": "Oat Milk",
+    "description": "A drink brewed in the mead ketill. It is a stamina-focused food, good for running, building and long fights. Make it at the mead ketill from 5 Oat Flour and 5 Ice.",
+    "veteranNotes": "37 health, 110 stamina; lasts 1500 s; heals 5 HP per tick. Weight 1, stacks to 10. Used to make Oatmeal and Pancakes.",
+    "biomeIds": ["deep-north"],
+    "tier": 8,
+    "dangerLevel": "none",
+    "spoilerLevel": 2,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/resources.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "OatMilk",
+    "confidence": "read",
+    "health": 37,
+    "stamina": 110,
+    "eitr": 0,
+    "durationS": 1500,
+    "healPerTick": 5,
+    "recipe": {
+      "stationId": "mead-ketill",
+      "stationLevel": 1,
+      "materials": [
+        {
+          "itemId": "oat-flour",
+          "count": 5
+        },
+        {
+          "itemId": "ice",
+          "count": 5
+        }
+      ]
+    },
+    "notes": "The source lists no eitr for this food; kirilloid treats a missing eitr value as 0 (optional field in its Food type), so 0 is used."
+  },
+  {
+    "id": "oatmeal",
+    "name": "Oatmeal",
+    "description": "A dish cooked in the cauldron. It is an eitr food for magic users. Make it at the cauldron from 2 Oats, 2 Lingonberries and 1 Oat Milk.",
+    "veteranNotes": "39 health, 115 stamina, 85 eitr; lasts 1800 s; heals 5 HP per tick. Weight 1, stacks to 10. Needs cauldron level 6.",
+    "biomeIds": ["deep-north"],
+    "tier": 8,
+    "dangerLevel": "none",
+    "spoilerLevel": 2,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/resources.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "OatmealLingonberryJam",
+    "confidence": "read",
+    "health": 39,
+    "stamina": 115,
+    "eitr": 85,
+    "durationS": 1800,
+    "healPerTick": 5,
+    "recipe": {
+      "stationId": "cauldron",
+      "stationLevel": 6,
+      "materials": [
+        {
+          "itemId": "oats",
+          "count": 2
+        },
+        {
+          "itemId": "lingonberries",
+          "count": 2
+        },
+        {
+          "itemId": "oat-milk",
+          "count": 1
+        }
+      ]
+    }
+  },
+  {
+    "id": "oven-pancake",
+    "name": "Oven Pancake",
+    "description": "Baked in a stone oven from a prepared dish. It is an eitr food for magic users. Make it at the stone oven from 1 Oven Pancake Batter.",
+    "veteranNotes": "37 health, 18 stamina, 105 eitr; lasts 1800 s; heals 5 HP per tick. Weight 1, stacks to 10.",
+    "biomeIds": ["deep-north"],
+    "tier": 8,
+    "dangerLevel": "none",
+    "spoilerLevel": 2,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/resources.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "OvenPancake",
+    "confidence": "read",
+    "health": 37,
+    "stamina": 18,
+    "eitr": 105,
+    "durationS": 1800,
+    "healPerTick": 5,
+    "recipe": {
+      "stationId": "stone-oven",
+      "stationLevel": 1,
+      "materials": [
+        {
+          "itemId": "oven-pancake-batter",
+          "count": 1
+        }
+      ]
+    }
+  },
+  {
+    "id": "pancakes",
+    "name": "Pancakes",
+    "description": "A dish cooked in the cauldron. It is a stamina-focused food, good for running, building and long fights. Make it at the cauldron from 1 Oat Milk, 2 Oat Flour, 2 Egg and 2 Blueberries.",
+    "veteranNotes": "39 health, 115 stamina; lasts 1800 s; heals 5 HP per tick. Weight 1, stacks to 10. One batch yields 3. Needs cauldron level 6.",
+    "biomeIds": ["deep-north"],
+    "tier": 8,
+    "dangerLevel": "none",
+    "spoilerLevel": 2,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/resources.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "Pancakes",
+    "confidence": "read",
+    "health": 39,
+    "stamina": 115,
+    "eitr": 0,
+    "durationS": 1800,
+    "healPerTick": 5,
+    "recipe": {
+      "stationId": "cauldron",
+      "stationLevel": 6,
+      "materials": [
+        {
+          "itemId": "oat-milk",
+          "count": 1
+        },
+        {
+          "itemId": "oat-flour",
+          "count": 2
+        },
+        {
+          "itemId": "egg",
+          "count": 2
+        },
+        {
+          "itemId": "blueberries",
+          "count": 2
+        }
+      ]
+    },
+    "notes": "The source lists no eitr for this food; kirilloid treats a missing eitr value as 0 (optional field in its Food type), so 0 is used."
+  },
+  {
+    "id": "seal-meat-soup",
+    "name": "Seal Meat Soup",
+    "description": "A dish cooked in the cauldron. It is a health-focused food, good for fighting. Make it at the cauldron from 2 Seal Blubber, 2 Kale and 2 Ice.",
+    "veteranNotes": "110 health, 37 stamina; lasts 1800 s; heals 7 HP per tick. Weight 1, stacks to 10. Needs cauldron level 7.",
+    "biomeIds": ["deep-north"],
+    "tier": 8,
+    "dangerLevel": "none",
+    "spoilerLevel": 2,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/resources.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "SealSoup",
+    "confidence": "read",
+    "health": 110,
+    "stamina": 37,
+    "eitr": 0,
+    "durationS": 1800,
+    "healPerTick": 7,
+    "recipe": {
+      "stationId": "cauldron",
+      "stationLevel": 7,
+      "materials": [
+        {
+          "itemId": "seal-blubber",
+          "count": 2
+        },
+        {
+          "itemId": "kale",
+          "count": 2
+        },
+        {
+          "itemId": "ice",
+          "count": 2
+        }
+      ]
+    },
+    "notes": "The source lists no eitr for this food; kirilloid treats a missing eitr value as 0 (optional field in its Food type), so 0 is used."
+  },
+  {
+    "id": "smoked-fish",
+    "name": "Smoked Fish",
+    "description": "A dish cooked in the cauldron. It is an eitr food for magic users. Make it at the cauldron from 1 Raw fish, 1 Kale and 1 Poteitr.",
+    "veteranNotes": "30 health, 16 stamina, 95 eitr; lasts 1500 s; heals 5 HP per tick. Weight 1, stacks to 10. Needs cauldron level 7.",
+    "biomeIds": ["deep-north"],
+    "tier": 8,
+    "dangerLevel": "none",
+    "spoilerLevel": 2,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/resources.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "SmokedFish",
+    "confidence": "read",
+    "health": 30,
+    "stamina": 16,
+    "eitr": 95,
+    "durationS": 1500,
+    "healPerTick": 5,
+    "recipe": {
+      "stationId": "cauldron",
+      "stationLevel": 7,
+      "materials": [
+        {
+          "itemId": "raw-fish",
+          "count": 1
+        },
+        {
+          "itemId": "kale",
+          "count": 1
+        },
+        {
+          "itemId": "poteitr",
+          "count": 1
+        }
+      ]
+    }
+  },
+  {
+    "id": "smoked-moose-meat",
+    "name": "Smoked Moose Meat",
+    "description": "A dish cooked in the cauldron. It is a health-focused food, good for fighting. Make it at the cauldron from 1 Moose Meat and 2 Kale.",
+    "veteranNotes": "105 health, 35 stamina; lasts 1500 s; heals 7 HP per tick. Weight 1, stacks to 10. Needs cauldron level 7.",
+    "biomeIds": ["deep-north"],
+    "tier": 8,
+    "dangerLevel": "none",
+    "spoilerLevel": 2,
+    "sources": [
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/resources.ts",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/public/lang/en.json",
+      "https://github.com/kirilloid/valheim/blob/ae63432a485d92d88e97de28f21258b6208ba69b/src/data/recipes.ts"
+    ],
+    "gameVersion": "1.0",
+    "prefab": "SmokedMooseMeat",
+    "confidence": "read",
+    "health": 105,
+    "stamina": 35,
+    "eitr": 0,
+    "durationS": 1500,
+    "healPerTick": 7,
+    "recipe": {
+      "stationId": "cauldron",
+      "stationLevel": 7,
+      "materials": [
+        {
+          "itemId": "moose-meat",
+          "count": 1
+        },
+        {
+          "itemId": "kale",
+          "count": 2
+        }
+      ]
+    },
+    "notes": "The source lists no eitr for this food; kirilloid treats a missing eitr value as 0 (optional field in its Food type), so 0 is used."
+  }
+]
